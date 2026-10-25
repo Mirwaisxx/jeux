@@ -3,7 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Mode Soirée</title>
+<meta name="description" content="Undercover, Devine Tête et Loup-Garou entre potes : en local sur un téléphone ou en ligne, chacun sur le sien.">
+<meta name="theme-color" content="#1d2c8c">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Simwar">
+<meta property="og:description" content="Undercover, Devine Tête et Loup-Garou entre potes : en local sur un téléphone ou en ligne, chacun sur le sien.">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2214%22%20fill%3D%22%231d2c8c%22/%3E%3Cpath%20d%3D%22M12%2010%20L26%2026%20L17%2032%20Z%20M52%2010%20L38%2026%20L47%2032%20Z%22%20fill%3D%22%23ffd23f%22/%3E%3Cpath%20d%3D%22M32%2018%20C43%2018%2050%2025%2052%2033%20L56%2040%20L48%2042%20L45%2050%20L38%2056%20L32%2059%20L26%2056%20L19%2050%20L16%2042%20L8%2040%20L12%2033%20C14%2025%2021%2018%2032%2018%20Z%22%20fill%3D%22%23f4f3fb%22/%3E%3Cpath%20d%3D%22M20%2033%20L29%2036%20L22%2039%20Z%20M44%2033%20L35%2036%20L42%2039%20Z%22%20fill%3D%22%231d2c8c%22/%3E%3C/svg%3E">
+<title>Simwar</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=Figtree:wght@400;600;700&family=JetBrains+Mono:wght@500&display=swap">
 <style>
@@ -45,7 +52,8 @@ body {
 }
 #app { max-width: 460px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; }
 h1, h2 { font-family: var(--f-display); font-weight: 900; text-transform: uppercase; line-height: .95; margin: 0; text-wrap: balance; }
-h1 { font-size: 3.6rem; letter-spacing: .01em; }
+h1 { font-size: clamp(2.4rem, 13vw, 3.6rem); letter-spacing: .01em; overflow-wrap: anywhere; }
+h2 { overflow-wrap: anywhere; }
 h2 { font-size: 2.2rem; }
 p { margin: 0; }
 .eyebrow { font-family: var(--f-mono); font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
@@ -219,6 +227,28 @@ details.box[open] summary { margin-bottom: 12px; }
 .act-ko { background: var(--warn-soft); color: var(--warn); font-weight: 700; padding: 18px; border-radius: 14px; }
 
 .gm-on { color: var(--signal); }
+.gm-lg { color: #ff8a9a; }
+.quickjoin { display: flex; flex-direction: column; gap: 8px; }
+.qj-row { display: flex; gap: 8px; }
+.qj-row input { flex: 1; min-width: 0; }
+.qj-row .btn { width: auto; padding: 12px 18px; }
+.home-head { display: flex; flex-direction: column; gap: 6px; }
+.home-head h1 { font-size: clamp(3rem, 17vw, 4.4rem); letter-spacing: .02em; }
+.home-head .lead { font-family: var(--f-mono); font-size: .8rem; letter-spacing: .08em; text-transform: uppercase; }
+article.game-card { cursor: default; display: grid; grid-template-columns: minmax(0, 1fr) 80px; column-gap: 14px; row-gap: 4px; align-items: start; padding: 18px; }
+article.game-card:hover { border-color: var(--line); }
+article.game-card:active { transform: none; }
+article.game-card > :not(.gart) { grid-column: 1; }
+.gart { grid-column: 2; grid-row: 1 / span 3; }
+.gart svg { width: 80px; height: 80px; display: block; filter: drop-shadow(0 6px 10px rgba(0, 0, 0, .3)); }
+.game-card .gname { font-size: clamp(1.9rem, 9vw, 2.6rem); min-width: 0; overflow-wrap: anywhere; }
+.game-card .gdesc { font-size: .95rem; }
+article.game-card > .modes { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 12px; }
+article.game-card > .modes.single { grid-template-columns: 1fr; }
+.mode-btn { display: flex; align-items: center; justify-content: center; gap: 8px; min-height: 50px; background: var(--paper); color: var(--ink); border-radius: 12px; padding: 10px 14px; font-weight: 700; font-size: 1rem; box-shadow: 0 3px 0 rgba(0, 0, 0, .25); }
+.mode-btn svg { width: 20px; height: 20px; flex: none; }
+.mode-btn.on { background: var(--signal); }
+.mode-btn:active { transform: translateY(2px); box-shadow: 0 1px 0 rgba(0, 0, 0, .25); }
 .code-big { font-family: var(--f-display); font-weight: 900; font-size: 4.4rem; letter-spacing: .18em; line-height: 1; color: var(--signal); }
 .code-input { text-transform: uppercase; letter-spacing: .3em; font-family: var(--f-mono); font-size: 1.2rem; }
 .share { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
@@ -234,6 +264,99 @@ details.box[open] summary { margin-bottom: 12px; }
 .qs-row .pick { grid-column: 1 / -1; font-family: var(--f-display); font-weight: 900; font-size: 1.9rem; text-transform: uppercase; line-height: 1; overflow-wrap: anywhere; }
 .qs-row .pick.hidden { color: var(--muted); }
 .voted { color: var(--good); }
+.char-fig { margin: 0; display: flex; flex-direction: column; align-items: center; gap: 4px; }
+.char-fig figcaption { font-size: .7rem; }
+.char-fig figcaption a { color: #5a6199; }
+.char-img { width: 150px; height: 150px; object-fit: cover; object-position: top; border-radius: 14px; background: #e3e2f1; box-shadow: 0 6px 16px rgba(20, 26, 77, .25); }
+.char-thumb { width: 52px; height: 52px; object-fit: cover; object-position: top; border-radius: 9px; background: var(--line); flex: none; }
+.qs-row .pick { display: flex; align-items: center; gap: 10px; }
+.with-thumb { display: flex; align-items: center; gap: 8px; }
+.photo-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.photo-btn { cursor: pointer; }
+.photo-prev { width: 52px; height: 52px; object-fit: cover; border-radius: 10px; }
+
+/* Loup-Garou : décors nuit / jour */
+body { transition: background-color .9s ease, color .9s ease; }
+body[data-scene="night"] { --bg: #0b1030; --panel: #161d4c; --line: #2a3474; --muted: #a3acdf; }
+body[data-scene="day"] { --bg: #f2e6c9; --panel: #e5d4ab; --line: #cdb98a; --text: #2b2116; --muted: #6e5b3f; --good: #1f8a54; --warn: #b85a12; --good-soft: rgba(31, 138, 84, .14); --warn-soft: rgba(184, 90, 18, .14); }
+body[data-scene="day"] .btn-small { color: var(--text); }
+.lg { display: flex; flex-direction: column; gap: 18px; }
+.lg-scene { display: block; width: 100%; height: auto; max-width: 100%; aspect-ratio: 400 / 150; border-radius: 16px; box-shadow: 0 10px 30px rgba(0, 0, 0, .25); }
+.lg-star { fill: #fff; animation: lg-tw 3.2s ease-in-out infinite; }
+@keyframes lg-tw { 50% { opacity: .2; } }
+.lg-bar { display: flex; gap: 8px; flex-wrap: wrap; }
+.lg-bar .btn-small[aria-pressed="false"] { opacity: .7; }
+.lg-peek { display: flex; flex-direction: column; gap: 8px; }
+
+/* Cartes de rôle */
+.lg-card {
+  background: radial-gradient(120% 90% at 50% 15%, rgba(255, 255, 255, .16), transparent 60%), var(--rc);
+  color: #f7f4ff; border-radius: 18px; padding: 22px 18px 20px; display: flex; flex-direction: column; align-items: center;
+  text-align: center; gap: 8px; position: relative; overflow: hidden;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, .35), inset 0 0 0 3px rgba(255, 255, 255, .1);
+}
+.lg-card::before { content: ""; position: absolute; inset: 8px; border: 1.5px solid rgba(255, 255, 255, .22); border-radius: 12px; pointer-events: none; }
+.lg-art svg { width: 140px; height: 140px; display: block; filter: drop-shadow(0 8px 12px rgba(0, 0, 0, .35)); }
+.lg-name { font-family: var(--f-display); font-weight: 900; font-size: 2.3rem; text-transform: uppercase; line-height: 1; letter-spacing: .01em; }
+.lg-team { font-family: var(--f-mono); font-size: .68rem; letter-spacing: .14em; text-transform: uppercase; padding: 4px 10px; border-radius: 999px; background: rgba(0, 0, 0, .3); }
+.lg-desc { font-size: .95rem; opacity: .92; max-width: 32ch; margin: 0; }
+.lg-card.sm { padding: 14px 12px; gap: 6px; }
+.lg-card.sm .lg-art svg { width: 76px; height: 76px; }
+.lg-card.sm .lg-name { font-size: 1.4rem; }
+.lg-mini { display: inline-flex; align-items: center; gap: 6px; font-size: .82rem; font-weight: 600; background: var(--rc); color: #f7f4ff; padding: 3px 9px 3px 4px; border-radius: 999px; }
+.lg-mini svg { width: 22px; height: 22px; }
+.lg-chip { display: inline-flex; align-items: center; gap: 8px; background: var(--rc); color: #f7f4ff; padding: 5px 12px 5px 5px; border-radius: 999px; font-weight: 600; font-size: .88rem; }
+.lg-chip svg { width: 28px; height: 28px; }
+.lg-comp { display: flex; flex-wrap: wrap; gap: 8px; }
+.lg-rolechip { display: inline-flex; align-items: center; gap: 6px; padding-left: 6px; }
+.lg-rolechip svg { width: 24px; height: 24px; }
+
+/* Carte qui se retourne */
+.flip { perspective: 1200px; cursor: pointer; }
+.flip-in { position: relative; min-height: 400px; transition: transform .8s cubic-bezier(.2, .8, .2, 1); transform-style: preserve-3d; }
+.flip.on .flip-in { transform: rotateY(180deg); }
+.flip-front, .flip-back { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+.flip-back { transform: rotateY(180deg); }
+.flip-back .lg-card { height: 100%; box-sizing: border-box; justify-content: center; }
+.flip-front {
+  border-radius: 18px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; color: #dfe3ff;
+  background: repeating-linear-gradient(45deg, #1b2260 0 14px, #18205a 14px 28px); border: 3px solid #2d3780; box-shadow: 0 12px 30px rgba(0, 0, 0, .35);
+}
+.flip-front svg { width: 150px; height: 150px; }
+.flip-front b { font-family: var(--f-mono); font-size: .8rem; letter-spacing: .12em; text-transform: uppercase; }
+
+.lg-sleep { display: flex; justify-content: center; }
+.lg-sleep svg { width: 120px; height: 120px; opacity: .85; }
+.lg-potion { align-self: flex-start; }
+.lg-plist { display: grid; gap: 6px; }
+.lg-prow { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 8px 12px; background: var(--panel); border-radius: 10px; }
+.lg-prow.dead { opacity: .6; }
+.lg-prow.dead .lg-pname { text-decoration: line-through; }
+.lg-pname { min-width: 0; overflow-wrap: anywhere; font-weight: 600; }
+.lg-pstate { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; justify-content: flex-end; }
+.lg-rip { font-family: var(--f-mono); font-size: .7rem; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); }
+.lg-heart { color: #ff5f8f; }
+.lg-deaths { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; }
+.lg-death { display: flex; flex-direction: column; gap: 6px; text-align: center; }
+.lg-death p { margin: 0; font-size: .9rem; }
+.lg-timer { font-family: var(--f-display); font-weight: 900; font-size: 3.4rem; text-align: center; font-variant-numeric: tabular-nums; line-height: 1; }
+.lg-timer.hot { color: var(--stamp); }
+.lg-tally { display: grid; gap: 6px; }
+.lg-trow { display: grid; grid-template-columns: minmax(0, 1fr) 2fr auto; gap: 10px; align-items: center; font-weight: 600; }
+.lg-trow span { overflow-wrap: anywhere; }
+.lg-trow i { display: block; height: 10px; border-radius: 5px; background: var(--stamp); width: var(--w); }
+.lg-trow b { font-family: var(--f-mono); font-variant-numeric: tabular-nums; }
+.lg-endgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 10px; }
+.lg-endcard { display: flex; flex-direction: column; gap: 4px; text-align: center; }
+.lg-endcard.dead .lg-card { filter: grayscale(.6) brightness(.8); }
+.lg-endcard.won .lg-card { box-shadow: 0 0 0 3px var(--signal), 0 12px 30px rgba(0, 0, 0, .35); }
+.lg-endcard span { font-family: var(--f-mono); font-size: .7rem; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); }
+.lg-log { margin: 0; padding-left: 20px; display: grid; gap: 4px; font-size: .9rem; }
+.lg-force { opacity: .75; }
+.stepper .btn-small { width: auto; height: auto; font-size: .9rem; padding: 10px 14px; }
+.btn-small[aria-pressed="true"] { background: var(--paper); color: var(--ink); }
+.vote button:disabled { opacity: .4; cursor: not-allowed; }
+@media (prefers-reduced-motion: reduce) { .flip-in { transition: none; } .lg-star { animation: none; } body { transition: none; } }
 
 @media (prefers-reduced-motion: reduce) {
   .stamp { animation: none; }
@@ -286,6 +409,77 @@ const norm = s => String(s).normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase
 const shuffle = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
 const agent = i => "AGENT " + String(i + 1).padStart(2, "0");
 const backHome = `<button class="back" data-act="home">← Accueil</button>`;
+
+/* ---------- Images des persos : Wikipédia + photos ajoutées ---------- */
+const IMG_HINTS = {
+  "KC & personnalités FR": ["", ""], "Esport mondial": ["joueur", "esports player"], "Champions LoL": ["League of Legends", "League of Legends"],
+  "Persos de jeux vidéo": ["jeu vidéo", "video game character"], "Persos d'anime": ["manga", "character"], "Disney & Pixar": ["Disney", "Disney character"],
+  "Objets": ["", ""], "Culture enfants": ["", ""]
+};
+const IMG = {};
+const imgWords = t => " " + String(t).normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, " ").trim() + " ";
+const PHOTO_RE = /^data:image\/(jpeg|png|webp);base64,[A-Za-z0-9+/=]+$/;
+async function wikiFind(lang, query, name) {
+  const url = `https://${lang}.wikipedia.org/w/api.php?action=query&format=json&origin=*&generator=search&gsrnamespace=0&gsrlimit=6&gsrsearch=${encodeURIComponent(query)}&prop=pageimages&piprop=thumbnail&pithumbsize=320`;
+  const r = await fetch(url);
+  if (!r.ok) return null;
+  const j = await r.json();
+  const pages = Object.values((j.query && j.query.pages) || {}).sort((a, b) => a.index - b.index);
+  const n = imgWords(name);
+  const hit = pages.find(p => p.thumbnail && imgWords(p.title).includes(n));
+  return hit ? { url: hit.thumbnail.source, page: `https://${lang}.wikipedia.org/wiki/${encodeURIComponent(hit.title.replace(/ /g, "_"))}` } : null;
+}
+function loadImg(key, name, cat) {
+  IMG[key] = "pending";
+  const cached = store.get("img_" + key, undefined);
+  if (cached !== undefined) { IMG[key] = cached; return; }
+  const [fr, en] = IMG_HINTS[cat] || ["", ""];
+  (async () => {
+    let res = null;
+    try { res = await wikiFind("fr", (name + " " + fr).trim(), name); } catch (e) {}
+    if (!res) { try { res = await wikiFind("en", (name + " " + en).trim(), name); } catch (e) {} }
+    IMG[key] = res;
+    store.set("img_" + key, res);
+    if (res) render();
+  })();
+}
+function charImg(pick, cls) {
+  if (!pick) return "";
+  const c = cls || "char-img";
+  if (pick.img && PHOTO_RE.test(pick.img)) return `<img class="${c}" src="${pick.img}" alt="">`;
+  if (/^Choisi par/.test(pick.c || "")) return "";
+  const key = pick.w + "|" + pick.c;
+  if (IMG[key] === undefined) loadImg(key, pick.w, pick.c);
+  const r = IMG[key];
+  if (!r || r === "pending") return "";
+  return c === "char-img"
+    ? `<figure class="char-fig"><img class="${c}" src="${esc(r.url)}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.remove()"><figcaption><a href="${esc(r.page)}" target="_blank" rel="noopener">Image : Wikipédia</a></figcaption></figure>`
+    : `<img class="${c}" src="${esc(r.url)}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">`;
+}
+function readPhoto(file, cb) {
+  if (!file || !/^image\//.test(file.type)) return cb(null);
+  const r = new FileReader();
+  r.onerror = () => cb(null);
+  r.onload = () => {
+    const im = new Image();
+    im.onerror = () => cb(null);
+    im.onload = () => {
+      const k = Math.min(1, 256 / Math.max(im.width, im.height));
+      const cv = document.createElement("canvas");
+      cv.width = Math.max(1, Math.round(im.width * k)); cv.height = Math.max(1, Math.round(im.height * k));
+      cv.getContext("2d").drawImage(im, 0, 0, cv.width, cv.height);
+      cb(cv.toDataURL("image/jpeg", 0.72));
+    };
+    im.src = r.result;
+  };
+  r.readAsDataURL(file);
+}
+const photoRow = (id, img) => `<div class="photo-row">
+    <label class="btn-small photo-btn" for="${id}">${img ? "Changer la photo" : "Ajouter une photo"}</label>
+    <input type="file" id="${id}" accept="image/*" hidden>
+    ${img ? `<img class="photo-prev" src="${img}" alt="Photo choisie"><button class="btn-small" data-act="photo-clear" data-x="${id}">Retirer</button>` : `<span class="hint">facultatif</span>`}
+  </div>`;
+
 
 let S = { view: "home" };   // home | uc | dt
 
@@ -609,6 +803,7 @@ function dNewGame() {
   D.screen = "assignReady";
 }
 function dStartAssign() {
+  D.draftImg = null;
   const p = D.game.players[D.game.assign];
   if (!p.pick) p.pick = dDraw1();
   D.draft = "";
@@ -618,8 +813,8 @@ function dReroll() { const p = D.game.players[D.game.assign]; p.pick = dDraw1();
 function dCustom() {
   const t = (D.draft || "").trim();
   if (!t) { D.msg = "Écris un nom avant de valider."; return; }
-  D.game.players[D.game.assign].pick = { w: t, c: "Choisi par " + listNames(othersOf(D.game.assign)) };
-  D.draft = "";
+  D.game.players[D.game.assign].pick = { w: t, c: "Choisi par " + listNames(othersOf(D.game.assign)), img: D.draftImg || null };
+  D.draft = ""; D.draftImg = null;
 }
 function dValidate() {
   const g = D.game;
@@ -738,6 +933,7 @@ function vDAssignPick() {
   </header>
   ${progressBar()}
   <div class="card">
+    ${charImg(p.pick)}
     <span class="eyebrow">${esc(p.pick.c)}</span>
     <div class="word">${esc(p.pick.w)}</div>
     ${p.rerolls ? `<span class="eyebrow">${p.rerolls} reroll${p.rerolls > 1 ? "s" : ""}</span>` : ""}
@@ -749,6 +945,7 @@ function vDAssignPick() {
   <section class="confirm">
     <label class="label" for="dt-custom">Ou écrivez votre perso</label>
     <input type="text" id="dt-custom" data-ddraft="1" placeholder="Ex. Zidane, Shrek, un pote…" maxlength="40" value="${esc(D.draft)}" autocomplete="off">
+    ${photoRow("dt-photo", D.draftImg)}
     <button class="btn-ghost" data-act="d-custom">Utiliser ce nom</button>
     <p class="msg">${esc(D.msg)}</p>
   </section>
@@ -772,7 +969,7 @@ function vDTurn() {
   <div class="card">
     <span class="eyebrow">Perso de ${esc(p.name)}</span>
     ${D.reveal
-      ? `<div class="word">${esc(p.pick.w)}</div><span class="eyebrow">${esc(p.pick.c)}</span>`
+      ? `${charImg(p.pick)}<div class="word">${esc(p.pick.w)}</div><span class="eyebrow">${esc(p.pick.c)}</span>`
       : `<span class="redact" aria-hidden="true">██████</span>`}
     <button class="btn-small" data-act="d-reveal" style="background:var(--ink)">${D.reveal ? "Cacher" : `Afficher (${esc(p.name)} ne regarde pas)`}</button>
   </div>
@@ -795,6 +992,7 @@ function vDFound() {
   </header>
   <div class="card">
     <span class="eyebrow">${esc(p.name)} était</span>
+    ${charImg(p.pick)}
     <div class="word">${esc(p.pick.w)}</div>
     <div class="stamp civil">${p.q} question${p.q > 1 ? "s" : ""}</div>
   </div>
@@ -810,7 +1008,7 @@ function vDEnd() {
     <h1 style="font-size:3rem">${first ? esc(first.name) + " gagne" : "Personne n'a trouvé"}</h1>
   </header>
   <div class="card">
-    <div class="recap">${sorted.map(p => `<div class="recap-row"><span>${p.rank ? p.rank + ". " : ""}${esc(p.name)} · ${esc(p.pick.w)}</span><span class="role-tag ${p.found ? "" : "uc"}">${p.found ? p.q + " q." : "pas trouvé"}</span></div>`).join("")}</div>
+    <div class="recap">${sorted.map(p => `<div class="recap-row"><span class="with-thumb">${charImg(p.pick, "char-thumb")}${p.rank ? p.rank + ". " : ""}${esc(p.name)} · ${esc(p.pick.w)}</span><span class="role-tag ${p.found ? "" : "uc"}">${p.found ? p.q + " q." : "pas trouvé"}</span></div>`).join("")}</div>
   </div>
   <section class="section"><span class="label">Victoires</span><div class="scores">${winRows() || `<p class="hint">Aucune victoire pour l'instant.</p>`}</div></section>
   <button class="btn" data-act="d-new">Rejouer avec les mêmes joueurs</button>
@@ -834,7 +1032,8 @@ function peerOpts() {
 const ostore = { name: store.get("oname", ""), token: store.get("otoken", "") };
 if (!ostore.token) { ostore.token = Math.random().toString(36).slice(2) + Date.now().toString(36); store.set("otoken", ostore.token); }
 
-let O = { screen: "entry", msg: "", busy: false, code: (QS.get("lobby") || "").toUpperCase().replace(/[^A-Z]/g, "").slice(0, 4), isHost: false, view: null, sel: null, draft: "", guess: "", revealMine: false, confirmLeave: false, confirmStop: false, copied: false };
+let O = { screen: "entry", msg: "", busy: false, code: (QS.get("lobby") || "").toUpperCase().replace(/[^A-Z]/g, "").slice(0, 4), isHost: false, view: null, sel: null, draft: "", guess: "", revealMine: false, confirmLeave: false, confirmStop: false, copied: false,
+  pendingGame: null, sel2: [], wSave: false, wKill: null, lgFlip: false, lgPeek: false, voice: false, sfx: true, viewAt: Date.now() };
 let NET = { peer: null, conns: {}, hostConn: null };
 let L = null;
 
@@ -858,10 +1057,16 @@ function oName() {
   return n;
 }
 function oDestroy() {
+  try { if (typeof oWake !== "undefined" && oWake) oWake.release(); } catch (e) {}
   try { if (NET.peer) NET.peer.destroy(); } catch (e) {}
   NET = { peer: null, conns: {}, hostConn: null };
   L = null; O.isHost = false; O.view = null;
 }
+let oWake = null;
+async function oKeepAwake() {
+  try { if (navigator.wakeLock && !oWake && document.visibilityState === "visible") { oWake = await navigator.wakeLock.request("screen"); oWake.addEventListener("release", () => { oWake = null; }); } } catch (e) { oWake = null; }
+}
+document.addEventListener("visibilitychange", () => { if (document.visibilityState === "visible" && NET.peer) oKeepAwake(); });
 function oFail(msg) { oDestroy(); O.busy = false; O.screen = "entry"; O.msg = msg; render(); }
 
 /* ---------- Hôte ---------- */
@@ -870,13 +1075,14 @@ function oCreate() {
   if (typeof Peer === "undefined") { O.msg = "Le module en ligne n'a pas pu se charger. Vérifie ta connexion."; return render(); }
   oDestroy();
   O.busy = true; O.msg = "Création du lobby…"; render();
+  oKeepAwake();
   const code = randCode();
   const peer = new Peer(PEER_PREFIX + code, peerOpts());
   NET.peer = peer;
   peer.on("open", () => {
-    O.isHost = true; O.busy = false; O.msg = ""; O.code = code; O.screen = "room";
+    O.isHost = true; O.busy = false; O.msg = ""; O.code = code; O.screen = "room"; O.voice = true;
     L = { code, players: [{ pid: "host", name, token: ostore.token, online: true }], game: null, scores: {}, note: "",
-          settings: { game: "uc", themes: ["all"], white: false, cats: ["all"] }, kicked: new Set(), used: new Set(), qsUsed: new Set() };
+          settings: { game: O.pendingGame || "uc", themes: ["all"], white: false, cats: ["all"], lg: { roles: ["seer", "witch", "hunter", "cupid"], wolves: 0, debate: 180 } }, kicked: new Set(), used: new Set(), qsUsed: new Set() };
     hostSync();
   });
   peer.on("connection", conn => {
@@ -895,7 +1101,7 @@ function pidOf(conn) { return Object.keys(NET.conns).find(k => NET.conns[k] === 
 function hostOnData(conn, msg) {
   if (!L || !msg || typeof msg !== "object") return;
   if (msg.t === "join") return hostJoin(conn, msg);
-  if (msg.t === "act") { const pid = pidOf(conn); if (pid) hostAct(pid, { a: String(msg.a || ""), x: msg.x }); }
+  if (msg.t === "act") { const pid = pidOf(conn); if (pid) hostAct(pid, { a: String(msg.a || ""), x: msg.x, img: typeof msg.img === "string" ? msg.img : null }); }
 }
 function hostReject(conn, text) { try { conn.send({ t: "reject", msg: text }); } catch (e) {} setTimeout(() => { try { conn.close(); } catch (e) {} }, 400); }
 function hostJoin(conn, msg) {
@@ -940,6 +1146,7 @@ function hostSync() {
   if (!L) return;
   Object.keys(NET.conns).forEach(pid => { try { NET.conns[pid].send({ t: "view", v: viewFor(pid) }); } catch (e) {} });
   O.view = viewFor("host");
+  O.viewAt = Date.now();
   render();
 }
 
@@ -948,26 +1155,35 @@ function hostAct(pid, a) {
   const host = pid === "host", g = L.game, x = typeof a.x === "string" ? a.x.slice(0, 60) : a.x;
   L.note = "";
   switch (a.a) {
-    case "set-game": if (host && !g) L.settings.game = x === "qs" ? "qs" : "uc"; break;
+    case "set-game": if (host && !g) L.settings.game = x === "qs" ? "qs" : x === "lg" ? "lg" : "uc"; break;
+    case "lg-set": if (host && !g) lgSet(x); break;
     case "theme": if (host && !g) L.settings.themes = toggleSel(L.settings.themes, String(x)); break;
     case "cat": if (host && !g) L.settings.cats = toggleSel(L.settings.cats, String(x)); break;
     case "white": if (host && !g) L.settings.white = !L.settings.white; break;
     case "kick": if (host) hostKick(String(x)); break;
-    case "start": if (host && !g) { if (L.settings.game === "uc") ucStart(); else qsStart(); } break;
+    case "start": if (host && !g) { if (L.settings.game === "uc") ucStart(); else if (L.settings.game === "lg") lgStart(); else qsStart(); } break;
     case "lobby": if (host) { L.game = null; L.players = L.players.filter(p => p.online); } break;
-    case "again": if (host && g) { const k = g.kind; L.game = null; L.players = L.players.filter(p => p.online); if (k === "uc") ucStart(); else qsStart(); } break;
+    case "again": if (host && g) { const k = g.kind; L.game = null; L.players = L.players.filter(p => p.online); if (k === "uc") ucStart(); else if (k === "lg") lgStart(); else qsStart(); } break;
     case "uc-tovote": if (host && g && g.kind === "uc" && g.phase === "talk") { g.phase = "vote"; g.votes = {}; g.note = ""; } break;
     case "uc-vote": ucVote(pid, String(x)); break;
     case "uc-force": if (host && g && g.kind === "uc" && g.phase === "vote" && Object.keys(g.votes).length) ucTally(); break;
     case "uc-continue": if (host && g && g.kind === "uc" && (g.phase === "out" || (g.phase === "white" && g.whiteGuess))) ucContinue(); break;
     case "uc-guess": ucGuess(pid, x); break;
     case "qs-reroll": qsReroll(pid); break;
-    case "qs-custom": qsCustom(pid, x); break;
+    case "qs-custom": qsCustom(pid, x, a.img); break;
     case "qs-validate": qsValidate(pid); break;
     case "qs-forcepick": if (host && g && g.kind === "qs" && g.phase === "pick") { g.players.forEach(p => p.validated = true); qsPlay(); } break;
-    case "qs-next": qsNext(pid); break;
-    case "qs-found": qsFound(pid); break;
+    case "qs-next": qsNext(pid, x); break;
+    case "qs-found": qsFound(pid, x); break;
     case "qs-stop": if (host && g && g.kind === "qs" && g.phase === "play") qsEnd(); break;
+    case "lg-ready": if (g && g.kind === "lg" && g.phase === "reveal" && lgP(g, pid)) { g.ready[pid] = true; if (g.players.every(p => g.ready[p.pid])) lgNight(); } break;
+    case "lg-wolfpick": case "lg-wolfok": case "lg-white": case "lg-cupid": case "lg-seer": case "lg-guard":
+    case "lg-girl": case "lg-raven": case "lg-susp": case "lg-witch": lgNightAct(pid, a.a, x); break;
+    case "lg-tovote": if (host && g && g.kind === "lg" && g.phase === "day") lgToVote(); break;
+    case "lg-vote": lgVote(pid, x); break;
+    case "lg-shoot": lgShoot(pid, x); break;
+    case "lg-continue": if (host && g && g.kind === "lg" && g.phase === "verdict") lgAfterVerdict(); break;
+    case "lg-force": if (host && g && g.kind === "lg") lgForce(); break;
   }
   hostSync();
 }
@@ -1095,11 +1311,12 @@ function qsReroll(pid) {
   const t = qsTarget(pid); if (!t || t.validated) return;
   t.pick = qsDraw(g); t.rerolls++;
 }
-function qsCustom(pid, text) {
+function qsCustom(pid, text, img) {
   const g = L.game; if (!g || g.kind !== "qs" || g.phase !== "pick") return;
   const t = qsTarget(pid); const w = cleanText(text);
   if (!t || t.validated || !w) return;
-  t.pick = { w, c: "Choisi par " + pname(pid) };
+  const ok = typeof img === "string" && img.length < 120000 && PHOTO_RE.test(img);
+  t.pick = { w, c: "Choisi par " + pname(pid), img: ok ? img : null };
 }
 function qsValidate(pid) {
   const g = L.game; if (!g || g.kind !== "qs" || g.phase !== "pick") return;
@@ -1109,7 +1326,7 @@ function qsValidate(pid) {
 }
 function qsPlay() {
   const g = L.game;
-  g.phase = "play"; g.cur = Math.floor(Math.random() * g.players.length); g.turn = 1; g.event = null;
+  g.phase = "play"; g.cur = Math.floor(Math.random() * g.players.length); g.turn = 1; g.event = null; g.step = 1;
 }
 function qsNextIdx(g, from) {
   const n = g.players.length;
@@ -1120,16 +1337,17 @@ function qsAdvance(g) {
   const nx = qsNextIdx(g, g.cur);
   if (nx <= g.cur) g.turn++;
   g.cur = nx;
+  g.step = (g.step || 0) + 1;
 }
-function qsNext(pid) {
+function qsNext(pid, step) {
   const g = L.game; if (!g || g.kind !== "qs" || g.phase !== "play") return;
-  const c = g.players[g.cur]; if (!c || c.pid === pid) return;
+  const c = g.players[g.cur]; if (!c || c.pid === pid || +step !== g.step) return;
   c.q++; g.event = null;
   qsAdvance(g);
 }
-function qsFound(pid) {
+function qsFound(pid, step) {
   const g = L.game; if (!g || g.kind !== "qs" || g.phase !== "play") return;
-  const c = g.players[g.cur]; if (!c || c.pid === pid) return;
+  const c = g.players[g.cur]; if (!c || c.pid === pid || +step !== g.step) return;
   c.q++; c.found = true; c.rank = ++g.foundCount;
   g.event = { name: pname(c.pid), w: c.pick.w, q: c.q };
   if (g.players.every(p => p.found)) return qsEnd();
@@ -1151,13 +1369,14 @@ function settingsSummary() {
     const th = s.themes.includes("all") ? "tous les thèmes" : allThemes().filter(t => s.themes.includes(t.id)).map(t => t.name).join(", ");
     return th + (s.white ? " · Mr. White activé" : "");
   }
+  if (s.game === "lg") return lgCompText(lgCompCount(lgComposition(Math.max(L.players.length, 4), s.lg).roles));
   return s.cats.includes("all") ? "toutes les catégories" : DT_CATS.filter(c => s.cats.includes(c.id)).map(c => c.name).join(", ");
 }
 function viewFor(pid) {
   const v = {
     code: L.code, me: pid, isHost: pid === "host", note: L.note, scores: L.scores,
     players: L.players.map(p => ({ pid: p.pid, name: p.name, online: p.online, host: p.pid === "host" })),
-    settings: { game: L.settings.game, themes: L.settings.themes, cats: L.settings.cats, white: L.settings.white, summary: settingsSummary() },
+    settings: { game: L.settings.game, themes: L.settings.themes, cats: L.settings.cats, white: L.settings.white, lg: L.settings.lg, summary: settingsSummary() },
     game: null
   };
   const g = L.game;
@@ -1179,6 +1398,8 @@ function viewFor(pid) {
     if (g.whiteGuess) gv.whiteGuess = { text: g.whiteGuess.text, ok: g.whiteGuess.ok };
     if (g.phase === "end") gv.end = { winner: g.winner, civil: g.civil, ucw: g.ucw, roles: g.players.map(p => ({ name: pname(p.pid), role: p.role, alive: p.alive })) };
     v.game = gv;
+  } else if (g.kind === "lg") {
+    v.game = lgView(g, pid);
   } else {
     const gv = { kind: "qs", phase: g.phase, turn: g.turn };
     if (g.phase === "pick") {
@@ -1197,6 +1418,7 @@ function viewFor(pid) {
       gv.meCur = !!(c && c.pid === pid);
       gv.inGame = g.players.some(x => x.pid === pid);
       gv.event = g.event;
+      gv.step = g.step;
     }
     v.game = gv;
   }
@@ -1204,28 +1426,49 @@ function viewFor(pid) {
 }
 
 /* ---------- Client ---------- */
-function oJoin() {
+function oJoin(auto) {
   const name = oName(); if (!name) return;
   const code = (O.code || "").toUpperCase();
   if (!/^[A-Z]{4}$/.test(code)) { O.msg = "Le code fait 4 lettres."; return render(); }
   if (typeof Peer === "undefined") { O.msg = "Le module en ligne n'a pas pu se charger. Vérifie ta connexion."; return render(); }
   oDestroy();
-  O.busy = true; O.msg = "Connexion au lobby " + code + "…"; O.screen = "entry"; render();
+  const fail = text => auto ? oRetryLater() : oFail(text);
+  O.busy = true;
+  if (auto) O.screen = "lost";
+  else { O.msg = "Connexion au lobby " + code + "…"; O.screen = "entry"; }
+  render();
+  oKeepAwake();
   const peer = new Peer(peerOpts());
   NET.peer = peer;
   peer.on("open", () => {
     const conn = peer.connect(PEER_PREFIX + code, { reliable: true, serialization: "json" });
     NET.hostConn = conn;
-    const to = setTimeout(() => { if (!conn.open) oFail("Le lobby ne répond pas. Vérifie le code, ou essayez d'être sur le même wifi."); }, 15000);
+    const to = setTimeout(() => { if (NET.hostConn === conn && !conn.open) fail("Le lobby ne répond pas. Vérifie le code, ou essayez d'être sur le même wifi."); }, 12000);
     conn.on("open", () => { clearTimeout(to); O.code = code; conn.send({ t: "join", name, token: ostore.token }); });
     conn.on("data", msg => clientOnData(msg));
-    conn.on("close", () => { if (NET.hostConn === conn && O.screen === "room") { O.screen = "lost"; render(); } });
+    conn.on("close", () => {
+      if (NET.hostConn !== conn || O.screen !== "room") return;
+      O.screen = "lost"; O.retries = 0;
+      oRetryLater();
+    });
   });
-  peer.on("error", e => { if (O.screen !== "room") oFail(netError(e)); });
+  peer.on("error", e => { if (O.screen !== "room" && NET.peer === peer) fail(netError(e)); });
 }
+function oRetryLater() {
+  O.retries = (O.retries || 0) + 1;
+  O.busy = false;
+  clearTimeout(O.retryT);
+  if (O.retries > 4) { O.msg = "Impossible de se reconnecter. L'hôte a peut-être fermé la page ou perdu le réseau."; render(); return; }
+  O.msg = `Reconnexion en cours… (essai ${O.retries}/4)`;
+  render();
+  O.retryT = setTimeout(() => { if (O.screen === "lost") oJoin(true); }, 1500 * O.retries);
+}
+document.addEventListener("visibilitychange", () => {
+  if (document.visibilityState === "visible" && O.screen === "lost" && !O.busy) { O.retries = 0; clearTimeout(O.retryT); oJoin(true); }
+});
 function clientOnData(msg) {
   if (!msg || typeof msg !== "object") return;
-  if (msg.t === "view") { O.view = msg.v; O.screen = "room"; O.busy = false; O.msg = ""; render(); }
+  if (msg.t === "view") { O.view = msg.v; O.viewAt = Date.now(); O.screen = "room"; O.busy = false; O.msg = ""; O.retries = 0; clearTimeout(O.retryT); render(); }
   else if (msg.t === "reject") oFail(String(msg.msg || "Connexion refusée."));
   else if (msg.t === "kicked") oFail("L'hôte t'a retiré du lobby.");
   else if (msg.t === "closed") oFail("L'hôte a fermé le lobby.");
@@ -1233,10 +1476,11 @@ function clientOnData(msg) {
 function oSend(a) {
   if (O.isHost) return hostAct("host", a);
   const c = NET.hostConn;
-  if (c && c.open) { try { c.send({ t: "act", a: a.a, x: a.x }); } catch (e) {} }
+  if (c && c.open) { try { c.send(a.img ? { t: "act", a: a.a, x: a.x, img: a.img } : { t: "act", a: a.a, x: a.x }); } catch (e) {} }
   else { O.screen = "lost"; render(); }
 }
 function oLeave() {
+  clearTimeout(O.retryT); O.retries = 0;
   if (O.isHost) {
     Object.values(NET.conns).forEach(c => { try { c.send({ t: "closed" }); } catch (e) {} });
     const p = NET.peer;
@@ -1262,6 +1506,828 @@ function oCopy() {
   } catch (e) { fallback(); }
 }
 
+/* =========================================================
+   LOUP-GAROU en ligne : moteur (côté hôte)
+   ========================================================= */
+const LG_ROLES = {
+  wolf:     { name: "Loup-Garou",       team: "wolves",  bg: "#5a1c27", desc: "Chaque nuit, avec ta meute, tu dévores un villageois. Le jour, fais-toi passer pour un innocent." },
+  white:    { name: "Loup Blanc",       team: "solo",    bg: "#2b3550", desc: "Tu chasses avec les loups, mais une nuit sur deux tu peux dévorer l'un d'eux. Tu gagnes si tu es le dernier survivant." },
+  villager: { name: "Villageois",       team: "village", bg: "#2e5236", desc: "Pas de pouvoir, juste ton flair. Démasque les loups pendant les votes." },
+  seer:     { name: "Voyante",          team: "village", bg: "#3a2766", desc: "Chaque nuit, tu découvres le rôle d'un joueur de ton choix." },
+  witch:    { name: "Sorcière",         team: "village", bg: "#1f4a3e", desc: "Une potion de vie pour sauver la victime des loups, une potion de mort pour éliminer quelqu'un. Une seule fois chacune." },
+  hunter:   { name: "Chasseur",         team: "village", bg: "#5a3a1c", desc: "Quand tu meurs, tu emportes immédiatement un joueur de ton choix avec toi." },
+  cupid:    { name: "Cupidon",          team: "village", bg: "#6a2244", desc: "La première nuit, tu désignes deux amoureux. Si l'un meurt, l'autre meurt de chagrin." },
+  girl:     { name: "Petite Fille",     team: "village", bg: "#5a4422", desc: "La nuit, tu peux espionner les loups pour découvrir l'un d'eux. Attention, ils peuvent te surprendre." },
+  guard:    { name: "Salvateur",        team: "village", bg: "#1d3c66", desc: "Chaque nuit, tu protèges un joueur des loups. Jamais le même deux nuits de suite." },
+  idiot:    { name: "Idiot du village", team: "village", bg: "#4a2668", desc: "Si le village vote contre toi, tu es épargné, mais tu perds ton droit de vote." },
+  elder:    { name: "Ancien",           team: "village", bg: "#44465a", desc: "Tu survis à la première attaque des loups. Si le village te tue, tous les villageois perdent leurs pouvoirs." },
+  raven:    { name: "Corbeau",          team: "village", bg: "#33304d", desc: "Chaque nuit, tu désignes un joueur qui aura 2 voix de plus contre lui au vote du lendemain." }
+};
+const LG_TEAM = { wolves: "Camp des loups", village: "Camp du village", solo: "Joue seul" };
+const LG_SPECIALS = ["seer", "witch", "hunter", "cupid", "guard", "girl", "idiot", "elder", "raven", "white"];
+const LG_ORDER = ["wolf", "white", "seer", "witch", "hunter", "cupid", "guard", "girl", "idiot", "elder", "raven", "villager"];
+const LG_VILLAGE = "Brumeval";
+const isWolfRole = r => r === "wolf" || r === "white";
+const lgDefaultWolves = n => n <= 6 ? 1 : n <= 11 ? 2 : 3;
+
+function lgComposition(n, st) {
+  const maxW = Math.max(1, Math.floor((n - 1) / 2));
+  const wolves = Math.max(1, Math.min(st.wolves || lgDefaultWolves(n), maxW));
+  const roles = Array(wolves).fill("wolf");
+  const dropped = [];
+  for (const r of LG_SPECIALS) {
+    if (!st.roles.includes(r)) continue;
+    if (r === "white" && wolves + 1 > maxW) { dropped.push(r); continue; }
+    if (roles.length < n) roles.push(r); else dropped.push(r);
+  }
+  while (roles.length < n) roles.push("villager");
+  return { roles, dropped, wolves };
+}
+function lgCompCount(roles) {
+  const c = {};
+  roles.forEach(r => c[r] = (c[r] || 0) + 1);
+  return LG_ORDER.filter(r => c[r]).map(r => [r, c[r]]);
+}
+function lgCompText(pairs) {
+  return pairs.map(([r, k]) => k > 1 ? `${k} ${r === "wolf" ? "Loups-Garous" : r === "villager" ? "Villageois" : LG_ROLES[r].name}` : LG_ROLES[r].name).join(", ");
+}
+
+function lgSay(g, kind, text) { g.seq++; g.say = { id: g.seq, kind, text }; }
+const lgP = (g, pid) => g.players.find(p => p.pid === pid);
+const lgAlive = g => g.players.filter(p => p.alive);
+const lgActive = (g, p) => p.alive && (isWolfRole(p.role) || !g.powersLost);
+const lgCause = c => ({ wolves: "a été dévoré par les loups", witch: "a été empoisonné par la sorcière", white: "a été dévoré par le Loup Blanc", grief: "est mort de chagrin", vote: "a été éliminé par le village", hunter: "a été abattu par le chasseur" })[c] || "est mort";
+
+function lgStart() {
+  const ps = L.players.filter(p => p.online);
+  if (ps.length < 4) { L.note = "Il faut au moins 4 joueurs connectés pour le Loup-Garou (idéal : 6 ou plus)."; return; }
+  const c = lgComposition(ps.length, L.settings.lg);
+  const roles = shuffle(c.roles);
+  const g = {
+    kind: "lg", phase: "reveal", ready: {}, nightNo: 0, dayNo: 0, stage: null,
+    players: ps.map((p, i) => ({ pid: p.pid, role: roles[i], alive: true, idiotOut: false })),
+    potions: { life: true, death: true }, lastGuard: null, elderHit: false, powersLost: false,
+    lovers: null, raven: null, hunterQueue: [], log: [], seq: 0, say: null,
+    comp: lgCompCount(c.roles), winner: null, scored: false, dawn: null, verdict: null
+  };
+  L.game = g;
+  lgSay(g, "reveal", `Bienvenue à ${LG_VILLAGE}. Découvrez votre rôle en secret, sans le montrer à personne.`);
+}
+
+function lgTask(g, p) {
+  if (!p || !p.alive) return null;
+  const r = p.role;
+  if (isWolfRole(r)) return { type: "wolf", white: r === "white" && g.nightNo % 2 === 0 };
+  if (!lgActive(g, p)) return { type: "dummy" };
+  if (r === "cupid" && g.nightNo === 1) return { type: "cupid" };
+  if (r === "seer") return { type: "seer" };
+  if (r === "guard") return { type: "guard" };
+  if (r === "girl") return { type: "girl" };
+  if (r === "raven") return { type: "raven" };
+  return { type: "dummy" };
+}
+
+function lgNight() {
+  const g = L.game;
+  g.nightNo++; g.phase = "night"; g.stage = "A";
+  g.n = { acts: {}, wolfPicks: {}, seer: {}, spy: null, caught: null, susp: {}, guard: null, wolfTarget: null, whiteDone: false, whiteKill: null, witchSave: false, witchKill: null, raven: null };
+  g.raven = null; g.verdict = null;
+  lgSay(g, "night", g.nightNo === 1
+    ? `La nuit tombe sur ${LG_VILLAGE}. Tout le village s'endort. Les créatures de la nuit ouvrent les yeux.`
+    : `La nuit retombe sur ${LG_VILLAGE}. Le village s'endort, et les loups sortent de l'ombre.`);
+}
+
+function lgNightAct(pid, a, x) {
+  const g = L.game;
+  if (!g || g.kind !== "lg" || g.phase !== "night") return;
+  const p = lgP(g, pid);
+  if (!p || !p.alive) return;
+  const N = g.n;
+  if (g.stage === "B") { if (a === "lg-witch" && p.role === "witch" && lgActive(g, p)) lgWitch(x); return; }
+  if (N.acts[pid]) return;
+  const t = lgTask(g, p);
+  if (!t) return;
+  const target = lgP(g, x), okT = !!(target && target.alive);
+  switch (a) {
+    case "lg-wolfpick": if (t.type === "wolf" && okT && !isWolfRole(target.role)) N.wolfPicks[pid] = x; break;
+    case "lg-wolfok": if (t.type === "wolf" && N.wolfPicks[pid] && (!t.white || N.whiteDone)) N.acts[pid] = true; break;
+    case "lg-white":
+      if (t.type === "wolf" && t.white) {
+        if (x === "none") { N.whiteDone = true; N.whiteKill = null; }
+        else if (okT && isWolfRole(target.role) && x !== pid) { N.whiteDone = true; N.whiteKill = x; }
+      }
+      break;
+    case "lg-cupid": {
+      if (t.type !== "cupid") break;
+      const [a1, b1] = String(x || "").split(",");
+      const A = lgP(g, a1), B = lgP(g, b1);
+      if (A && B && a1 !== b1 && A.alive && B.alive) { g.lovers = [a1, b1]; N.acts[pid] = true; }
+      break;
+    }
+    case "lg-seer": if (t.type === "seer" && okT && x !== pid) { N.seer = { pid: x, role: target.role }; N.acts[pid] = true; } break;
+    case "lg-guard": if (t.type === "guard" && okT && x !== g.lastGuard) { N.guard = x; N.acts[pid] = true; } break;
+    case "lg-girl":
+      if (t.type !== "girl") break;
+      if (x === "spy") {
+        const wolves = lgAlive(g).filter(q => isWolfRole(q.role));
+        const w = wolves[Math.floor(Math.random() * wolves.length)];
+        N.spy = { pid: w ? w.pid : null };
+        if (Math.random() < 0.25) N.caught = pid;
+      } else N.spy = { none: true };
+      N.acts[pid] = true;
+      break;
+    case "lg-raven":
+      if (t.type !== "raven") break;
+      if (x === "none") { N.raven = null; N.acts[pid] = true; }
+      else if (okT && x !== pid) { N.raven = x; N.acts[pid] = true; }
+      break;
+    case "lg-susp": if (t.type === "dummy" && okT && x !== pid) { N.susp[pid] = x; N.acts[pid] = true; } break;
+  }
+  if (lgAlive(g).every(q => N.acts[q.pid])) lgEndStageA();
+}
+
+function lgEndStageA() {
+  const g = L.game, N = g.n;
+  const picks = Object.values(N.wolfPicks).filter(t => { const q = lgP(g, t); return q && q.alive && !isWolfRole(q.role); });
+  if (picks.length) {
+    const c = {};
+    picks.forEach(t => c[t] = (c[t] || 0) + 1);
+    const max = Math.max(...Object.values(c));
+    const top = Object.keys(c).filter(k => c[k] === max);
+    N.wolfTarget = top[Math.floor(Math.random() * top.length)];
+  } else N.wolfTarget = null;
+  const witch = g.players.find(p => p.role === "witch" && lgActive(g, p));
+  if (witch && (g.potions.life || g.potions.death)) {
+    g.stage = "B";
+    lgSay(g, "witch", "La sorcière se réveille. Elle découvre la victime des loups et peut utiliser ses potions.");
+    return;
+  }
+  lgDawn();
+}
+
+function lgWitch(x) {
+  const g = L.game, N = g.n;
+  const [s, k] = String(x || "").split("|");
+  if (s === "1" && g.potions.life && N.wolfTarget) { N.witchSave = true; g.potions.life = false; }
+  if (k && k !== "none" && g.potions.death) { const t = lgP(g, k); if (t && t.alive) { N.witchKill = k; g.potions.death = false; } }
+  lgDawn();
+}
+
+function lgKill(g, pid, cause, list) {
+  const p = lgP(g, pid);
+  if (!p || !p.alive) return;
+  p.alive = false;
+  list.push({ pid, cause });
+  g.log.push(`${g.phase === "night" ? "Nuit " + g.nightNo : "Jour " + g.dayNo} : ${pname(pid)} ${lgCause(cause)} (${LG_ROLES[p.role].name}).`);
+  if (p.role === "elder" && (cause === "vote" || cause === "witch" || cause === "hunter")) {
+    g.powersLost = true;
+    g.log.push("L'Ancien a été tué par le village : les villageois perdent leurs pouvoirs.");
+  }
+  if (p.role === "hunter" && !g.powersLost) g.hunterQueue.push(pid);
+  if (g.lovers && g.lovers.includes(pid)) lgKill(g, g.lovers.find(o => o !== pid), "grief", list);
+}
+
+function lgDawn() {
+  const g = L.game, N = g.n;
+  const deaths = [];
+  g.hunterQueue = [];
+  if (N.wolfTarget) {
+    const v = lgP(g, N.wolfTarget);
+    if (v && v.alive && N.guard !== N.wolfTarget && !N.witchSave) {
+      if (v.role === "elder" && !g.elderHit) g.elderHit = true;
+      else lgKill(g, v.pid, "wolves", deaths);
+    }
+  }
+  if (N.witchKill) lgKill(g, N.witchKill, "witch", deaths);
+  if (N.whiteKill) lgKill(g, N.whiteKill, "white", deaths);
+  g.lastGuard = N.guard;
+  g.raven = N.raven && lgP(g, N.raven).alive ? N.raven : null;
+  const sc = {};
+  Object.values(N.susp).forEach(t => { const q = lgP(g, t); if (q && q.alive) sc[t] = (sc[t] || 0) + 1; });
+  g.dawn = { deaths, susp: Object.entries(sc).sort((a, b) => b[1] - a[1]).slice(0, 3) };
+  g.dayNo++;
+  if (g.hunterQueue.length) { g.after = "day"; return lgHunterPhase(); }
+  lgToDay();
+}
+
+function lgDeathText(g, list) {
+  return list.map(d => `${pname(d.pid)} ${lgCause(d.cause)}. Son rôle : ${LG_ROLES[lgP(g, d.pid).role].name}.`).join(" ");
+}
+
+function lgToDay() {
+  const g = L.game;
+  const w = lgWin(g);
+  if (w) return lgEnd(w);
+  g.phase = "day"; g.stage = null;
+  g.dayEnds = L.settings.lg.debate ? Date.now() + L.settings.lg.debate * 1000 : 0;
+  const d = g.dawn.deaths;
+  lgSay(g, d.length ? "dayDeath" : "day", `Le jour se lève sur ${LG_VILLAGE}. ` + (d.length ? lgDeathText(g, d) : "Miracle : personne n'est mort cette nuit.")
+    + (g.raven ? ` Le corbeau a désigné ${pname(g.raven)}.` : ""));
+}
+
+function lgHunterPhase() {
+  const g = L.game;
+  g.hunter = g.hunterQueue.shift();
+  g.phase = "hunter";
+  lgSay(g, "death", `${pname(g.hunter)} était chasseur. Dans un dernier souffle, il épaule son fusil.`);
+}
+
+function lgShoot(pid, x, forced) {
+  const g = L.game;
+  if (!g || g.kind !== "lg" || g.phase !== "hunter" || (!forced && pid !== g.hunter)) return;
+  const t = lgP(g, x);
+  const list = [];
+  if (t && t.alive && x !== g.hunter) lgKill(g, x, "hunter", list);
+  if (g.after === "day") g.dawn.deaths.push(...list);
+  else g.verdict.deaths.push(...list);
+  if (g.hunterQueue.length) return lgHunterPhase();
+  if (g.after === "day") return lgToDay();
+  g.phase = "verdict";
+  lgSay(g, "verdict", list.length ? lgDeathText(g, list) : "Le chasseur a baissé son arme.");
+}
+
+function lgToVote() {
+  const g = L.game;
+  g.phase = "vote"; g.votes = {};
+  lgSay(g, "vote", "Le village se rassemble sur la place. Il est temps de désigner un coupable.");
+}
+const lgVoters = g => lgAlive(g).filter(p => !p.idiotOut);
+function lgVote(pid, x) {
+  const g = L.game;
+  if (!g || g.kind !== "lg" || g.phase !== "vote") return;
+  const p = lgP(g, pid), t = lgP(g, x);
+  if (!p || !p.alive || p.idiotOut || !t || !t.alive || x === pid) return;
+  g.votes[pid] = x;
+  if (lgVoters(g).every(q => g.votes[q.pid])) lgResolveVote();
+}
+function lgResolveVote() {
+  const g = L.game;
+  const counts = {};
+  Object.values(g.votes).forEach(t => counts[t] = (counts[t] || 0) + 1);
+  if (g.raven && lgP(g, g.raven).alive) counts[g.raven] = (counts[g.raven] || 0) + 2;
+  g.hunterQueue = [];
+  g.verdict = { votes: Object.entries(g.votes), raven: g.raven, tie: false, pid: null, idiot: false, deaths: [] };
+  const vals = Object.values(counts);
+  if (!vals.length) g.verdict.tie = true;
+  else {
+    const max = Math.max(...vals);
+    const top = Object.keys(counts).filter(k => counts[k] === max);
+    if (top.length > 1) g.verdict.tie = true;
+    else {
+      const p = lgP(g, top[0]);
+      g.verdict.pid = p.pid;
+      if (p.role === "idiot" && !p.idiotOut && !g.powersLost) { p.idiotOut = true; g.verdict.idiot = true; g.log.push(`Jour ${g.dayNo} : ${pname(p.pid)} était l'Idiot du village, épargné mais privé de vote.`); }
+      else lgKill(g, p.pid, "vote", g.verdict.deaths);
+    }
+  }
+  if (g.verdict.tie) g.log.push(`Jour ${g.dayNo} : égalité, personne n'est éliminé.`);
+  g.phase = "verdict";
+  const v = g.verdict;
+  lgSay(g, "verdict", v.tie ? "Égalité. Le village n'arrive pas à se décider : personne n'est éliminé."
+    : v.idiot ? `Le village a voté contre ${pname(v.pid)}… mais c'est l'Idiot du village ! Il est épargné, et ne votera plus.`
+    : `Le village a décidé d'éliminer ${pname(v.pid)}. ` + lgDeathText(g, v.deaths));
+}
+function lgAfterVerdict() {
+  const g = L.game;
+  if (g.hunterQueue && g.hunterQueue.length) { g.after = "night"; return lgHunterPhase(); }
+  const w = lgWin(g);
+  if (w) return lgEnd(w);
+  lgNight();
+}
+
+function lgWin(g) {
+  const alive = lgAlive(g);
+  if (!alive.length) return "none";
+  if (g.lovers && alive.length === 2 && alive.every(p => g.lovers.includes(p.pid))) {
+    const [a, b] = g.lovers.map(id => isWolfRole(lgP(g, id).role));
+    if (a !== b) return "lovers";
+  }
+  if (alive.length === 1 && alive[0].role === "white") return "white";
+  const wolves = alive.filter(p => isWolfRole(p.role)).length;
+  if (!wolves) return "village";
+  if (wolves === alive.length) {
+    if (alive.some(p => p.role === "white") && alive.length > 1) return null;
+    return "wolves";
+  }
+  return null;
+}
+
+function lgWinners(g) {
+  const w = g.winner;
+  return g.players.filter(p =>
+    w === "village" ? !isWolfRole(p.role) :
+    w === "wolves" ? p.role === "wolf" :
+    w === "white" ? p.role === "white" :
+    w === "lovers" ? (g.lovers || []).includes(p.pid) : false).map(p => p.pid);
+}
+
+function lgEnd(w) {
+  const g = L.game;
+  g.phase = "end"; g.winner = w; g.stage = null;
+  if (!g.scored) {
+    lgWinners(g).forEach(pid => { const n = pname(pid); L.scores[n] = (L.scores[n] || 0) + 2; });
+    g.scored = true;
+  }
+  lgSay(g, "end", {
+    village: `Les loups ont tous été démasqués. Le village de ${LG_VILLAGE} a gagné !`,
+    wolves: `Il ne reste plus que des loups. Les loups-garous ont dévoré ${LG_VILLAGE} !`,
+    white: "Le Loup Blanc est le dernier survivant. Il gagne seul !",
+    lovers: "Les amoureux sont les derniers survivants. L'amour a gagné !",
+    none: "Il ne reste personne à " + LG_VILLAGE + "."
+  }[w]);
+}
+
+function lgForce() {
+  const g = L.game;
+  if (g.phase === "reveal") return lgNight();
+  if (g.phase === "night") return g.stage === "A" ? lgEndStageA() : lgDawn();
+  if (g.phase === "vote") return lgResolveVote();
+  if (g.phase === "hunter") return lgShoot(null, "none", true);
+}
+
+function lgSet(x) {
+  const st = L.settings.lg;
+  const [k, val] = String(x || "").split(":");
+  if (k === "role" && LG_SPECIALS.includes(val)) st.roles = st.roles.includes(val) ? st.roles.filter(r => r !== val) : st.roles.concat(val);
+  if (k === "wolves") {
+    const n = L.players.length;
+    if (val === "auto") st.wolves = 0;
+    else st.wolves = Math.max(1, Math.min(4, (st.wolves || lgDefaultWolves(n)) + (val === "+" ? 1 : -1)));
+  }
+  if (k === "debate") st.debate = Math.max(0, Math.min(600, +val || 0));
+}
+
+function lgView(g, pid) {
+  const me = lgP(g, pid);
+  const end = g.phase === "end";
+  const seeAll = end || !!(me && !me.alive);
+  const meWolf = !!(me && isWolfRole(me.role));
+  const myLover = g.lovers && me && g.lovers.includes(pid) ? g.lovers.find(x => x !== pid) : null;
+  const players = g.players.map(p => {
+    let role = null;
+    if (p.pid === pid || seeAll || !p.alive || p.idiotOut) role = p.role;
+    else if (meWolf && isWolfRole(p.role)) role = "wolf";
+    return { pid: p.pid, name: pname(p.pid), alive: p.alive, role, me: p.pid === pid, idiotOut: p.idiotOut,
+      lover: (seeAll && !!g.lovers && g.lovers.includes(p.pid)) || p.pid === myLover };
+  });
+  const v = {
+    kind: "lg", phase: g.phase, stage: g.stage, nightNo: g.nightNo, dayNo: g.dayNo, comp: g.comp, say: g.say, players,
+    me: me ? { role: me.role, alive: me.alive, idiotOut: me.idiotOut } : null,
+    loverName: myLover ? pname(myLover) : null,
+    pack: meWolf ? g.players.filter(p => isWolfRole(p.role) && p.pid !== pid).map(p => pname(p.pid)) : null,
+    powersLost: g.powersLost, log: end ? g.log : []
+  };
+  if (g.phase === "reveal") { v.ready = !!g.ready[pid]; v.readyCount = Object.keys(g.ready).length; v.total = g.players.length; }
+  if (g.phase === "night") {
+    const N = g.n;
+    v.done = !!(me && N.acts[pid]);
+    v.waiting = lgAlive(g).filter(p => !N.acts[p.pid]).length;
+    if (g.stage === "A" && me && me.alive) {
+      const t = lgTask(g, me);
+      v.task = t;
+      if (t.type === "wolf") {
+        v.wolfPicks = Object.entries(N.wolfPicks).map(([a, b]) => ({ by: pname(a), target: b, mine: a === pid }));
+        v.myWolfPick = N.wolfPicks[pid] || null;
+        v.whiteDone = N.whiteDone; v.whiteKill = N.whiteKill ? pname(N.whiteKill) : null;
+        v.caught = N.caught ? pname(N.caught) : null;
+      }
+      if (t.type === "guard") v.lastGuard = g.lastGuard;
+      if (t.type === "seer" && N.seer.pid) v.seerRes = { name: pname(N.seer.pid), role: N.seer.role };
+      if (t.type === "girl" && N.acts[pid]) v.spyRes = N.spy && N.spy.none ? { none: true } : { name: N.spy && N.spy.pid ? pname(N.spy.pid) : null, caught: N.caught === pid };
+      if (t.type === "cupid" && N.acts[pid]) v.cupidDone = g.lovers.map(pname);
+    }
+    if (g.stage === "B" && me && me.alive && me.role === "witch") {
+      v.task = { type: "witch" };
+      v.victim = N.wolfTarget ? pname(N.wolfTarget) : null;
+      v.potions = Object.assign({}, g.potions);
+    }
+  }
+  if (["day", "vote", "verdict", "hunter"].includes(g.phase) && g.dawn) {
+    v.dawn = { deaths: g.dawn.deaths.map(d => ({ name: pname(d.pid), role: lgP(g, d.pid).role, cause: d.cause })), susp: g.dawn.susp.map(([p, c]) => [pname(p), c]) };
+    v.raven = g.raven ? pname(g.raven) : null;
+    v.dayLeft = g.phase === "day" && g.dayEnds ? Math.max(0, g.dayEnds - Date.now()) : null;
+  }
+  if (g.phase === "vote") {
+    const counts = {};
+    Object.values(g.votes).forEach(t => counts[t] = (counts[t] || 0) + 1);
+    if (g.raven) counts[g.raven] = (counts[g.raven] || 0) + 2;
+    v.tally = Object.entries(counts).sort((a, b) => b[1] - a[1]).map(([t, c]) => [pname(t), c]);
+    v.votes = Object.entries(g.votes).map(([a, b]) => [pname(a), pname(b)]);
+    v.myVote = g.votes[pid] ? pname(g.votes[pid]) : null;
+    v.canVote = !!(me && me.alive && !me.idiotOut);
+    v.voted = Object.keys(g.votes).length; v.eligible = lgVoters(g).length;
+  }
+  if (g.phase === "verdict" && g.verdict) {
+    const vd = g.verdict;
+    v.verdict = { tie: vd.tie, idiot: vd.idiot, name: vd.pid ? pname(vd.pid) : null, role: vd.pid ? lgP(g, vd.pid).role : null,
+      deaths: vd.deaths.map(d => ({ name: pname(d.pid), role: lgP(g, d.pid).role, cause: d.cause })),
+      votes: vd.votes.map(([a, b]) => [pname(a), pname(b)]), raven: vd.raven ? pname(vd.raven) : null,
+      pendingHunter: !!(g.hunterQueue && g.hunterQueue.length) };
+  }
+  if (g.phase === "hunter") { v.hunter = pname(g.hunter); v.amHunter = g.hunter === pid; }
+  if (end) { v.winner = g.winner; v.winners = lgWinners(g); }
+  return v;
+}
+
+/* ---------- Loup-Garou : illustrations originales (SVG) ---------- */
+const LG_ART = {
+  wolf: `<svg viewBox="0 0 120 120" aria-hidden="true">
+    <circle cx="60" cy="64" r="50" fill="#000" opacity=".18"/>
+    <path d="M22 12 L50 44 L32 58 Z" fill="#2a1d26"/><path d="M98 12 L70 44 L88 58 Z" fill="#2a1d26"/>
+    <path d="M29 26 L44 44 L35 50 Z" fill="#8a3341"/><path d="M91 26 L76 44 L85 50 Z" fill="#8a3341"/>
+    <path d="M60 30 C80 30 94 42 98 58 L108 70 L92 74 L86 92 L72 104 L60 110 L48 104 L34 92 L28 74 L12 70 L22 58 C26 42 40 30 60 30 Z" fill="#3a2a33"/>
+    <path d="M60 36 C70 36 78 42 82 50 L60 58 L38 50 C42 42 50 36 60 36 Z" fill="#4a3742"/>
+    <path d="M60 60 C69 60 75 68 77 80 L73 96 L60 104 L47 96 L43 80 C45 68 51 60 60 60 Z" fill="#5c4651"/>
+    <path d="M36 58 L53 64 L40 70 Z" fill="#ffd23f"/><path d="M84 58 L67 64 L80 70 Z" fill="#ffd23f"/>
+    <path d="M52 85 L68 85 L60 93 Z" fill="#120b10"/>
+    <path d="M52 97 L55 104 L58 97 Z M62 97 L65 104 L68 97 Z" fill="#f4f0ea"/>
+  </svg>`,
+  white: `<svg viewBox="0 0 120 120" aria-hidden="true">
+    <circle cx="92" cy="24" r="16" fill="#fff3c4"/><circle cx="99" cy="19" r="14" fill="#2b3550"/>
+    <path d="M22 12 L50 44 L32 58 Z" fill="#b8c3dc"/><path d="M98 12 L70 44 L88 58 Z" fill="#b8c3dc"/>
+    <path d="M29 26 L44 44 L35 50 Z" fill="#8fa0c6"/><path d="M91 26 L76 44 L85 50 Z" fill="#8fa0c6"/>
+    <path d="M60 30 C80 30 94 42 98 58 L108 70 L92 74 L86 92 L72 104 L60 110 L48 104 L34 92 L28 74 L12 70 L22 58 C26 42 40 30 60 30 Z" fill="#dfe6f3"/>
+    <path d="M60 60 C69 60 75 68 77 80 L73 96 L60 104 L47 96 L43 80 C45 68 51 60 60 60 Z" fill="#f8faff"/>
+    <path d="M36 58 L53 64 L40 70 Z" fill="#3fb6ff"/><path d="M84 58 L67 64 L80 70 Z" fill="#3fb6ff"/>
+    <path d="M52 85 L68 85 L60 93 Z" fill="#2b3550"/>
+    <path d="M52 97 L55 104 L58 97 Z M62 97 L65 104 L68 97 Z" fill="#8fa0c6"/>
+  </svg>`,
+  villager: `<svg viewBox="0 0 120 120" aria-hidden="true">
+    <circle cx="88" cy="18" r="5" fill="#dfe6f3" opacity=".7"/><circle cx="96" cy="10" r="4" fill="#dfe6f3" opacity=".5"/>
+    <rect x="80" y="24" width="10" height="22" fill="#5a3a2a"/>
+    <path d="M12 60 L60 20 L108 60 Z" fill="#9b3b2c"/><path d="M60 20 L108 60 L96 60 L60 30 Z" fill="#7b2d22"/>
+    <rect x="24" y="58" width="72" height="46" fill="#ecc893"/>
+    <rect x="52" y="74" width="18" height="30" rx="2" fill="#6b4226"/><circle cx="66" cy="90" r="1.8" fill="#ffd23f"/>
+    <rect x="31" y="68" width="14" height="14" rx="1" fill="#ffd23f"/><path d="M38 68 V82 M31 75 H45" stroke="#6b4226" stroke-width="2"/>
+    <rect x="76" y="68" width="14" height="14" rx="1" fill="#ffd23f"/><path d="M83 68 V82 M76 75 H90" stroke="#6b4226" stroke-width="2"/>
+    <rect x="8" y="104" width="104" height="7" rx="3.5" fill="#4f7f43"/>
+  </svg>`,
+  seer: `<svg viewBox="0 0 120 120" aria-hidden="true">
+    <ellipse cx="60" cy="108" rx="34" ry="6" fill="#000" opacity=".25"/>
+    <path d="M36 106 L44 88 L76 88 L84 106 Z" fill="#b8892e"/><rect x="40" y="84" width="40" height="6" rx="3" fill="#d9a83e"/>
+    <circle cx="60" cy="52" r="36" fill="#8fd0ff"/><circle cx="60" cy="52" r="36" fill="#c9b8ff" opacity=".45"/>
+    <circle cx="60" cy="52" r="28" fill="#fff" opacity=".12"/>
+    <path d="M34 52 Q60 30 86 52 Q60 74 34 52 Z" fill="#fff"/>
+    <circle cx="60" cy="52" r="10" fill="#5b33a6"/><circle cx="60" cy="52" r="4.5" fill="#120a24"/><circle cx="63" cy="49" r="2" fill="#fff"/>
+    <ellipse cx="44" cy="30" rx="8" ry="4.5" fill="#fff" opacity=".65" transform="rotate(-30 44 30)"/>
+    <path d="M22 18 l3 6 l6 3 l-6 3 l-3 6 l-3 -6 l-6 -3 l6 -3 Z" fill="#ffd23f"/><path d="M98 80 l2 4 l4 2 l-4 2 l-2 4 l-2 -4 l-4 -2 l4 -2 Z" fill="#ffd23f"/>
+  </svg>`,
+  witch: `<svg viewBox="0 0 120 120" aria-hidden="true">
+    <circle cx="30" cy="34" r="3" fill="#7dffb6" opacity=".8"/><circle cx="38" cy="24" r="4" fill="#7dffb6" opacity=".6"/><circle cx="31" cy="14" r="2.5" fill="#7dffb6" opacity=".5"/>
+    <rect x="31" y="40" width="18" height="8" rx="2" fill="#8b6b4a"/><rect x="34" y="46" width="12" height="16" fill="#3fd48c"/>
+    <circle cx="40" cy="80" r="24" fill="#3fd48c"/><path d="M18 82 Q40 92 62 82 A22 22 0 0 1 18 82 Z" fill="#23a868"/>
+    <circle cx="32" cy="72" r="5" fill="#fff" opacity=".55"/>
+    <rect x="72" y="28" width="20" height="8" rx="2" fill="#8b6b4a"/>
+    <path d="M75 36 H89 V54 L101 94 A7 7 0 0 1 95 103 H69 A7 7 0 0 1 63 94 L75 54 Z" fill="#e8434a"/>
+    <path d="M67 84 H97 L101 94 A7 7 0 0 1 95 103 H69 A7 7 0 0 1 63 94 Z" fill="#b92f37"/>
+    <circle cx="82" cy="70" r="8" fill="#fff"/><rect x="77.5" y="74" width="9" height="6" rx="1" fill="#fff"/>
+    <circle cx="79" cy="69" r="2" fill="#b92f37"/><circle cx="85" cy="69" r="2" fill="#b92f37"/>
+    <path d="M79 77 V80 M82 77 V80 M85 77 V80" stroke="#b92f37" stroke-width="1"/>
+  </svg>`,
+  hunter: `<svg viewBox="0 0 120 120" aria-hidden="true">
+    <path d="M28 30 C20 22 18 12 22 6 M28 30 C22 26 14 26 10 22 M92 30 C100 22 102 12 98 6 M92 30 C98 26 106 26 110 22" stroke="#c9a06a" stroke-width="4" stroke-linecap="round" fill="none"/>
+    <circle cx="60" cy="62" r="40" fill="#000" opacity=".2"/>
+    <circle cx="60" cy="62" r="38" fill="none" stroke="#e8434a" stroke-width="6"/>
+    <circle cx="60" cy="62" r="20" fill="none" stroke="#f4f0ea" stroke-width="4"/>
+    <path d="M60 14 V40 M60 84 V110 M12 62 H38 M82 62 H108" stroke="#f4f0ea" stroke-width="5" stroke-linecap="round"/>
+    <circle cx="60" cy="62" r="5" fill="#e8434a"/>
+  </svg>`,
+  cupid: `<svg viewBox="0 0 120 120" aria-hidden="true">
+    <path d="M60 102 C20 76 12 52 24 36 C36 22 54 26 60 42 C66 26 84 22 96 36 C108 52 100 76 60 102 Z" fill="#ff5f8f"/>
+    <path d="M60 102 C40 89 28 76 24 62 C40 74 56 78 74 72 C70 82 66 92 60 102 Z" fill="#e2416f"/>
+    <ellipse cx="40" cy="44" rx="8" ry="5" fill="#fff" opacity=".45" transform="rotate(-25 40 44)"/>
+    <path d="M14 96 L100 26" stroke="#ffd23f" stroke-width="5" stroke-linecap="round"/>
+    <path d="M106 20 L90 26 L100 36 Z" fill="#ffd23f"/>
+    <path d="M14 96 L10 84 M14 96 L26 100 M20 91 L16 79 M20 91 L32 95" stroke="#ffd23f" stroke-width="3.5" stroke-linecap="round"/>
+  </svg>`,
+  girl: `<svg viewBox="0 0 120 120" aria-hidden="true">
+    <rect x="20" y="10" width="80" height="100" rx="16" fill="#7a5230"/>
+    <rect x="26" y="16" width="68" height="88" rx="12" fill="#946437"/>
+    <path d="M26 40 H94 M26 70 H94" stroke="#7a5230" stroke-width="3"/>
+    <circle cx="60" cy="52" r="20" fill="#120a14"/><path d="M48 60 H72 L78 94 H42 Z" fill="#120a14"/>
+    <ellipse cx="60" cy="52" rx="13" ry="8" fill="#fff"/><circle cx="60" cy="52" r="5.5" fill="#3fa0ff"/><circle cx="60" cy="52" r="2.4" fill="#000"/><circle cx="62" cy="50" r="1.3" fill="#fff"/>
+  </svg>`,
+  guard: `<svg viewBox="0 0 120 120" aria-hidden="true">
+    <path d="M60 10 L100 24 V58 C100 86 82 102 60 112 C38 102 20 86 20 58 V24 Z" fill="#2f7fd0"/>
+    <path d="M60 10 L100 24 V58 C100 86 82 102 60 112 Z" fill="#4c9ae6"/>
+    <path d="M60 20 L90 31 V58 C90 80 77 93 60 101 C43 93 30 80 30 58 V31 Z" fill="none" stroke="#cfe6ff" stroke-width="2.5" opacity=".7"/>
+    <path d="M60 36 L66 52 L83 52 L69 62 L74 79 L60 69 L46 79 L51 62 L37 52 L54 52 Z" fill="#ffd23f"/>
+  </svg>`,
+  idiot: `<svg viewBox="0 0 120 120" aria-hidden="true">
+    <path d="M20 88 C30 62 26 38 12 26 C34 30 48 46 56 64 L60 88 Z" fill="#9b5cff"/>
+    <path d="M100 88 C90 62 94 38 108 26 C86 30 72 46 64 64 L60 88 Z" fill="#7a3fe0"/>
+    <path d="M42 88 C50 64 50 32 60 12 C70 32 70 64 78 88 Z" fill="#ffd23f"/>
+    <rect x="16" y="84" width="88" height="18" rx="7" fill="#e8434a"/>
+    <path d="M28 93 h8 M48 93 h8 M68 93 h8 M88 93 h4" stroke="#ffd23f" stroke-width="4" stroke-linecap="round"/>
+    <circle cx="12" cy="26" r="7" fill="#ffd23f"/><circle cx="60" cy="11" r="7" fill="#e8434a"/><circle cx="108" cy="26" r="7" fill="#ffd23f"/>
+  </svg>`,
+  elder: `<svg viewBox="0 0 120 120" aria-hidden="true">
+    <rect x="96" y="30" width="7" height="82" rx="3.5" fill="#8b6b4a"/><circle cx="99.5" cy="28" r="8" fill="#a07a50"/>
+    <circle cx="56" cy="48" r="28" fill="#e9c4a0"/>
+    <path d="M26 40 C28 14 84 14 86 40 C78 30 34 30 26 40 Z" fill="#e3e7ee"/>
+    <path d="M30 54 C32 102 80 102 82 54 C74 66 66 68 56 68 C46 68 38 66 30 54 Z" fill="#f6f7fa"/>
+    <path d="M38 60 C44 92 68 92 74 60" stroke="#dde1e9" stroke-width="2" fill="none"/>
+    <path d="M40 40 h11 M61 40 h11" stroke="#a9afbd" stroke-width="5" stroke-linecap="round"/>
+    <circle cx="46" cy="48" r="2.6" fill="#2a2030"/><circle cx="66" cy="48" r="2.6" fill="#2a2030"/>
+    <path d="M44 62 Q56 56 68 62" stroke="#c9ccd6" stroke-width="5" stroke-linecap="round" fill="none"/>
+  </svg>`,
+  raven: `<svg viewBox="0 0 120 120" aria-hidden="true">
+    <circle cx="60" cy="60" r="48" fill="#000" opacity=".15"/>
+    <path d="M26 66 L6 56 L10 74 L22 80 Z" fill="#14121f"/>
+    <ellipse cx="54" cy="70" rx="34" ry="21" fill="#1d1a2b"/>
+    <circle cx="86" cy="48" r="16" fill="#1d1a2b"/>
+    <path d="M100 44 L118 50 L100 55 Z" fill="#ffb02e"/>
+    <circle cx="90" cy="45" r="4" fill="#fff"/><circle cx="91" cy="45" r="2" fill="#120a14"/>
+    <path d="M30 64 C46 52 66 54 78 68 C62 76 44 76 30 64 Z" fill="#3b3560"/>
+    <path d="M38 70 C50 64 62 66 70 72" stroke="#5a5290" stroke-width="2" fill="none"/>
+    <path d="M50 90 L46 106 M62 90 L64 106 M42 106 H50 M60 106 H68" stroke="#ffb02e" stroke-width="3" stroke-linecap="round"/>
+  </svg>`
+};
+const LG_CARDBACK = `<svg viewBox="0 0 120 120" aria-hidden="true">
+  <circle cx="60" cy="60" r="44" fill="none" stroke="#3b4799" stroke-width="2"/>
+  <circle cx="60" cy="60" r="30" fill="#fff3c4"/><circle cx="72" cy="52" r="26" fill="#1b2260"/>
+  <path d="M24 30 l2 4 l4 2 l-4 2 l-2 4 l-2 -4 l-4 -2 l4 -2 Z M94 86 l2 4 l4 2 l-4 2 l-2 4 l-2 -4 l-4 -2 l4 -2 Z" fill="#ffd23f"/>
+</svg>`;
+
+const LG_STARS = Array.from({ length: 30 }, (_, i) => [(i * 137 + 23) % 400, (i * 53) % 88 + 6, (0.7 + (i % 3) * 0.5).toFixed(1), ((i % 6) * 0.5).toFixed(1)]);
+function lgScene(kind) {
+  const night = kind === "night";
+  const sky = night ? "#121a4f" : "#f6d9a2";
+  const hill = night ? "#0d1338" : "#d8b878";
+  const town = night ? "#060a22" : "#6b5236";
+  const win = night ? `<g fill="#ffd23f" opacity=".85"><rect x="29" y="128" width="6" height="7"/><rect x="58" y="132" width="5" height="6"/><rect x="167" y="120" width="6" height="9"/><rect x="301" y="128" width="6" height="7"/><rect x="368" y="125" width="6" height="7"/></g>` : "";
+  const sun = night
+    ? `<circle cx="320" cy="44" r="36" fill="#fff6d6" opacity=".08"/><circle cx="320" cy="44" r="26" fill="#fff6d6" opacity=".12"/><circle cx="320" cy="44" r="19" fill="#fff3c4"/><circle cx="328" cy="39" r="16" fill="${sky}"/>`
+    : `<circle cx="78" cy="48" r="40" fill="#ffd23f" opacity=".22"/><circle cx="78" cy="48" r="24" fill="#ffc531"/>`;
+  const stars = night ? LG_STARS.map(([x, y, r, d]) => `<circle class="lg-star" cx="${x}" cy="${y}" r="${r}" style="animation-delay:${d}s"/>`).join("") : "";
+  const clouds = night ? "" : `<g fill="#fff" opacity=".7"><ellipse cx="200" cy="40" rx="34" ry="10"/><ellipse cx="222" cy="34" rx="22" ry="10"/><ellipse cx="330" cy="62" rx="28" ry="8"/></g>`;
+  return `<svg class="lg-scene" viewBox="0 0 400 150" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <rect width="400" height="150" fill="${sky}"/>${stars}${sun}${clouds}
+    <path d="M0 150 V116 Q70 98 140 112 T270 106 T400 110 V150 Z" fill="${hill}"/>
+    <path fill="${town}" d="M18 150 V124 L32 110 L46 124 V150 Z M50 150 V128 L60 118 L70 128 V150 Z M150 150 V116 L160 106 V80 L170 62 L180 80 V106 L190 116 V150 Z M168 56 h4 v-8 h-4 Z M164 52 h12 v4 h-12 Z M226 150 L238 112 L250 150 Z M244 150 L258 100 L272 150 Z M262 150 L272 118 L282 150 Z M290 150 V124 L304 110 L318 124 V150 Z M326 150 V130 L338 120 L350 130 V150 Z M356 150 V120 L372 106 L388 120 V150 Z M86 150 V132 H120 V150 Z M84 132 L103 120 L122 132 Z"/>
+    ${win}
+  </svg>`;
+}
+function lgCard(role, opts) {
+  const R = LG_ROLES[role];
+  const o = opts || {};
+  return `<div class="lg-card ${o.small ? "sm" : ""}" style="--rc:${R.bg}">
+    <div class="lg-art">${LG_ART[role]}</div>
+    <div class="lg-name">${R.name}</div>
+    <span class="lg-team">${LG_TEAM[R.team]}</span>
+    ${o.desc === false ? "" : `<p class="lg-desc">${R.desc}</p>`}
+  </div>`;
+}
+const lgMini = role => `<span class="lg-mini" style="--rc:${LG_ROLES[role].bg}">${LG_ART[role]}<span>${LG_ROLES[role].name}</span></span>`;
+
+/* ---------- Loup-Garou : narration, sons, écrans ---------- */
+let lgSpoken = 0;
+function lgSfx(kind) {
+  if (!O.sfx || !actx) return;
+  const t = actx.currentTime;
+  const tone = (f, d, type, vol, f2, delay) => {
+    try {
+      const o = actx.createOscillator(), g = actx.createGain(), s = t + (delay || 0);
+      o.type = type || "sine"; o.frequency.setValueAtTime(f, s);
+      if (f2) o.frequency.exponentialRampToValueAtTime(f2, s + d * 0.8);
+      g.gain.setValueAtTime(0.0001, s); g.gain.exponentialRampToValueAtTime(vol || 0.12, s + 0.05); g.gain.exponentialRampToValueAtTime(0.0001, s + d);
+      o.connect(g); g.connect(actx.destination); o.start(s); o.stop(s + d + 0.05);
+    } catch (e) {}
+  };
+  if (kind === "night") {
+    try {
+      const o = actx.createOscillator(), g = actx.createGain(), l = actx.createOscillator(), lgn = actx.createGain();
+      o.type = "sine";
+      o.frequency.setValueAtTime(260, t); o.frequency.linearRampToValueAtTime(540, t + 0.6); o.frequency.linearRampToValueAtTime(480, t + 1.6); o.frequency.linearRampToValueAtTime(300, t + 2.3);
+      l.frequency.value = 5.5; lgn.gain.value = 10; l.connect(lgn); lgn.connect(o.frequency);
+      g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(0.16, t + 0.35); g.gain.setValueAtTime(0.16, t + 1.6); g.gain.exponentialRampToValueAtTime(0.0001, t + 2.4);
+      o.connect(g); g.connect(actx.destination); o.start(t); l.start(t); o.stop(t + 2.5); l.stop(t + 2.5);
+    } catch (e) {}
+  } else if (kind === "day" || kind === "dayDeath") {
+    tone(784, 1.2, "sine", 0.1); tone(1175, 1.4, "sine", 0.07, null, 0.15); tone(1568, 1.6, "sine", 0.05, null, 0.3);
+    if (kind === "dayDeath") tone(98, 2.2, "triangle", 0.2, null, 1);
+  } else if (kind === "death" || kind === "verdict") { tone(110, 2, "triangle", 0.2); tone(165, 1.6, "sine", 0.08); }
+  else if (kind === "vote") { tone(392, 0.25, "square", 0.05); tone(523, 0.3, "square", 0.05, null, 0.18); }
+  else if (kind === "witch") tone(330, 1.4, "sine", 0.1, 660);
+  else if (kind === "end") [523, 659, 784, 1046].forEach((f, i) => tone(f, 0.5, "triangle", 0.11, null, i * 0.15));
+}
+function lgSpeak(say) {
+  if (!say || say.id <= lgSpoken) return;
+  const first = lgSpoken === 0 && say.kind !== "reveal";
+  lgSpoken = say.id;
+  if (first) return;
+  lgSfx(say.kind);
+  if (!O.voice || !window.speechSynthesis) return;
+  try {
+    speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(say.text);
+    u.lang = "fr-FR";
+    const fr = speechSynthesis.getVoices().find(v => /^fr/i.test(v.lang));
+    if (fr) u.voice = fr;
+    u.rate = 0.95; u.pitch = 0.85;
+    setTimeout(() => { try { speechSynthesis.speak(u); } catch (e) {} }, say.kind === "night" ? 900 : 300);
+  } catch (e) {}
+}
+
+function lgSceneKind(g) {
+  if (g.phase === "end") return g.winner === "village" || g.winner === "lovers" ? "day" : "night";
+  return ["reveal", "night"].includes(g.phase) ? "night" : "day";
+}
+function lgTopBar(v, g) {
+  return `<div class="lg-bar">
+    <button class="btn-small" data-act="o-lgpeek">${O.lgPeek ? "Cacher mon rôle" : "Mon rôle"}</button>
+    <button class="btn-small" data-act="o-voice" aria-pressed="${O.voice}">Voix : ${O.voice ? "oui" : "non"}</button>
+    <button class="btn-small" data-act="o-sfx" aria-pressed="${O.sfx}">Sons : ${O.sfx ? "oui" : "non"}</button>
+  </div>
+  ${O.lgPeek && g.me ? `<div class="lg-peek">${lgCard(g.me.role)}${g.pack && g.pack.length ? `<p class="hint">Ta meute : ${esc(listNames(g.pack))}</p>` : ""}${g.loverName ? `<p class="hint">Tu es amoureux de ${esc(g.loverName)}.</p>` : ""}</div>` : ""}`;
+}
+function lgCompBlock(g) {
+  return `<details class="box"><summary>Rôles en jeu</summary><div class="lg-comp">${g.comp.map(([r, k]) => `<span class="lg-chip" style="--rc:${LG_ROLES[r].bg}">${LG_ART[r]}<span>${k > 1 ? k + " × " : ""}${LG_ROLES[r].name}</span></span>`).join("")}</div></details>`;
+}
+function lgPlayersBlock(g, title) {
+  return `<section class="section"><span class="label">${title || "Joueurs"}</span><div class="lg-plist">${g.players.map(p => `
+    <div class="lg-prow ${p.alive ? "" : "dead"}">
+      <span class="lg-pname">${esc(p.name)}${p.me ? " · toi" : ""}${p.lover ? ' <span class="lg-heart" title="Amoureux">♥</span>' : ""}${p.idiotOut ? " · sans vote" : ""}</span>
+      <span class="lg-pstate">${p.role ? lgMini(p.role) : ""}${p.alive ? "" : '<span class="lg-rip">mort</span>'}</span>
+    </div>`).join("")}</div></section>`;
+}
+function lgPickList(g, opts) {
+  const o = opts || {};
+  const list = g.players.filter(p => p.alive && (o.self || !p.me) && (!o.filter || o.filter(p)));
+  return `<div class="vote">${list.map(p => {
+    const sel = o.selected ? o.selected(p) : O.sel === p.pid;
+    const dis = o.disabled && o.disabled(p);
+    return `<button data-act="${o.act || "o-lgsel"}" data-x="${p.pid}"${o.a ? ` data-a="${o.a}"` : ""} aria-pressed="${!!sel}" ${dis ? "disabled" : ""}><span>${esc(p.name)}${p.me ? " · toi" : ""}</span><span class="agent" style="color:inherit">${o.extra ? o.extra(p) : ""}</span></button>`;
+  }).join("")}</div>`;
+}
+const lgWait = (g, txt) => `<p class="hint">${txt || "En attente des autres joueurs"}${g.waiting ? ` · encore ${g.waiting}` : ""}…</p>`;
+const lgForceBtn = (v, label) => v.isHost ? `<button class="btn-ghost lg-force" data-act="o-send" data-a="lg-force">${label || "Passer les joueurs absents"}</button>` : "";
+const lgDeadNote = `<div class="banner warn">Tu es mort. Tu vois tous les rôles, mais chut : ne révèle rien aux vivants !</div>`;
+
+function vOLg(v) {
+  const g = v.game;
+  const body = { reveal: lgVReveal, night: lgVNight, day: lgVDay, vote: lgVVote, verdict: lgVVerdict, hunter: lgVHunter, end: lgVEnd }[g.phase];
+  return `<div class="lg">${lgScene(lgSceneKind(g))}${g.phase !== "reveal" && g.phase !== "end" ? lgTopBar(v, g) : ""}${body(v, g)}</div>`;
+}
+
+function lgVReveal(v, g) {
+  return `<header class="section"><span class="eyebrow">${LG_VILLAGE} · distribution des rôles</span><h2>Ton rôle</h2>
+    <p class="lead">Regarde ton rôle en cachant ton écran. Ne le montre à personne.</p></header>
+    <div class="flip ${O.lgFlip ? "on" : ""}" data-act="o-lgflip" role="button" tabindex="0" aria-label="Retourner la carte">
+      <div class="flip-in">
+        <div class="flip-front">${LG_CARDBACK}<b>Touche pour découvrir ton rôle</b></div>
+        <div class="flip-back">${lgCard(g.me.role)}</div>
+      </div>
+    </div>
+    ${O.lgFlip && g.pack && g.pack.length ? `<div class="banner warn">Ta meute : ${esc(listNames(g.pack))}</div>` : ""}
+    ${g.ready ? `<p class="hint">Prêt. En attente des autres : ${g.readyCount}/${g.total}.</p>` : `<button class="btn" data-act="o-send" data-a="lg-ready">J'ai retenu mon rôle</button>`}
+    ${lgCompBlock(g)}
+    ${lgForceBtn(v, "Commencer sans attendre")}`;
+}
+
+function lgVNight(v, g) {
+  const head = `<header class="section"><span class="eyebrow">Nuit ${g.nightNo}</span>`;
+  if (!g.me || !g.me.alive) return `${head}<h2>La nuit est tombée</h2></header>${lgDeadNote}${lgPlayersBlock(g)}${lgForceBtn(v)}`;
+  if (g.stage === "B") {
+    if (g.task && g.task.type === "witch") return head + lgVWitch(v, g);
+    return `${head}<h2>La sorcière se réveille…</h2><p class="lead">Elle découvre la victime des loups et choisit d'utiliser ou non ses potions.</p></header>
+      <div class="lg-sleep">${LG_ART.witch}</div>${lgForceBtn(v, "Passer (sorcière absente)")}`;
+  }
+  const t = g.task;
+  if (g.done) {
+    let res = "";
+    if (t.type === "seer" && g.seerRes) res = `<p class="lead">Ta vision révèle le rôle de <b>${esc(g.seerRes.name)}</b> :</p>${lgCard(g.seerRes.role, { desc: false, small: true })}`;
+    if (t.type === "girl" && g.spyRes) res = g.spyRes.none ? `<p class="lead">Tu as dormi sagement.</p>`
+      : `<p class="lead">Tu as aperçu un loup : <b>${esc(g.spyRes.name || "personne")}</b>.</p>${g.spyRes.caught ? `<div class="banner warn">Les loups t'ont vue ! Ils savent que tu es la Petite Fille.</div>` : ""}`;
+    if (t.type === "cupid" && g.cupidDone) res = `<p class="lead">${esc(g.cupidDone[0])} et ${esc(g.cupidDone[1])} sont désormais amoureux.</p>`;
+    if (t.type === "wolf") res = `<p class="lead">La meute a fait son choix.</p>`;
+    return `${head}<h2>Tu te rendors…</h2></header>${res}${lgWait(g)}${lgForceBtn(v)}`;
+  }
+  let ui = "";
+  if (t.type === "wolf") {
+    const counts = {};
+    g.wolfPicks.forEach(w => counts[w.target] = (counts[w.target] || []).concat(w.by));
+    ui = `<h2>Les loups chassent</h2><p class="lead">Choisissez ensemble votre victime. ${g.pack.length ? "Ta meute : " + esc(listNames(g.pack)) + "." : "Tu chasses seul."}</p></header>
+      ${g.caught ? `<div class="banner warn">Vous avez surpris ${esc(g.caught)} en train d'espionner : c'est la Petite Fille !</div>` : ""}
+      ${lgPickList(g, { act: "o-send", a: "lg-wolfpick", filter: p => !(p.role === "wolf" || p.role === "white"), selected: p => g.myWolfPick === p.pid, extra: p => counts[p.pid] ? counts[p.pid].length + " loup" + (counts[p.pid].length > 1 ? "s" : "") : "" })}`;
+    if (t.white) {
+      ui += `<section class="confirm"><span class="label">Loup Blanc : cette nuit, tu peux aussi dévorer un loup</span>
+        ${g.whiteDone ? `<p class="hint">Choix fait : ${g.whiteKill ? esc(g.whiteKill) : "personne"}.</p>` : `${lgPickList(g, { act: "o-send", a: "lg-white", filter: p => p.role === "wolf" && !p.me })}<button class="btn-ghost" data-act="o-send" data-a="lg-white" data-x="none">Personne cette nuit</button>`}</section>`;
+    }
+    ui += `<button class="btn btn-danger" data-act="o-send" data-a="lg-wolfok" ${g.myWolfPick && (!t.white || g.whiteDone) ? "" : "disabled"}>Confirmer la victime</button>`;
+  } else if (t.type === "seer") {
+    ui = `<h2>Voyante, ouvre les yeux</h2><p class="lead">Choisis le joueur dont tu veux connaître le rôle.</p></header>${lgPickList(g)}${lgConfirm("lg-seer", "Sonder ce joueur")}`;
+  } else if (t.type === "guard") {
+    ui = `<h2>Salvateur, qui protèges-tu ?</h2><p class="lead">Ce joueur sera à l'abri des loups cette nuit. Tu peux te protéger toi-même.</p></header>
+      ${lgPickList(g, { self: true, disabled: p => p.pid === g.lastGuard, extra: p => p.pid === g.lastGuard ? "protégé hier" : "" })}${lgConfirm("lg-guard", "Protéger ce joueur")}`;
+  } else if (t.type === "cupid") {
+    ui = `<h2>Cupidon, tire tes flèches</h2><p class="lead">Choisis deux joueurs qui tomberont amoureux. Tu peux te choisir.</p></header>
+      ${lgPickList(g, { self: true, act: "o-lgpair", selected: p => O.sel2.includes(p.pid) })}
+      <button class="btn" data-act="o-lgsend" data-a="lg-cupid" data-k="pair" ${O.sel2.length === 2 ? "" : "disabled"}>Unir ces deux joueurs</button>`;
+  } else if (t.type === "girl") {
+    ui = `<h2>Petite Fille, tu entends du bruit…</h2><p class="lead">Espionner te révèle un loup, mais tu as une chance sur quatre de te faire repérer.</p></header>
+      <div class="row"><button class="btn btn-danger" data-act="o-send" data-a="lg-girl" data-x="spy">Espionner</button><button class="btn-ghost" data-act="o-send" data-a="lg-girl" data-x="sleep">Dormir sagement</button></div>`;
+  } else if (t.type === "raven") {
+    ui = `<h2>Corbeau, qui maudis-tu ?</h2><p class="lead">Ce joueur aura 2 voix de plus contre lui au prochain vote.</p></header>
+      ${lgPickList(g)}${lgConfirm("lg-raven", "Maudire ce joueur")}<button class="btn-ghost" data-act="o-send" data-a="lg-raven" data-x="none">Personne cette nuit</button>`;
+  } else {
+    ui = `<h2>Ton instinct</h2><p class="lead">Pendant que le village dort, désigne le joueur qui te paraît le plus louche. Les soupçons seront révélés au matin, sans les noms de ceux qui les ont donnés.</p></header>
+      ${lgPickList(g)}${lgConfirm("lg-susp", "Je le soupçonne")}`;
+  }
+  return head + ui + lgForceBtn(v);
+}
+function lgConfirm(a, label) {
+  return `<button class="btn" data-act="o-lgsend" data-a="${a}" data-k="sel" ${O.sel ? "" : "disabled"}>${label}</button>`;
+}
+function lgVWitch(v, g) {
+  const p = g.potions;
+  return `<h2>Sorcière, à toi</h2>
+    <p class="lead">${g.victim ? `Les loups ont attaqué <b>${esc(g.victim)}</b>.` : "Les loups n'ont attaqué personne cette nuit."}</p></header>
+    <div class="lg-sleep">${LG_ART.witch}</div>
+    ${p.life && g.victim ? `<button class="chip lg-potion" data-act="o-lgwsave" aria-pressed="${O.wSave}">Potion de vie : sauver ${esc(g.victim)}</button>` : `<p class="hint">${p.life ? "" : "Potion de vie déjà utilisée."}</p>`}
+    ${p.death ? `<section class="section"><span class="label">Potion de mort</span>${lgPickList(g, { self: false, act: "o-lgwkill", selected: q => O.wKill === q.pid })}
+      <button class="btn-ghost" data-act="o-lgwkill" data-x="none" aria-pressed="${!O.wKill}">Ne tuer personne</button></section>` : `<p class="hint">Potion de mort déjà utilisée.</p>`}
+    <button class="btn" data-act="o-lgsend" data-a="lg-witch" data-k="witch">Terminer ma nuit</button>`;
+}
+
+function lgDeathsBlock(list, emptyText) {
+  if (!list || !list.length) return `<div class="banner">${emptyText}</div>`;
+  return `<div class="lg-deaths">${list.map(d => `<div class="lg-death">${lgCard(d.role, { desc: false, small: true })}<p><b>${esc(d.name)}</b> ${lgCause(d.cause)}.</p></div>`).join("")}</div>`;
+}
+function lgVDay(v, g) {
+  const timer = g.dayLeft !== null && g.dayLeft !== undefined ? `<div class="lg-timer" data-deadline="${O.viewAt + g.dayLeft}">${fmtClock(g.dayLeft)}</div>` : "";
+  return `<header class="section"><span class="eyebrow">Jour ${g.dayNo}</span><h2>Le jour se lève</h2></header>
+    ${lgDeathsBlock(g.dawn && g.dawn.deaths, "Miracle : personne n'est mort cette nuit.")}
+    ${g.raven ? `<div class="banner warn">Le corbeau a désigné ${esc(g.raven)} : 2 voix de plus contre lui au vote.</div>` : ""}
+    ${g.dawn && g.dawn.susp.length ? `<section class="section"><span class="label">L'instinct du village cette nuit</span><div class="scores">${g.dawn.susp.map(([n, c]) => `<div class="score-row"><span>${esc(n)}</span><b>${c} soupçon${c > 1 ? "s" : ""}</b></div>`).join("")}</div></section>` : ""}
+    ${!g.me || !g.me.alive ? lgDeadNote : `<p class="lead">Débattez à voix haute : qui est le loup ?</p>`}
+    ${timer}
+    ${v.isHost ? `<button class="btn" data-act="o-send" data-a="lg-tovote">Passer au vote</button>` : `<p class="hint">L'hôte lance le vote quand le débat est fini.</p>`}
+    ${lgPlayersBlock(g)}${lgCompBlock(g)}`;
+}
+function lgVVote(v, g) {
+  let mine;
+  if (!g.canVote) mine = `<p class="hint">${g.me && g.me.alive ? "L'Idiot du village ne vote plus." : "Les morts ne votent pas."}</p>`;
+  else if (g.myVote) mine = `<div class="banner">Tu as voté contre ${esc(g.myVote)}.</div>`;
+  else mine = `${lgPickList(g)}<button class="btn btn-danger" data-act="o-lgsend" data-a="lg-vote" data-k="sel" ${O.sel ? "" : "disabled"}>Voter contre ce joueur</button>`;
+  return `<header class="section"><span class="eyebrow">Jour ${g.dayNo} · vote</span><h2>Qui est le loup ?</h2>
+    <p class="lead">Votes : ${g.voted}/${g.eligible}.${g.raven ? ` ${esc(g.raven)} a déjà 2 voix du corbeau.` : ""}</p></header>
+    ${mine}
+    ${g.tally.length ? `<section class="section"><span class="label">Décompte en direct</span><div class="lg-tally">${g.tally.map(([n, c]) => `<div class="lg-trow"><span>${esc(n)}</span><i style="--w:${Math.min(100, c * 20)}%"></i><b>${c}</b></div>`).join("")}</div></section>` : ""}
+    ${g.votes.length ? `<details class="box"><summary>Qui a voté pour qui</summary><div class="scores">${g.votes.map(([a, b]) => `<div class="score-row"><span>${esc(a)}</span><b>→ ${esc(b)}</b></div>`).join("")}</div></details>` : ""}
+    ${v.isHost && g.voted < g.eligible ? `<button class="btn-ghost" data-act="o-send" data-a="lg-force">Dépouiller sans attendre</button>` : ""}`;
+}
+function lgVVerdict(v, g) {
+  const vd = g.verdict;
+  let main;
+  if (vd.tie) main = `<h2>Égalité</h2><p class="lead">Le village n'arrive pas à se décider. Personne n'est éliminé.</p></header>`;
+  else if (vd.idiot) main = `<h2>${esc(vd.name)} est l'Idiot du village !</h2><p class="lead">Le village l'épargne en riant, mais il ne votera plus.</p></header>${lgCard("idiot", { desc: false, small: true })}`;
+  else main = `<h2>${esc(vd.name)} est éliminé</h2></header>${lgDeathsBlock(vd.deaths)}`;
+  return `<header class="section"><span class="eyebrow">Jour ${g.dayNo} · verdict</span>${main}
+    ${vd.votes.length ? `<details class="box"><summary>Les votes</summary><div class="scores">${vd.votes.map(([a, b]) => `<div class="score-row"><span>${esc(a)}</span><b>→ ${esc(b)}</b></div>`).join("")}${vd.raven ? `<div class="score-row"><span>Corbeau</span><b>+2 → ${esc(vd.raven)}</b></div>` : ""}</div></details>` : ""}
+    ${v.isHost ? `<button class="btn" data-act="o-send" data-a="lg-continue">${vd.pendingHunter ? "Continuer" : "La nuit tombe"}</button>` : `<p class="hint">En attente de l'hôte.</p>`}`;
+}
+function lgVHunter(v, g) {
+  return `<header class="section"><span class="eyebrow">Dernier souffle</span><h2>${esc(g.hunter)} était chasseur</h2></header>
+    ${lgCard("hunter", { desc: false, small: true })}
+    ${g.amHunter ? `<p class="lead">Choisis qui tu emportes avec toi.</p>${lgPickList(g)}<button class="btn btn-danger" data-act="o-lgsend" data-a="lg-shoot" data-k="sel" ${O.sel ? "" : "disabled"}>Tirer</button>`
+      : `<p class="lead">Il épaule son fusil et vise…</p>`}
+    ${lgForceBtn(v, "Passer (chasseur absent)")}`;
+}
+function lgVEnd(v, g) {
+  const title = { village: "Le village a gagné", wolves: "Les loups ont gagné", white: "Le Loup Blanc gagne seul", lovers: "Les amoureux ont gagné", none: "Personne n'a survécu" }[g.winner];
+  const won = pid => g.winners.includes(pid);
+  return `<header class="section"><span class="eyebrow">Fin de partie · ${LG_VILLAGE}</span><h1 style="font-size:3rem">${title}</h1></header>
+    <div class="lg-endgrid">${g.players.map(p => `<div class="lg-endcard ${won(p.pid) ? "won" : ""} ${p.alive ? "" : "dead"}">${lgCard(p.role, { desc: false, small: true })}<b>${esc(p.name)}${p.lover ? " ♥" : ""}</b><span>${won(p.pid) ? "gagnant" : p.alive ? "vivant" : "mort"}</span></div>`).join("")}</div>
+    ${g.log.length ? `<details class="box"><summary>Journal de la partie</summary><ol class="lg-log">${g.log.map(l => `<li>${esc(l)}</li>`).join("")}</ol></details>` : ""}
+    ${scoreBlock(v)}
+    ${v.isHost ? `<button class="btn" data-act="o-send" data-a="again">Rejouer</button><button class="btn-ghost" data-act="o-send" data-a="lobby">Retour au lobby</button>` : `<p class="hint">En attente de l'hôte.</p>`}`;
+}
+function fmtClock(ms) { const s = Math.max(0, Math.ceil(ms / 1000)); return Math.floor(s / 60) + ":" + String(s % 60).padStart(2, "0"); }
+setInterval(() => {
+  document.querySelectorAll("[data-deadline]").forEach(el => {
+    const left = +el.dataset.deadline - Date.now();
+    el.textContent = left > 0 ? fmtClock(left) : "Temps écoulé";
+    el.classList.toggle("hot", left <= 10000);
+  });
+}, 500);
+
+function lgLobbySettings(v) {
+  const st = v.settings.lg;
+  const n = v.players.length;
+  const c = lgComposition(Math.max(n, 4), st);
+  const chips = LG_SPECIALS.map(r => `<button class="chip lg-rolechip" data-act="o-send" data-a="lg-set" data-x="role:${r}" aria-pressed="${st.roles.includes(r)}">${LG_ART[r]}${LG_ROLES[r].name}</button>`).join("");
+  const debates = [[0, "Sans chrono"], [120, "2 min"], [180, "3 min"], [300, "5 min"]];
+  return `<section class="section"><span class="label">Rôles spéciaux</span><div class="chips">${chips}</div></section>
+    <section class="section"><span class="label">Loups-Garous</span>
+      <div class="stepper"><button data-act="o-send" data-a="lg-set" data-x="wolves:-" aria-label="Un loup de moins">−</button><output>${c.wolves}</output><button data-act="o-send" data-a="lg-set" data-x="wolves:+" aria-label="Un loup de plus">+</button>
+      <button class="btn-small" data-act="o-send" data-a="lg-set" data-x="wolves:auto" aria-pressed="${!st.wolves}">Auto</button></div></section>
+    <section class="section"><span class="label">Débat du jour</span><div class="chips">${debates.map(([s, l]) => `<button class="chip" data-act="o-send" data-a="lg-set" data-x="debate:${s}" aria-pressed="${st.debate === s}">${l}</button>`).join("")}</div></section>
+    <div class="confirm"><span class="label">Composition pour ${n} joueur${n > 1 ? "s" : ""}</span><p>${esc(lgCompText(lgCompCount(lgComposition(n, st).roles)))}</p>
+      ${c.dropped.length ? `<p class="hint">Pas assez de joueurs pour : ${esc(c.dropped.map(r => LG_ROLES[r].name).join(", "))}.</p>` : ""}
+      ${n < 6 ? `<p class="hint">Minimum 4 joueurs, idéal à partir de 6.</p>` : ""}</div>`;
+}
+
 /* ---------- Écrans en ligne ---------- */
 function vOnline() {
   if (O.screen === "entry") return vOEntry();
@@ -1269,21 +2335,21 @@ function vOnline() {
   const v = O.view;
   if (!v) return `<p class="lead">Connexion…</p>`;
   if (!v.game) return vOLobby(v);
-  return v.game.kind === "uc" ? vOUc(v) : vOQs(v);
+  return v.game.kind === "uc" ? vOUc(v) : v.game.kind === "lg" ? vOLg(v) : vOQs(v);
 }
 function vOEntry() {
   return `${backHome}
   <header class="section">
     <span class="eyebrow">En ligne · un téléphone par joueur</span>
-    <h1>Lobby</h1>
-    <p class="lead">Un joueur crée le lobby et partage le code ou le lien. Les autres rejoignent depuis leur téléphone, leur tablette ou leur PC.</p>
+    <h1>${O.pendingGame ? esc(GAME_NAMES[O.pendingGame]) : "Lobby"}</h1>
+    <p class="lead">Crée le lobby et partage le code à tes potes, ou rejoins celui d'un pote. Tu pourras changer de jeu dans le lobby.</p>
   </header>
-  ${ONLINE_OK ? "" : `<div class="banner warn">Le mode en ligne ne marche pas dans cet aperçu. Ouvre le site hébergé (GitHub Pages ou Netlify).</div>`}
+  ${ONLINE_OK ? "" : `<div class="banner warn">Le mode en ligne ne marche pas dans cet aperçu. Pour jouer en ligne, ouvre le site : <a href="https://mirwaisxx.github.io/jeux/" target="_blank" rel="noopener" style="color:inherit">mirwaisxx.github.io/jeux</a></div>`}
   <section class="section">
     <label class="label" for="o-name">Ton pseudo</label>
     <input type="text" id="o-name" data-o="name" maxlength="16" value="${esc(ostore.name)}" placeholder="Ex. Mirwais" autocomplete="off">
   </section>
-  <button class="btn" data-act="o-create" ${O.busy ? "disabled" : ""}>Créer un lobby</button>
+  <button class="btn" data-act="o-create" ${O.busy ? "disabled" : ""}>Créer un lobby${O.pendingGame ? " " + esc(GAME_NAMES[O.pendingGame]) : ""}</button>
   <section class="confirm">
     <label class="label" for="o-code">Rejoindre avec un code</label>
     <input type="text" id="o-code" class="code-input" data-o="code" maxlength="4" value="${esc(O.code)}" placeholder="KXPM" autocomplete="off" autocapitalize="characters">
@@ -1296,9 +2362,10 @@ function vOLost() {
   return `<header class="section">
     <span class="eyebrow">Lobby ${esc(O.code)}</span>
     <h2>Connexion perdue</h2>
-    <p class="lead">La connexion avec l'hôte s'est coupée. S'il a toujours la page ouverte, tu peux te reconnecter et reprendre ta place.</p>
+    <p class="lead">La connexion avec l'hôte s'est coupée. Tu reprendras ta place dans la partie dès que ça reconnecte.</p>
   </header>
-  <button class="btn" data-act="o-join">Se reconnecter</button>
+  <p class="msg">${esc(O.msg)}</p>
+  <button class="btn" data-act="o-rejoin" ${O.busy ? "disabled" : ""}>Réessayer maintenant</button>
   <button class="btn-ghost" data-act="o-leave">Quitter</button>`;
 }
 function scoreBlock(v) {
@@ -1312,17 +2379,17 @@ function leaveBlock(v) {
 }
 function vOLobby(v) {
   const s = v.settings;
-  const gameName = s.game === "uc" ? "Undercover" : "Qui suis-je";
+  const gameName = GAME_NAMES[s.game];
   const plist = v.players.map(p => `<div class="score-row"><span>${p.online ? "" : "(hors ligne) "}${esc(p.name)}${p.host ? " · hôte" : ""}${p.pid === v.me ? " · toi" : ""}</span>${v.isHost && !p.host ? `<button class="btn-small" data-act="o-send" data-a="kick" data-x="${p.pid}">Retirer</button>` : "<b></b>"}</div>`).join("");
   let settings;
   if (v.isHost) {
-    const gameChips = `<div class="chips"><button class="chip" data-act="o-send" data-a="set-game" data-x="uc" aria-pressed="${s.game === "uc"}">Undercover</button><button class="chip" data-act="o-send" data-a="set-game" data-x="qs" aria-pressed="${s.game === "qs"}">Qui suis-je</button></div>`;
-    const opts = s.game === "uc"
+    const gameChips = `<div class="chips"><button class="chip" data-act="o-send" data-a="set-game" data-x="uc" aria-pressed="${s.game === "uc"}">Undercover</button><button class="chip" data-act="o-send" data-a="set-game" data-x="qs" aria-pressed="${s.game === "qs"}">Devine Tête</button><button class="chip" data-act="o-send" data-a="set-game" data-x="lg" aria-pressed="${s.game === "lg"}">Loup-Garou</button></div>`;
+    const opts = s.game === "lg" ? lgLobbySettings(v) : s.game === "uc"
       ? `<div class="chips"><button class="chip" data-act="o-send" data-a="theme" data-x="all" aria-pressed="${s.themes.includes("all")}">Tous les thèmes</button>${allThemes().map(t => `<button class="chip" data-act="o-send" data-a="theme" data-x="${esc(t.id)}" aria-pressed="${s.themes.includes(t.id)}">${esc(t.name)}<small>${t.pairs.length}</small></button>`).join("")}</div>
          <div class="toggle"><div class="t-text"><div class="label">Mr. White</div><div class="t-sub">Un joueur sans mot, à partir de 4 joueurs.</div></div><button class="switch" role="switch" aria-label="Activer Mr. White" aria-checked="${s.white}" data-act="o-send" data-a="white"></button></div>`
       : `<div class="chips"><button class="chip" data-act="o-send" data-a="cat" data-x="all" aria-pressed="${s.cats.includes("all")}">Tout</button>${DT_CATS.map(c => `<button class="chip" data-act="o-send" data-a="cat" data-x="${c.id}" aria-pressed="${s.cats.includes(c.id)}">${esc(c.name)}<small>${c.words.length}</small></button>`).join("")}</div>`;
     settings = `<section class="section"><span class="label">Jeu</span>${gameChips}</section>
-      <section class="section"><span class="label">${s.game === "uc" ? "Thèmes" : "Persos proposés"}</span>${opts}</section>
+      ${s.game === "lg" ? opts : `<section class="section"><span class="label">${s.game === "uc" ? "Thèmes" : "Persos proposés"}</span>${opts}</section>`}
       <p class="msg">${esc(v.note)}</p>
       <button class="btn" data-act="o-send" data-a="start">Lancer ${gameName}</button>`;
   } else {
@@ -1422,7 +2489,7 @@ function vOQs(v) {
       body = `<header class="section"><span class="eyebrow">Choix des persos · ${g.done}/${g.total} validés</span>
           <h2>Tu choisis le perso de ${esc(t.name)}</h2>
           <p class="lead">Garde-le, reroll-le ou écris le tien. ${esc(t.name)} ne le verra pas.</p></header>
-        <div class="card"><span class="eyebrow">${esc(t.pick.c)}</span><div class="word">${esc(t.pick.w)}</div>
+        <div class="card">${charImg(t.pick)}<span class="eyebrow">${esc(t.pick.c)}</span><div class="word">${esc(t.pick.w)}</div>
           ${t.rerolls ? `<span class="eyebrow">${t.rerolls} reroll${t.rerolls > 1 ? "s" : ""}</span>` : ""}</div>
         <div class="row">
           <button class="btn-ghost" data-act="o-send" data-a="qs-reroll">Reroll</button>
@@ -1431,6 +2498,7 @@ function vOQs(v) {
         <section class="confirm">
           <label class="label" for="o-draft">Ou écris ton perso</label>
           <input type="text" id="o-draft" data-o="draft" maxlength="40" value="${esc(O.draft)}" placeholder="Ex. Zidane, Shrek, un pote…" autocomplete="off">
+          ${photoRow("o-photo", O.draftImg)}
           <button class="btn-ghost" data-act="o-send" data-a="qs-custom" data-from="draft">Utiliser ce nom</button>
         </section>`;
     } else {
@@ -1444,11 +2512,11 @@ function vOQs(v) {
   const rows = g.list.map(p => `<div class="qs-row ${p.cur ? "cur" : ""} ${p.found ? "found" : ""}">
       <span class="who-n">${p.rank ? p.rank + ". " : ""}${esc(p.name)}${p.me ? " · toi" : ""}</span>
       <span class="meta">${p.found ? "trouvé · " : ""}${p.q} question${p.q > 1 ? "s" : ""}</span>
-      <span class="pick ${p.pick ? "" : "hidden"}">${p.pick ? esc(p.pick.w) : "???"}</span>
+      <span class="pick ${p.pick ? "" : "hidden"}">${p.pick ? charImg(p.pick, "char-thumb") + esc(p.pick.w) : "???"}</span>
     </div>`).join("");
   if (g.phase === "end") {
     return `<header class="section"><span class="eyebrow">Fin de partie</span><h1 style="font-size:3rem">${g.list.find(p => p.rank === 1) ? esc(g.list.slice().sort((a, b) => (a.rank || 99) - (b.rank || 99))[0].name) + " gagne" : "Partie terminée"}</h1></header>
-      <div class="qs-list">${g.list.slice().sort((a, b) => (a.rank || 99) - (b.rank || 99)).map(p => `<div class="qs-row ${p.found ? "" : "found"}"><span class="who-n">${p.rank ? p.rank + ". " : ""}${esc(p.name)}</span><span class="meta">${p.found ? p.q + " question" + (p.q > 1 ? "s" : "") : "pas trouvé"}</span><span class="pick">${esc(p.pick.w)}</span></div>`).join("")}</div>
+      <div class="qs-list">${g.list.slice().sort((a, b) => (a.rank || 99) - (b.rank || 99)).map(p => `<div class="qs-row ${p.found ? "" : "found"}"><span class="who-n">${p.rank ? p.rank + ". " : ""}${esc(p.name)}</span><span class="meta">${p.found ? p.q + " question" + (p.q > 1 ? "s" : "") : "pas trouvé"}</span><span class="pick">${charImg(p.pick, "char-thumb")}${esc(p.pick.w)}</span></div>`).join("")}</div>
       <p class="hint">1er : +3 pts · 2e : +2 pts · 3e : +1 pt</p>
       ${scoreBlock(v)}
       ${v.isHost ? `<button class="btn" data-act="o-send" data-a="again">Rejouer</button><button class="btn-ghost" data-act="o-send" data-a="lobby">Retour au lobby</button>` : waitHost}`;
@@ -1458,8 +2526,8 @@ function vOQs(v) {
     ? `<h2>À toi de poser ta question</h2><p class="lead">Pose une seule question fermée à voix haute. Les autres répondent par oui ou non.</p>`
     : `<h2>À ${esc(g.curName)} de poser sa question</h2><p class="lead">Réponds par oui ou non, puis appuyez sur un des deux boutons.</p>`;
   const actions = g.meCur || !g.inGame ? "" : `<div class="row">
-      <button class="btn-ghost" data-act="o-send" data-a="qs-next">Question posée, joueur suivant</button>
-      <button class="btn" data-act="o-send" data-a="qs-found">${esc(g.curName)} a trouvé</button>
+      <button class="btn-ghost" data-act="o-send" data-a="qs-next" data-x="${g.step}">Question posée, joueur suivant</button>
+      <button class="btn" data-act="o-send" data-a="qs-found" data-x="${g.step}">${esc(g.curName)} a trouvé</button>
     </div>`;
   const stop = !v.isHost ? "" : O.confirmStop
     ? `<div class="confirm"><p>Arrêter la partie et révéler tous les persos ?</p><div class="row"><button class="btn btn-danger" data-act="o-send" data-a="qs-stop">Révéler</button><button class="btn-ghost" data-act="o-stopToggle">Continuer</button></div></div>`
@@ -1473,30 +2541,38 @@ function vOQs(v) {
 /* =========================================================
    ACCUEIL + RENDU
    ========================================================= */
+const GAME_NAMES = { uc: "Undercover", qs: "Devine Tête", lg: "Loup-Garou" };
+const HOME_ART = {
+  uc: `<svg viewBox="0 0 120 120" aria-hidden="true"><path d="M14 50 C14 36 34 32 60 40 C86 32 106 36 106 50 C106 70 92 82 78 78 C70 76 66 66 60 66 C54 66 50 76 42 78 C28 82 14 70 14 50 Z" fill="#e8434a"/><path d="M60 40 C86 32 106 36 106 50 C106 70 92 82 78 78 C70 76 66 66 60 66 Z" fill="#c8323a"/><ellipse cx="40" cy="56" rx="11" ry="8" fill="#141a4d"/><ellipse cx="80" cy="56" rx="11" ry="8" fill="#141a4d"/><circle cx="36" cy="53" r="2.5" fill="#fff"/><circle cx="76" cy="53" r="2.5" fill="#fff"/><path d="M14 50 C6 46 2 54 6 60 M106 50 C114 46 118 54 114 60" stroke="#e8434a" stroke-width="4" fill="none" stroke-linecap="round"/></svg>`,
+  dt: `<svg viewBox="0 0 120 120" aria-hidden="true"><path d="M20 22 H100 A10 10 0 0 1 110 32 V76 A10 10 0 0 1 100 86 H58 L34 106 V86 H20 A10 10 0 0 1 10 76 V32 A10 10 0 0 1 20 22 Z" fill="#3fd48c"/><path d="M60 22 H100 A10 10 0 0 1 110 32 V76 A10 10 0 0 1 100 86 H60 Z" fill="#2fbf79"/><path d="M48 44 C48 34 72 32 72 46 C72 56 60 56 60 64" stroke="#141a4d" stroke-width="9" stroke-linecap="round" fill="none"/><circle cx="60" cy="76" r="5.5" fill="#141a4d"/></svg>`
+};
+const ICON_LOCAL = `<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="2.5" width="12" height="19" rx="2.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M10.5 18.5h3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>`;
+const ICON_ONLINE = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 9a14 14 0 0 1 19 0M5.5 12.5a9.5 9.5 0 0 1 13 0M8.5 16a5 5 0 0 1 7 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="19.5" r="1.6" fill="currentColor"/></svg>`;
 function vHome() {
-  const ucCount = allThemes().reduce((a, t) => a + t.pairs.length, 0);
-  const dtCount = DT_CATS.reduce((a, c) => a + c.words.length, 0);
-  return `<header class="section">
-    <span class="eyebrow">Soirée jeux · un seul téléphone</span>
-    <h1>Mode Soirée</h1>
-    <p class="lead">Jeux vidéo, esport, anime, Disney et culture pour les plus jeunes. Choisis un jeu.</p>
+  const local = act => `<button class="mode-btn" data-act="${act}">${ICON_LOCAL}Local</button>`;
+  const online = g => `<button class="mode-btn on" data-act="go-online" data-g="${g}">${ICON_ONLINE}En ligne</button>`;
+  const card = (cls, art, players, name, desc, modes) => `<article class="game-card">
+      <div class="gart">${art}</div>
+      <span class="gmeta ${cls}">${players}</span>
+      <span class="gname">${name}</span>
+      <span class="gdesc">${desc}</span>
+      <div class="modes ${modes.length === 1 ? "single" : ""}">${modes.join("")}</div>
+    </article>`;
+  return `<header class="home-head">
+    <h1>Simwar</h1>
+    <p class="lead">Undercover · Devine Tête · Loup-Garou</p>
   </header>
+  <section class="quickjoin">
+    <label class="label" for="home-code">Rejoindre une partie avec un code</label>
+    <div class="qj-row">
+      <input type="text" id="home-code" class="code-input" data-o="code" maxlength="4" value="${esc(O.code)}" placeholder="KXPM" autocomplete="off" autocapitalize="characters">
+      <button class="btn" data-act="o-quickjoin">Rejoindre</button>
+    </div>
+  </section>
   <div class="games">
-    <button class="game-card" data-act="go-uc">
-      <span class="gmeta gm-uc">Bluff · 3 à 10 joueurs · ${ucCount} paires</span>
-      <span class="gname">Undercover</span>
-      <span class="gdesc">Tout le monde a le même mot sauf l'intrus. Donnez des indices, votez, démasquez-le.</span>
-    </button>
-    <button class="game-card" data-act="go-dt">
-      <span class="gmeta gm-dt">Qui suis-je · 2 à 10 joueurs · ${dtCount} persos</span>
-      <span class="gname">Devine Tête</span>
-      <span class="gdesc">Chacun a un perso choisi par les autres. Une question chacun son tour, réponse oui ou non. Le premier qui trouve gagne.</span>
-    </button>
-    ${ONLINE_OK ? `<button class="game-card" data-act="go-online">
-      <span class="gmeta gm-on">En ligne · un téléphone par joueur</span>
-      <span class="gname">Lobby</span>
-      <span class="gdesc">Crée une partie, partage le code, et chacun joue l'Undercover ou le Qui suis-je depuis son propre téléphone.</span>
-    </button>` : ""}
+    ${card("gm-uc", HOME_ART.uc, "3 à 10 joueurs", "Undercover", "Tout le monde a le même mot, sauf l'intrus. Indices, vote, démasquez-le.", [local("go-uc"), online("uc")])}
+    ${card("gm-dt", HOME_ART.dt, "2 à 10 joueurs", "Devine Tête", "Trouve ton perso en posant des questions oui ou non.", [local("go-dt"), online("qs")])}
+    ${card("gm-lg", LG_ART.wolf, "4 à 12 joueurs", "Loup-Garou", "12 rôles, l'appli fait le narrateur.", [online("lg")])}
   </div>`;
 }
 
@@ -1511,17 +2587,21 @@ function render() {
   } else if (S.view === "online") {
     html = vOnline();
     const gv = O.view && O.view.game;
-    key = "on-" + O.screen + (gv ? "-" + gv.kind + "-" + gv.phase + "-" + (gv.round || gv.turn || "") : O.view ? "-lobby" : "");
+    key = "on-" + O.screen + (gv ? "-" + gv.kind + "-" + gv.phase + "-" + (gv.stage || "") + "-" + (gv.round || gv.turn || "") + "-" + (gv.nightNo || "") + "-" + (gv.dayNo || "") : O.view ? "-lobby" : "");
   } else {
     const views = { setup: vDSetup, assignReady: vDAssignReady, assignPick: vDAssignPick, turn: vDTurn, found: vDFound, end: vDEnd };
     html = views[D.screen](); key = "dt-" + D.screen + (D.game ? "-" + D.game.assign + "-" + D.game.cur : "");
   }
+  const lgv = S.view === "online" && O.screen === "room" && O.view && O.view.game && O.view.game.kind === "lg" ? O.view.game : null;
+  const scene = lgv ? lgSceneKind(lgv) : "";
+  if ((document.body.dataset.scene || "") !== scene) { if (scene) document.body.dataset.scene = scene; else delete document.body.dataset.scene; }
   const ae = document.activeElement, fid = ae && ae.id && /INPUT|TEXTAREA/.test(ae.tagName) ? ae.id : null;
   let ss = null; try { ss = fid ? ae.selectionStart : null; } catch (e) {}
   app.innerHTML = html;
   if (fid) { const el = document.getElementById(fid); if (el) { el.focus(); try { if (ss !== null) el.setSelectionRange(ss, ss); } catch (e) {} } }
+  if (lgv) lgSpeak(lgv.say);
   if (key !== lastKey) {
-    if (S.view === "online") { O.revealMine = false; O.sel = null; O.confirmStop = false; }
+    if (S.view === "online") { O.revealMine = false; O.sel = null; O.confirmStop = false; O.sel2 = []; O.wSave = false; O.wKill = null; O.lgFlip = false; O.lgPeek = false; }
     window.scrollTo(0, 0); lastKey = key;
   }
 }
@@ -1540,9 +2620,20 @@ document.addEventListener("input", e => {
   if (o === "draft") O.draft = e.target.value;
   if (o === "guess") O.guess = e.target.value;
 });
+document.addEventListener("change", e => {
+  const id = e.target.id;
+  if (id !== "dt-photo" && id !== "o-photo") return;
+  const f = e.target.files && e.target.files[0];
+  readPhoto(f, data => {
+    if (!data) { if (id === "dt-photo") D.msg = "Impossible de lire cette image."; else O.msg = "Impossible de lire cette image."; return render(); }
+    if (id === "dt-photo") D.draftImg = data; else O.draftImg = data;
+    render();
+  });
+});
 document.addEventListener("toggle", e => { if (e.target.dataset && e.target.dataset.det === "themes") ui.openThemes = e.target.open; }, true);
 document.addEventListener("keydown", e => {
   if (e.key === "Enter" && e.target.id === "guess") { const b = document.querySelector('[data-act="guess"]'); if (b) b.click(); return; }
+  if (e.key === "Enter" && e.target.id === "home-code") { const b = document.querySelector('[data-act="o-quickjoin"]'); if (b) b.click(); return; }
   if (e.key === "Enter" && e.target.id === "o-code") { const b = document.querySelector('[data-act="o-join"]'); if (b) b.click(); return; }
   if (e.key === "Enter" && e.target.id === "o-guess") { const b = document.querySelector('[data-a="uc-guess"]'); if (b) b.click(); return; }
   if (e.key === "Enter" && e.target.id === "o-draft") { const b = document.querySelector('[data-a="qs-custom"]'); if (b) b.click(); return; }
@@ -1558,25 +2649,50 @@ document.addEventListener("click", e => {
     case "home": stopTimers(); releaseAwake(); exitFullscreen(); S.view = "home"; break;
     case "go-uc": S.view = "uc"; if (!G) ui.screen = "setup"; break;
     case "go-dt": S.view = "dt"; D.reveal = false; break;
-    case "go-online": S.view = "online"; break;
+    case "go-online": S.view = "online"; if (O.screen !== "room") { O.pendingGame = b.dataset.g || null; O.msg = ""; } break;
+    case "o-quickjoin":
+      S.view = "online"; O.pendingGame = null;
+      if (cleanName(ostore.name) && /^[A-Z]{4}$/.test(O.code)) { initAudio(); return oJoin(); }
+      O.msg = /^[A-Z]{4}$/.test(O.code) ? "Choisis ton pseudo, puis appuie sur Rejoindre." : "Entre le code à 4 lettres.";
+      break;
 
     /* en ligne */
-    case "o-create": return oCreate();
-    case "o-join": return oJoin();
+    case "o-create": initAudio(); return oCreate();
+    case "o-join": initAudio(); return oJoin();
     case "o-leave":
       if (O.isHost && L && L.players.length > 1) { O.confirmLeave = true; break; }
       oLeave(); break;
     case "o-leaveNow": oLeave(); break;
+    case "o-rejoin": O.retries = 0; clearTimeout(O.retryT); return oJoin(true);
     case "o-cancelLeave": O.confirmLeave = false; break;
     case "o-copy": return oCopy();
     case "o-reveal": O.revealMine = !O.revealMine; break;
     case "o-sel": O.sel = b.dataset.x; break;
     case "o-stopToggle": O.confirmStop = !O.confirmStop; break;
+    case "o-lgflip": O.lgFlip = !O.lgFlip; break;
+    case "photo-clear": if (b.dataset.x === "dt-photo") D.draftImg = null; else O.draftImg = null; break;
+    case "o-lgpeek": O.lgPeek = !O.lgPeek; break;
+    case "o-lgsel": O.sel = b.dataset.x; break;
+    case "o-lgpair": { const x = b.dataset.x; O.sel2 = O.sel2.includes(x) ? O.sel2.filter(y => y !== x) : O.sel2.concat(x).slice(-2); break; }
+    case "o-lgwsave": O.wSave = !O.wSave; break;
+    case "o-lgwkill": O.wKill = b.dataset.x === "none" ? null : b.dataset.x; break;
+    case "o-voice": O.voice = !O.voice; if (!O.voice) { try { speechSynthesis.cancel(); } catch (e) {} } break;
+    case "o-sfx": O.sfx = !O.sfx; break;
+    case "o-lgsend": {
+      const k = b.dataset.k;
+      const x = k === "sel" ? O.sel : k === "pair" ? O.sel2.join(",") : k === "witch" ? (O.wSave ? "1" : "0") + "|" + (O.wKill || "none") : b.dataset.x;
+      if (!x) return;
+      O.sel = null; O.sel2 = []; O.wSave = false; O.wKill = null;
+      oSend({ a: b.dataset.a, x });
+      if (!O.isHost) render();
+      return;
+    }
     case "o-send": {
       const from = b.dataset.from;
       const x = from ? O[from] : b.dataset.x;
       if (from && !String(x || "").trim()) return;
-      oSend({ a: b.dataset.a, x });
+      oSend(b.dataset.a === "qs-custom" && O.draftImg ? { a: b.dataset.a, x, img: O.draftImg } : { a: b.dataset.a, x });
+      if (b.dataset.a === "qs-custom") O.draftImg = null;
       if (b.dataset.a === "uc-vote") O.sel = null;
       if (from) { O[from] = ""; render(); }
       if (b.dataset.a === "qs-stop") O.confirmStop = false;
