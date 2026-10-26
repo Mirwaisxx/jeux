@@ -1,0 +1,16 @@
+{
+  "name": "Simwar",
+  "short_name": "Simwar",
+  "description": "Undercover, Devine Tête, Loup-Garou, Qui a dit ça ? et Imposteur dessin entre potes.",
+  "lang": "fr",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#1d2c8c",
+  "theme_color": "#1d2c8c",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}
