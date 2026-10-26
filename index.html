@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="Undercover, Devine Tête et Loup-Garou entre potes : en local sur un téléphone ou en ligne, chacun sur le sien.">
+<meta name="description" content="Undercover, Devine Tête, Loup-Garou, Qui a dit ça ? et Imposteur dessin entre potes : en local sur un téléphone ou en ligne, chacun sur le sien.">
 <meta name="theme-color" content="#1d2c8c">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Simwar">
-<meta property="og:description" content="Undercover, Devine Tête et Loup-Garou entre potes : en local sur un téléphone ou en ligne, chacun sur le sien.">
+<meta property="og:description" content="Undercover, Devine Tête, Loup-Garou, Qui a dit ça ? et Imposteur dessin entre potes : en local sur un téléphone ou en ligne, chacun sur le sien.">
 <meta name="twitter:card" content="summary">
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2214%22%20fill%3D%22%231d2c8c%22/%3E%3Cpath%20d%3D%22M12%2010%20L26%2026%20L17%2032%20Z%20M52%2010%20L38%2026%20L47%2032%20Z%22%20fill%3D%22%23ffd23f%22/%3E%3Cpath%20d%3D%22M32%2018%20C43%2018%2050%2025%2052%2033%20L56%2040%20L48%2042%20L45%2050%20L38%2056%20L32%2059%20L26%2056%20L19%2050%20L16%2042%20L8%2040%20L12%2033%20C14%2025%2021%2018%2032%2018%20Z%22%20fill%3D%22%23f4f3fb%22/%3E%3Cpath%20d%3D%22M20%2033%20L29%2036%20L22%2039%20Z%20M44%2033%20L35%2036%20L42%2039%20Z%22%20fill%3D%22%231d2c8c%22/%3E%3C/svg%3E">
 <link rel="manifest" href="manifest.json">
@@ -269,6 +269,13 @@ article.game-card > .modes.single { grid-template-columns: 1fr; }
 .qs-row .pick { grid-column: 1 / -1; font-family: var(--f-display); font-weight: 900; font-size: 1.9rem; text-transform: uppercase; line-height: 1; overflow-wrap: anywhere; }
 .qs-row .pick.hidden { color: var(--muted); }
 .voted { color: var(--good); }
+.val-box { background: var(--panel); border: 2px solid var(--signal); border-radius: 14px; padding: 14px; display: flex; flex-direction: column; gap: 10px; }
+.val-box > b { font-size: 1.15rem; overflow-wrap: anywhere; }
+.val-box p { margin: 0; }
+.val-count { display: flex; gap: 12px; font-family: var(--f-mono); font-size: .85rem; color: var(--muted); }
+.val-count .ok { color: var(--good); }
+.val-count .ko { color: var(--warn); }
+.val-box button[aria-pressed="true"] { box-shadow: 0 0 0 3px var(--paper); }
 .gm-qd { color: #c9a2ff; }
 .gm-dr { color: #8fd0ff; }
 .qd-cards { display: grid; gap: 10px; }
@@ -450,7 +457,11 @@ const BASE_THEMES = [
   { id: "anime", name: "Anime", pairs: [["Goku","Vegeta"],["Gogeta","Vegito"],["Gohan","Piccolo"],["Freezer","Cell"],["Broly","Jiren"],["Bulma","Chichi"],["Beerus","Whis"],["Naruto","Sasuke"],["Kakashi","Gaï"],["Itachi","Shisui"],["Madara","Obito"],["Jiraiya","Orochimaru"],["Hinata","Sakura"],["Gaara","Rock Lee"],["Rasengan","Chidori"],["Luffy","Ace"],["Zoro","Sanji"],["Nami","Robin"],["Law","Kid"],["Shanks","Mihawk"],["Kaido","Big Mom"],["Doflamingo","Crocodile"],["Gon","Killua"],["Kurapika","Leorio"],["Hisoka","Illumi"],["Meruem","Neferpitou"],["Gojo","Kakashi"],["Tanjiro","Yuji Itadori"],["Light Yagami","Lelouch"],["Livaï","Zoro"],["Saitama","All Might"],["Eren","Kaneki"],["Denji","Yuji Itadori"],["Death Note","Code Geass"],["Demon Slayer","Jujutsu Kaisen"]] },
   { id: "disney", name: "Disney & Pixar", pairs: [["Elsa","Anna"],["Woody","Buzz l'Éclair"],["Mickey","Donald"],["Nemo","Dory"],["Simba","Mufasa"],["Timon","Pumbaa"],["Ariel","Vaiana"],["Raiponce","Cendrillon"],["Olaf","Sven"],["Sully","Bob Razowski"],["Joie","Tristesse"],["Flash McQueen","Martin"],["Stitch","Angel"],["Rémy","Linguini"],["Baymax","WALL-E"]] },
   { id: "objets", name: "Objets", pairs: [["Fourchette","Cuillère"],["Oreiller","Couette"],["Stylo","Crayon"],["Gomme","Taille-crayon"],["Montre","Réveil"],["Parapluie","Imperméable"],["Brosse à dents","Dentifrice"],["Clé","Cadenas"],["Bougie","Lampe"],["Sac à dos","Valise"],["Chaise","Tabouret"],["Ciseaux","Couteau"],["Trottinette","Vélo"],["Télévision","Ordinateur"],["Tasse","Verre"],["Chaussettes","Chaussons"],["Bonnet","Casquette"],["Frigo","Congélateur"],["Savon","Shampoing"],["Peigne","Brosse à cheveux"]] },
-  { id: "kids", name: "Culture populaire", pairs: [["Fortnite","Brawl Stars"],["Brawl Stars","Clash Royale"],["Subway Surfers","Temple Run"],["Mario","Sonic"],["Shrek","Le Chat Potté"],["Spider-Man","Batman"],["Spider-Man","Venom"],["MrBeast","IShowSpeed"],["Squeezie","Michou"],["Inoxtag","Tibo InShape"],["Mbappé","Lamine Yamal"],["Messi","Cristiano Ronaldo"],["TikTok","YouTube"],["Snapchat","Instagram"],["PlayStation","Nintendo Switch"],["McDonald's","Burger King"],["Nutella","Kinder"],["Pizza","Tacos"],["Jul","Gims"],["Aya Nakamura","Angèle"],["TikTok","Twitch"],["McDonald's","KFC"]] }
+  { id: "kids", name: "Culture populaire", pairs: [["Fortnite","Brawl Stars"],["Brawl Stars","Clash Royale"],["Subway Surfers","Temple Run"],["Mario","Sonic"],["Shrek","Le Chat Potté"],["Spider-Man","Batman"],["Spider-Man","Venom"],["MrBeast","IShowSpeed"],["Squeezie","Michou"],["Inoxtag","Tibo InShape"],["Mbappé","Lamine Yamal"],["Messi","Cristiano Ronaldo"],["TikTok","YouTube"],["Snapchat","Instagram"],["PlayStation","Nintendo Switch"],["McDonald's","Burger King"],["Nutella","Kinder"],["Pizza","Tacos"],["Jul","Gims"],["Aya Nakamura","Angèle"],["TikTok","Twitch"],["McDonald's","KFC"]] },
+  { id: "series", name: "Séries", pairs: [["Stranger Things", "Mercredi"], ["Breaking Bad", "Better Call Saul"], ["Game of Thrones", "House of the Dragon"], ["La Casa de Papel", "Lupin"], ["Friends", "How I Met Your Mother"], ["The Walking Dead", "The Last of Us"], ["Squid Game", "Alice in Borderland"], ["Les Simpson", "Family Guy"], ["Peaky Blinders", "Narcos"], ["The Office", "Brooklyn Nine-Nine"], ["Prison Break", "Lost"], ["Grey's Anatomy", "Dr House"], ["Emily in Paris", "Gossip Girl"], ["Bridgerton", "The Crown"], ["Arcane", "Castlevania"], ["Black Mirror", "Love, Death & Robots"]] },
+  { id: "films", name: "Films", pairs: [["Titanic", "Avatar"], ["Star Wars", "Star Trek"], ["Harry Potter", "Le Seigneur des anneaux"], ["Avengers", "Justice League"], ["Batman", "Superman"], ["Fast & Furious", "Transformers"], ["Jurassic Park", "King Kong"], ["Rocky", "Creed"], ["Matrix", "Inception"], ["Les Bronzés", "Les Visiteurs"], ["Intouchables", "Bienvenue chez les Ch'tis"], ["Taxi", "Le Transporteur"], ["James Bond", "Mission impossible"], ["Joker", "Batman"], ["Shrek", "Kung Fu Panda"], ["Top Gun", "Pearl Harbor"], ["Dune", "Interstellar"], ["Barbie", "Oppenheimer"]] },
+  { id: "vie", name: "Vie quotidienne", pairs: [["Douche", "Bain"], ["Petit-déjeuner", "Goûter"], ["Lundi", "Vendredi"], ["Été", "Hiver"], ["Mariage", "Anniversaire"], ["Bus", "Métro"], ["Médecin", "Dentiste"], ["Vacances", "Week-end"], ["Réveil", "Sieste"], ["Café", "Thé"], ["Pluie", "Neige"], ["Plage", "Piscine"], ["Cinéma", "Théâtre"], ["Restaurant", "Fast-food"], ["Pâtes", "Riz"], ["Chat", "Chien"], ["Noël", "Nouvel An"], ["Avion", "Train"], ["Football", "Basket"], ["Pizza", "Burger"]] },
+  { id: "stars", name: "Célébrités", pairs: [["Beyoncé", "Rihanna"], ["Taylor Swift", "Ariana Grande"], ["Drake", "Kanye West"], ["Booba", "Kaaris"], ["PNL", "Nekfeu"], ["Omar Sy", "Jamel Debbouze"], ["Kev Adams", "Norman"], ["Zidane", "Thierry Henry"], ["LeBron James", "Michael Jordan"], ["Teddy Riner", "Tony Parker"], ["Elon Musk", "Mark Zuckerberg"], ["Johnny Hallyday", "Michel Sardou"], ["Stromae", "Angèle"], ["Eminem", "50 Cent"]] }
 ];
 
 /* Devine Tête : « Affiché=Nom exact pour l’image ». src : poke (Pokémon), anime (MyAnimeList), wiki (Wikipédia). */
@@ -459,6 +470,10 @@ const DT_CATS = [ { "id": "createurs", "name": "Créateurs & streamers", "groups
   { "id": "anime", "name": "Anime", "groups": [ { "src": "anime", "words": [ "Goku=Son Goku", "Vegeta", "Gohan=Son Gohan", "Trunks", "Freezer=Frieza", "Cell", "Majin Boo=Majin Buu", "Piccolo", "Broly", "Beerus", "Naruto=Naruto Uzumaki", "Sasuke=Sasuke Uchiha", "Sakura=Sakura Haruno", "Hinata=Hinata Hyuuga", "Kakashi=Kakashi Hatake", "Itachi=Itachi Uchiha", "Madara=Madara Uchiha", "Obito=Obito Uchiha", "Pain=Nagato", "Orochimaru", "Jiraiya", "Gaara", "Luffy=Monkey D. Luffy", "Zoro=Roronoa Zoro", "Sanji", "Nami", "Shanks", "Ace=Portgas D. Ace", "Barbe Blanche=Edward Newgate", "Barbe Noire=Marshall D. Teach", "Trafalgar Law", "Kaido", "Doflamingo=Donquixote Doflamingo", "Gon=Gon Freecss", "Killua=Killua Zoldyck", "Kurapika", "Hisoka", "Meruem", "Gojo=Satoru Gojou", "Sukuna=Sukuna Ryoumen", "Megumi=Megumi Fushiguro", "Tanjiro=Tanjirou Kamado", "Nezuko=Nezuko Kamado", "Zenitsu=Zenitsu Agatsuma", "Inosuke=Inosuke Hashibira", "Eren=Eren Yeager", "Mikasa=Mikasa Ackerman", "Livaï=Levi", "Light Yagami", "L=L Lawliet", "Ryuk", "Saitama", "All Might", "Deku=Izuku Midoriya", "Ichigo=Ichigo Kurosaki", "Denji", "Makima", "Power", "Sung Jinwoo" ] } ] },
   { "id": "disney", "name": "Disney & Pixar", "groups": [ { "src": "wiki", "lang": [ "en", "fr" ], "hint": "Disney", "words": [ "Mickey=Mickey Mouse", "Minnie=Minnie Mouse", "Donald=Donald Duck", "Dingo=Goofy", "Simba", "Timon=Timon and Pumbaa", "Pumbaa=Timon and Pumbaa", "Elsa=Elsa (Frozen)", "Anna=Anna (Frozen)", "Olaf=Olaf (Frozen)", "Woody=Woody (Toy Story)", "Buzz l'Éclair=Buzz Lightyear", "Nemo=Finding Nemo", "Dory=Finding Dory", "Stitch=Stitch (Lilo & Stitch)", "Aladdin=Aladdin (Disney character)", "Génie=Genie (Aladdin)", "Ariel=Ariel (The Little Mermaid)", "Raiponce=Rapunzel (Disney)", "Vaiana=Moana (character)", "Maui=Maui (Moana)", "Cendrillon=Cinderella (Disney character)", "Blanche-Neige=Snow White (Disney character)", "Flash McQueen=Lightning McQueen", "Martin=Mater (Cars)", "Sully=James P. Sullivan", "Bob Razowski=Mike Wazowski", "Joie=Joy (Inside Out)", "Tristesse=Sadness (Inside Out)", "Colère=Anger (Inside Out)", "Anxiété=Inside Out 2", "Mirabel=Encanto", "Peter Pan=Peter Pan (Disney character)", "Capitaine Crochet=Captain Hook" ] } ] },
   { "id": "objets", "name": "Objets", "groups": [ { "src": "wiki", "lang": [ "fr", "en" ], "hint": "", "words": [ "Fourchette", "Cuillère", "Couteau", "Oreiller", "Stylo", "Crayon", "Gomme", "Montre", "Parapluie", "Brosse à dents", "Lunettes", "Clé", "Bougie", "Sac à dos", "Valise", "Chaise", "Ciseaux", "Ballon de foot=Ballon de football", "Trottinette", "Vélo=Bicyclette", "Télévision=Téléviseur", "Ordinateur=Ordinateur portable", "Téléphone=Smartphone", "Manette=Manette de jeu", "Réveil=Réveil-matin", "Tasse", "Chaussette", "Bonnet", "Casquette", "Lampe=Lampe de bureau", "Frigo=Réfrigérateur", "Micro-ondes=Four à micro-ondes", "Aspirateur", "Miroir", "Peigne", "Savon", "Doudou", "Cartable", "Trousse=Trousse scolaire", "Règle=Règle graduée", "Calculatrice", "Livre", "Guitare", "Piano", "Appareil photo=Appareil photographique", "Casque audio", "Télécommande" ] } ] },
+  {"id": "cine", "name": "Séries & films", "groups": [{"src": "wiki", "lang": ["en", "fr"], "hint": "character", "words": ["Harry Potter", "Hermione=Hermione Granger", "Dark Vador=Darth Vader", "Yoda", "Iron Man", "Thor=Thor (Marvel Cinematic Universe)", "Captain America", "Hulk", "Thanos", "Batman", "Joker=Joker (character)", "Superman", "Wonder Woman", "Jack Sparrow", "Indiana Jones", "James Bond", "Rocky=Rocky Balboa", "Forrest Gump", "Gollum", "Gandalf", "Frodon=Frodo Baggins", "Homer Simpson", "Bart Simpson", "Eleven=Eleven (Stranger Things)", "Walter White", "Le Professeur=Sergio Marquina", "Thomas Shelby", "Jon Snow", "Daenerys=Daenerys Targaryen", "Sherlock Holmes", "Dr House=Gregory House", "Mr Bean=Mr. Bean (character)", "Rick Grimes", "Sheldon Cooper", "Joey=Joey Tribbiani", "Michael Scott", "Assane Diop", "Neo=Neo (The Matrix)", "Terminator=Terminator (character)", "E.T.=E.T. the Extra-Terrestrial", "Rambo=John Rambo", "Wolverine", "Deadpool"]}]},
+  {"id": "stars", "name": "Célébrités", "groups": [{"src": "wiki", "lang": ["fr", "en"], "hint": "", "words": ["Beyoncé", "Rihanna", "Taylor Swift", "Billie Eilish", "Ariana Grande", "Drake=Drake (musicien)", "Eminem", "Kanye West", "Booba", "Ninho", "Nekfeu", "Orelsan", "Stromae", "Angèle=Angèle (chanteuse)", "Omar Sy", "Jamel Debbouze", "Kev Adams", "Leonardo DiCaprio", "Brad Pitt", "Dwayne Johnson", "Tom Cruise", "Zidane=Zinédine Zidane", "Thierry Henry", "Teddy Riner", "Tony Parker", "LeBron James", "Michael Jordan", "Usain Bolt", "Serena Williams", "Elon Musk", "Johnny Hallyday", "Céline Dion", "Michael Jackson", "Albert Einstein", "Napoléon=Napoléon Ier", "Cléopâtre=Cléopâtre VII"]}]},
+  {"id": "metiers", "name": "Métiers", "groups": [{"src": "wiki", "lang": ["fr", "en"], "hint": "métier", "words": ["Pompier", "Policier", "Médecin", "Boulanger", "Professeur=Enseignant", "Astronaute", "Pilote=Pilote d'aéronef", "Cuisinier", "Coiffeur", "Plombier", "Vétérinaire", "Footballeur", "Chanteur", "Youtubeur=Vidéaste web", "Facteur", "Agriculteur", "Dentiste=Chirurgien-dentiste", "Infirmier", "Pharmacien", "Avocat", "Juge", "Magicien=Prestidigitateur", "Clown", "Chauffeur de bus=Autobus", "Serveur", "Caissier", "Mécanicien", "Architecte", "Photographe", "Journaliste"]}]},
+  {"id": "animaux", "name": "Animaux", "groups": [{"src": "wiki", "lang": ["fr", "en"], "hint": "animal", "words": ["Chat", "Chien", "Lion", "Girafe", "Éléphant", "Pingouin=Manchot", "Requin", "Dauphin", "Serpent", "Escargot", "Papillon", "Araignée", "Poulpe", "Tortue", "Lapin", "Cochon", "Vache", "Mouton", "Hibou", "Crocodile", "Kangourou", "Singe", "Grenouille", "Abeille", "Panda=Panda géant", "Koala", "Zèbre", "Loup", "Renard", "Ours polaire"]}]},
   { "id": "kids", "name": "Culture populaire", "groups": [ { "src": "wiki", "lang": [ "en", "fr" ], "hint": "", "words": [ "Roblox", "Minecraft", "Fortnite", "Brawl Stars", "Clash Royale", "Among Us", "Subway Surfers", "Geometry Dash", "Mario", "Sonic=Sonic the Hedgehog", "Creeper=Creeper (Minecraft)", "Huggy Wuggy=Poppy Playtime", "Skibidi Toilet", "Labubu", "Minions=Minions (Despicable Me)", "Gru", "Spider-Man", "Venom=Venom (character)", "Mercredi Addams=Wednesday Addams", "Ladybug=Miraculous: Tales of Ladybug & Cat Noir", "Bob l'éponge=SpongeBob SquarePants (character)", "KPop Demon Hunters", "Mbappé=Kylian Mbappé", "Lamine Yamal", "Messi=Lionel Messi", "Cristiano Ronaldo", "Ousmane Dembélé", "Neymar", "Jul=Jul (rappeur)", "Gims", "Aya Nakamura", "TikTok", "YouTube", "Instagram", "PlayStation", "Nintendo Switch", "McDonald's", "Nutella", "Shrek=Shrek (character)", "Le Chat Potté=Puss in Boots" ] } ] } ];
 const LOL_IDS = { "Kai'Sa": "Kaisa", "Bel'Veth": "Belveth", "Zoé": "Zoe", "K'Sante": "KSante" };
 DT_CATS.forEach(c => {
@@ -857,6 +872,7 @@ function vWhiteGuess() {
     const ok = G.whiteGuess.ok;
     return `<header class="section"><span class="eyebrow">Dernière chance</span><h2>${ok ? "Mr. White a trouvé !" : "Mauvaise réponse"}</h2></header>
     <div class="card"><div class="stamp ${ok ? "" : "civil"}">${ok ? "Gagné" : "Raté"}</div><p>Réponse : <b>${esc(G.whiteGuess.text)}</b>${ok ? ` · mot des civils : <b>${esc(G.civilWord)}</b>` : ""}</p></div>
+    ${ok ? "" : `<p class="hint">Faute de frappe ou réponse presque juste ? Le groupe peut l'accepter.</p><button class="btn-ghost" data-act="whiteWin">Le groupe accepte sa réponse</button>`}
     <button class="btn" data-act="${ok ? "whiteWin" : "continue"}">${ok || checkWin() ? "Voir la fin de partie" : "Tour suivant"}</button>`;
   }
   return `<header class="section"><span class="eyebrow">Tour ${G.round} · résultat du vote</span><h2>${esc(p.name)} était Mr. White</h2>
@@ -1153,25 +1169,23 @@ function vDEnd() {
 }
 
 /* =========================================================
-   EN LIGNE : lobbies pair-à-pair (PeerJS)
+   EN LIGNE : lobbies via Firebase
    L'hôte garde l'état de la partie et envoie à chaque joueur
    uniquement ce qu'il a le droit de voir.
    ========================================================= */
-const PEER_PREFIX = "modesoiree-v1-";
 const ONLINE_OK = (() => { try { return window.self === window.top; } catch (e) { return false; } })();
 const QS = new URLSearchParams(location.search);
 const CODE_CHARS = "ABCDEFGHJKLMNPQRSTUVWXYZ";
-function peerOpts() {
-  const h = QS.get("peerhost");
-  if (h) return { host: h, port: +(QS.get("peerport") || 9000), path: QS.get("peerpath") || "/", secure: false, debug: 0 };
-  return { debug: 0 };
-}
-const ostore = { name: store.get("oname", ""), token: store.get("otoken", "") };
-if (!ostore.token) { ostore.token = Math.random().toString(36).slice(2) + Date.now().toString(36); store.set("otoken", ostore.token); }
+const ostore = { name: store.get("oname", "") };
+// Dernier lobby (hôte ou joueur), oublié au bout de 12 h
+const roomGet = k => { const [c, t] = String(store.get(k, "") || "").split("|"); return c && Date.now() - (+t || 0) < 12 * 3600e3 ? c : ""; };
+const roomSet = (k, c) => store.set(k, c ? c + "|" + Date.now() : "");
 
-let O = { screen: "entry", msg: "", busy: false, code: (QS.get("lobby") || "").toUpperCase().replace(/[^A-Z]/g, "").slice(0, 4), isHost: false, view: null, sel: null, draft: "", guess: "", revealMine: false, confirmLeave: false, confirmStop: false, copied: false,
-  pendingGame: null, sel2: [], wSave: false, wKill: null, lgFlip: false, lgPeek: false, voice: false, sfx: true, viewAt: Date.now() };
-let NET = { peer: null, conns: {}, hostConn: null };
+let O = { screen: "entry", msg: "", busy: false, code: (QS.get("lobby") || roomGet("lastRoom")).toUpperCase().replace(/[^A-Z]/g, "").slice(0, 4), isHost: false, view: null, sel: null, draft: "", guess: "", revealMine: false, confirmLeave: false, confirmStop: false, copied: false,
+  pendingGame: null, sel2: [], wSave: false, wKill: null, lgFlip: false, lgPeek: false, voice: false, sfx: true, viewAt: Date.now(),
+  offline: false, hostAway: false, resumeCode: roomGet("hostRoom") };
+const netFresh = () => ({ room: null, code: "", off: [], acts: {}, lastView: {}, beat: null, joinTimer: null, saveTimer: null, gotView: false, join: "", everConn: false });
+let NET = netFresh();
 let L = null;
 
 const cleanName = n => String(n || "").replace(/\s+/g, " ").trim().slice(0, 16);
@@ -1180,13 +1194,6 @@ const randCode = () => Array.from({ length: 4 }, () => CODE_CHARS[Math.floor(Mat
 const toggleSel = (arr, id) => { if (id === "all") return ["all"]; let t = arr.filter(v => v !== "all"); t = t.includes(id) ? t.filter(v => v !== id) : t.concat(id); return t.length ? t : ["all"]; };
 const pname = pid => { const p = L && L.players.find(x => x.pid === pid); return p ? p.name : "?"; };
 
-function netError(e) {
-  const t = e && e.type;
-  if (t === "peer-unavailable") return "Lobby introuvable. Vérifie le code, ou que l'hôte a toujours la page ouverte.";
-  if (t === "browser-incompatible") return "Ce navigateur ne gère pas le mode en ligne. Essaie Chrome, Safari ou Firefox à jour.";
-  if (t === "network" || t === "server-error" || t === "socket-error" || t === "socket-closed") return "Impossible de joindre le serveur de connexion. Vérifie ta connexion internet et réessaie.";
-  return "Erreur de connexion (" + (t || "inconnue") + "). Réessaie.";
-}
 function oName() {
   const n = cleanName(ostore.name);
   if (!n) { O.msg = "Choisis un pseudo d'abord."; render(); return null; }
@@ -1194,117 +1201,231 @@ function oName() {
   return n;
 }
 function oDestroy() {
-  try { if (typeof oWake !== "undefined" && oWake) oWake.release(); } catch (e) {}
-  try { if (NET.peer) NET.peer.destroy(); } catch (e) {}
-  NET = { peer: null, conns: {}, hostConn: null };
-  L = null; O.isHost = false; O.view = null;
+  try { if (oWake) oWake.release(); } catch (e) {}
+  NET.off.forEach(f => { try { f(); } catch (e) {} });
+  Object.values(NET.acts).forEach(f => { try { f(); } catch (e) {} });
+  clearInterval(NET.beat); clearTimeout(NET.joinTimer); clearTimeout(NET.saveTimer);
+  try { clearTimeout(valTimer); } catch (e) {}
+  NET = netFresh();
+  L = null; O.isHost = false; O.view = null; O.hostAway = false; O.offline = false;
 }
 let oWake = null;
 async function oKeepAwake() {
   try { if (navigator.wakeLock && !oWake && document.visibilityState === "visible") { oWake = await navigator.wakeLock.request("screen"); oWake.addEventListener("release", () => { oWake = null; }); } } catch (e) { oWake = null; }
 }
-document.addEventListener("visibilitychange", () => { if (document.visibilityState === "visible" && NET.peer) oKeepAwake(); });
+document.addEventListener("visibilitychange", () => { if (document.visibilityState === "visible" && NET.room) oKeepAwake(); });
 function oFail(msg) { oDestroy(); O.busy = false; O.screen = "entry"; O.msg = msg; render(); }
 
-let peerLoading = null;
-function ensurePeer() {
-  if (typeof Peer !== "undefined") return Promise.resolve();
-  if (!peerLoading) peerLoading = new Promise((res, rej) => {
+/* ---------- Connexion Firebase (Realtime Database + connexion anonyme) ----------
+   L'hôte garde l'état de la partie. Chaque joueur écrit ses actions dans rooms/CODE/actions/<uid>
+   et lit uniquement sa propre vue dans rooms/CODE/views/<uid> (protégé par les règles). */
+const FB_CONFIG = {
+  apiKey: "AIzaSyAjO5u6aOL5gbyoOseY9XYRuALDe3Tsuwo",
+  authDomain: "simwar-jeux.firebaseapp.com",
+  databaseURL: "https://simwar-jeux-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "simwar-jeux",
+  storageBucket: "simwar-jeux.firebasestorage.app",
+  messagingSenderId: "354605479789",
+  appId: "1:354605479789:web:e40fd267fe5ec658934c64"
+};
+const FB_SDK = "https://cdn.jsdelivr.net/npm/firebase@10.14.1/";
+let fb = null, fbLoading = null;
+function loadScript(src) {
+  return new Promise((res, rej) => {
     const sc = document.createElement("script");
-    sc.src = "https://cdn.jsdelivr.net/npm/peerjs@1.5.4/dist/peerjs.min.js";
-    sc.onload = () => res();
-    sc.onerror = () => { peerLoading = null; sc.remove(); rej(); };
+    sc.src = src; sc.onload = () => res(); sc.onerror = () => { sc.remove(); rej(new Error("network: script")); };
     document.head.appendChild(sc);
   });
-  return peerLoading;
 }
-function withPeer(fn) {
-  if (typeof Peer !== "undefined") return false;
-  O.busy = true; O.msg = "Chargement du mode en ligne…"; render();
-  ensurePeer().then(() => { O.busy = false; fn(); }, () => { O.busy = false; O.msg = "Le mode en ligne n'a pas pu se charger. Vérifie ta connexion internet."; render(); });
+function ensureFb() {
+  if (fb) return Promise.resolve(fb);
+  if (!fbLoading) fbLoading = (async () => {
+    if (typeof firebase === "undefined") {
+      await loadScript(FB_SDK + "firebase-app-compat.js");
+      await Promise.all([loadScript(FB_SDK + "firebase-auth-compat.js"), loadScript(FB_SDK + "firebase-database-compat.js")]);
+    }
+    if (!firebase.apps.length) firebase.initializeApp(FB_CONFIG);
+    const cred = await firebase.auth().signInAnonymously();
+    fb = { db: firebase.database(), uid: (firebase.auth().currentUser || cred.user).uid };
+    return fb;
+  })().catch(e => { fbLoading = null; throw e; });
+  return fbLoading;
+}
+function withFb(fn) {
+  if (fb) return false;
+  O.busy = true; O.msg = "Connexion au serveur…"; render();
+  ensureFb().then(() => { O.busy = false; fn(); }, e => { O.busy = false; O.msg = fbError(e); render(); });
   return true;
 }
+function fbError(e) {
+  const c = String((e && (e.code || e.message)) || "");
+  if (/operation-not-allowed|admin-restricted/i.test(c)) return "La connexion anonyme n'est pas activée dans Firebase (Authentication > Méthode de connexion > Anonyme).";
+  if (/unauthorized-domain/i.test(c)) return "Ce site n'est pas autorisé dans Firebase (Authentication > Paramètres > Domaines autorisés).";
+  if (/permission[_ -]denied/i.test(c)) return "Firebase refuse l'accès : vérifie que les règles de la base sont bien publiées.";
+  if (/network|unavailable|offline|script/i.test(c)) return "Impossible de joindre le serveur. Vérifie ta connexion internet et réessaie.";
+  return "Erreur de connexion (" + (c || "inconnue") + "). Réessaie.";
+}
+const SERVER_TS = () => firebase.database.ServerValue.TIMESTAMP;
+const roomRef = code => fb.db.ref("rooms/" + code);
+const newJoinId = () => Math.random().toString(36).slice(2, 10);
 
 /* ---------- Hôte ---------- */
+function newLobby(code, name) {
+  return { code, players: [{ pid: "host", name, online: true }], game: null, scores: {}, note: "",
+    settings: { game: O.pendingGame || "uc", themes: ["all"], white: false, cats: ["all"],
+      lg: { roles: ["seer", "witch", "hunter", "cupid"], wolves: 0, debate: 180 },
+      qd: { packs: ["gaming", "cine", "potes", "vie", "fun"], rounds: 5 },
+      dr: { cats: ["animaux", "bouffe", "objets", "lieux", "sports", "metiers"], laps: 2 } },
+    kicked: new Set(), used: new Set(), qsUsed: new Set(), qdUsed: new Set(), drUsed: new Set() };
+}
 function oCreate() {
   const name = oName(); if (!name) return;
-  if (withPeer(oCreate)) return;
+  if (withFb(oCreate)) return;
   oDestroy();
   O.busy = true; O.msg = "Création du lobby…"; render();
   oKeepAwake();
-  const code = randCode();
-  const peer = new Peer(PEER_PREFIX + code, peerOpts());
-  NET.peer = peer;
-  peer.on("open", () => {
+  (async () => {
+    if (O.resumeCode) { roomRef(O.resumeCode).remove().catch(() => {}); O.resumeCode = ""; roomSet("hostRoom", ""); }
+    let code = null;
+    for (let i = 0; i < 8 && !code; i++) {
+      const c = randCode();
+      try {
+        const r = await roomRef(c).child("host").transaction(cur => cur === null ? fb.uid : undefined);
+        if (r.committed) code = c;
+      } catch (e) { if (!/permission/i.test(String(e && (e.code || e.message)))) throw e; }
+    }
+    if (!code) throw new Error("Impossible de créer un lobby, réessaie.");
+    await roomRef(code).child("created").set(SERVER_TS());
+    L = newLobby(code, name);
     O.isHost = true; O.busy = false; O.msg = ""; O.code = code; O.screen = "room"; O.voice = true;
-    L = { code, players: [{ pid: "host", name, token: ostore.token, online: true }], game: null, scores: {}, note: "",
-          settings: { game: O.pendingGame || "uc", themes: ["all"], white: false, cats: ["all"], lg: { roles: ["seer", "witch", "hunter", "cupid"], wolves: 0, debate: 180 },
-            qd: { packs: ["gaming", "anime", "potes", "fun"], rounds: 5 }, dr: { cats: ["animaux", "bouffe", "objets", "lieux"], laps: 2 } }, kicked: new Set(), used: new Set(), qsUsed: new Set(), qdUsed: new Set(), drUsed: new Set() };
+    O.resumeCode = code; roomSet("hostRoom", code);
+    hostAttach(code);
     hostSync();
-  });
-  peer.on("connection", conn => {
-    conn.on("data", msg => hostOnData(conn, msg));
-    conn.on("close", () => hostOnClose(conn));
-    conn.on("error", () => hostOnClose(conn));
-  });
-  peer.on("error", e => {
-    if (e.type === "unavailable-id" && !L) { try { peer.destroy(); } catch (x) {} return oCreate(); }
-    if (L && (e.type === "network" || e.type === "server-error" || e.type === "socket-error" || e.type === "socket-closed")) { L.note = "Connexion au serveur instable : les parties en cours continuent, mais de nouveaux joueurs peuvent ne pas réussir à rejoindre."; return hostSync(); }
-    if (!L) oFail(netError(e));
-  });
-  peer.on("disconnected", () => { try { if (L && !peer.destroyed) peer.reconnect(); } catch (x) {} });
+  })().catch(e => oFail(fbError(e)));
 }
-function pidOf(conn) { return Object.keys(NET.conns).find(k => NET.conns[k] === conn); }
-function hostOnData(conn, msg) {
-  if (!L || !msg || typeof msg !== "object") return;
-  if (msg.t === "join") return hostJoin(conn, msg);
-  if (msg.t === "act") { const pid = pidOf(conn); if (pid) hostAct(pid, { a: String(msg.a || ""), x: msg.x, img: typeof msg.img === "string" ? msg.img : null, data: typeof msg.data === "string" && msg.data.length <= 40000 ? msg.data : null }); }
+function oResume() {
+  const code = O.resumeCode; if (!code) return;
+  if (withFb(oResume)) return;
+  oDestroy();
+  O.busy = true; O.msg = "Reprise du lobby " + code + "…"; render();
+  oKeepAwake();
+  (async () => {
+    const r = roomRef(code);
+    const h = await r.child("host").once("value");
+    const st = h.val() === fb.uid ? await r.child("state").once("value") : null;
+    if (!st || !st.val()) { O.resumeCode = ""; roomSet("hostRoom", ""); return oFail("Ce lobby n'existe plus. Crée-en un nouveau."); }
+    const d = JSON.parse(st.val());
+    L = Object.assign(d, { kicked: new Set(d.kicked || []), used: new Set(d.used || []), qsUsed: new Set(d.qsUsed || []), qdUsed: new Set(d.qdUsed || []), drUsed: new Set(d.drUsed || []) });
+    L.players.forEach(p => { if (p.pid !== "host") p.online = false; });
+    O.isHost = true; O.busy = false; O.msg = ""; O.code = code; O.screen = "room"; O.voice = true;
+    hostAttach(code);
+    const g = L.game;
+    if (g && g.val) {
+      const id = g.val.id;
+      clearTimeout(valTimer);
+      valTimer = setTimeout(() => { if (L && L.game && L.game.val && L.game.val.id === id) { valCheck(true); hostSync(); } }, Math.max(0, g.val.ends - Date.now()) + 300);
+    }
+    hostSync();
+  })().catch(e => oFail(fbError(e)));
 }
-function hostReject(conn, text) { try { conn.send({ t: "reject", msg: text }); } catch (e) {} setTimeout(() => { try { conn.close(); } catch (e) {} }, 400); }
-function hostJoin(conn, msg) {
-  const token = String(msg.token || "").slice(0, 64);
-  let p = L.players.find(x => x.token === token && x.pid !== "host");
+function hostAttach(code) {
+  const r = roomRef(code);
+  NET.room = r; NET.code = code;
+  const conn = fb.db.ref(".info/connected");
+  const onConn = conn.on("value", s => {
+    const was = O.offline;
+    if (s.val() === true) NET.everConn = true;
+    O.offline = NET.everConn && s.val() !== true;
+    if (s.val() === true) { r.child("hostSeen").onDisconnect().set(0); r.child("hostSeen").set(SERVER_TS()).catch(() => {}); }
+    if (was !== O.offline) render();
+  });
+  NET.beat = setInterval(() => { if (!O.offline) r.child("hostSeen").set(SERVER_TS()).catch(() => {}); }, 30000);
+  const pref = r.child("players");
+  const onP = s => hostPlayerEvent(s.key, s.val());
+  const onR = s => hostPlayerGone(s.key);
+  pref.on("child_added", onP); pref.on("child_changed", onP); pref.on("child_removed", onR);
+  NET.off.push(() => {
+    conn.off("value", onConn);
+    pref.off("child_added", onP); pref.off("child_changed", onP); pref.off("child_removed", onR);
+    r.child("hostSeen").onDisconnect().cancel();
+  });
+}
+function hostWatchActions(uid) {
+  if (NET.acts[uid] || !NET.room) return;
+  const ar = NET.room.child("actions/" + uid);
+  const cb = s => {
+    const m = s.val();
+    s.ref.remove().catch(() => {});
+    if (!m || !L) return;
+    hostAct(uid, { a: String(m.a || ""), x: m.x === undefined || m.x === null ? undefined : m.x, img: typeof m.img === "string" ? m.img : null, data: typeof m.data === "string" && m.data.length <= 40000 ? m.data : null });
+  };
+  ar.on("child_added", cb);
+  NET.acts[uid] = () => ar.off("child_added", cb);
+}
+function hostSend(uid, msg, join) {
+  if (!NET.room) return;
+  const s = JSON.stringify(Object.assign({ j: join || "" }, msg));
+  if (NET.lastView[uid] === s) return;
+  NET.lastView[uid] = s;
+  NET.room.child("views/" + uid).set(s).catch(() => {});
+}
+function hostPlayerEvent(uid, val) {
+  if (!L || !val || uid === fb.uid) return;
+  if (L.kicked.has(uid)) return hostSend(uid, { t: "kicked" }, val.join);
+  const online = val.online !== false;
+  let p = L.players.find(x => x.pid === uid);
   if (!p) {
-    if (L.kicked.has(token)) return hostReject(conn, "L'hôte t'a retiré de ce lobby.");
-    if (L.game) return hostReject(conn, "Une partie est en cours. Attends qu'elle se termine pour rejoindre.");
-    if (L.players.length >= 12) return hostReject(conn, "Le lobby est plein (12 joueurs maximum).");
-    let base = cleanName(msg.name) || "Joueur", name = base, k = 2;
+    if (!online) return;
+    if (L.game) return hostSend(uid, { t: "reject", msg: "Une partie est en cours. Attends qu'elle se termine pour rejoindre." }, val.join);
+    if (L.players.length >= 12) return hostSend(uid, { t: "reject", msg: "Le lobby est plein (12 joueurs maximum)." }, val.join);
+    let base = cleanName(val.name) || "Joueur", name = base, k = 2;
     while (L.players.some(x => x.name.toLowerCase() === name.toLowerCase())) name = base.slice(0, 13) + " " + k++;
-    p = { pid: "p" + Math.random().toString(36).slice(2, 9), name, token, online: true };
+    p = { pid: uid, name, online: true, join: val.join || "" };
     L.players.push(p);
+  } else {
+    if (p.online === online && p.join === (val.join || "")) return;
+    p.online = online;
+    if (p.join !== (val.join || "")) { p.join = val.join || ""; delete NET.lastView[uid]; }
   }
-  const old = NET.conns[p.pid];
-  if (old && old !== conn) { try { old.close(); } catch (e) {} }
-  NET.conns[p.pid] = conn;
-  p.online = true;
+  if (online) hostWatchActions(uid);
   hostSync();
 }
-function hostOnClose(conn) {
+function hostPlayerGone(uid) {
   if (!L) return;
-  const pid = pidOf(conn);
-  if (!pid) return;
-  delete NET.conns[pid];
-  const p = L.players.find(x => x.pid === pid);
+  const p = L.players.find(x => x.pid === uid);
   if (!p) return;
-  if (!L.game) L.players = L.players.filter(x => x.pid !== pid);
+  if (NET.acts[uid]) { NET.acts[uid](); delete NET.acts[uid]; }
+  if (!L.game) L.players = L.players.filter(x => x.pid !== uid);
   else p.online = false;
+  delete NET.lastView[uid];
+  if (NET.room) NET.room.child("views/" + uid).remove().catch(() => {});
   hostSync();
 }
 function hostKick(pid) {
   if (L.game || pid === "host") return;
-  const p = L.players.find(x => x.pid === pid); if (!p) return;
-  L.kicked.add(p.token);
-  const c = NET.conns[pid];
-  delete NET.conns[pid];
+  const p = L.players.find(x => x.pid === pid);
+  if (!p) return;
+  L.kicked.add(pid);
   L.players = L.players.filter(x => x.pid !== pid);
-  if (c) { try { c.send({ t: "kicked" }); } catch (e) {} setTimeout(() => { try { c.close(); } catch (e) {} }, 400); }
+  hostSend(pid, { t: "kicked" }, p.join);
+  if (NET.acts[pid]) { NET.acts[pid](); delete NET.acts[pid]; }
 }
 function hostSync() {
   if (!L) return;
-  Object.keys(NET.conns).forEach(pid => { try { NET.conns[pid].send({ t: "view", v: viewFor(pid) }); } catch (e) {} });
+  L.players.forEach(p => { if (p.pid !== "host") hostSend(p.pid, { t: "view", v: viewFor(p.pid) }, p.join); });
   O.view = viewFor("host");
   O.viewAt = Date.now();
   render();
+  hostSaveSoon();
+}
+function hostSaveSoon() {
+  clearTimeout(NET.saveTimer);
+  NET.saveTimer = setTimeout(() => {
+    if (!L || !NET.room) return;
+    const snap = Object.assign({}, L, { kicked: [...L.kicked], used: [...L.used], qsUsed: [...L.qsUsed], qdUsed: [...L.qdUsed], drUsed: [...L.drUsed] });
+    NET.room.child("state").set(JSON.stringify(snap)).catch(() => {});
+    roomSet("hostRoom", L.code);
+  }, 700);
 }
 
 function hostAct(pid, a) {
@@ -1324,7 +1445,8 @@ function hostAct(pid, a) {
     case "uc-tovote": if (host && g && g.kind === "uc" && g.phase === "talk") { g.phase = "vote"; g.votes = {}; g.note = ""; } break;
     case "uc-vote": ucVote(pid, String(x)); break;
     case "uc-force": if (host && g && g.kind === "uc" && g.phase === "vote" && Object.keys(g.votes).length) ucTally(); break;
-    case "uc-continue": if (host && g && g.kind === "uc" && (g.phase === "out" || (g.phase === "white" && g.whiteGuess))) ucContinue(); break;
+    case "uc-continue": if (host && g && g.kind === "uc" && !g.val && (g.phase === "out" || (g.phase === "white" && g.whiteGuess))) ucContinue(); break;
+    case "val-vote": valVote(pid, x); break;
     case "uc-guess": ucGuess(pid, x); break;
     case "qs-reroll": qsReroll(pid); break;
     case "qs-custom": qsCustom(pid, x, a.img); break;
@@ -1442,7 +1564,9 @@ function ucGuess(pid, text) {
   const t = cleanText(text);
   if (!t) return;
   g.whiteGuess = { text: t, ok: norm(t) === norm(g.civil) };
-  if (g.whiteGuess.ok) ucEnd("white");
+  if (g.whiteGuess.ok) return ucEnd("white");
+  const voters = g.players.filter(p => p.role === "civil").map(p => p.pid);
+  valStart("uc", voters, { guess: t, word: g.civil }, null, { guess: t });
 }
 
 /* ---------- Qui suis-je en ligne (hôte) ---------- */
@@ -1507,17 +1631,26 @@ function qsAdvance(g) {
   g.step = (g.step || 0) + 1;
 }
 function qsNext(pid, step) {
-  const g = L.game; if (!g || g.kind !== "qs" || g.phase !== "play") return;
+  const g = L.game; if (!g || g.kind !== "qs" || g.phase !== "play" || g.val) return;
   const c = g.players[g.cur]; if (!c || c.pid === pid || +step !== g.step) return;
   c.q++; g.event = null;
   qsAdvance(g);
 }
 function qsFound(pid, step) {
-  const g = L.game; if (!g || g.kind !== "qs" || g.phase !== "play") return;
+  const g = L.game; if (!g || g.kind !== "qs" || g.phase !== "play" || g.val) return;
   const c = g.players[g.cur]; if (!c || c.pid === pid || +step !== g.step) return;
-  c.q++; c.found = true; c.rank = ++g.foundCount;
-  g.event = { name: pname(c.pid), w: c.pick.w, q: c.q };
-  if (g.players.every(p => p.found)) return qsEnd();
+  const voters = g.players.filter(p => p.pid !== c.pid).map(p => p.pid);
+  valStart("qs", voters, { name: pname(c.pid), w: c.pick.w, step: g.step }, pid, { name: pname(c.pid) });
+}
+function qsValDone(ok, v) {
+  const g = L.game, c = g.players[g.cur];
+  if (!c || v.data.step !== g.step) return;
+  c.q++;
+  if (ok) {
+    c.found = true; c.rank = ++g.foundCount;
+    g.event = { name: pname(c.pid), w: c.pick.w, q: c.q };
+    if (g.players.every(p => p.found)) return qsEnd();
+  } else g.event = { refused: true, name: pname(c.pid) };
   qsAdvance(g);
 }
 function qsEnd() {
@@ -1595,79 +1728,139 @@ function viewFor(pid) {
     }
     v.game = gv;
   }
+  if (v.game && g.val) v.game.val = valView(g, pid);
   return v;
 }
 
-/* ---------- Client ---------- */
-function oJoin(auto) {
+
+/* ---------- Validation collective (majorité + délai) ---------- */
+const VAL_MS = 20000;
+let valTimer = null;
+function valStart(kind, voters, data, by, pub) {
+  const g = L.game;
+  g.val = { kind, voters, yes: {}, no: {}, ends: Date.now() + VAL_MS, data, pub: pub || {}, id: Date.now() + Math.random() };
+  if (by && voters.includes(by)) g.val.yes[by] = true;
+  const id = g.val.id;
+  clearTimeout(valTimer);
+  valTimer = setTimeout(() => { if (L && L.game && L.game.val && L.game.val.id === id) { valCheck(true); hostSync(); } }, VAL_MS + 300);
+  valCheck(false);
+}
+function valCheck(timeout) {
+  const g = L.game, v = g && g.val;
+  if (!v) return;
+  const n = v.voters.length, y = Object.keys(v.yes).length, no = Object.keys(v.no).length;
+  const need = Math.floor(n / 2) + 1;
+  if (y >= need) return valDone(true);
+  if (no > n - need) return valDone(false);
+  if (timeout) return valDone(y > no);
+}
+function valDone(ok) {
+  const g = L.game, v = g.val;
+  g.val = null;
+  clearTimeout(valTimer);
+  if (v.kind === "qs") qsValDone(ok, v);
+  else if (v.kind === "dr") drEnd(ok ? "imp" : "crew");
+  else if (v.kind === "uc") { g.whiteGuess.ok = ok; g.whiteGuess.byVote = true; if (ok) ucEnd("white"); }
+}
+function valVote(pid, x) {
+  const g = L.game, v = g && g.val;
+  if (!v || !v.voters.includes(pid)) return;
+  delete v.yes[pid]; delete v.no[pid];
+  (x === "yes" ? v.yes : v.no)[pid] = true;
+  valCheck(false);
+}
+function valView(g, pid) {
+  const v = g.val, can = v.voters.includes(pid);
+  return { kind: v.kind, data: can ? v.data : v.pub, yes: Object.keys(v.yes).length, no: Object.keys(v.no).length, total: v.voters.length, canVote: can, mine: v.yes[pid] ? "yes" : v.no[pid] ? "no" : null, left: Math.max(0, v.ends - Date.now()) };
+}
+function valBlock(val, title, detail) {
+  return `<div class="val-box">
+    <span class="eyebrow">Vote du groupe · <span data-deadline="${O.viewAt + val.left}">${fmtClock(val.left)}</span></span>
+    <b>${title}</b>${detail ? `<p>${detail}</p>` : ""}
+    <div class="val-count"><span class="ok">✓ ${val.yes}</span><span class="ko">✗ ${val.no}</span><span>${val.total} votant${val.total > 1 ? "s" : ""}</span></div>
+    ${val.canVote ? `<div class="row"><button class="btn" data-act="o-send" data-a="val-vote" data-x="yes" aria-pressed="${val.mine === "yes"}">Oui, ça compte</button><button class="btn-ghost" data-act="o-send" data-a="val-vote" data-x="no" aria-pressed="${val.mine === "no"}">Non</button></div>` : `<p class="hint">Les autres joueurs vérifient…</p>`}
+    <p class="hint">Il faut la majorité. À la fin du temps, les votes déjà donnés décident.</p>
+  </div>`;
+}
+
+/* ---------- Joueur ---------- */
+function oJoin() {
   const name = oName(); if (!name) return;
   const code = (O.code || "").toUpperCase();
   if (!/^[A-Z]{4}$/.test(code)) { O.msg = "Le code fait 4 lettres."; return render(); }
-  if (withPeer(() => oJoin(auto))) return;
+  if (withFb(oJoin)) return;
   oDestroy();
-  const fail = text => auto ? oRetryLater() : oFail(text);
-  O.busy = true;
-  if (auto) O.screen = "lost";
-  else { O.msg = "Connexion au lobby " + code + "…"; O.screen = "entry"; }
-  render();
+  O.busy = true; O.msg = "Connexion au lobby " + code + "…"; O.screen = "entry"; render();
   oKeepAwake();
-  const peer = new Peer(peerOpts());
-  NET.peer = peer;
-  peer.on("open", () => {
-    const conn = peer.connect(PEER_PREFIX + code, { reliable: true, serialization: "json" });
-    NET.hostConn = conn;
-    const to = setTimeout(() => { if (NET.hostConn === conn && !conn.open) fail("Le lobby ne répond pas. Vérifie le code, ou essayez d'être sur le même wifi."); }, 12000);
-    conn.on("open", () => { clearTimeout(to); O.code = code; conn.send({ t: "join", name, token: ostore.token }); });
-    conn.on("data", msg => clientOnData(msg));
-    conn.on("close", () => {
-      if (NET.hostConn !== conn || O.screen !== "room") return;
-      O.screen = "lost"; O.retries = 0;
-      oRetryLater();
+  (async () => {
+    const r = roomRef(code);
+    const h = await r.child("host").once("value");
+    if (!h.exists()) return oFail("Lobby introuvable. Vérifie le code.");
+    if (h.val() === fb.uid) { O.resumeCode = code; return oResume(); }
+    NET.room = r; NET.code = code; NET.join = newJoinId(); O.code = code; roomSet("lastRoom", code);
+    const me = r.child("players/" + fb.uid);
+    const conn = fb.db.ref(".info/connected");
+    const onConn = conn.on("value", s => {
+      const was = O.offline;
+      if (s.val() === true) NET.everConn = true;
+      O.offline = NET.everConn && s.val() !== true;
+      if (s.val() === true) {
+        me.onDisconnect().update({ online: false });
+        me.update({ name, online: true, join: NET.join, ts: SERVER_TS() }).catch(e => oFail(fbError(e)));
+      }
+      if (was !== O.offline && O.screen === "room") render();
     });
-  });
-  peer.on("error", e => { if (O.screen !== "room" && NET.peer === peer) fail(netError(e)); });
+    const vref = r.child("views/" + fb.uid);
+    const myJoin = NET.join;
+    const onV = s => {
+      if (NET.join !== myJoin) return;
+      const raw = s.val();
+      if (raw === null) { if (NET.gotView) oFail("L'hôte a fermé le lobby."); return; }
+      let m;
+      try { m = JSON.parse(raw); } catch (e) { return; }
+      if (m.j !== myJoin) return;
+      if (m.t === "view") { NET.gotView = true; clearTimeout(NET.joinTimer); }
+      clientOnData(m);
+    };
+    vref.on("value", onV, e => oFail(fbError(e)));
+    const hs = r.child("hostSeen");
+    const onH = s => { const away = s.val() === 0; if (away !== O.hostAway) { O.hostAway = away; if (O.screen === "room") render(); } };
+    hs.on("value", onH);
+    NET.off.push(() => { conn.off("value", onConn); vref.off("value", onV); hs.off("value", onH); me.onDisconnect().cancel(); });
+    NET.joinTimer = setTimeout(() => { if (!NET.gotView) oFail("L'hôte ne répond pas. Il a peut-être fermé la page."); }, 15000);
+  })().catch(e => oFail(fbError(e)));
 }
-function oRetryLater() {
-  O.retries = (O.retries || 0) + 1;
-  O.busy = false;
-  clearTimeout(O.retryT);
-  if (O.retries > 4) { O.msg = "Impossible de se reconnecter. L'hôte a peut-être fermé la page ou perdu le réseau."; render(); return; }
-  O.msg = `Reconnexion en cours… (essai ${O.retries}/4)`;
-  render();
-  O.retryT = setTimeout(() => { if (O.screen === "lost") oJoin(true); }, 1500 * O.retries);
-}
-document.addEventListener("visibilitychange", () => {
-  if (document.visibilityState === "visible" && O.screen === "lost" && !O.busy) { O.retries = 0; clearTimeout(O.retryT); oJoin(true); }
-});
 function clientOnData(msg) {
   if (!msg || typeof msg !== "object") return;
-  if (msg.t === "view") { O.view = msg.v; O.viewAt = Date.now(); O.screen = "room"; O.busy = false; O.msg = ""; O.retries = 0; clearTimeout(O.retryT); render(); }
+  if (msg.t === "view") { O.view = msg.v; O.viewAt = Date.now(); O.screen = "room"; O.busy = false; O.msg = ""; render(); }
   else if (msg.t === "reject") oFail(String(msg.msg || "Connexion refusée."));
   else if (msg.t === "kicked") oFail("L'hôte t'a retiré du lobby.");
   else if (msg.t === "closed") oFail("L'hôte a fermé le lobby.");
 }
 function oSend(a) {
   if (O.isHost) return hostAct("host", a);
-  const c = NET.hostConn;
-  if (c && c.open) { try { c.send(Object.assign({ t: "act", a: a.a, x: a.x }, a.img ? { img: a.img } : {}, typeof a.data === "string" ? { data: a.data } : {})); } catch (e) {} }
-  else { O.screen = "lost"; render(); }
+  if (!NET.room || !fb) return;
+  const m = { a: String(a.a || ""), ts: SERVER_TS() };
+  if (a.x !== undefined && a.x !== null) m.x = a.x;
+  if (typeof a.img === "string") m.img = a.img;
+  if (typeof a.data === "string") m.data = a.data;
+  NET.room.child("actions/" + fb.uid).push(m).catch(e => { O.msg = fbError(e); render(); });
 }
 function oLeave() {
-  clearTimeout(O.retryT); O.retries = 0;
-  if (O.isHost) {
-    Object.values(NET.conns).forEach(c => { try { c.send({ t: "closed" }); } catch (e) {} });
-    const p = NET.peer;
-    NET.peer = null;
-    setTimeout(() => { try { if (p) p.destroy(); } catch (e) {} }, 300);
+  if (O.isHost && NET.room && L) {
+    const r = NET.room;
+    L.players.forEach(p => { if (p.pid !== "host") r.child("views/" + p.pid).set(JSON.stringify({ t: "closed", j: p.join || "" })).catch(() => {}); });
+    setTimeout(() => r.remove().catch(() => {}), 1500);
+    O.resumeCode = ""; roomSet("hostRoom", "");
+  } else if (NET.room && fb) {
+    NET.room.child("players/" + fb.uid).remove().catch(() => {});
   }
   oDestroy();
   O.screen = "entry"; O.msg = ""; O.busy = false; O.confirmLeave = false; O.confirmStop = false;
 }
 function shareLink(code) {
   const u = new URL(location.href);
-  const keep = ["peerhost", "peerport", "peerpath"].filter(k => QS.get(k));
   u.search = ""; u.hash = "";
-  keep.forEach(k => u.searchParams.set(k, QS.get(k)));
   u.searchParams.set("lobby", code);
   return u.toString();
 }
@@ -2548,7 +2741,9 @@ const QD_PACKS = [
   { id: "gaming", name: "Gaming", q: ["Le jeu auquel tu as passé le plus d'heures ?", "Ton pire rage quit, c'était sur quel jeu ?", "Le perso de jeu vidéo avec qui tu partirais en vacances ?", "Le jeu le plus surcoté de tous les temps ?", "Le boss qui t'a le plus traumatisé ?", "Le jeu que tu as acheté et jamais lancé ?", "La pire excuse que tu as sortie après avoir perdu ?", "Le skin le plus cher que tu as acheté, ou que tu rêves d'avoir ?", "Le jeu de ton enfance que tu relancerais ce soir ?", "Un jeu que tout le monde adore sauf toi ?", "Ton pseudo le plus ridicule de l'époque ?", "La console que tu garderais si tu ne pouvais en garder qu'une ?", "Le jeu dans lequel tu voudrais vivre ?", "Le perso de jeu vidéo qui te ressemble le plus ?", "Ton pire coéquipier type en ligne ?"] },
   { id: "anime", name: "Anime", q: ["Le perso d'anime qui te ressemble le plus ?", "L'anime que tu conseilles à tout le monde ?", "Le pouvoir d'anime que tu voudrais avoir ?", "Le méchant d'anime le plus stylé ?", "La mort d'anime qui t'a le plus touché ?", "L'anime le plus surcoté selon toi ?", "Le perso d'anime le plus énervant ?", "Ton opening préféré ?", "Le combat d'anime le plus légendaire ?", "Le perso d'anime que tu prendrais comme meilleur pote ?", "Le perso d'anime que tu ne supporterais pas comme coloc ?", "Dans quel univers d'anime tu voudrais vivre ?"] },
   { id: "potes", name: "Entre potes", q: ["Le surnom le plus gênant qu'on t'a donné ?", "Ton plat préféré, honnêtement ?", "La première chose que tu fais si tu gagnes au loto ?", "Le métier que tu voulais faire petit ?", "La chanson que tu chantes sous la douche ?", "Ton talent caché ?", "La dernière chose qui t'a fait rire aux larmes ?", "Ton pire achat ?", "Un truc que tout le monde adore et que tu détestes ?", "Si tu étais un animal, tu serais quoi ?", "La pire excuse que tu as donnée pour ne pas venir quelque part ?", "Ta plus grosse peur un peu ridicule ?"] },
-  { id: "fun", name: "Délires", q: ["Le nom de ta future équipe esport ?", "Un super-pouvoir complètement inutile ?", "La pire idée de film ?", "Ce que tu emportes sur une île déserte ?", "Le titre de ta biographie ?", "Un nouveau goût de chips ?", "Ce que dirait ton animal s'il pouvait parler ?", "Le pire prénom pour un chien ?", "Ton cri de guerre ?", "Une nouvelle matière à l'école ?", "Le pire cadeau d'anniversaire possible ?", "Le slogan de ta future chaîne YouTube ?"] }
+  { id: "fun", name: "Délires", q: ["Le nom de ta future équipe esport ?", "Un super-pouvoir complètement inutile ?", "La pire idée de film ?", "Ce que tu emportes sur une île déserte ?", "Le titre de ta biographie ?", "Un nouveau goût de chips ?", "Ce que dirait ton animal s'il pouvait parler ?", "Le pire prénom pour un chien ?", "Ton cri de guerre ?", "Une nouvelle matière à l'école ?", "Le pire cadeau d'anniversaire possible ?", "Le slogan de ta future chaîne YouTube ?"] },
+  { id: "cine", name: "Séries & films", q: ["Le film que tu peux regarder 100 fois ?", "La série que tu as finie le plus vite ?", "Le perso de série ou de film qui te ressemble le plus ?", "Le film qui t'a fait pleurer ?", "Le pire film que tu as vu ?", "Le méchant de film le plus stylé ?", "La série que tout le monde aime sauf toi ?", "Si ta vie était un film, ce serait quel genre ?", "Le perso de film que tu voudrais être pendant 24 h ?", "La meilleure fin de série ?", "Le film d'horreur qui t'a le plus marqué ?", "Le film à regarder un dimanche soir ?"] },
+  { id: "vie", name: "La vie", q: ["Ton meilleur souvenir de vacances ?", "Ce que tu ferais d'une journée de congé surprise ?", "Ton plus grand rêve ?", "Le conseil que tu donnerais à toi d'il y a 5 ans ?", "Le pays où tu voudrais vivre ?", "Ton moment préféré de la journée ?", "Ce qui te met de bonne humeur à coup sûr ?", "La qualité que tu préfères chez un ami ?", "Le petit plaisir dont tu ne te passerais jamais ?", "Le talent que tu aimerais apprendre ?", "Ton repas parfait ?", "Où tu te vois dans 10 ans ?"] }
 ];
 function qdStart() {
   const ps = L.players.filter(p => p.online);
@@ -2643,10 +2838,11 @@ function qdView(g, pid) {
 const DR_EXTRA = [
   { id: "animaux", name: "Animaux", words: ["Chat", "Chien", "Lion", "Girafe", "Éléphant", "Pingouin", "Requin", "Dauphin", "Serpent", "Escargot", "Papillon", "Araignée", "Poulpe", "Tortue", "Lapin", "Cochon", "Vache", "Mouton", "Hibou", "Crocodile", "Kangourou", "Singe", "Grenouille", "Abeille", "Licorne", "Dragon", "Dinosaure", "Baleine"] },
   { id: "bouffe", name: "Nourriture", words: ["Pizza", "Burger", "Frites", "Sushi", "Tacos", "Croissant", "Glace", "Banane", "Ananas", "Pastèque", "Gâteau d'anniversaire", "Donut", "Hot-dog", "Œuf au plat", "Spaghetti", "Crêpe", "Popcorn", "Brocoli", "Carotte", "Fromage", "Kebab", "Cookie", "Cerise", "Raisin"] },
-  { id: "lieux", name: "Lieux", words: ["Plage", "Piscine", "Château", "Tour Eiffel", "Pyramide", "Volcan", "Île déserte", "Hôpital", "École", "Cinéma", "Stade de foot", "Fête foraine", "Igloo", "Phare", "Montagne", "Ferme", "Aéroport", "Supermarché"] }
+  { id: "lieux", name: "Lieux", words: ["Plage", "Piscine", "Château", "Tour Eiffel", "Pyramide", "Volcan", "Île déserte", "Hôpital", "École", "Cinéma", "Stade de foot", "Fête foraine", "Igloo", "Phare", "Montagne", "Ferme", "Aéroport", "Supermarché"] },
+  { id: "sports", name: "Sports", words: ["Football", "Tennis", "Basket", "Natation", "Vélo", "Ski", "Boxe", "Golf", "Surf", "Karaté", "Skateboard", "Équitation", "Rugby", "Pétanque", "Bowling", "Ping-pong"] }
 ];
 const DR_CATS = () => DR_EXTRA.map(c => ({ id: c.id, name: c.name, words: c.words }))
-  .concat(DT_CATS.filter(c => ["objets", "jv", "anime", "disney"].includes(c.id)).map(c => ({ id: c.id, name: c.name, words: dtItems(c).map(i => i.w) })));
+  .concat(DT_CATS.filter(c => ["objets", "metiers", "jv", "anime", "disney"].includes(c.id)).map(c => ({ id: c.id, name: c.name, words: dtItems(c).map(i => i.w) })));
 const DR_COLORS = ["#e8434a", "#2f7fd0", "#1f9a5e", "#d99a00", "#8b4fd6", "#e26a1b", "#e2416f", "#00939a", "#5b4a36", "#141a4d"];
 function drStart() {
   const ps = L.players.filter(p => p.online);
@@ -2701,7 +2897,8 @@ function drGuess(pid, text) {
   const t = String(text || "").trim().slice(0, 60);
   if (!t) return;
   g.guess = t;
-  drEnd(norm(t) === norm(g.word) ? "imp" : "crew");
+  if (norm(t) === norm(g.word)) return drEnd("imp");
+  valStart("dr", g.order.filter(p => p !== g.imp), { guess: t, word: g.word }, null, { guess: t });
 }
 function drEnd(w) {
   const g = L.game;
@@ -2718,7 +2915,7 @@ function drForce() {
   const g = L.game;
   if (g.phase === "draw") drAdvance();
   else if (g.phase === "vote") { if (Object.keys(g.votes).length) drTally(); else drEnd("imp"); }
-  else if (g.phase === "guess") drEnd("crew");
+  else if (g.phase === "guess") { if (g.val) valCheck(true); else drEnd("crew"); }
 }
 function drView(g, pid) {
   const me = g.order.includes(pid);
@@ -2868,7 +3065,8 @@ function vODr(v) {
     return `<header class="section"><span class="eyebrow">Imposteur dessin · dernière chance</span><h2>${esc(g.accused)} est démasqué !</h2>
       <p class="lead">${g.isImp ? "Tu peux encore gagner : quel est le mot ?" : "L'imposteur a une dernière chance : s'il devine le mot, il gagne quand même."}</p></header>
       <div class="dr-wrap"><canvas id="dr-canvas" class="dr-canvas" aria-label="Dessin commun"></canvas></div>
-      ${g.isImp ? `<input type="text" id="o-drguess" data-o="drGuess" maxlength="60" placeholder="Le mot…" autocomplete="off" value="${esc(O.drGuess || "")}"><button class="btn" data-act="o-send" data-a="dr-guess" data-from="drGuess">Valider</button>` : ""}
+      ${g.val ? valBlock(g.val, `L'imposteur propose « ${esc(g.val.data.guess)} »`, g.val.canVote ? `Le mot était <b>${esc(g.val.data.word)}</b>. Sa réponse compte-t-elle ?` : "")
+        : g.isImp ? `<input type="text" id="o-drguess" data-o="drGuess" maxlength="60" placeholder="Le mot…" autocomplete="off" value="${esc(O.drGuess || "")}"><button class="btn" data-act="o-send" data-a="dr-guess" data-from="drGuess">Valider</button>` : ""}
       ${force}`;
   }
   const impWin = g.winner === "imp";
@@ -2906,11 +3104,12 @@ function drSet(x) {
 /* ---------- Écrans en ligne ---------- */
 function vOnline() {
   if (O.screen === "entry") return vOEntry();
-  if (O.screen === "lost") return vOLost();
   const v = O.view;
   if (!v) return `<p class="lead">Connexion…</p>`;
-  if (!v.game) return vOLobby(v);
-  return ({ uc: vOUc, lg: vOLg, qs: vOQs, qd: vOQd, dr: vODr })[v.game.kind](v);
+  const ban = O.offline ? `<div class="banner warn" role="status">Connexion perdue. Reconnexion en cours…</div>`
+    : (!O.isHost && O.hostAway) ? `<div class="banner warn" role="status">L'hôte a perdu la connexion. La partie reprend dès qu'il revient.</div>` : "";
+  if (!v.game) return ban + vOLobby(v);
+  return ban + ({ uc: vOUc, lg: vOLg, qs: vOQs, qd: vOQd, dr: vODr })[v.game.kind](v);
 }
 function vOEntry() {
   return `${backHome}
@@ -2924,24 +3123,15 @@ function vOEntry() {
     <label class="label" for="o-name">Ton pseudo</label>
     <input type="text" id="o-name" data-o="name" maxlength="16" value="${esc(ostore.name)}" placeholder="Ex. Mirwais" autocomplete="off">
   </section>
-  <button class="btn" data-act="o-create" ${O.busy ? "disabled" : ""}>Créer un lobby${O.pendingGame ? " " + esc(GAME_NAMES[O.pendingGame]) : ""}</button>
+  ${O.resumeCode && ONLINE_OK ? `<button class="btn" data-act="o-resume" ${O.busy ? "disabled" : ""}>Reprendre mon lobby ${esc(O.resumeCode)}</button>` : ""}
+  <button class="${O.resumeCode && ONLINE_OK ? "btn-ghost" : "btn"}" data-act="o-create" ${O.busy ? "disabled" : ""}>Créer un ${O.resumeCode && ONLINE_OK ? "nouveau " : ""}lobby${O.pendingGame ? " " + esc(GAME_NAMES[O.pendingGame]) : ""}</button>
   <section class="confirm">
     <label class="label" for="o-code">Rejoindre avec un code</label>
     <input type="text" id="o-code" class="code-input" data-o="code" maxlength="4" value="${esc(O.code)}" placeholder="KXPM" autocomplete="off" autocapitalize="characters">
     <button class="btn-ghost" data-act="o-join" ${O.busy ? "disabled" : ""}>Rejoindre</button>
   </section>
   <p class="msg">${esc(O.msg)}</p>
-  <p class="hint">Le téléphone qui crée le lobby sert de serveur : il doit garder la page ouverte jusqu'à la fin. Si la connexion échoue, mettez-vous sur le même wifi.</p>`;
-}
-function vOLost() {
-  return `<header class="section">
-    <span class="eyebrow">Lobby ${esc(O.code)}</span>
-    <h2>Connexion perdue</h2>
-    <p class="lead">La connexion avec l'hôte s'est coupée. Tu reprendras ta place dans la partie dès que ça reconnecte.</p>
-  </header>
-  <p class="msg">${esc(O.msg)}</p>
-  <button class="btn" data-act="o-rejoin" ${O.busy ? "disabled" : ""}>Réessayer maintenant</button>
-  <button class="btn-ghost" data-act="o-leave">Quitter</button>`;
+  <p class="hint">Marche en wifi comme en 4G. Le téléphone qui crée le lobby mène la partie : s'il recharge la page, il peut reprendre son lobby.</p>`;
 }
 function scoreBlock(v) {
   const sc = Object.entries(v.scores || {}).sort((a, b) => b[1] - a[1]);
@@ -3028,7 +3218,9 @@ function vOUc(v) {
   if (g.phase === "white") {
     const meWhite = g.out.pid === v.me;
     let body;
-    if (!g.whiteGuess) {
+    if (g.val) {
+      body = valBlock(g.val, `Mr. White propose « ${esc(g.val.data.guess)} »`, g.val.canVote ? `Le mot des civils est <b>${esc(g.val.data.word)}</b>. Sa réponse compte-t-elle ?` : "");
+    } else if (!g.whiteGuess) {
       body = meWhite
         ? `<p class="lead">Dernière chance : devine le mot des civils pour gagner seul.</p>
            <input type="text" id="o-guess" data-o="guess" value="${esc(O.guess)}" placeholder="Le mot des civils…" autocomplete="off">
@@ -3097,11 +3289,11 @@ function vOQs(v) {
       ${scoreBlock(v)}
       ${v.isHost ? `<button class="btn" data-act="o-send" data-a="again">Rejouer</button><button class="btn-ghost" data-act="o-send" data-a="lobby">Retour au lobby</button>` : waitHost}`;
   }
-  const ev = g.event ? `<div class="banner">${esc(g.event.name)} a trouvé : ${esc(g.event.w)} (${g.event.q} question${g.event.q > 1 ? "s" : ""})</div>` : "";
+  const ev = !g.event ? "" : g.event.refused ? `<div class="banner warn">Le groupe a refusé la réponse de ${esc(g.event.name)} : on passe au joueur suivant.</div>` : `<div class="banner">${esc(g.event.name)} a trouvé : ${esc(g.event.w)} (${g.event.q} question${g.event.q > 1 ? "s" : ""})</div>`;
   const head = g.meCur
     ? `<h2>À toi de poser ta question</h2><p class="lead">Pose une seule question fermée à voix haute. Les autres répondent par oui ou non.</p>`
     : `<h2>À ${esc(g.curName)} de poser sa question</h2><p class="lead">Réponds par oui ou non, puis appuyez sur un des deux boutons.</p>`;
-  const actions = g.meCur || !g.inGame ? "" : `<div class="row">
+  const actions = g.val ? valBlock(g.val, `${esc(g.curName)} a trouvé ?`, g.val.data && g.val.data.w ? `Son perso : <b>${esc(g.val.data.w)}</b>. Sa réponse était-elle bonne ?` : "") : g.meCur || !g.inGame ? "" : `<div class="row">
       <button class="btn-ghost" data-act="o-send" data-a="qs-next" data-x="${g.step}">Question posée, joueur suivant</button>
       <button class="btn" data-act="o-send" data-a="qs-found" data-x="${g.step}">${esc(g.curName)} a trouvé</button>
     </div>`;
@@ -3225,6 +3417,7 @@ function vHome() {
     <h1>Simwar</h1>
     <p class="lead">Undercover · Devine Tête · Loup-Garou · Qui a dit ça ? · Imposteur dessin</p>
   </header>
+  ${O.resumeCode && ONLINE_OK && !(O.isHost && L) ? `<button class="btn" data-act="o-resume-home">Reprendre mon lobby ${esc(O.resumeCode)}</button>` : ""}
   <section class="quickjoin">
     <label class="label" for="home-code">Rejoindre une partie avec un code</label>
     <div class="qj-row">
@@ -3352,8 +3545,8 @@ function onAct(e, b) {
     case "cat-copy": return catCopy();
     case "cat-askreset": CAT.confirmReset = true; break;
     case "cat-reset": CUR.uc = []; CUR.dt = []; CUR.bad = []; saveCur(); CAT.confirmReset = false; CAT.text = ""; break;
-    case "go-online": ensurePeer().catch(() => {}); S.view = "online"; if (O.screen !== "room") { O.pendingGame = b.dataset.g || null; O.msg = ""; } break;
-    case "o-quickjoin": ensurePeer().catch(() => {});
+    case "go-online": if (ONLINE_OK) ensureFb().catch(() => {}); S.view = "online"; if (O.screen !== "room") { O.pendingGame = b.dataset.g || null; O.msg = ""; } break;
+    case "o-quickjoin": if (ONLINE_OK) ensureFb().catch(() => {});
       S.view = "online"; O.pendingGame = null;
       if (cleanName(ostore.name) && /^[A-Z]{4}$/.test(O.code)) { initAudio(); return oJoin(); }
       O.msg = /^[A-Z]{4}$/.test(O.code) ? "Choisis ton pseudo, puis appuie sur Rejoindre." : "Entre le code à 4 lettres.";
@@ -3366,7 +3559,8 @@ function onAct(e, b) {
       if (O.isHost && L && L.players.length > 1) { O.confirmLeave = true; break; }
       oLeave(); break;
     case "o-leaveNow": oLeave(); break;
-    case "o-rejoin": O.retries = 0; clearTimeout(O.retryT); return oJoin(true);
+    case "o-resume": initAudio(); return oResume();
+    case "o-resume-home": S.view = "online"; O.pendingGame = null; initAudio(); return oResume();
     case "o-cancelLeave": O.confirmLeave = false; break;
     case "o-copy": return oCopy();
     case "o-reveal": O.revealMine = !O.revealMine; break;
@@ -3517,8 +3711,8 @@ function boot(d) {
   }
   if (!G && ui.screen !== "setup") ui.screen = "setup";
   if (!D.wins) D.wins = {};
-  if (O.code && QS.get("lobby") && ONLINE_OK) { S.view = "online"; ensurePeer().catch(() => {}); }
-  if (S.view === "online" && !NET.peer) { O.screen = "entry"; O.view = null; }
+  if (O.code && QS.get("lobby") && ONLINE_OK) { S.view = "online"; ensureFb().catch(() => {}); }
+  if (S.view === "online" && !NET.room) { O.screen = "entry"; O.view = null; }
   if (!views_ok(D.screen) || (!D.game && D.screen !== "setup")) { D.screen = "setup"; }
   render();
 }
