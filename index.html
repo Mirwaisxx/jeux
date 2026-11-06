@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="Undercover, Devine Tête, Loup-Garou, Qui a dit ça ? et Imposteur dessin entre potes : en local sur un téléphone ou en ligne, chacun sur le sien.">
-<meta name="theme-color" content="#1d2c8c">
+<meta name="description" content="Huit jeux de soirée entre potes : Undercover, Devine Tête, Loup-Garou, Qui a dit ça ?, Imposteur dessin, La Bombe, Tu préfères et Sept Têtes. Sur un seul téléphone ou chacun le sien.">
+<meta name="theme-color" content="#1a1221">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Simwar">
-<meta property="og:description" content="Undercover, Devine Tête, Loup-Garou, Qui a dit ça ? et Imposteur dessin entre potes : en local sur un téléphone ou en ligne, chacun sur le sien.">
+<meta property="og:description" content="Huit jeux de soirée entre potes : Undercover, Devine Tête, Loup-Garou, Qui a dit ça ?, Imposteur dessin, La Bombe, Tu préfères et Sept Têtes. Sur un seul téléphone ou chacun le sien.">
 <meta name="twitter:card" content="summary">
-<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2214%22%20fill%3D%22%231d2c8c%22/%3E%3Cpath%20d%3D%22M12%2010%20L26%2026%20L17%2032%20Z%20M52%2010%20L38%2026%20L47%2032%20Z%22%20fill%3D%22%23ffd23f%22/%3E%3Cpath%20d%3D%22M32%2018%20C43%2018%2050%2025%2052%2033%20L56%2040%20L48%2042%20L45%2050%20L38%2056%20L32%2059%20L26%2056%20L19%2050%20L16%2042%20L8%2040%20L12%2033%20C14%2025%2021%2018%2032%2018%20Z%22%20fill%3D%22%23f4f3fb%22/%3E%3Cpath%20d%3D%22M20%2033%20L29%2036%20L22%2039%20Z%20M44%2033%20L35%2036%20L42%2039%20Z%22%20fill%3D%22%231d2c8c%22/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2214%22%20fill%3D%22%231a1221%22/%3E%3Cg%20transform%3D%22rotate%28-14%2032%2040%29%22%3E%3Crect%20x%3D%2215%22%20y%3D%2215%22%20width%3D%2225%22%20height%3D%2235%22%20rx%3D%224.5%22%20fill%3D%22%23a79ae3%22/%3E%3C/g%3E%3Cg%20transform%3D%22rotate%289%2032%2040%29%22%3E%3Crect%20x%3D%2223%22%20y%3D%2213%22%20width%3D%2225%22%20height%3D%2235%22%20rx%3D%224.5%22%20fill%3D%22%23f5eee3%22/%3E%3Crect%20x%3D%2230.5%22%20y%3D%2225.5%22%20width%3D%2210%22%20height%3D%2210%22%20rx%3D%222.6%22%20fill%3D%22%23f3b54a%22%20transform%3D%22rotate%2814%2035.5%2030.5%29%22/%3E%3C/g%3E%3C/svg%3E">
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icon-192.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -17,24 +17,26 @@
 <meta name="apple-mobile-web-app-title" content="Simwar">
 <title>Simwar</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=Figtree:wght@400;600;700&family=JetBrains+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;600;700;800&family=JetBrains+Mono:wght@500&display=swap">
 <style>
 /* Layout: une colonne façon "dossier d'agent", écran par écran ; le jeu en cours passe en plein écran */
 :root {
-  --bg: #1d2c8c;
-  --panel: #25379c;
-  --line: #3a4db3;
-  --paper: #f4f3fb;
-  --ink: #141a4d;
-  --text: #f4f3fb;
-  --muted: #b2b9ea;
-  --signal: #ffd23f;
-  --stamp: #e8434a;
-  --good: #3fd48c;
-  --warn: #ff8a3d;
-  --good-soft: rgba(63, 212, 140, .16);
-  --warn-soft: rgba(255, 138, 61, .16);
-  --f-display: "Big Shoulders Display", "Arial Narrow", Impact, sans-serif;
+  --bg: #1a1221;
+  --panel: #251a2f;
+  --line: #3a2b46;
+  --gc: #f3b54a;
+  --paper: #f5eee3;
+  --ink: #1d1328;
+  --text: #f5eee3;
+  --muted: #ad9db3;
+  --signal: #f3b54a;
+  --stamp: #d14f55;
+  --good: #6fcf97;
+  --warn: #f0a04b;
+  --good-soft: rgba(111, 207, 151, .14);
+  --warn-soft: rgba(240, 160, 75, .14);
+  --f-display: "Bricolage Grotesque", "Figtree", system-ui, sans-serif;
   --f-body: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
   --f-mono: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
   color-scheme: dark;
@@ -55,13 +57,13 @@ body {
   padding-right: max(16px, env(safe-area-inset-right, 0px));
   padding-block: 20px 40px;
 }
-#app { max-width: 460px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; }
-h1, h2 { font-family: var(--f-display); font-weight: 900; text-transform: uppercase; line-height: .95; margin: 0; text-wrap: balance; }
-h1 { font-size: clamp(2.4rem, 13vw, 3.6rem); letter-spacing: .01em; overflow-wrap: anywhere; }
+#app { max-width: 520px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; }
+h1, h2 { font-family: var(--f-display); font-weight: 900; text-transform: none; line-height: .95; margin: 0; text-wrap: balance; font-stretch: 80%; }
+h1 { font-size: clamp(2.3rem, 11vw, 3.4rem); letter-spacing: -.015em; overflow-wrap: anywhere; }
 h2 { overflow-wrap: anywhere; }
-h2 { font-size: 2.2rem; }
+h2 { font-size: 2rem; letter-spacing: -.01em; }
 p { margin: 0; }
-.eyebrow { font-family: var(--f-mono); font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+.eyebrow { font-family: var(--f-body); font-size: .85rem; font-weight: 600; color: var(--muted); }
 .lead { color: var(--muted); }
 .section { display: flex; flex-direction: column; gap: 10px; }
 .label { font-weight: 700; font-size: .95rem; }
@@ -69,15 +71,15 @@ p { margin: 0; }
 button { font: inherit; cursor: pointer; border: 0; }
 button:focus-visible, input:focus-visible, textarea:focus-visible { outline: 3px solid var(--signal); outline-offset: 2px; }
 .btn {
-  background: var(--signal); color: var(--ink); font-weight: 700; font-size: 1.05rem;
-  padding: 16px 20px; border-radius: 12px; width: 100%;
-  box-shadow: 0 4px 0 #c79e12; transition: transform .08s, box-shadow .08s;
+  background: linear-gradient(180deg, #f7c467, var(--signal)); color: var(--ink); font-weight: 800; font-size: 1.05rem;
+  padding: 16px 20px; border-radius: 14px; width: 100%;
+  box-shadow: 0 4px 0 #b47c22; transition: transform .08s, box-shadow .08s;
 }
-.btn:active { transform: translateY(3px); box-shadow: 0 1px 0 #c79e12; }
+.btn:active { transform: translateY(3px); box-shadow: 0 1px 0 #b47c22; }
 .btn:disabled { opacity: .4; cursor: not-allowed; }
-.btn-ghost { background: transparent; color: var(--text); border: 2px solid var(--line); border-radius: 12px; padding: 13px 18px; font-weight: 600; width: 100%; }
+.btn-ghost { background: transparent; color: var(--text); border: 1.5px solid rgba(245, 238, 227, .2); border-radius: 14px; padding: 13px 18px; font-weight: 600; width: 100%; }
 .btn-small { background: var(--panel); color: var(--text); border-radius: 8px; padding: 8px 12px; font-weight: 600; font-size: .9rem; }
-.btn-danger { background: var(--stamp); color: #fff; box-shadow: 0 4px 0 #a92a30; }
+.btn-danger { background: var(--stamp); color: #fff; box-shadow: 0 4px 0 #9e3a3f; }
 .back { background: none; color: var(--muted); font-weight: 600; padding: 10px 0; min-height: 44px; align-self: flex-start; }
 
 input[type=text], textarea {
@@ -88,7 +90,7 @@ textarea { min-height: 120px; resize: vertical; font-family: var(--f-mono); font
 
 .stepper { display: flex; align-items: center; gap: 12px; }
 .stepper button { width: 44px; height: 44px; border-radius: 10px; background: var(--panel); color: var(--text); font-size: 1.4rem; font-weight: 700; }
-.stepper output { font-family: var(--f-display); font-size: 2.2rem; font-weight: 900; min-width: 2ch; text-align: center; font-variant-numeric: tabular-nums; }
+.stepper output { font-family: var(--f-display); font-size: 2.2rem; font-weight: 900; min-width: 2ch; text-align: center; font-variant-numeric: tabular-nums; font-stretch: 80%; }
 
 .names { display: grid; gap: 8px; }
 .name-row { display: grid; grid-template-columns: auto 1fr; gap: 10px; align-items: center; }
@@ -118,14 +120,6 @@ details.box[open] summary { margin-bottom: 12px; }
 
 /* Accueil */
 .games { display: grid; gap: 12px; }
-.game-card { text-align: left; background: var(--panel); color: var(--text); border: 2px solid var(--line); border-radius: 16px; padding: 20px; display: grid; gap: 6px; transition: border-color .12s, transform .12s; }
-.game-card:hover { border-color: var(--signal); }
-.game-card:active { transform: scale(.98); }
-.game-card .gmeta { font-family: var(--f-mono); font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; }
-.game-card .gname { font-family: var(--f-display); font-weight: 900; font-size: 2.6rem; text-transform: uppercase; line-height: 1; }
-.game-card .gdesc { color: var(--muted); }
-.gm-uc { color: #ff9ba1; }
-.gm-dt { color: var(--good); }
 
 /* Carte / dossier */
 .card {
@@ -133,18 +127,17 @@ details.box[open] summary { margin-bottom: 12px; }
   display: flex; flex-direction: column; gap: 14px; align-items: center; text-align: center;
   position: relative; overflow: hidden;
 }
-.card .eyebrow { color: #5a6199; }
-.card .who { font-family: var(--f-display); font-weight: 900; font-size: 2.6rem; text-transform: uppercase; line-height: 1; overflow-wrap: anywhere; }
-.word { font-family: var(--f-display); font-weight: 900; font-size: 3.4rem; text-transform: uppercase; line-height: 1; overflow-wrap: anywhere; }
-.redact { display: inline-block; background: var(--ink); color: var(--ink); border-radius: 4px; padding: 6px 18px; font-family: var(--f-display); font-weight: 900; font-size: 3rem; line-height: 1; user-select: none; }
-.white-note { color: #5a6199; font-size: .95rem; max-width: 30ch; }
+.card .eyebrow { color: #6e5a79; }
+.card .who { font-family: var(--f-display); font-weight: 900; font-size: 2.6rem; text-transform: none; line-height: 1; overflow-wrap: anywhere; font-stretch: 80%; }
+.word { font-family: var(--f-display); font-weight: 900; font-size: 3.4rem; text-transform: uppercase; line-height: 1; overflow-wrap: anywhere; font-stretch: 80%; }
+.redact { display: inline-block; background: var(--ink); color: var(--ink); border-radius: 4px; padding: 6px 18px; font-family: var(--f-display); font-weight: 900; font-size: 3rem; line-height: 1; user-select: none; font-stretch: 80%; }
+.white-note { color: #6e5a79; font-size: .95rem; max-width: 30ch; }
 
 .stamp {
   font-family: var(--f-display); font-weight: 900; text-transform: uppercase; font-size: 2.4rem;
   color: var(--stamp); border: 4px solid var(--stamp); border-radius: 8px; padding: 4px 14px;
-  transform: rotate(-6deg); letter-spacing: .03em; animation: stamp .35s cubic-bezier(.2,1.6,.4,1) both;
-}
-.stamp.civil { color: #1f9a5e; border-color: #1f9a5e; }
+  transform: rotate(-6deg); letter-spacing: .03em; animation: stamp .35s cubic-bezier(.2,1.6,.4,1) both; font-stretch: 80%; }
+.stamp.civil { color: #2f8f5f; border-color: #2f8f5f; }
 @keyframes stamp { from { transform: rotate(-6deg) scale(1.8); opacity: .3; } to { transform: rotate(-6deg) scale(1); opacity: 1; } }
 
 .progress { display: flex; gap: 6px; }
@@ -153,7 +146,7 @@ details.box[open] summary { margin-bottom: 12px; }
 
 .order { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; counter-reset: o; }
 .order li { counter-increment: o; display: grid; grid-template-columns: 2.4rem 1fr; align-items: center; background: var(--panel); border-radius: 12px; padding: 12px 14px; font-weight: 600; }
-.order li::before { content: counter(o); font-family: var(--f-display); font-weight: 900; font-size: 1.6rem; color: var(--signal); }
+.order li::before { content: counter(o); font-family: var(--f-display); font-weight: 900; font-size: 1.6rem; color: var(--signal); font-stretch: 80%; }
 .order li span { min-width: 0; overflow-wrap: anywhere; }
 
 .vote { display: grid; gap: 8px; }
@@ -162,9 +155,9 @@ details.box[open] summary { margin-bottom: 12px; }
 .vote button span { min-width: 0; overflow-wrap: anywhere; }
 
 .recap { display: grid; gap: 6px; width: 100%; text-align: left; }
-.recap-row { display: grid; grid-template-columns: 1fr auto; gap: 10px; padding: 8px 0; border-top: 1px solid #d9d8ea; }
+.recap-row { display: grid; grid-template-columns: 1fr auto; gap: 10px; padding: 8px 0; border-top: 1px solid #e2d6c6; }
 .recap-row span:first-child { min-width: 0; overflow-wrap: anywhere; font-weight: 600; }
-.role-tag { font-family: var(--f-mono); font-size: .75rem; padding: 3px 8px; border-radius: 6px; background: #e3e2f1; white-space: nowrap; }
+.role-tag { font-family: var(--f-mono); font-size: .75rem; padding: 3px 8px; border-radius: 6px; background: #ebe1d3; white-space: nowrap; }
 .role-tag.uc { background: var(--stamp); color: #fff; }
 .role-tag.mw { background: var(--ink); color: var(--paper); }
 .out { text-decoration: line-through; opacity: .55; }
@@ -189,11 +182,11 @@ details.box[open] summary { margin-bottom: 12px; }
   padding-right: max(12px, env(safe-area-inset-right, 0px));
   transition: background .15s;
 }
-.stage.flash-ok { background: #1f9a5e; }
+.stage.flash-ok { background: #2f8f5f; }
 .stage.flash-ko { background: #c2571c; }
 .stage-top { display: flex; align-items: center; gap: 12px; }
-.timer { font-family: var(--f-display); font-weight: 900; font-size: 2rem; line-height: 1; font-variant-numeric: tabular-nums; min-width: 2.6ch; }
-.timer.hot { color: #ff7a80; }
+.timer { font-family: var(--f-display); font-weight: 900; font-size: 2rem; line-height: 1; font-variant-numeric: tabular-nums; min-width: 2.6ch; font-stretch: 80%; }
+.timer.hot { color: #e3807a; }
 .bar { flex: 1; height: 8px; background: var(--line); border-radius: 4px; overflow: hidden; }
 .bar i { display: block; height: 100%; background: var(--signal); }
 .stage-score { font-family: var(--f-mono); font-size: .85rem; white-space: nowrap; }
@@ -203,10 +196,10 @@ details.box[open] summary { margin-bottom: 12px; }
 .zone.ok { background: var(--good-soft); color: var(--good); align-items: flex-start; }
 .zone.ko { background: var(--warn-soft); color: var(--warn); align-items: flex-end; }
 .big-word { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; pointer-events: none; text-align: center; padding: 0 12px; gap: 10px; }
-.big-word b { font-family: var(--f-display); font-weight: 900; text-transform: uppercase; line-height: .95; font-size: min(15vw, 17vh); overflow-wrap: anywhere; text-wrap: balance; max-width: 100%; }
+.big-word b { font-family: var(--f-display); font-weight: 900; text-transform: uppercase; line-height: .95; font-size: min(15vw, 17vh); overflow-wrap: anywhere; text-wrap: balance; max-width: 100%; font-stretch: 80%; }
 .big-word span { font-family: var(--f-mono); font-size: .75rem; color: var(--muted); letter-spacing: .12em; text-transform: uppercase; }
 .countdown { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; text-align: center; }
-.countdown b { font-family: var(--f-display); font-weight: 900; font-size: min(45vw, 45vh); line-height: 1; color: var(--signal); }
+.countdown b { font-family: var(--f-display); font-weight: 900; font-size: min(45vw, 45vh); line-height: 1; color: var(--signal); font-stretch: 80%; }
 
 .how { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
 .how div { border-radius: 12px; padding: 12px; font-size: .9rem; }
@@ -214,7 +207,7 @@ details.box[open] summary { margin-bottom: 12px; }
 .how .h-ko { background: var(--warn-soft); color: var(--warn); }
 .how b { display: block; font-family: var(--f-mono); font-size: .75rem; letter-spacing: .12em; text-transform: uppercase; }
 
-.big-score { font-family: var(--f-display); font-weight: 900; font-size: 5rem; line-height: 1; color: var(--signal); }
+.big-score { font-family: var(--f-display); font-weight: 900; font-size: 5rem; line-height: 1; color: var(--signal); font-stretch: 80%; }
 .reslist { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
 .reslist li { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 10px 14px; border-radius: 10px; background: var(--panel); font-weight: 600; }
 .reslist li span:first-child { min-width: 0; overflow-wrap: anywhere; }
@@ -224,37 +217,22 @@ details.box[open] summary { margin-bottom: 12px; }
 .reslist li.ko .tag { color: var(--warn); }
 
 .face { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 10px; min-height: 0; padding: 0 8px; }
-.face b { font-family: var(--f-display); font-weight: 900; text-transform: uppercase; line-height: .95; font-size: min(16vw, 20vh); overflow-wrap: anywhere; text-wrap: balance; max-width: 100%; }
+.face b { font-family: var(--f-display); font-weight: 900; text-transform: uppercase; line-height: .95; font-size: min(16vw, 20vh); overflow-wrap: anywhere; text-wrap: balance; max-width: 100%; font-stretch: 80%; }
 .face span { font-family: var(--f-mono); font-size: .75rem; color: var(--muted); letter-spacing: .12em; text-transform: uppercase; }
 .stage > .bar { flex: none; }
 .play-actions { display: grid; grid-template-columns: 1fr 2fr; gap: 10px; }
 .act-ok { background: var(--good); color: var(--ink); font-weight: 700; font-size: 1.2rem; padding: 18px; border-radius: 14px; }
 .act-ko { background: var(--warn-soft); color: var(--warn); font-weight: 700; padding: 18px; border-radius: 14px; }
 
-.gm-on { color: var(--signal); }
-.gm-lg { color: #ffa6c9; }
 .quickjoin { display: flex; flex-direction: column; gap: 8px; }
 .qj-row { display: flex; gap: 8px; }
 .qj-row input { flex: 1; min-width: 0; }
 .qj-row .btn { width: auto; padding: 12px 18px; }
-.home-head { display: flex; flex-direction: column; gap: 6px; }
-.home-head h1 { font-size: clamp(3rem, 17vw, 4.4rem); letter-spacing: .02em; }
-.home-head .lead { font-family: var(--f-mono); font-size: .8rem; letter-spacing: .08em; text-transform: uppercase; }
-article.game-card { cursor: default; display: grid; grid-template-columns: minmax(0, 1fr) 80px; column-gap: 14px; row-gap: 4px; align-items: start; padding: 18px; }
-article.game-card:hover { border-color: var(--line); }
-article.game-card:active { transform: none; }
-article.game-card > :not(.gart) { grid-column: 1; }
-.gart { grid-column: 2; grid-row: 1 / span 3; }
-.gart svg { width: 80px; height: 80px; display: block; filter: drop-shadow(0 6px 10px rgba(0, 0, 0, .3)); }
-.game-card .gname { font-size: clamp(1.9rem, 9vw, 2.6rem); min-width: 0; overflow-wrap: anywhere; }
-.game-card .gdesc { font-size: .95rem; }
-article.game-card > .modes { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 12px; }
-article.game-card > .modes.single { grid-template-columns: 1fr; }
 .mode-btn { display: flex; align-items: center; justify-content: center; gap: 8px; min-height: 50px; background: var(--paper); color: var(--ink); border-radius: 12px; padding: 10px 14px; font-weight: 700; font-size: 1rem; box-shadow: 0 3px 0 rgba(0, 0, 0, .25); }
 .mode-btn svg { width: 20px; height: 20px; flex: none; }
 .mode-btn.on { background: var(--signal); }
 .mode-btn:active { transform: translateY(2px); box-shadow: 0 1px 0 rgba(0, 0, 0, .25); }
-.code-big { font-family: var(--f-display); font-weight: 900; font-size: 4.4rem; letter-spacing: .18em; line-height: 1; color: var(--signal); }
+.code-big { font-family: var(--f-display); font-weight: 900; font-size: 4.4rem; letter-spacing: .18em; line-height: 1; color: var(--signal); font-stretch: 80%; }
 .code-input { text-transform: uppercase; letter-spacing: .3em; font-family: var(--f-mono); font-size: 1.2rem; }
 .share { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
 .share code { font-family: var(--f-mono); font-size: .78rem; color: var(--muted); overflow-wrap: anywhere; min-width: 0; flex: 1 1 200px; }
@@ -266,7 +244,7 @@ article.game-card > .modes.single { grid-template-columns: 1fr; }
 .qs-row.found { opacity: .6; }
 .qs-row .who-n { font-weight: 700; min-width: 0; overflow-wrap: anywhere; }
 .qs-row .meta { font-family: var(--f-mono); font-size: .72rem; color: var(--muted); white-space: nowrap; }
-.qs-row .pick { grid-column: 1 / -1; font-family: var(--f-display); font-weight: 900; font-size: 1.9rem; text-transform: uppercase; line-height: 1; overflow-wrap: anywhere; }
+.qs-row .pick { grid-column: 1 / -1; font-family: var(--f-display); font-weight: 900; font-size: 1.9rem; text-transform: uppercase; line-height: 1; overflow-wrap: anywhere; font-stretch: 80%; }
 .qs-row .pick.hidden { color: var(--muted); }
 .voted { color: var(--good); }
 .val-box { background: var(--panel); border: 2px solid var(--signal); border-radius: 14px; padding: 14px; display: flex; flex-direction: column; gap: 10px; }
@@ -276,22 +254,20 @@ article.game-card > .modes.single { grid-template-columns: 1fr; }
 .val-count .ok { color: var(--good); }
 .val-count .ko { color: var(--warn); }
 .val-box button[aria-pressed="true"] { box-shadow: 0 0 0 3px var(--paper); }
-.gm-qd { color: #c9a2ff; }
-.gm-dr { color: #8fd0ff; }
 .qd-cards { display: grid; gap: 10px; }
 .qd-card { background: var(--panel); border: 2px solid var(--line); border-radius: 14px; padding: 14px; display: flex; flex-direction: column; gap: 10px; }
 .qd-card.mine { border-style: dashed; opacity: .8; }
 .qd-card p { margin: 0; font-size: 1.1rem; font-weight: 600; overflow-wrap: anywhere; }
-.qd-author { font-family: var(--f-display); font-size: 1.6rem; text-transform: uppercase; color: var(--signal); }
+.qd-author { font-family: var(--f-display); font-size: 1.6rem; text-transform: none; color: var(--signal); font-stretch: 80%; }
 .qd-guesses { display: flex; flex-wrap: wrap; gap: 6px; }
 .qd-guesses span { font-size: .82rem; padding: 3px 9px; border-radius: 999px; background: var(--bg); }
 .qd-guesses .ok { color: var(--good); }
 .qd-guesses .ko { color: var(--warn); }
 #o-qd { min-height: 90px; font-family: var(--f-body); font-size: 1rem; }
 .dr-word { background: var(--paper); color: var(--ink); border-radius: 14px; padding: 12px 14px; display: flex; flex-direction: column; align-items: center; gap: 6px; text-align: center; }
-.dr-word .eyebrow { color: #5a6199; }
-.dr-word b { font-family: var(--f-display); font-weight: 900; font-size: 2rem; text-transform: uppercase; line-height: 1; overflow-wrap: anywhere; }
-.dr-word small { color: #5a6199; max-width: 32ch; }
+.dr-word .eyebrow { color: #6e5a79; }
+.dr-word b { font-family: var(--f-display); font-weight: 900; font-size: 2rem; text-transform: uppercase; line-height: 1; overflow-wrap: anywhere; font-stretch: 80%; }
+.dr-word small { color: #6e5a79; max-width: 32ch; }
 .dr-word.imp b { color: var(--stamp); }
 .dr-wrap { border-radius: 16px; padding: 6px; background: var(--panel); }
 .dr-wrap.active { background: var(--pc); box-shadow: 0 0 0 3px var(--signal); }
@@ -301,7 +277,7 @@ article.game-card > .modes.single { grid-template-columns: 1fr; }
 .dr-p::before { content: ""; width: 10px; height: 10px; border-radius: 50%; background: var(--pc); }
 .dr-p.cur { border-color: var(--signal); }
 .dr-dot { width: 14px; height: 14px; border-radius: 50%; background: var(--pc); display: inline-block; }
-.char-avatar { display: flex; align-items: center; justify-content: center; font-family: var(--f-display); font-weight: 900; color: #fff; background: linear-gradient(135deg, hsl(var(--h) 55% 45%), hsl(calc(var(--h) + 40) 60% 30%)); }
+.char-avatar { display: flex; align-items: center; justify-content: center; font-family: var(--f-display); font-weight: 900; color: #fff; background: linear-gradient(135deg, hsl(var(--h) 55% 45%), hsl(calc(var(--h) + 40) 60% 30%)); font-stretch: 80%; }
 .char-img.char-avatar { font-size: 3.6rem; }
 .char-thumb.char-avatar { font-size: 1.1rem; }
 .cat-img.char-avatar { font-size: 2rem; }
@@ -324,8 +300,8 @@ article.game-card > .modes.single { grid-template-columns: 1fr; }
 #cat-text { min-height: 140px; }
 .char-fig { margin: 0; display: flex; flex-direction: column; align-items: center; gap: 4px; }
 .char-fig figcaption { font-size: .7rem; }
-.char-fig figcaption a { color: #5a6199; }
-.char-img { width: 150px; height: 150px; object-fit: cover; object-position: top; border-radius: 14px; background: #e3e2f1; box-shadow: 0 6px 16px rgba(20, 26, 77, .25); }
+.char-fig figcaption a { color: #6e5a79; }
+.char-img { width: 150px; height: 150px; object-fit: cover; object-position: top; border-radius: 14px; background: #ebe1d3; box-shadow: 0 6px 16px rgba(29, 19, 40, .25); }
 .char-thumb { width: 52px; height: 52px; object-fit: cover; object-position: top; border-radius: 9px; background: var(--line); flex: none; }
 .qs-row .pick { display: flex; align-items: center; gap: 10px; }
 .with-thumb { display: flex; align-items: center; gap: 8px; }
@@ -335,7 +311,7 @@ article.game-card > .modes.single { grid-template-columns: 1fr; }
 
 /* Loup-Garou : décors nuit / jour */
 body { transition: background-color .9s ease, color .9s ease; }
-body[data-scene="night"] { --bg: #0b1030; --panel: #161d4c; --line: #2a3474; --muted: #a3acdf; }
+body[data-scene="night"] { --bg: #120c1b; --panel: #1f1530; --line: #33264a; --muted: #ad9db3; }
 body[data-scene="day"] { --bg: #f2e6c9; --panel: #e5d4ab; --line: #cdb98a; --text: #2b2116; --muted: #6e5b3f; --good: #1f8a54; --warn: #b85a12; --good-soft: rgba(31, 138, 84, .14); --warn-soft: rgba(184, 90, 18, .14); }
 body[data-scene="day"] .btn-small { color: var(--text); }
 .lg { display: flex; flex-direction: column; gap: 18px; }
@@ -355,7 +331,7 @@ body[data-scene="day"] .btn-small { color: var(--text); }
 }
 .lg-card::before { content: ""; position: absolute; inset: 8px; border: 1.5px solid rgba(255, 255, 255, .22); border-radius: 12px; pointer-events: none; }
 .lg-art svg { width: 140px; height: 140px; display: block; filter: drop-shadow(0 8px 12px rgba(0, 0, 0, .35)); }
-.lg-name { font-family: var(--f-display); font-weight: 900; font-size: 2.3rem; text-transform: uppercase; line-height: 1; letter-spacing: .01em; }
+.lg-name { font-family: var(--f-display); font-weight: 900; font-size: 2.3rem; text-transform: uppercase; line-height: 1; letter-spacing: .01em; font-stretch: 80%; }
 .lg-team { font-family: var(--f-mono); font-size: .68rem; letter-spacing: .14em; text-transform: uppercase; padding: 4px 10px; border-radius: 999px; background: rgba(0, 0, 0, .3); }
 .lg-desc { font-size: .95rem; opacity: .92; max-width: 32ch; margin: 0; }
 .lg-card.sm { padding: 14px 12px; gap: 6px; }
@@ -377,8 +353,8 @@ body[data-scene="day"] .btn-small { color: var(--text); }
 .flip-back { transform: rotateY(180deg); }
 .flip-back .lg-card { height: 100%; box-sizing: border-box; justify-content: center; }
 .flip-front {
-  border-radius: 18px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; color: #dfe3ff;
-  background: repeating-linear-gradient(45deg, #1b2260 0 14px, #18205a 14px 28px); border: 3px solid #2d3780; box-shadow: 0 12px 30px rgba(0, 0, 0, .35);
+  border-radius: 18px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; color: #eadff0;
+  background: repeating-linear-gradient(45deg, #2a1c38 0 14px, #24182f 14px 28px); border: 3px solid #3d2b4d; box-shadow: 0 12px 30px rgba(0, 0, 0, .35);
 }
 .flip-front svg { width: 150px; height: 150px; }
 .flip-front b { font-family: var(--f-mono); font-size: .8rem; letter-spacing: .12em; text-transform: uppercase; }
@@ -397,7 +373,7 @@ body[data-scene="day"] .btn-small { color: var(--text); }
 .lg-deaths { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; }
 .lg-death { display: flex; flex-direction: column; gap: 6px; text-align: center; }
 .lg-death p { margin: 0; font-size: .9rem; }
-.lg-timer { font-family: var(--f-display); font-weight: 900; font-size: 3.4rem; text-align: center; font-variant-numeric: tabular-nums; line-height: 1; }
+.lg-timer { font-family: var(--f-display); font-weight: 900; font-size: 3.4rem; text-align: center; font-variant-numeric: tabular-nums; line-height: 1; font-stretch: 80%; }
 .lg-timer.hot { color: var(--stamp); }
 .lg-tally { display: grid; gap: 6px; }
 .lg-trow { display: grid; grid-template-columns: minmax(0, 1fr) 2fr auto; gap: 10px; align-items: center; font-weight: 600; }
@@ -430,19 +406,319 @@ body[data-scene="day"] .btn-small { color: var(--text); }
 @media (prefers-reduced-motion: reduce) { .flip-in { transition: none; } .lg-star { animation: none; } body { transition: none; } }
 
 @keyframes enter { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
-#app.enter > * { animation: enter .26s cubic-bezier(.2, .8, .2, 1) both; }
-#app.enter > *:nth-child(2) { animation-delay: .03s; }
-#app.enter > *:nth-child(3) { animation-delay: .06s; }
-#app.enter > *:nth-child(4) { animation-delay: .09s; }
-#app.enter > *:nth-child(n+5) { animation-delay: .12s; }
+#app.enter > :not(.topbar):not(.sheet):not(.sheet-back) { animation: enter .3s cubic-bezier(.2, .8, .3, 1) both; }
 .btn-small, .btn-ghost, .mode-btn, .vote button, .lg-roleopt, .cat-pair { transition: transform .08s, background .15s, border-color .15s; }
 .btn-small:active, .btn-ghost:active, .vote button:active, .lg-roleopt:active, .chip:active { transform: scale(.97); }
 @media (prefers-reduced-motion: reduce) { #app.enter > * { animation: none; } .chip, .switch, .btn-small, .btn-ghost, .mode-btn, .vote button, .lg-roleopt { transition: none; } }
 
 @media (prefers-reduced-motion: reduce) {
   .stamp { animation: none; }
-  .btn, .switch::after, .stage, .game-card { transition: none; }
+  .btn, .switch::after, .stage { transition: none; }
 }
+
+/* La Bombe */
+.bomb-theme { font-family: var(--f-display); font-weight: 900; font-size: clamp(2rem, 9vw, 3rem); line-height: 1.05; text-transform: none; overflow-wrap: anywhere; font-stretch: 80%; }
+.bomb-theme.small { font-size: clamp(1.4rem, 6vw, 2rem); text-align: center; margin: 0; }
+.bomb-letter { display: block; font-size: .55em; color: var(--signal); }
+.bomb-stage { display: grid; place-items: center; padding: 6px 0; }
+.bomb-art { width: min(52vw, 220px); }
+.bomb-art svg { width: 100%; height: auto; display: block; }
+.bomb-art.lit { animation: bomb-pulse .65s ease-in-out infinite; }
+.bomb-art.lit[data-speed="2"] { animation-duration: .38s; }
+.bomb-art.lit[data-speed="3"] { animation-duration: .19s; }
+.bomb-art.lit .spark { animation: bomb-spark .2s steps(2) infinite; transform-origin: 98px 10px; }
+@keyframes bomb-pulse { 50% { transform: scale(1.07) rotate(-3deg); } }
+@keyframes bomb-spark { 50% { transform: scale(.7); opacity: .6; } }
+.bomb-play { display: flex; flex-direction: column; gap: 10px; text-align: center; }
+.bomb-play .eyebrow { margin: 0; }
+.bomb-holder { font-family: var(--f-display); font-weight: 900; font-size: clamp(2.6rem, 13vw, 4rem); line-height: 1; margin: 0; color: var(--signal); overflow-wrap: anywhere; font-stretch: 80%; }
+.bomb-pass { min-height: 26vh; font-size: 1.5rem; }
+.bomb-boom { text-align: center; display: flex; flex-direction: column; gap: 10px; }
+.boom-word { font-family: var(--f-display); font-weight: 900; font-size: clamp(4rem, 24vw, 7rem); line-height: .9; margin: 0; color: #ee8b4c; animation: boom-in .5s cubic-bezier(.2, 1.6, .4, 1); font-stretch: 80%; }
+.bomb-loser { font-size: clamp(2.4rem, 12vw, 3.6rem); margin: 0; overflow-wrap: anywhere; }
+@keyframes boom-in { from { transform: scale(2.4); opacity: 0; } }
+/* Tu préfères */
+.tp-choices { display: grid; gap: 10px; }
+.tp-opt { display: flex; gap: 12px; align-items: center; text-align: left; width: 100%; min-height: 96px; padding: 18px; border-radius: 16px; border: 3px solid transparent; font: inherit; font-weight: 700; font-size: 1.2rem; line-height: 1.25; color: var(--ink); cursor: pointer; }
+div.tp-opt { cursor: default; }
+.tp-opt.a { background: color-mix(in srgb, #e3807a 82%, var(--paper)); }
+.tp-opt.b { background: color-mix(in srgb, #7eb3dd 82%, var(--paper)); }
+.tp-opt[aria-pressed="true"] { border-color: var(--signal); box-shadow: 0 0 0 3px var(--signal); }
+.tp-opt[aria-pressed="false"] { opacity: .85; }
+.tp-tag { flex: none; width: 2rem; height: 2rem; border-radius: 50%; display: grid; place-items: center; background: rgba(29, 19, 40, .15); font-family: var(--f-display); font-weight: 900; font-stretch: 80%; }
+.tp-or { text-align: center; font-family: var(--f-display); font-weight: 900; font-size: 1.4rem; text-transform: none; color: var(--muted); font-stretch: 80%; }
+.tp-results { display: grid; gap: 12px; }
+.tp-res { background: var(--panel); border-radius: 14px; padding: 14px; display: grid; gap: 8px; border-left: 5px solid #e3807a; border: 1px solid var(--line); border-left-width: 5px; border-left-color: #e3807a; }
+.tp-res.b { border-left-color: #7eb3dd; }
+.tp-res-head { display: flex; gap: 12px; align-items: baseline; }
+.tp-res-head b { font-family: var(--f-display); font-size: 1.8rem; font-weight: 900; color: var(--signal); white-space: nowrap; min-width: 3.4ch; font-stretch: 80%; }
+.tp-names { margin: 0; color: var(--muted); }
+@media (prefers-reduced-motion: reduce) { .bomb-art.lit, .bomb-art.lit .spark, .boom-word { animation: none; } }
+
+/* =========================================================
+   Direction « Nuit de jeux » : velours prune, cartes ivoire,
+   lumière ambrée. Une seule lumière pour tout le site ; chaque
+   jeu garde une teinte douce, réservée à son illustration.
+   ========================================================= */
+body { position: relative; }
+body:not([data-scene])::before {
+  content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+  background:
+    radial-gradient(90vmax 60vmax at 50% -22%, rgba(243, 181, 74, .16), transparent 62%),
+    radial-gradient(60vmax 50vmax at 100% 110%, rgba(167, 154, 227, .08), transparent 60%),
+    radial-gradient(140% 100% at 50% 50%, transparent 55%, rgba(8, 4, 12, .55));
+}
+body:not([data-scene])::after {
+  content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none; opacity: 0; transition: opacity 1.2s;
+  background: radial-gradient(70vmax 55vmax at 50% 20%, rgba(243, 181, 74, .22), transparent 65%);
+}
+body.celebrate:not([data-scene])::after { opacity: 1; transition-duration: .3s; }
+#app[data-view="home"], #app[data-view="stats"] { max-width: 1120px; }
+#app[data-view="catalog"] { max-width: 860px; }
+
+/* Logo : le point du i est un jeton ambré */
+.logo { font-family: var(--f-display); font-weight: 800; font-stretch: 86%; letter-spacing: -.012em; line-height: .82; color: var(--text); text-transform: none; margin: 0; }
+.logo .ii { position: relative; display: inline-block; }
+.logo .ii i { position: absolute; left: 56%; top: -.01em; width: .17em; height: .17em; border-radius: .045em; background: var(--signal); transform: translateX(-50%) rotate(14deg); box-shadow: 0 .03em 0 #b47c22; }
+.logo.intro .ii i { animation: dot-drop .9s .35s cubic-bezier(.3, 1.6, .5, 1) both; }
+@keyframes dot-drop { 0% { transform: translate(-50%, -1.4em) rotate(-120deg); opacity: 0; } 60% { opacity: 1; } }
+
+/* Barre du haut */
+.topbar { display: flex; justify-content: space-between; align-items: center; gap: 10px; min-height: 44px; margin-bottom: -4px; }
+.tb-home { background: none; color: var(--text); display: flex; align-items: center; gap: 10px; padding: 6px 8px 6px 0; min-height: 44px; min-width: 0; }
+.tb-home::before { content: ""; width: 9px; height: 9px; border-left: 2.5px solid currentColor; border-bottom: 2.5px solid currentColor; transform: rotate(45deg); margin: 0 2px 0 4px; opacity: .6; flex: none; }
+.tb-home .logo { font-size: 1.75rem; white-space: nowrap; flex: none; }
+.crumb { display: inline-flex; align-items: center; gap: 7px; font-weight: 700; font-size: .92rem; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
+.crumb::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--gc); flex: none; }
+.tb-right { display: flex; gap: 8px; flex: none; }
+.tb-btn { width: 44px; height: 44px; border-radius: 50%; background: rgba(245, 238, 227, .06); color: var(--text); border: 1px solid rgba(245, 238, 227, .1); display: grid; place-items: center; transition: transform .12s, background .15s, color .15s; }
+.tb-btn svg { width: 21px; height: 21px; }
+.tb-btn[aria-pressed="false"] { color: var(--muted); }
+.tb-btn[aria-current="page"] { background: var(--signal); color: var(--ink); border-color: var(--signal); }
+.tb-btn:active { transform: scale(.9); }
+body[data-scene="day"] .tb-btn { background: rgba(43, 33, 22, .07); border-color: rgba(43, 33, 22, .15); }
+
+/* Accueil : le jeu de cartes */
+.home-top { display: grid; gap: 22px; }
+.hero { display: grid; gap: 14px; min-width: 0; }
+.hero .logo { font-size: clamp(5rem, 27vw, 9.5rem); }
+.hero-list { color: var(--muted); font-size: 1rem; line-height: 1.5; max-width: 34ch; }
+.hand { position: relative; height: 128px; margin: -8px auto 0; width: min(100%, 360px); }
+.hand-card { position: absolute; left: 50%; bottom: 0; width: 74px; height: 104px; margin-left: -37px; border-radius: 12px; background: var(--paper); padding: 0;
+  transform-origin: 50% 240%; transform: rotate(var(--r)) translateY(var(--y, 0));
+  box-shadow: 0 10px 22px -8px rgba(0, 0, 0, .6), inset 0 0 0 1px rgba(29, 19, 40, .08);
+  display: grid; place-items: start; padding: 9px 0 0 7px; transition: transform .35s cubic-bezier(.2, 1.4, .4, 1); }
+.hand-card::before { content: ""; position: absolute; inset: 5px; border-radius: 8px; background: linear-gradient(160deg, color-mix(in srgb, var(--gc) 45%, var(--paper)), color-mix(in srgb, var(--gc) 18%, var(--paper))); }
+.hand-card svg { position: relative; width: 34px; height: 34px; filter: drop-shadow(0 2px 2px rgba(29, 19, 40, .25)); }
+.hand.intro .hand-card { animation: deal .8s cubic-bezier(.2, 1.1, .3, 1) both; animation-delay: calc(var(--k) * 55ms + .15s); }
+@keyframes deal { from { transform: rotate(0deg) translateY(30px); opacity: 0; } }
+@media (hover: hover) { .hand-card:hover { --y: -14px; } }
+.hand-card:focus-visible { --y: -14px; }
+
+.crew { display: grid; gap: 12px; background: var(--panel); border: 1px solid var(--line); border-radius: 22px; padding: 14px; box-shadow: inset 0 1px 0 rgba(255, 255, 255, .04); }
+.crew-count { display: flex; align-items: center; gap: 8px 14px; flex-wrap: wrap; }
+.crew-count .label { font-family: var(--f-display); font-stretch: 80%; font-weight: 800; font-size: 1.55rem; line-height: 1; letter-spacing: -.01em; flex: 1 1 auto; }
+.crew-count .stepper button { background: rgba(245, 238, 227, .07); border: 1px solid var(--line); }
+.crew-fit { color: var(--muted); font-size: .88rem; flex-basis: 100%; }
+.seg { display: flex; gap: 4px; padding: 4px; border-radius: 14px; background: rgba(8, 4, 12, .35); }
+.seg button { flex: 1 1 0; min-width: 0; background: none; color: var(--muted); border-radius: 10px; padding: 8px 6px; min-height: 44px; font-weight: 700; font-size: .88rem; line-height: 1.15; transition: background .2s, color .2s; }
+.seg button[aria-pressed="true"] { background: var(--paper); color: var(--ink); box-shadow: 0 2px 6px rgba(0, 0, 0, .3); }
+@media (min-width: 700px) {
+  .hand { height: 170px; width: 440px; margin-top: 0; }
+  .hand-card { width: 92px; height: 128px; margin-left: -46px; padding: 11px 0 0 9px; }
+  .hand-card svg { width: 42px; height: 42px; }
+}
+@media (min-width: 1040px) {
+  .home-top { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: center; column-gap: 32px; }
+  .home-top .crew { grid-column: 1 / -1; grid-template-columns: auto 1fr; align-items: center; column-gap: 28px; }
+  .crew-count { flex-wrap: nowrap; }
+  .crew-fit { flex-basis: auto; white-space: nowrap; }
+  .hand { margin: 0 0 0 auto; }
+}
+
+.replay { display: flex; align-items: center; gap: 14px; text-align: left; width: 100%; background: var(--panel); border: 1px solid var(--line); color: var(--text); border-radius: 18px; padding: 10px 16px 10px 10px; transition: transform .12s, border-color .2s; }
+.replay:active { transform: scale(.98); }
+.replay-art { width: 52px; height: 52px; flex: none; border-radius: 14px; display: grid; place-items: center; background: color-mix(in srgb, var(--gc) 26%, var(--panel)); }
+.replay-art svg { width: 40px; height: 40px; display: block; }
+.replay b { display: block; font-size: 1.05rem; }
+.replay small { color: var(--muted); font-size: .85rem; }
+
+.games { display: grid; gap: 14px; grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 700px) { .games { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1040px) { .games { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; } }
+.gbox {
+  position: relative; min-width: 0;
+  background: linear-gradient(180deg, rgba(245, 238, 227, .035), transparent 40%), var(--panel);
+  border: 1px solid var(--line); border-radius: 24px; padding: 14px;
+  display: grid; grid-template-columns: 96px minmax(0, 1fr); grid-template-areas: "plate name" "plate desc" "meta meta" "modes modes"; column-gap: 14px; row-gap: 6px; align-content: start;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .05), 0 24px 40px -30px rgba(0, 0, 0, .9);
+  transition: transform .25s cubic-bezier(.2, 1.2, .4, 1), border-color .25s, opacity .2s;
+}
+.gbox-plate { grid-area: plate; align-self: start; height: 96px; border-radius: 16px; display: grid; place-items: center; overflow: hidden; position: relative;
+  background: radial-gradient(90% 90% at 30% 20%, color-mix(in srgb, var(--gc) 55%, var(--panel)), color-mix(in srgb, var(--gc) 22%, var(--panel))); }
+.gbox-plate::after { content: ""; position: absolute; inset: 0; border-radius: inherit; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .08), inset 0 -18px 30px -18px rgba(0, 0, 0, .4); }
+.gbox-art { width: 72px; height: 72px; transition: transform .35s cubic-bezier(.2, 1.5, .4, 1); filter: drop-shadow(0 6px 8px rgba(0, 0, 0, .3)); }
+.gbox-art svg { width: 100%; height: 100%; display: block; }
+.gbox-name { grid-area: name; font-size: clamp(1.7rem, 7.4vw, 2.2rem); line-height: .95; padding-right: 40px; align-self: end; overflow-wrap: normal; word-break: normal; }
+.gbox-desc { grid-area: desc; color: var(--muted); font-size: .92rem; line-height: 1.4; }
+.gbox-meta { grid-area: meta; display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+.gbox-meta span { border: 1px solid var(--line); border-radius: 999px; padding: 3px 10px; font-size: .78rem; font-weight: 700; color: var(--muted); }
+.gbox-meta .why { background: rgba(245, 238, 227, .08); color: var(--text); border-color: transparent; }
+.gbox .modes { grid-area: modes; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 6px; }
+.gbox .modes.single { grid-template-columns: 1fr; }
+.mode-btn { display: flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; border-radius: 14px; padding: 10px 14px; font-weight: 700; font-size: .98rem;
+  background: var(--paper); color: var(--ink); box-shadow: inset 0 -3px 0 rgba(29, 19, 40, .14); transition: transform .1s, filter .15s; }
+.mode-btn.on { background: var(--signal); box-shadow: inset 0 -3px 0 rgba(120, 72, 8, .35); }
+.mode-btn svg { width: 19px; height: 19px; flex: none; }
+.mode-btn:active { transform: translateY(1px) scale(.98); }
+.fav { position: absolute; top: 12px; right: 12px; z-index: 2; width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; background: transparent; color: rgba(245, 238, 227, .3); transition: transform .25s cubic-bezier(.2, 1.6, .4, 1), color .15s; }
+.fav svg { width: 22px; height: 22px; }
+.fav[aria-pressed="true"] { color: var(--signal); transform: rotate(-14deg) scale(1.08); }
+.gbox.off { opacity: .45; }
+.gbox.off .gbox-plate { filter: grayscale(.8); }
+@media (min-width: 700px) {
+  .gbox { grid-template-columns: minmax(0, 1fr); grid-template-areas: "plate" "name" "desc" "meta" "modes"; padding: 12px 12px 14px; row-gap: 8px; }
+  .gbox-plate { height: 150px; margin-bottom: 6px; }
+  .gbox-art { width: 108px; height: 108px; }
+  .gbox-name, .gbox-desc, .gbox-meta { padding-left: 6px; padding-right: 6px; }
+  .gbox-name { font-size: 2.1rem; }
+  .gbox .modes { margin-top: auto; padding-top: 6px; }
+  .gbox { grid-template-rows: auto auto 1fr auto auto; }
+  .fav { top: 18px; right: 18px; background: rgba(8, 4, 12, .35); color: rgba(245, 238, 227, .55); }
+}
+@media (hover: hover) {
+  .gbox:hover { transform: translateY(-4px); border-color: color-mix(in srgb, var(--gc) 45%, var(--line)); }
+  .gbox:hover .gbox-art { transform: rotate(-6deg) scale(1.1); }
+  .btn:hover:not(:disabled) { filter: brightness(1.05); }
+  .mode-btn:hover { filter: brightness(1.05); }
+  .btn-ghost:hover, .chip:hover, .tool:hover, .replay:hover { border-color: rgba(245, 238, 227, .4); }
+  .tb-btn:not([aria-current]):hover { background: rgba(245, 238, 227, .12); }
+  .fav:hover { color: var(--signal); }
+}
+.home-tools { display: grid; gap: 12px; }
+@media (min-width: 700px) { .home-tools { grid-template-columns: 1fr 1fr; align-items: stretch; } .tool-row { grid-column: 1 / -1; } }
+.tool { display: flex; gap: 14px; align-items: center; text-align: left; background: var(--panel); color: var(--text); border: 1px solid var(--line); border-radius: 20px; padding: 16px; transition: transform .12s, border-color .2s; }
+.tool:active { transform: scale(.98); }
+.tool-ico { width: 48px; height: 48px; border-radius: 14px; background: var(--signal); color: var(--ink); display: grid; place-items: center; flex: none; }
+.tool-ico svg { width: 28px; height: 28px; }
+.tool b { display: block; font-size: 1.08rem; }
+.tool small { color: var(--muted); font-size: .85rem; }
+.home-tools .quickjoin { background: var(--panel); border: 1px solid var(--line); border-radius: 20px; padding: 14px; }
+.tool-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+.h3 { font-size: 1.6rem; }
+#app[data-view="stats"] .seg { max-width: 420px; }
+
+/* Stats */
+.rank { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.rank li { display: grid; grid-template-columns: 1.8rem minmax(0, 1fr) minmax(56px, 26%) auto; gap: 10px; align-items: center; background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 10px 12px; }
+.rank .rk { font-family: var(--f-display); font-stretch: 80%; font-weight: 800; font-size: 1.4rem; color: var(--muted); }
+.rank li.top { border-color: var(--signal); }
+.rank li.top .rk { color: var(--signal); }
+.rn { font-weight: 700; min-width: 0; overflow-wrap: anywhere; }
+.rbar { height: 6px; border-radius: 3px; background: rgba(245, 238, 227, .08); overflow: hidden; }
+.rbar i { display: block; height: 100%; border-radius: 3px; background: var(--gc, var(--signal)); }
+.rank .rbar i { background: var(--signal); }
+.rank b, .gstat b { font-size: .85rem; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.gstats { display: grid; gap: 10px; }
+.gstat { display: grid; grid-template-columns: minmax(0, 9.5rem) minmax(0, 1fr) 2.2rem; gap: 10px; align-items: center; font-weight: 600; }
+.gstat b { text-align: right; }
+.records { display: grid; gap: 8px; }
+@media (min-width: 700px) { .records { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.rec { background: var(--panel); border: 1px solid var(--line); border-radius: 16px; padding: 12px 14px; display: grid; gap: 4px; }
+.rec span { color: var(--muted); font-size: .85rem; }
+.rec b { font-size: 1.05rem; overflow-wrap: anywhere; }
+.achs { display: grid; gap: 8px; }
+@media (min-width: 520px) { .achs { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1040px) { .achs { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+.ach { display: flex; gap: 12px; align-items: center; background: transparent; border: 1px dashed var(--line); border-radius: 16px; padding: 10px 12px; color: var(--muted); }
+.ach.on { background: var(--panel); border: 1px solid color-mix(in srgb, var(--signal) 55%, var(--line)); color: var(--text); }
+.ach-ico { width: 38px; height: 38px; border-radius: 12px; flex: none; display: grid; place-items: center; background: rgba(245, 238, 227, .06); color: var(--muted); font-weight: 800; transform: rotate(-6deg); }
+.ach.on .ach-ico { background: var(--signal); color: var(--ink); }
+.ach-ico svg { width: 20px; height: 20px; }
+.ach b { display: block; font-size: .95rem; }
+.ach small { display: block; color: var(--muted); font-size: .8rem; line-height: 1.3; }
+.hist { display: grid; }
+.hrow { display: flex; gap: 10px; align-items: flex-start; padding: 9px 0; border-bottom: 1px solid var(--line); }
+.hdot { width: 9px; height: 9px; border-radius: 50%; background: var(--gc); margin-top: 7px; flex: none; }
+.hrow small { display: block; color: var(--muted); }
+
+/* Notifications, confettis */
+#toasts { position: fixed; left: 50%; bottom: calc(16px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); z-index: 100; display: grid; gap: 8px; width: min(92vw, 380px); pointer-events: none; }
+.toast { background: var(--paper); color: var(--ink); border-radius: 16px; padding: 12px 16px 12px 14px; display: grid; grid-template-columns: 34px 1fr; column-gap: 12px; align-items: center; box-shadow: 0 16px 36px rgba(0, 0, 0, .45); animation: toast-in .45s cubic-bezier(.2, 1.4, .4, 1); transition: opacity .4s, transform .4s; }
+.toast::before { content: ""; grid-row: 1 / span 2; width: 34px; height: 34px; border-radius: 10px; background: var(--signal) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z' fill='%231d1328'/%3E%3C/svg%3E") center / 20px no-repeat; transform: rotate(-8deg); }
+.toast b { font-size: .78rem; color: #6e5a79; }
+.toast span { font-weight: 800; font-size: 1.08rem; }
+.toast.out { opacity: 0; transform: translateY(10px); }
+@keyframes toast-in { from { opacity: 0; transform: translateY(18px) scale(.96); } }
+.confetti { position: fixed; inset: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 90; }
+
+/* Roue */
+.sheet-back { position: fixed; inset: 0; z-index: 60; background: rgba(8, 4, 12, .66); backdrop-filter: blur(4px); animation: fade-in .2s; }
+.sheet { position: fixed; z-index: 61; left: 0; right: 0; bottom: 0; margin: 0 auto; width: min(100%, 520px); max-height: 94vh; overflow: auto; box-sizing: border-box;
+  background: linear-gradient(180deg, #2a1d35, var(--bg) 40%); border-radius: 28px 28px 0 0; border: 1px solid var(--line); border-bottom: 0; padding: 22px 16px calc(20px + env(safe-area-inset-bottom, 0px));
+  display: flex; flex-direction: column; gap: 14px; box-shadow: 0 -16px 50px rgba(0, 0, 0, .55); animation: sheet-up .34s cubic-bezier(.2, 1, .4, 1); }
+.sheet::before { content: ""; width: 40px; height: 4px; border-radius: 2px; background: rgba(245, 238, 227, .2); align-self: center; margin-top: -10px; }
+@media (min-width: 700px) { .sheet { bottom: auto; top: 6vh; border-radius: 28px; border-bottom: 1px solid var(--line); } .sheet::before { display: none; } }
+@keyframes sheet-up { from { transform: translateY(40px); opacity: 0; } }
+@keyframes fade-in { from { opacity: 0; } }
+.wheel-wrap { position: relative; width: min(76vw, 320px); aspect-ratio: 1; margin: 8px auto 0; }
+.wheel { position: absolute; inset: 0; border-radius: 50%; border: 8px solid var(--paper); box-shadow: 0 0 0 1px rgba(0, 0, 0, .3), 0 18px 40px rgba(0, 0, 0, .5), inset 0 0 30px rgba(0, 0, 0, .25); }
+.wheel::after { content: ""; position: absolute; inset: 38%; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #fff, var(--paper) 60%); box-shadow: 0 4px 10px rgba(0, 0, 0, .35); }
+.wheel-lab { position: absolute; left: 50%; top: 0; width: 0; height: 50%; transform-origin: 50% 100%; }
+.wheel-lab b { position: absolute; top: 9%; left: 0; transform: translateX(-50%); writing-mode: vertical-rl; font-family: var(--f-display); font-stretch: 80%; font-weight: 800; text-transform: uppercase; font-size: .86rem; letter-spacing: .02em; color: var(--ink); white-space: nowrap; }
+.wheel-pin { position: absolute; z-index: 2; top: -14px; left: 50%; transform: translateX(-50%); border-left: 13px solid transparent; border-right: 13px solid transparent; border-top: 24px solid var(--signal); filter: drop-shadow(0 3px 3px rgba(0, 0, 0, .45)); }
+.wheel-res { font-family: var(--f-display); font-stretch: 80%; font-weight: 800; text-align: center; font-size: clamp(2.4rem, 12vw, 3.2rem); line-height: 1; color: var(--text); animation: pop-in .45s cubic-bezier(.2, 1.6, .4, 1); }
+.wheel-res::after { content: ""; display: block; width: 46px; height: 5px; border-radius: 3px; background: var(--gc); margin: 10px auto 0; }
+.sheet .modes { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 8px; }
+.sheet .modes.single { grid-template-columns: 1fr; }
+@keyframes pop-in { from { transform: scale(.6); opacity: 0; } }
+
+/* Gage de La Bombe */
+.gage { background: var(--paper); color: var(--ink); border-radius: 20px; padding: 16px; display: grid; gap: 8px; text-align: center; box-shadow: 0 18px 36px -18px rgba(0, 0, 0, .7); animation: pop-in .45s .25s cubic-bezier(.2, 1.6, .4, 1) both; transform: rotate(-1.2deg); }
+.gage .label { color: #6e5a79; }
+.gage p { font-weight: 800; font-size: 1.25rem; line-height: 1.3; }
+.gage .btn-small { background: var(--ink); color: var(--paper); justify-self: center; }
+
+@media (prefers-reduced-motion: reduce) {
+  .logo.intro .ii i, .hand.intro .hand-card, .toast, .sheet, .sheet-back, .wheel-res, .gage, #app.enter > * { animation: none; }
+  .gbox, .gbox-art, .fav, .hand-card { transition: none; }
+}
+
+.tp-cd { font-family: var(--f-display); font-weight: 900; text-transform: none; text-align: center; font-size: clamp(3.4rem, 18vw, 5rem); line-height: 1; color: var(--signal); animation: pop-in .35s cubic-bezier(.2, 1.6, .4, 1); min-height: 56px; font-stretch: 80%; }
+.gbox.ping { animation: ping .9s cubic-bezier(.2, .8, .3, 1); }
+@keyframes ping { 30% { box-shadow: 0 0 0 4px color-mix(in srgb, var(--gc) 70%, transparent); } }
+
+/* Sept Têtes */
+.sept-q-unused { font-family: var(--f-display); font-weight: 800; font-size: clamp(1.5rem, 6.4vw, 2.1rem); line-height: 1.12; text-transform: none; overflow-wrap: anywhere; margin: 0; }
+.sept-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+.sept-card { position: relative; flex: 0 0 calc(25% - 6px); min-width: 0; display: flex; flex-direction: column; gap: 5px; padding: 5px 5px 7px; border-radius: 12px; background: var(--paper); color: var(--ink); text-align: center; font: inherit; box-shadow: 0 8px 18px -10px rgba(0, 0, 0, .7); border: 0; transition: transform .2s, box-shadow .2s, opacity .2s; }
+@media (max-width: 339px) { .sept-card { flex-basis: calc(33.333% - 6px); } }
+@media (min-width: 700px) { .sept-card { flex-basis: calc(25% - 6px); } }
+button.sept-card { cursor: pointer; }
+.sept-card[aria-pressed="true"] { transform: translateY(-4px) rotate(-1.5deg); box-shadow: 0 0 0 3px var(--signal), 0 14px 24px -10px rgba(0, 0, 0, .8); }
+.sept-img { display: block; width: 100%; aspect-ratio: 1; object-fit: cover; object-position: top; border-radius: 8px; box-shadow: none; }
+img.sept-img { background: #ebe1d3; }
+.sept-img.char-avatar { font-size: 1.6rem; }
+.sept-name { font-weight: 700; font-size: .74rem; line-height: 1.15; overflow-wrap: anywhere; min-height: 2.3em; display: flex; align-items: center; justify-content: center; }
+.sept-card.top { box-shadow: 0 0 0 3px var(--signal), 0 14px 24px -10px rgba(0, 0, 0, .8); }
+.sept-card.none { opacity: .55; }
+.sept-n { position: absolute; top: -6px; right: -6px; min-width: 26px; height: 26px; padding: 0 6px; border-radius: 13px; background: var(--ink); color: var(--paper); border: 2px solid var(--paper); font-family: var(--f-mono); font-size: .8rem; display: grid; place-items: center; }
+.sept-card.top .sept-n { background: var(--signal); color: var(--ink); }
+.sept-card.found { opacity: .6; }
+.sept-card.found .sept-n { background: var(--good); color: var(--ink); }
+.sept-card.miss { opacity: .4; filter: grayscale(1); }
+.sept-count { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 10px; padding: 12px; border-radius: 16px; background: var(--panel); border: 1px solid var(--line); }
+.sept-count p { margin: 0; text-align: center; font-weight: 600; }
+.sept-count p b { font-family: var(--f-display); font-stretch: 80%; font-size: 2.4rem; line-height: 1; color: var(--signal); margin-right: 4px; }
+.sept-count p small { color: var(--muted); }
+.sept-count.low p b { color: var(--warn); }
+.sept-count.over p b { color: var(--stamp); }
+.sept-count .btn-small { min-height: 48px; min-width: 56px; }
+.sept-pass { text-align: center; display: flex; flex-direction: column; gap: 10px; margin-top: 8px; }
+.sept-pass .eyebrow { margin: 0; }
+.sept-who { font-family: var(--f-display); font-weight: 900; font-size: clamp(2.4rem, 12vw, 3.6rem); line-height: 1; margin: 0; color: var(--signal); overflow-wrap: anywhere; font-stretch: 80%; }
+@media (prefers-reduced-motion: reduce) { .sept-card { transition: none; } }
 </style>
 </head>
 <body>
@@ -453,19 +729,18 @@ body[data-scene="day"] .btn-small { color: var(--text); }
    Données
    ========================================================= */
 const BASE_THEMES = [
-  { id: "jv", name: "Jeux vidéo", pairs: [["Call of Duty","Battlefield"],["Warzone","PUBG"],["Fortnite","Apex Legends"],["Valorant","Counter-Strike"],["Overwatch","Team Fortress 2"],["EA Sports FC","eFootball"],["Minecraft","Roblox"],["GTA","Saints Row"],["League of Legends","Dota 2"],["Mario Kart","Crash Team Racing"],["Elden Ring","Dark Souls"],["The Last of Us","Resident Evil"],["Assassin's Creed","Ghost of Tsushima"],["Pokémon","Digimon"],["Clash Royale","Clash of Clans"],["Among Us","Fall Guys"],["Street Fighter","Tekken"],["Les Sims","Animal Crossing"],["Super Smash Bros.","Brawlhalla"],["Sub-Zero","Scorpion"],["Lara Croft","Nathan Drake"],["Kratos","Dante"],["Trevor","Franklin"],["Arthur Morgan","John Marston"]] },
-  { id: "anime", name: "Anime", pairs: [["Goku","Vegeta"],["Gogeta","Vegito"],["Gohan","Piccolo"],["Freezer","Cell"],["Broly","Jiren"],["Bulma","Chichi"],["Beerus","Whis"],["Naruto","Sasuke"],["Kakashi","Gaï"],["Itachi","Shisui"],["Madara","Obito"],["Jiraiya","Orochimaru"],["Hinata","Sakura"],["Gaara","Rock Lee"],["Rasengan","Chidori"],["Luffy","Ace"],["Zoro","Sanji"],["Nami","Robin"],["Law","Kid"],["Shanks","Mihawk"],["Kaido","Big Mom"],["Doflamingo","Crocodile"],["Gon","Killua"],["Kurapika","Leorio"],["Hisoka","Illumi"],["Meruem","Neferpitou"],["Gojo","Kakashi"],["Tanjiro","Yuji Itadori"],["Light Yagami","Lelouch"],["Livaï","Zoro"],["Saitama","All Might"],["Eren","Kaneki"],["Denji","Yuji Itadori"],["Death Note","Code Geass"],["Demon Slayer","Jujutsu Kaisen"]] },
-  { id: "disney", name: "Disney & Pixar", pairs: [["Elsa","Anna"],["Woody","Buzz l'Éclair"],["Mickey","Donald"],["Nemo","Dory"],["Simba","Mufasa"],["Timon","Pumbaa"],["Ariel","Vaiana"],["Raiponce","Cendrillon"],["Olaf","Sven"],["Sully","Bob Razowski"],["Joie","Tristesse"],["Flash McQueen","Martin"],["Stitch","Angel"],["Rémy","Linguini"],["Baymax","WALL-E"]] },
-  { id: "objets", name: "Objets", pairs: [["Fourchette","Cuillère"],["Oreiller","Couette"],["Stylo","Crayon"],["Gomme","Taille-crayon"],["Montre","Réveil"],["Parapluie","Imperméable"],["Brosse à dents","Dentifrice"],["Clé","Cadenas"],["Bougie","Lampe"],["Sac à dos","Valise"],["Chaise","Tabouret"],["Ciseaux","Couteau"],["Trottinette","Vélo"],["Télévision","Ordinateur"],["Tasse","Verre"],["Chaussettes","Chaussons"],["Bonnet","Casquette"],["Frigo","Congélateur"],["Savon","Shampoing"],["Peigne","Brosse à cheveux"]] },
-  { id: "kids", name: "Culture populaire", pairs: [["Fortnite","Brawl Stars"],["Brawl Stars","Clash Royale"],["Subway Surfers","Temple Run"],["Mario","Sonic"],["Shrek","Le Chat Potté"],["Spider-Man","Batman"],["Spider-Man","Venom"],["MrBeast","IShowSpeed"],["Squeezie","Michou"],["Inoxtag","Tibo InShape"],["Mbappé","Lamine Yamal"],["Messi","Cristiano Ronaldo"],["TikTok","YouTube"],["Snapchat","Instagram"],["PlayStation","Nintendo Switch"],["McDonald's","Burger King"],["Nutella","Kinder"],["Pizza","Tacos"],["Jul","Gims"],["Aya Nakamura","Angèle"],["TikTok","Twitch"],["McDonald's","KFC"]] },
-  { id: "series", name: "Séries", pairs: [["Stranger Things", "Mercredi"], ["Breaking Bad", "Better Call Saul"], ["Game of Thrones", "House of the Dragon"], ["La Casa de Papel", "Lupin"], ["Friends", "How I Met Your Mother"], ["The Walking Dead", "The Last of Us"], ["Squid Game", "Alice in Borderland"], ["Les Simpson", "Family Guy"], ["Peaky Blinders", "Narcos"], ["The Office", "Brooklyn Nine-Nine"], ["Prison Break", "Lost"], ["Grey's Anatomy", "Dr House"], ["Emily in Paris", "Gossip Girl"], ["Bridgerton", "The Crown"], ["Arcane", "Castlevania"], ["Black Mirror", "Love, Death & Robots"]] },
-  { id: "films", name: "Films", pairs: [["Titanic", "Avatar"], ["Star Wars", "Star Trek"], ["Harry Potter", "Le Seigneur des anneaux"], ["Avengers", "Justice League"], ["Batman", "Superman"], ["Fast & Furious", "Transformers"], ["Jurassic Park", "King Kong"], ["Rocky", "Creed"], ["Matrix", "Inception"], ["Les Bronzés", "Les Visiteurs"], ["Intouchables", "Bienvenue chez les Ch'tis"], ["Taxi", "Le Transporteur"], ["James Bond", "Mission impossible"], ["Joker", "Batman"], ["Shrek", "Kung Fu Panda"], ["Top Gun", "Pearl Harbor"], ["Dune", "Interstellar"], ["Barbie", "Oppenheimer"]] },
-  { id: "vie", name: "Vie quotidienne", pairs: [["Douche", "Bain"], ["Petit-déjeuner", "Goûter"], ["Lundi", "Vendredi"], ["Été", "Hiver"], ["Mariage", "Anniversaire"], ["Bus", "Métro"], ["Médecin", "Dentiste"], ["Vacances", "Week-end"], ["Réveil", "Sieste"], ["Café", "Thé"], ["Pluie", "Neige"], ["Plage", "Piscine"], ["Cinéma", "Théâtre"], ["Restaurant", "Fast-food"], ["Pâtes", "Riz"], ["Chat", "Chien"], ["Noël", "Nouvel An"], ["Avion", "Train"], ["Football", "Basket"], ["Pizza", "Burger"]] },
-  { id: "stars", name: "Célébrités", pairs: [["Beyoncé", "Rihanna"], ["Taylor Swift", "Ariana Grande"], ["Drake", "Kanye West"], ["Booba", "Kaaris"], ["PNL", "Nekfeu"], ["Omar Sy", "Jamel Debbouze"], ["Kev Adams", "Norman"], ["Zidane", "Thierry Henry"], ["LeBron James", "Michael Jordan"], ["Teddy Riner", "Tony Parker"], ["Elon Musk", "Mark Zuckerberg"], ["Johnny Hallyday", "Michel Sardou"], ["Stromae", "Angèle"], ["Eminem", "50 Cent"]] }
+  { id: "jv", name: "Jeux vidéo", pairs: [["Call of Duty","Battlefield"],["Warzone","PUBG"],["Fortnite","Apex Legends"],["Valorant","Counter-Strike"],["EA Sports FC","eFootball"],["Minecraft","Roblox"],["GTA","Saints Row"],["League of Legends","Dota 2"],["Elden Ring","Dark Souls"],["The Last of Us","Resident Evil"],["Assassin's Creed","Ghost of Tsushima"],["Pokémon","Digimon"],["Clash Royale","Clash of Clans"],["Among Us","Fall Guys"],["Street Fighter","Tekken"],["Les Sims","Animal Crossing"],["Super Smash Bros.","Brawlhalla"],["Lara Croft","Nathan Drake"],["Trevor","Franklin"],["Arthur Morgan","John Marston"]] },
+  { id: "anime", name: "Anime", pairs: [["Goku","Vegeta"],["Freezer","Cell"],["Bulma","Chichi"],["Naruto","Sasuke"],["Kakashi","Gaï"],["Itachi","Shisui"],["Madara","Obito"],["Hinata","Sakura"],["Luffy","Ace"],["Zoro","Sanji"],["Nami","Robin"],["Law","Kid"],["Gon","Killua"],["Kurapika","Leorio"],["Hisoka","Illumi"],["Gojo","Kakashi"],["Tanjiro","Yuji Itadori"],["Light Yagami","Lelouch"],["Livaï","Zoro"],["Saitama","All Might"],["Eren","Kaneki"],["Denji","Yuji Itadori"],["Death Note","Code Geass"],["Demon Slayer","Jujutsu Kaisen"]] },
+  { id: "disney", name: "Disney & Pixar", pairs: [["Elsa","Anna"],["Woody","Buzz l'Éclair"],["Nemo","Dory"],["Raiponce","Cendrillon"],["Sully","Bob Razowski"],["Flash McQueen","Martin"],["Rémy","Linguini"]] },
+  { id: "kids", name: "Culture populaire", pairs: [["Fortnite","Brawl Stars"],["Brawl Stars","Clash Royale"],["Mario","Sonic"],["Messi","Cristiano Ronaldo"],["McDonald's","Burger King"]] },
+  { id: "series", name: "Séries", pairs: [ ["Breaking Bad", "Better Call Saul"], ["Game of Thrones", "House of the Dragon"], ["The Walking Dead", "The Last of Us"], ["Les Simpson", "Family Guy"], ["Black Mirror", "Love, Death & Robots"]] },
+  { id: "films", name: "Films", pairs: [ ["Star Wars", "Star Trek"], ["Avengers", "Justice League"], ["Batman", "Superman"], ["Fast & Furious", "Transformers"], ["Rocky", "Creed"], ["Joker", "Batman"]] },
+  { id: "vie", name: "Vie quotidienne", pairs: [ ["Été", "Hiver"], ["Plage", "Piscine"], ["Cinéma", "Théâtre"], ["Restaurant", "Fast-food"], ["Pâtes", "Riz"], ["Chat", "Chien"], ["Noël", "Nouvel An"], ["Football", "Basket"], ["Pizza", "Burger"]] },
+  { id: "stars", name: "Célébrités", pairs: [["Beyoncé", "Rihanna"], ["Drake", "Kanye West"], ["Booba", "Kaaris"], ["Zidane", "Thierry Henry"], ["LeBron James", "Michael Jordan"]] }
 ];
 
 /* Devine Tête : « Affiché=Nom exact pour l’image ». src : poke (Pokémon), anime (MyAnimeList), wiki (Wikipédia). */
-const DT_CATS = [ { "id": "createurs", "name": "Créateurs & streamers", "groups": [ { "src": "wiki", "lang": [ "fr", "en" ], "hint": "", "words": [ "Squeezie", "Inoxtag", "Michou", "Gotaga", "ZeratoR", "Amixem", "Tibo InShape", "Joyca", "Mister V=Mister V (humoriste)", "Cyprien=Cyprien Iov", "Léna Situations", "Natoo", "Mastu", "HugoDécrypte", "MrBeast", "IShowSpeed", "Khaby Lame", "Ibai=Ibai Llanos", "Faker", "ZywOo" ] } ] },
+const DT_CATS = [ { "id": "createurs", "name": "Créateurs & streamers", "groups": [ { "src": "wiki", "lang": [ "fr", "en" ], "hint": "", "words": [ "Squeezie", "Inoxtag", "Michou", "Gotaga", "Tibo InShape", "Mister V=Mister V (humoriste)", "Cyprien=Cyprien Iov", "Léna Situations", "Mastu", "MrBeast", "IShowSpeed", "Faker" ] } ] },
   { "id": "jv", "name": "Jeux vidéo", "groups": [ { "src": "poke", "words": [ "Pikachu=25", "Mewtwo=150", "Dracaufeu=6", "Évoli=133" ] }, { "src": "wiki", "lang": [ "en", "fr" ], "hint": "video game character", "words": [ "Mario", "Luigi", "Peach=Princess Peach", "Bowser", "Yoshi", "Wario", "Donkey Kong", "Link=Link (The Legend of Zelda)", "Zelda=Princess Zelda", "Ganondorf=Ganon", "Kirby", "Sonic=Sonic the Hedgehog", "Tails=Tails (Sonic)", "Crash Bandicoot", "Spyro", "Rayman", "Lara Croft", "Nathan Drake", "Kratos", "Master Chief", "Doom Slayer=Doomguy", "Captain Price", "Ghost=Ghost (Call of Duty)", "Ezio=Ezio Auditore", "Geralt de Riv=Geralt of Rivia", "Arthur Morgan", "John Marston", "CJ=Carl Johnson", "Trevor Philips", "Franklin Clinton", "Niko Bellic", "Joel=Joel (The Last of Us)", "Ellie=Ellie (The Last of Us)", "Leon Kennedy=Leon S. Kennedy", "Solid Snake", "Cloud Strife", "Sephiroth", "Pac-Man", "Steve=Steve (Minecraft)", "Sub-Zero", "Scorpion=Scorpion (Mortal Kombat)", "Ryu=Ryu (Street Fighter)", "Chun-Li", "Agent 47", "Aloy", "Sackboy", "Mega Man", "Sora=Sora (Kingdom Hearts)" ] } ] },
   { "id": "anime", "name": "Anime", "groups": [ { "src": "anime", "words": [ "Goku=Son Goku", "Vegeta", "Gohan=Son Gohan", "Trunks", "Freezer=Frieza", "Cell", "Majin Boo=Majin Buu", "Piccolo", "Broly", "Beerus", "Naruto=Naruto Uzumaki", "Sasuke=Sasuke Uchiha", "Sakura=Sakura Haruno", "Hinata=Hinata Hyuuga", "Kakashi=Kakashi Hatake", "Itachi=Itachi Uchiha", "Madara=Madara Uchiha", "Obito=Obito Uchiha", "Pain=Nagato", "Orochimaru", "Jiraiya", "Gaara", "Luffy=Monkey D. Luffy", "Zoro=Roronoa Zoro", "Sanji", "Nami", "Shanks", "Ace=Portgas D. Ace", "Barbe Blanche=Edward Newgate", "Barbe Noire=Marshall D. Teach", "Trafalgar Law", "Kaido", "Doflamingo=Donquixote Doflamingo", "Gon=Gon Freecss", "Killua=Killua Zoldyck", "Kurapika", "Hisoka", "Meruem", "Gojo=Satoru Gojou", "Sukuna=Sukuna Ryoumen", "Megumi=Megumi Fushiguro", "Tanjiro=Tanjirou Kamado", "Nezuko=Nezuko Kamado", "Zenitsu=Zenitsu Agatsuma", "Inosuke=Inosuke Hashibira", "Eren=Eren Yeager", "Mikasa=Mikasa Ackerman", "Livaï=Levi", "Light Yagami", "L=L Lawliet", "Ryuk", "Saitama", "All Might", "Deku=Izuku Midoriya", "Ichigo=Ichigo Kurosaki", "Denji", "Makima", "Power", "Sung Jinwoo" ] } ] },
   { "id": "disney", "name": "Disney & Pixar", "groups": [ { "src": "wiki", "lang": [ "en", "fr" ], "hint": "Disney", "words": [ "Mickey=Mickey Mouse", "Minnie=Minnie Mouse", "Donald=Donald Duck", "Dingo=Goofy", "Simba", "Timon=Timon and Pumbaa", "Pumbaa=Timon and Pumbaa", "Elsa=Elsa (Frozen)", "Anna=Anna (Frozen)", "Olaf=Olaf (Frozen)", "Woody=Woody (Toy Story)", "Buzz l'Éclair=Buzz Lightyear", "Nemo=Finding Nemo", "Dory=Finding Dory", "Stitch=Stitch (Lilo & Stitch)", "Aladdin=Aladdin (Disney character)", "Génie=Genie (Aladdin)", "Ariel=Ariel (The Little Mermaid)", "Raiponce=Rapunzel (Disney)", "Vaiana=Moana (character)", "Maui=Maui (Moana)", "Cendrillon=Cinderella (Disney character)", "Blanche-Neige=Snow White (Disney character)", "Flash McQueen=Lightning McQueen", "Martin=Mater (Cars)", "Sully=James P. Sullivan", "Bob Razowski=Mike Wazowski", "Joie=Joy (Inside Out)", "Tristesse=Sadness (Inside Out)", "Colère=Anger (Inside Out)", "Anxiété=Inside Out 2", "Mirabel=Encanto", "Peter Pan=Peter Pan (Disney character)", "Capitaine Crochet=Captain Hook" ] } ] },
@@ -498,7 +773,7 @@ const esc = s => String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;"
 const norm = s => String(s).normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().replace(/[^a-z0-9]/g, "");
 const shuffle = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
 const agent = i => "AGENT " + String(i + 1).padStart(2, "0");
-const backHome = `<button class="back" data-act="home">← Accueil</button>`;
+const backHome = ""; // la barre du haut porte le retour à l'accueil
 
 /* ---------- Images des persos ----------
    Riot (champions LoL), PokeAPI (Pokémon), Jikan / MyAnimeList (anime), Wikipédia (le reste).
@@ -549,9 +824,11 @@ const wikiHit = (lang, p) => ({ url: p.thumbnail.source, page: `https://${lang}.
 async function wikiFind(it) {
   const core = imgWords(it.q.replace(/\s*\(.*\)\s*/g, " "));
   for (const lang of it.lang) {
-    const direct = await wikiApi(lang, "titles=" + encodeURIComponent(it.q));
-    const d = direct.find(p => p.thumbnail && !p.missing);
-    if (d) return wikiHit(lang, d);
+    if (!it.strict) {
+      const direct = await wikiApi(lang, "titles=" + encodeURIComponent(it.q));
+      const d = direct.find(p => p.thumbnail && !p.missing);
+      if (d) return wikiHit(lang, d);
+    }
     const found = await wikiApi(lang, `generator=search&gsrnamespace=0&gsrlimit=6&gsrsearch=${encodeURIComponent((it.q + " " + it.hint).trim())}`);
     const s = found.find(p => p.thumbnail && imgWords(p.title).includes(core));
     if (s) return wikiHit(lang, s);
@@ -725,6 +1002,7 @@ function endGame(w) {
     });
     G.scored = true;
     store.set("scores", scores);
+    histAdd({ g: "uc", m: "local", p: G.players.map(p => p.name), w: G.players.filter(p => (w === "civils" && p.role === "civil") || (w === "impostors" && p.alive && p.role !== "civil") || (w === "white" && p.role === "white")).map(p => p.name), x: { win: w } });
   }
   ui.screen = "end"; render();
 }
@@ -913,9 +1191,6 @@ const dName = i => (dcfg.names[i] || "").trim() || "Joueur " + (i + 1);
 const dSave = () => store.set("dcfg", dcfg);
 const listNames = a => a.length <= 1 ? a.join("") : a.slice(0, -1).join(", ") + " et " + a[a.length - 1];
 const othersOf = i => D.game.players.filter((p, j) => j !== i).map(p => p.name);
-function stopTimers() {}
-function releaseAwake() {}
-function exitFullscreen() {}
 
 function dPool() {
   const sel = dcfg.cats.includes("all") ? DT_CATS : DT_CATS.filter(c => dcfg.cats.includes(c.id));
@@ -935,7 +1210,7 @@ function dDraw1() {
 }
 function initAudio() { try { actx = actx || new (window.AudioContext || window.webkitAudioContext)(); if (actx.resume) actx.resume(); } catch (e) { actx = null; } }
 function beep(f, d = .12, type = "sine", vol = .2) {
-  if (!dcfg.sound || !actx) return;
+  if (!prefs.sound || !actx) return;
   try {
     const o = actx.createOscillator(), g = actx.createGain(), t = actx.currentTime;
     o.type = type; o.frequency.value = f;
@@ -1010,6 +1285,7 @@ function dFinish() {
   const g = D.game;
   const first = g.players.find(p => p.rank === 1);
   if (first && !g.scored) { D.wins[first.name] = (D.wins[first.name] || 0) + 1; g.scored = true; }
+  if (!g.recorded) { g.recorded = true; histAdd({ g: "dt", m: "local", p: g.players.map(p => p.name), w: first ? [first.name] : [], x: first ? { bestQ: first.q, bestBy: first.name } : {} }); }
   D.confirmEnd = false; D.reveal = false;
   D.screen = "end";
 }
@@ -1046,7 +1322,7 @@ function vDSetup() {
 
   <div class="toggle">
     <div class="t-text"><div class="label">Son</div><div class="t-sub">Petit son quand quelqu'un trouve son perso.</div></div>
-    <button class="switch" role="switch" aria-label="Activer le son" aria-checked="${dcfg.sound}" data-act="d-sound"></button>
+    <button class="switch" role="switch" aria-label="Activer le son" aria-checked="${prefs.sound}" data-act="d-sound"></button>
   </div>
 
   <p class="msg">${esc(D.msg)}</p>
@@ -1275,8 +1551,9 @@ function newLobby(code, name) {
     settings: { game: O.pendingGame || "uc", themes: ["all"], white: false, cats: ["all"],
       lg: { roles: ["seer", "witch", "hunter", "cupid"], wolves: 0, debate: 180 },
       qd: { packs: ["gaming", "cine", "potes", "vie", "fun"], rounds: 5 },
-      dr: { cats: ["animaux", "bouffe", "objets", "lieux", "sports", "metiers"], laps: 2 } },
-    kicked: new Set(), used: new Set(), qsUsed: new Set(), qdUsed: new Set(), drUsed: new Set() };
+      dr: { cats: ["animaux", "bouffe", "objets", "lieux", "sports", "metiers"], laps: 2 },
+      tp: { packs: TP_PACKS.map(p => p.id), rounds: 10 } },
+    kicked: new Set(), used: new Set(), qsUsed: new Set(), qdUsed: new Set(), drUsed: new Set(), tpUsed: new Set() };
 }
 function oCreate() {
   const name = oName(); if (!name) return;
@@ -1315,7 +1592,8 @@ function oResume() {
     const st = h.val() === fb.uid ? await r.child("state").once("value") : null;
     if (!st || !st.val()) { O.resumeCode = ""; roomSet("hostRoom", ""); return oFail("Ce lobby n'existe plus. Crée-en un nouveau."); }
     const d = JSON.parse(st.val());
-    L = Object.assign(d, { kicked: new Set(d.kicked || []), used: new Set(d.used || []), qsUsed: new Set(d.qsUsed || []), qdUsed: new Set(d.qdUsed || []), drUsed: new Set(d.drUsed || []) });
+    L = Object.assign(d, { kicked: new Set(d.kicked || []), used: new Set(d.used || []), qsUsed: new Set(d.qsUsed || []), qdUsed: new Set(d.qdUsed || []), drUsed: new Set(d.drUsed || []), tpUsed: new Set(d.tpUsed || []) });
+    if (!L.settings.tp) L.settings.tp = { packs: TP_PACKS.map(p => p.id), rounds: 10 };
     L.players.forEach(p => { if (p.pid !== "host") p.online = false; });
     O.isHost = true; O.busy = false; O.msg = ""; O.code = code; O.screen = "room"; O.voice = true;
     hostAttach(code);
@@ -1422,7 +1700,7 @@ function hostSaveSoon() {
   clearTimeout(NET.saveTimer);
   NET.saveTimer = setTimeout(() => {
     if (!L || !NET.room) return;
-    const snap = Object.assign({}, L, { kicked: [...L.kicked], used: [...L.used], qsUsed: [...L.qsUsed], qdUsed: [...L.qdUsed], drUsed: [...L.drUsed] });
+    const snap = Object.assign({}, L, { kicked: [...L.kicked], used: [...L.used], qsUsed: [...L.qsUsed], qdUsed: [...L.qdUsed], drUsed: [...L.drUsed], tpUsed: [...L.tpUsed] });
     NET.room.child("state").set(JSON.stringify(snap)).catch(() => {});
     roomSet("hostRoom", L.code);
   }, 700);
@@ -1433,15 +1711,15 @@ function hostAct(pid, a) {
   const host = pid === "host", g = L.game, x = typeof a.x === "string" ? a.x.slice(0, 60) : a.x;
   L.note = "";
   switch (a.a) {
-    case "set-game": if (host && !g) L.settings.game = ["qs", "lg", "qd", "dr"].includes(x) ? x : "uc"; break;
+    case "set-game": if (host && !g) L.settings.game = ["qs", "lg", "qd", "dr", "tp"].includes(x) ? x : "uc"; break;
     case "lg-set": if (host && !g) lgSet(x); break;
     case "theme": if (host && !g) L.settings.themes = toggleSel(L.settings.themes, String(x)); break;
     case "cat": if (host && !g) L.settings.cats = toggleSel(L.settings.cats, String(x)); break;
     case "white": if (host && !g) L.settings.white = !L.settings.white; break;
     case "kick": if (host) hostKick(String(x)); break;
-    case "start": if (host && !g) { ({ uc: ucStart, lg: lgStart, qd: qdStart, dr: drStart, qs: qsStart })[L.settings.game](); } break;
+    case "start": if (host && !g) { ({ uc: ucStart, lg: lgStart, qd: qdStart, dr: drStart, qs: qsStart, tp: tpStart })[L.settings.game](); } break;
     case "lobby": if (host) { L.game = null; L.players = L.players.filter(p => p.online); } break;
-    case "again": if (host && g) { const k = g.kind; L.game = null; L.players = L.players.filter(p => p.online); ({ uc: ucStart, lg: lgStart, qd: qdStart, dr: drStart, qs: qsStart })[k](); } break;
+    case "again": if (host && g) { const k = g.kind; L.game = null; L.players = L.players.filter(p => p.online); ({ uc: ucStart, lg: lgStart, qd: qdStart, dr: drStart, qs: qsStart, tp: tpStart })[k](); } break;
     case "uc-tovote": if (host && g && g.kind === "uc" && g.phase === "talk") { g.phase = "vote"; g.votes = {}; g.note = ""; } break;
     case "uc-vote": ucVote(pid, String(x)); break;
     case "uc-force": if (host && g && g.kind === "uc" && g.phase === "vote" && Object.keys(g.votes).length) ucTally(); break;
@@ -1469,11 +1747,16 @@ function hostAct(pid, a) {
     case "qd-next": if (host && g && g.kind === "qd" && g.phase === "reveal") qdNext(); break;
     case "qd-force": if (host && g && g.kind === "qd") qdForce(); break;
     case "dr-set": if (host && !g) drSet(x); break;
+    case "tp-set": if (host && !g) tpSet(x); break;
+    case "tp-vote": tpVote(pid, x); break;
+    case "tp-next": if (host && g && g.kind === "tp" && g.phase === "reveal") tpNext(); break;
+    case "tp-force": if (host && g && g.kind === "tp" && g.phase === "vote" && Object.keys(g.votes).length) tpReveal(); break;
     case "dr-stroke": drStroke(pid, a.data); break;
     case "dr-vote": drVote(pid, x); break;
     case "dr-guess": drGuess(pid, x); break;
     case "dr-force": if (host && g && g.kind === "dr") drForce(); break;
   }
+  if (L.game && !L.game.gid) L.game.gid = newJoinId();
   hostSync();
 }
 
@@ -1670,6 +1953,7 @@ function settingsSummary() {
     return th + (s.white ? " · Mr. White activé" : "");
   }
   if (s.game === "qd") return s.qd.rounds + " questions · " + QD_PACKS.filter(p => s.qd.packs.includes(p.id)).map(p => p.name).join(", ");
+  if (s.game === "tp") return s.tp.rounds + " questions · " + TP_PACKS.filter(p => s.tp.packs.includes(p.id)).map(p => p.name).join(", ");
   if (s.game === "dr") return DR_CATS().filter(c => s.dr.cats.includes(c.id)).map(c => c.name).join(", ") + " · " + s.dr.laps + " traits chacun";
   if (s.game === "lg") return lgCompText(lgCompCount(lgComposition(Math.max(L.players.length, 4), s.lg).roles));
   return s.cats.includes("all") ? "toutes les catégories" : DT_CATS.filter(c => s.cats.includes(c.id)).map(c => c.name).join(", ");
@@ -1678,7 +1962,7 @@ function viewFor(pid) {
   const v = {
     code: L.code, me: pid, isHost: pid === "host", note: L.note, scores: L.scores,
     players: L.players.map(p => ({ pid: p.pid, name: p.name, online: p.online, host: p.pid === "host" })),
-    settings: { game: L.settings.game, themes: L.settings.themes, cats: L.settings.cats, white: L.settings.white, lg: L.settings.lg, qd: L.settings.qd, dr: L.settings.dr, summary: settingsSummary() },
+    settings: { game: L.settings.game, themes: L.settings.themes, cats: L.settings.cats, white: L.settings.white, lg: L.settings.lg, qd: L.settings.qd, dr: L.settings.dr, tp: L.settings.tp, summary: settingsSummary() },
     game: null
   };
   const g = L.game;
@@ -1706,6 +1990,8 @@ function viewFor(pid) {
     v.game = qdView(g, pid);
   } else if (g.kind === "dr") {
     v.game = drView(g, pid);
+  } else if (g.kind === "tp") {
+    v.game = tpView(g, pid);
   } else {
     const gv = { kind: "qs", phase: g.phase, turn: g.turn };
     if (g.phase === "pick") {
@@ -1729,6 +2015,7 @@ function viewFor(pid) {
     v.game = gv;
   }
   if (v.game && g.val) v.game.val = valView(g, pid);
+  if (v.game) v.game.gid = g.gid || "";
   return v;
 }
 
@@ -2331,7 +2618,7 @@ const LG_ART = {
     <path d="M60 30 C80 30 94 42 98 58 L108 70 L92 74 L86 92 L72 104 L60 110 L48 104 L34 92 L28 74 L12 70 L22 58 C26 42 40 30 60 30 Z" fill="#3a2a33"/>
     <path d="M60 36 C70 36 78 42 82 50 L60 58 L38 50 C42 42 50 36 60 36 Z" fill="#4a3742"/>
     <path d="M60 60 C69 60 75 68 77 80 L73 96 L60 104 L47 96 L43 80 C45 68 51 60 60 60 Z" fill="#5c4651"/>
-    <path d="M36 58 L53 64 L40 70 Z" fill="#ffd23f"/><path d="M84 58 L67 64 L80 70 Z" fill="#ffd23f"/>
+    <path d="M36 58 L53 64 L40 70 Z" fill="#f3b54a"/><path d="M84 58 L67 64 L80 70 Z" fill="#f3b54a"/>
     <path d="M52 85 L68 85 L60 93 Z" fill="#120b10"/>
     <path d="M52 97 L55 104 L58 97 Z M62 97 L65 104 L68 97 Z" fill="#f4f0ea"/>
   </svg>`,
@@ -2350,9 +2637,9 @@ const LG_ART = {
     <rect x="80" y="24" width="10" height="22" fill="#5a3a2a"/>
     <path d="M12 60 L60 20 L108 60 Z" fill="#9b3b2c"/><path d="M60 20 L108 60 L96 60 L60 30 Z" fill="#7b2d22"/>
     <rect x="24" y="58" width="72" height="46" fill="#ecc893"/>
-    <rect x="52" y="74" width="18" height="30" rx="2" fill="#6b4226"/><circle cx="66" cy="90" r="1.8" fill="#ffd23f"/>
-    <rect x="31" y="68" width="14" height="14" rx="1" fill="#ffd23f"/><path d="M38 68 V82 M31 75 H45" stroke="#6b4226" stroke-width="2"/>
-    <rect x="76" y="68" width="14" height="14" rx="1" fill="#ffd23f"/><path d="M83 68 V82 M76 75 H90" stroke="#6b4226" stroke-width="2"/>
+    <rect x="52" y="74" width="18" height="30" rx="2" fill="#6b4226"/><circle cx="66" cy="90" r="1.8" fill="#f3b54a"/>
+    <rect x="31" y="68" width="14" height="14" rx="1" fill="#f3b54a"/><path d="M38 68 V82 M31 75 H45" stroke="#6b4226" stroke-width="2"/>
+    <rect x="76" y="68" width="14" height="14" rx="1" fill="#f3b54a"/><path d="M83 68 V82 M76 75 H90" stroke="#6b4226" stroke-width="2"/>
     <rect x="8" y="104" width="104" height="7" rx="3.5" fill="#4f7f43"/>
   </svg>`,
   seer: `<svg viewBox="0 0 120 120" aria-hidden="true">
@@ -2363,7 +2650,7 @@ const LG_ART = {
     <path d="M34 52 Q60 30 86 52 Q60 74 34 52 Z" fill="#fff"/>
     <circle cx="60" cy="52" r="10" fill="#5b33a6"/><circle cx="60" cy="52" r="4.5" fill="#120a24"/><circle cx="63" cy="49" r="2" fill="#fff"/>
     <ellipse cx="44" cy="30" rx="8" ry="4.5" fill="#fff" opacity=".65" transform="rotate(-30 44 30)"/>
-    <path d="M22 18 l3 6 l6 3 l-6 3 l-3 6 l-3 -6 l-6 -3 l6 -3 Z" fill="#ffd23f"/><path d="M98 80 l2 4 l4 2 l-4 2 l-2 4 l-2 -4 l-4 -2 l4 -2 Z" fill="#ffd23f"/>
+    <path d="M22 18 l3 6 l6 3 l-6 3 l-3 6 l-3 -6 l-6 -3 l6 -3 Z" fill="#f3b54a"/><path d="M98 80 l2 4 l4 2 l-4 2 l-2 4 l-2 -4 l-4 -2 l4 -2 Z" fill="#f3b54a"/>
   </svg>`,
   witch: `<svg viewBox="0 0 120 120" aria-hidden="true">
     <circle cx="30" cy="34" r="3" fill="#7dffb6" opacity=".8"/><circle cx="38" cy="24" r="4" fill="#7dffb6" opacity=".6"/><circle cx="31" cy="14" r="2.5" fill="#7dffb6" opacity=".5"/>
@@ -2389,9 +2676,9 @@ const LG_ART = {
     <path d="M60 102 C20 76 12 52 24 36 C36 22 54 26 60 42 C66 26 84 22 96 36 C108 52 100 76 60 102 Z" fill="#ff5f8f"/>
     <path d="M60 102 C40 89 28 76 24 62 C40 74 56 78 74 72 C70 82 66 92 60 102 Z" fill="#e2416f"/>
     <ellipse cx="40" cy="44" rx="8" ry="5" fill="#fff" opacity=".45" transform="rotate(-25 40 44)"/>
-    <path d="M14 96 L100 26" stroke="#ffd23f" stroke-width="5" stroke-linecap="round"/>
-    <path d="M106 20 L90 26 L100 36 Z" fill="#ffd23f"/>
-    <path d="M14 96 L10 84 M14 96 L26 100 M20 91 L16 79 M20 91 L32 95" stroke="#ffd23f" stroke-width="3.5" stroke-linecap="round"/>
+    <path d="M14 96 L100 26" stroke="#f3b54a" stroke-width="5" stroke-linecap="round"/>
+    <path d="M106 20 L90 26 L100 36 Z" fill="#f3b54a"/>
+    <path d="M14 96 L10 84 M14 96 L26 100 M20 91 L16 79 M20 91 L32 95" stroke="#f3b54a" stroke-width="3.5" stroke-linecap="round"/>
   </svg>`,
   girl: `<svg viewBox="0 0 120 120" aria-hidden="true">
     <rect x="20" y="10" width="80" height="100" rx="16" fill="#7a5230"/>
@@ -2404,15 +2691,15 @@ const LG_ART = {
     <path d="M60 10 L100 24 V58 C100 86 82 102 60 112 C38 102 20 86 20 58 V24 Z" fill="#2f7fd0"/>
     <path d="M60 10 L100 24 V58 C100 86 82 102 60 112 Z" fill="#4c9ae6"/>
     <path d="M60 20 L90 31 V58 C90 80 77 93 60 101 C43 93 30 80 30 58 V31 Z" fill="none" stroke="#cfe6ff" stroke-width="2.5" opacity=".7"/>
-    <path d="M60 36 L66 52 L83 52 L69 62 L74 79 L60 69 L46 79 L51 62 L37 52 L54 52 Z" fill="#ffd23f"/>
+    <path d="M60 36 L66 52 L83 52 L69 62 L74 79 L60 69 L46 79 L51 62 L37 52 L54 52 Z" fill="#f3b54a"/>
   </svg>`,
   idiot: `<svg viewBox="0 0 120 120" aria-hidden="true">
     <path d="M20 88 C30 62 26 38 12 26 C34 30 48 46 56 64 L60 88 Z" fill="#9b5cff"/>
     <path d="M100 88 C90 62 94 38 108 26 C86 30 72 46 64 64 L60 88 Z" fill="#7a3fe0"/>
-    <path d="M42 88 C50 64 50 32 60 12 C70 32 70 64 78 88 Z" fill="#ffd23f"/>
+    <path d="M42 88 C50 64 50 32 60 12 C70 32 70 64 78 88 Z" fill="#f3b54a"/>
     <rect x="16" y="84" width="88" height="18" rx="7" fill="#e8434a"/>
-    <path d="M28 93 h8 M48 93 h8 M68 93 h8 M88 93 h4" stroke="#ffd23f" stroke-width="4" stroke-linecap="round"/>
-    <circle cx="12" cy="26" r="7" fill="#ffd23f"/><circle cx="60" cy="11" r="7" fill="#e8434a"/><circle cx="108" cy="26" r="7" fill="#ffd23f"/>
+    <path d="M28 93 h8 M48 93 h8 M68 93 h8 M88 93 h4" stroke="#f3b54a" stroke-width="4" stroke-linecap="round"/>
+    <circle cx="12" cy="26" r="7" fill="#f3b54a"/><circle cx="60" cy="11" r="7" fill="#e8434a"/><circle cx="108" cy="26" r="7" fill="#f3b54a"/>
   </svg>`,
   elder: `<svg viewBox="0 0 120 120" aria-hidden="true">
     <rect x="96" y="30" width="7" height="82" rx="3.5" fill="#8b6b4a"/><circle cx="99.5" cy="28" r="8" fill="#a07a50"/>
@@ -2439,7 +2726,7 @@ const LG_ART = {
 const LG_CARDBACK = `<svg viewBox="0 0 120 120" aria-hidden="true">
   <circle cx="60" cy="60" r="44" fill="none" stroke="#3b4799" stroke-width="2"/>
   <circle cx="60" cy="60" r="30" fill="#fff3c4"/><circle cx="72" cy="52" r="26" fill="#1b2260"/>
-  <path d="M24 30 l2 4 l4 2 l-4 2 l-2 4 l-2 -4 l-4 -2 l4 -2 Z M94 86 l2 4 l4 2 l-4 2 l-2 4 l-2 -4 l-4 -2 l4 -2 Z" fill="#ffd23f"/>
+  <path d="M24 30 l2 4 l4 2 l-4 2 l-2 4 l-2 -4 l-4 -2 l4 -2 Z M94 86 l2 4 l4 2 l-4 2 l-2 4 l-2 -4 l-4 -2 l4 -2 Z" fill="#f3b54a"/>
 </svg>`;
 
 const LG_STARS = Array.from({ length: 30 }, (_, i) => [(i * 137 + 23) % 400, (i * 53) % 88 + 6, (0.7 + (i % 3) * 0.5).toFixed(1), ((i % 6) * 0.5).toFixed(1)]);
@@ -2448,10 +2735,10 @@ function lgScene(kind) {
   const sky = night ? "#121a4f" : "#f6d9a2";
   const hill = night ? "#0d1338" : "#d8b878";
   const town = night ? "#060a22" : "#6b5236";
-  const win = night ? `<g fill="#ffd23f" opacity=".85"><rect x="29" y="128" width="6" height="7"/><rect x="58" y="132" width="5" height="6"/><rect x="167" y="120" width="6" height="9"/><rect x="301" y="128" width="6" height="7"/><rect x="368" y="125" width="6" height="7"/></g>` : "";
+  const win = night ? `<g fill="#f3b54a" opacity=".85"><rect x="29" y="128" width="6" height="7"/><rect x="58" y="132" width="5" height="6"/><rect x="167" y="120" width="6" height="9"/><rect x="301" y="128" width="6" height="7"/><rect x="368" y="125" width="6" height="7"/></g>` : "";
   const sun = night
     ? `<circle cx="320" cy="44" r="36" fill="#fff6d6" opacity=".08"/><circle cx="320" cy="44" r="26" fill="#fff6d6" opacity=".12"/><circle cx="320" cy="44" r="19" fill="#fff3c4"/><circle cx="328" cy="39" r="16" fill="${sky}"/>`
-    : `<circle cx="78" cy="48" r="40" fill="#ffd23f" opacity=".22"/><circle cx="78" cy="48" r="24" fill="#ffc531"/>`;
+    : `<circle cx="78" cy="48" r="40" fill="#f3b54a" opacity=".22"/><circle cx="78" cy="48" r="24" fill="#ffc531"/>`;
   const stars = night ? LG_STARS.map(([x, y, r, d]) => `<circle class="lg-star" cx="${x}" cy="${y}" r="${r}" style="animation-delay:${d}s"/>`).join("") : "";
   const clouds = night ? "" : `<g fill="#fff" opacity=".7"><ellipse cx="200" cy="40" rx="34" ry="10"/><ellipse cx="222" cy="34" rx="22" ry="10"/><ellipse cx="330" cy="62" rx="28" ry="8"/></g>`;
   return `<svg class="lg-scene" viewBox="0 0 400 150" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
@@ -2476,7 +2763,7 @@ const lgMini = role => `<span class="lg-mini" style="--rc:${LG_ROLES[role].bg}">
 /* ---------- Loup-Garou : narration, sons, écrans ---------- */
 let lgSpoken = 0;
 function lgSfx(kind) {
-  if (!O.sfx || !actx) return;
+  if (!O.sfx || !prefs.sound || !actx) return;
   const t = actx.currentTime;
   const tone = (f, d, type, vol, f2, delay) => {
     try {
@@ -2843,7 +3130,7 @@ const DR_EXTRA = [
 ];
 const DR_CATS = () => DR_EXTRA.map(c => ({ id: c.id, name: c.name, words: c.words }))
   .concat(DT_CATS.filter(c => ["objets", "metiers", "jv", "anime", "disney"].includes(c.id)).map(c => ({ id: c.id, name: c.name, words: dtItems(c).map(i => i.w) })));
-const DR_COLORS = ["#e8434a", "#2f7fd0", "#1f9a5e", "#d99a00", "#8b4fd6", "#e26a1b", "#e2416f", "#00939a", "#5b4a36", "#141a4d"];
+const DR_COLORS = ["#e8434a", "#2f7fd0", "#2f8f5f", "#d99a00", "#8b4fd6", "#e26a1b", "#e2416f", "#00939a", "#5b4a36", "#1d1328"];
 function drStart() {
   const ps = L.players.filter(p => p.online);
   if (ps.length < 3) { L.note = "Il faut au moins 3 joueurs connectés pour Imposteur dessin."; return; }
@@ -2923,7 +3210,7 @@ function drView(g, pid) {
   const v = { kind: "dr", phase: g.phase, cat: g.cat, lap: g.lap, laps: g.laps, turn: g.turn, inGame: me,
     word: g.phase === "end" || (me && !isImp) ? g.word : null, isImp: me && isImp,
     current: g.phase === "draw" ? pname(g.order[g.turn]) : null, myTurn: g.phase === "draw" && g.order[g.turn] === pid,
-    myColor: g.colors[pid] || "#141a4d",
+    myColor: g.colors[pid] || "#1d1328",
     order: g.order.map((p, i) => ({ pid: p, name: pname(p), color: g.colors[p], cur: g.phase === "draw" && i === g.turn, me: p === pid })),
     strokes: g.strokes.map(s => ({ c: g.colors[s.pid], pts: s.pts })) };
   if (g.phase === "vote") { v.myVote = g.votes[pid] ? pname(g.votes[pid]) : null; v.count = Object.keys(g.votes).length; v.total = g.order.length; }
@@ -3109,7 +3396,7 @@ function vOnline() {
   const ban = O.offline ? `<div class="banner warn" role="status">Connexion perdue. Reconnexion en cours…</div>`
     : (!O.isHost && O.hostAway) ? `<div class="banner warn" role="status">L'hôte a perdu la connexion. La partie reprend dès qu'il revient.</div>` : "";
   if (!v.game) return ban + vOLobby(v);
-  return ban + ({ uc: vOUc, lg: vOLg, qs: vOQs, qd: vOQd, dr: vODr })[v.game.kind](v);
+  return ban + ({ uc: vOUc, lg: vOLg, qs: vOQs, qd: vOQd, dr: vODr, tp: vOTp })[v.game.kind](v);
 }
 function vOEntry() {
   return `${backHome}
@@ -3148,13 +3435,13 @@ function vOLobby(v) {
   const plist = v.players.map(p => `<div class="score-row"><span>${p.online ? "" : "(hors ligne) "}${esc(p.name)}${p.host ? " · hôte" : ""}${p.pid === v.me ? " · toi" : ""}</span>${v.isHost && !p.host ? `<button class="btn-small" data-act="o-send" data-a="kick" data-x="${p.pid}">Retirer</button>` : "<b></b>"}</div>`).join("");
   let settings;
   if (v.isHost) {
-    const gameChips = `<div class="chips"><button class="chip" data-act="o-send" data-a="set-game" data-x="uc" aria-pressed="${s.game === "uc"}">Undercover</button><button class="chip" data-act="o-send" data-a="set-game" data-x="qs" aria-pressed="${s.game === "qs"}">Devine Tête</button><button class="chip" data-act="o-send" data-a="set-game" data-x="lg" aria-pressed="${s.game === "lg"}">Loup-Garou</button><button class="chip" data-act="o-send" data-a="set-game" data-x="qd" aria-pressed="${s.game === "qd"}">Qui a dit ça ?</button><button class="chip" data-act="o-send" data-a="set-game" data-x="dr" aria-pressed="${s.game === "dr"}">Imposteur dessin</button></div>`;
-    const opts = s.game === "lg" ? lgLobbySettings(v) : s.game === "qd" ? qdLobbySettings(v) : s.game === "dr" ? drLobbySettings(v) : s.game === "uc"
+    const gameChips = `<div class="chips"><button class="chip" data-act="o-send" data-a="set-game" data-x="uc" aria-pressed="${s.game === "uc"}">Undercover</button><button class="chip" data-act="o-send" data-a="set-game" data-x="qs" aria-pressed="${s.game === "qs"}">Devine Tête</button><button class="chip" data-act="o-send" data-a="set-game" data-x="lg" aria-pressed="${s.game === "lg"}">Loup-Garou</button><button class="chip" data-act="o-send" data-a="set-game" data-x="qd" aria-pressed="${s.game === "qd"}">Qui a dit ça ?</button><button class="chip" data-act="o-send" data-a="set-game" data-x="dr" aria-pressed="${s.game === "dr"}">Imposteur dessin</button><button class="chip" data-act="o-send" data-a="set-game" data-x="tp" aria-pressed="${s.game === "tp"}">Tu préfères</button></div>`;
+    const opts = s.game === "lg" ? lgLobbySettings(v) : s.game === "qd" ? qdLobbySettings(v) : s.game === "dr" ? drLobbySettings(v) : s.game === "tp" ? tpLobbySettings(v) : s.game === "uc"
       ? `<div class="chips"><button class="chip" data-act="o-send" data-a="theme" data-x="all" aria-pressed="${s.themes.includes("all")}">Tous les thèmes</button>${allThemes().map(t => `<button class="chip" data-act="o-send" data-a="theme" data-x="${esc(t.id)}" aria-pressed="${s.themes.includes(t.id)}">${esc(t.name)}<small>${ucPairs(t).length}</small></button>`).join("")}</div>
          <div class="toggle"><div class="t-text"><div class="label">Mr. White</div><div class="t-sub">Un joueur sans mot, à partir de 4 joueurs.</div></div><button class="switch" role="switch" aria-label="Activer Mr. White" aria-checked="${s.white}" data-act="o-send" data-a="white"></button></div>`
       : `<div class="chips"><button class="chip" data-act="o-send" data-a="cat" data-x="all" aria-pressed="${s.cats.includes("all")}">Tout</button>${DT_CATS.map(c => `<button class="chip" data-act="o-send" data-a="cat" data-x="${c.id}" aria-pressed="${s.cats.includes(c.id)}">${esc(c.name)}<small>${dtItems(c).length}</small></button>`).join("")}</div>`;
     settings = `<section class="section"><span class="label">Jeu</span>${gameChips}</section>
-      ${["lg", "qd", "dr"].includes(s.game) ? opts : `<section class="section"><span class="label">${s.game === "uc" ? "Thèmes" : "Persos proposés"}</span>${opts}</section>`}
+      ${["lg", "qd", "dr", "tp"].includes(s.game) ? opts : `<section class="section"><span class="label">${s.game === "uc" ? "Thèmes" : "Persos proposés"}</span>${opts}</section>`}
       <p class="msg">${esc(v.note)}</p>
       <button class="btn" data-act="o-send" data-a="start">Lancer ${gameName}</button>`;
   } else {
@@ -3391,48 +3678,814 @@ const GAME_RULES = {
   uc: ["Tout le monde reçoit le même mot, sauf l'Undercover qui reçoit un mot proche. Mr. White, s'il est activé, n'a aucun mot.", "Chacun à son tour donne un indice sur son mot, sans le dire.", "Puis on vote pour éliminer quelqu'un. Les civils gagnent s'ils éliminent tous les intrus. L'Undercover gagne s'il tient jusqu'à ce qu'il ne reste qu'un civil.", "Mr. White éliminé peut encore gagner seul en devinant le mot des civils."],
   qs: ["Chaque joueur reçoit un perso choisi par les autres, sans le voir.", "À ton tour, tu poses une seule question fermée. Les autres répondent par oui ou non.", "Le premier qui trouve son perso gagne."],
   qd: ["Une question s'affiche et chacun répond en secret.", "Les réponses s'affichent sans les noms : devine qui a écrit chacune.", "+1 par bonne devinette, +1 à l'auteur pour chaque joueur qui s'est trompé sur sa réponse."],
+  bomb: ["Le téléphone affiche un thème. Celui qui a la bombe dit une réponse à voix haute, appuie sur Passe et donne le téléphone à son voisin.", "Une réponse déjà dite, une hésitation trop longue ou une réponse refusée par le groupe : tu gardes la bombe et tu en redis une.", "La mèche est cachée et accélère vers la fin. Celui qui tient la bombe quand elle explose prend un gage et commence la manche suivante."],
+  sept: ["Sept persos sont tirés au hasard dans les catégories choisies (Devine Tête et Undercover réunis). Celui qui cherche ne les voit pas.", "Les autres les voient et ont un nombre de mots limité (15 par défaut) pour les lui faire trouver. Chaque mot dit à voix haute compte, et il est interdit de dire le nom ou une partie du nom.", "Quand le chercheur trouve une tête, on la touche. La manche s'arrête quand les 7 sont trouvées, quand il n'y a plus de mots, ou quand vous arrêtez.", "Chacun est chercheur une fois. Le meilleur chercheur est celui qui trouve le plus de têtes, puis qui en a eu besoin de moins de mots."],
+  tp: ["Deux choix s'affichent. Chacun choisit en secret.", "On révèle qui a choisi quoi. Celui qui est seul dans son camp doit se justifier.", "À la fin, le plus original est celui qui s'est retrouvé le plus souvent dans le camp le moins choisi."],
   dr: ["Tout le monde voit la catégorie. Tous connaissent le mot, sauf l'imposteur.", "À tour de rôle, chacun ajoute un seul trait au dessin commun.", "Puis on vote pour désigner l'imposteur. S'il est démasqué, il peut encore gagner en devinant le mot."]
 };
 const rulesBlock = game => game === "lg" ? LG_RULES : GAME_RULES[game] ? `<details class="box"><summary>Comment jouer</summary><ul class="lg-rules">${GAME_RULES[game].map(r => `<li>${r}</li>`).join("")}</ul></details>` : "";
-const GAME_NAMES = { uc: "Undercover", qs: "Devine Tête", lg: "Loup-Garou", qd: "Qui a dit ça ?", dr: "Imposteur dessin" };
+const GAME_NAMES = { uc: "Undercover", qs: "Devine Tête", lg: "Loup-Garou", qd: "Qui a dit ça ?", dr: "Imposteur dessin", tp: "Tu préfères" };
+/* =========================================================
+   LA BOMBE (un seul téléphone qu'on se passe)
+   ========================================================= */
+const BOMB_PACKS = [
+  { id: "facile", name: "Facile", t: ["Animaux", "Fruits", "Légumes", "Pays", "Couleurs", "Métiers", "Sports", "Instruments de musique", "Choses dans une cuisine", "Choses qu'on trouve à la plage", "Vêtements", "Parties du corps", "Prénoms de fille", "Prénoms de garçon", "Villes de France", "Desserts", "Boissons", "Moyens de transport", "Objets de la salle de bain", "Animaux de la ferme", "Animaux qui volent", "Animaux de la mer", "Insectes", "Fleurs", "Fromages", "Jeux de société", "Choses rondes", "Choses rouges", "Choses qui piquent", "Objets dans une trousse", "Matières à l'école", "Pièces de la maison", "Meubles", "Choses froides", "Choses qui font du bruit", "Choses qu'on mange au petit-déjeuner", "Jouets", "Choses qu'on trouve dans un jardin", "Choses avec des roues", "Choses qui volent"] },
+  { id: "gaming", name: "Gaming & anime", t: ["Jeux vidéo", "Personnages de jeux vidéo", "Pokémon", "Personnages de Mario", "Consoles de jeu", "Jeux sur téléphone", "Jeux de tir", "Jeux de course", "Jeux de combat", "Méchants de jeux vidéo", "Jeux avec des zombies", "Champions de League of Legends", "Personnages de Dragon Ball", "Personnages de Naruto", "Personnages de One Piece", "Animes", "Pouvoirs ou attaques d'anime", "YouTubeurs et streamers", "Jeux Nintendo", "Armes de jeux vidéo"] },
+  { id: "culture", name: "Culture", t: ["Capitales", "Pays d'Europe", "Pays d'Afrique", "Joueurs de foot", "Clubs de foot", "Chanteurs et chanteuses", "Rappeurs", "Films Disney ou Pixar", "Super-héros", "Méchants de films", "Séries", "Films", "Marques de vêtements", "Marques de voitures", "Applis sur un téléphone", "Fast-foods et restos", "Monuments célèbres", "Langues", "Dessins animés", "Personnages de Harry Potter", "Acteurs et actrices", "Sportifs français", "Mots anglais qu'on utilise en français", "Marques de boissons", "Marques de nourriture"] },
+  { id: "delire", name: "Délires", t: ["Excuses pour arriver en retard", "Excuses pour ne pas faire ses devoirs", "Choses qu'on fait sous la douche", "Choses qui sentent mauvais", "Trucs qu'on trouve sous un lit", "Insultes gentilles", "Choses qui font peur", "Ce qu'on emporte sur une île déserte", "Noms pour un chien", "Choses qu'on peut casser", "Choses qui collent", "Cadeaux nuls", "Super-pouvoirs", "Choses qu'on fait en vacances", "Choses qu'on dit quand on perd à un jeu", "Bruits bizarres", "Choses qu'on ne prête jamais", "Endroits où dormir", "Choses qui coûtent trop cher", "Raisons de crier"] }
+];
+const BOMB_LETTERS = "ABCDFGLMPRST";
+const BOMB_LEN = { court: [10, 25], normal: [20, 45], long: [30, 70] };
+let bcfg = Object.assign({ count: 4, names: dcfg.names.slice(), packs: BOMB_PACKS.map(p => p.id), len: "normal", letter: false }, store.get("bcfg", {}));
+bcfg.packs = (bcfg.packs || []).filter(id => BOMB_PACKS.some(p => p.id === id)); if (!bcfg.packs.length) bcfg.packs = BOMB_PACKS.map(p => p.id);
+while (bcfg.names.length < bcfg.count) bcfg.names.push("");
+const bSave = () => store.set("bcfg", bcfg);
+const bName = i => (bcfg.names[i] || "").trim() || "Joueur " + (i + 1);
+let BM = { screen: "setup", theme: "", letter: "", holder: 0, losses: {}, startAt: 0, endAt: 0, timer: null, passes: 0, round: 0, msg: "", confirmStop: false };
+let bUsed = new Set();
+function bTone(f, d, type = "square", vol = .12) {
+  if (!prefs.sound || !actx) return;
+  try {
+    const o = actx.createOscillator(), g = actx.createGain(), t = actx.currentTime;
+    o.type = type; o.frequency.value = f;
+    g.gain.setValueAtTime(vol, t); g.gain.exponentialRampToValueAtTime(.001, t + d);
+    o.connect(g); g.connect(actx.destination); o.start(t); o.stop(t + d);
+  } catch (e) {}
+}
+function bBoomSound() {
+  if (!prefs.sound || !actx) return;
+  try {
+    const len = actx.sampleRate * 1.6, buf = actx.createBuffer(1, len, actx.sampleRate), d = buf.getChannelData(0);
+    for (let i = 0; i < len; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / len, 2.5);
+    const src = actx.createBufferSource(), f = actx.createBiquadFilter(), g = actx.createGain();
+    f.type = "lowpass"; f.frequency.value = 900; g.gain.value = .9;
+    src.buffer = buf; src.connect(f); f.connect(g); g.connect(actx.destination); src.start();
+    bTone(70, .9, "sine", .6);
+  } catch (e) {}
+}
+function bDraw() {
+  const pool = BOMB_PACKS.filter(p => bcfg.packs.includes(p.id)).flatMap(p => p.t);
+  let fresh = pool.filter(t => !bUsed.has(t));
+  if (!fresh.length) { bUsed.clear(); fresh = pool; }
+  BM.theme = fresh[Math.floor(Math.random() * fresh.length)];
+  bUsed.add(BM.theme);
+  BM.letter = bcfg.letter ? BOMB_LETTERS[Math.floor(Math.random() * BOMB_LETTERS.length)] : "";
+}
+function bStop() { clearTimeout(BM.timer); BM.timer = null; }
+function bSetupNext() {
+  bStop();
+  if (BM.screen === "setup") BM.holder = Math.floor(Math.random() * bcfg.count);
+  if (BM.holder >= bcfg.count) BM.holder = 0;
+  bDraw(); BM.passes = 0; BM.round++; BM.confirmStop = false;
+  BM.screen = "ready";
+}
+function bLight() {
+  initAudio(); oKeepAwake();
+  const [a, b] = BOMB_LEN[bcfg.len] || BOMB_LEN.normal;
+  BM.startAt = Date.now();
+  BM.endAt = BM.startAt + (a + Math.random() * (b - a)) * 1000;
+  BM.screen = "play";
+  bTick();
+}
+function bTick() {
+  bStop();
+  if (BM.screen !== "play") return;
+  const now = Date.now();
+  if (now >= BM.endAt) return bBoom();
+  const left = (BM.endAt - now) / (BM.endAt - BM.startAt);
+  const step = left > .4 ? 650 : left > .15 ? 380 : 190;
+  bTone(BM.tickHi ? 1900 : 1400, .04);
+  BM.tickHi = !BM.tickHi;
+  const el = document.getElementById("bomb-art");
+  if (el) el.dataset.speed = left > .4 ? "1" : left > .15 ? "2" : "3";
+  BM.timer = setTimeout(bTick, Math.min(step, Math.max(20, BM.endAt - now)));
+}
+function bPass() {
+  if (BM.screen !== "play") return;
+  if (Date.now() >= BM.endAt) return bBoom();
+  BM.holder = (BM.holder + 1) % bcfg.count;
+  BM.passes++;
+  bTone(700, .05, "triangle", .15);
+  try { if (navigator.vibrate) navigator.vibrate(18); } catch (e) {}
+}
+function bBoom() {
+  bStop();
+  BM.screen = "boom";
+  const n = bName(BM.holder);
+  BM.losses[n] = (BM.losses[n] || 0) + 1;
+  bGage();
+  histAdd({ g: "bomb", m: "local", p: [...Array(bcfg.count).keys()].map(bName), w: [], x: { loser: n, passes: BM.passes, theme: BM.theme } });
+  bBoomSound();
+  try { if (navigator.vibrate) navigator.vibrate([400, 120, 400]); } catch (e) {}
+  render();
+}
+document.addEventListener("visibilitychange", () => { if (document.visibilityState === "visible" && BM.screen === "play") bTick(); });
+
+const BOMB_ART = `<svg viewBox="0 0 120 120" aria-hidden="true"><circle cx="54" cy="70" r="36" fill="#2d2040"/><circle cx="54" cy="70" r="36" fill="none" stroke="#7d6a8e" stroke-width="4"/><path d="M38 52 A22 22 0 0 1 56 42" stroke="#5e4b6d" stroke-width="7" fill="none" stroke-linecap="round"/><rect x="62" y="28" width="18" height="16" rx="3" transform="rotate(35 71 36)" fill="#5e4b6d"/><path d="M78 26 C84 16 92 18 96 12" stroke="#e9c49a" stroke-width="4" fill="none" stroke-linecap="round"/><g class="spark"><circle cx="98" cy="10" r="7" fill="#f3b54a"/><circle cx="98" cy="10" r="3.5" fill="#fff"/><path d="M98 -2 V3 M98 17 V22 M86 10 H91 M105 10 H110 M90 2 L93 5 M106 2 L103 5 M90 18 L93 15 M106 18 L103 15" stroke="#f3b54a" stroke-width="2.5" stroke-linecap="round"/></g></svg>`;
+const bLossRows = () => Object.entries(BM.losses).sort((a, b) => b[1] - a[1]).map(([n, s]) => `<div class="score-row"><span>${esc(n)}</span><b>${s} 💣</b></div>`).join("");
+const bThemeText = () => esc(BM.theme) + (BM.letter ? ` <span class="bomb-letter">qui commence par ${BM.letter}</span>` : "");
+function vBomb() {
+  if (BM.screen === "setup") {
+    const names = [...Array(bcfg.count).keys()].map(i => `<div class="name-row"><span class="agent">${agent(i)}</span><input type="text" id="bname-${i}" data-bname="${i}" placeholder="Joueur ${i + 1}" maxlength="20" value="${esc(bcfg.names[i] || "")}" autocomplete="off"></div>`).join("");
+    return `${backHome}
+    <header class="section">
+      <span class="eyebrow">Un seul téléphone qu'on se passe</span>
+      <h1>La Bombe</h1>
+      <p class="lead">Un thème s'affiche et la mèche s'allume. Tu dis une réponse, tu appuies sur Passe et tu donnes le téléphone à ton voisin. Celui qui tient la bombe quand elle explose prend un gage.</p>
+    </header>
+    ${rulesBlock("bomb")}
+    <section class="section"><span class="label">Joueurs, dans l'ordre où vous êtes assis</span>
+      <div class="stepper"><button data-act="b-count" data-d="-1" aria-label="Retirer un joueur">−</button><output>${bcfg.count}</output><button data-act="b-count" data-d="1" aria-label="Ajouter un joueur">+</button></div>
+      <div class="names">${names}</div></section>
+    <section class="section"><span class="label">Thèmes</span><div class="chips">${BOMB_PACKS.map(p => `<button class="chip" data-act="b-pack" data-id="${p.id}" aria-pressed="${bcfg.packs.includes(p.id)}">${esc(p.name)}<small>${p.t.length}</small></button>`).join("")}</div></section>
+    <section class="section"><span class="label">Mèche</span><div class="chips">${[["court", "Courte"], ["normal", "Normale"], ["long", "Longue"]].map(([k, l]) => `<button class="chip" data-act="b-len" data-x="${k}" aria-pressed="${bcfg.len === k}">${l}</button>`).join("")}</div>
+      <p class="hint">Personne ne sait quand elle explose : entre ${BOMB_LEN[bcfg.len][0]} et ${BOMB_LEN[bcfg.len][1]} secondes.</p></section>
+    <div class="toggle"><div class="t-text"><div class="label">Avec une lettre</div><div class="t-sub">Plus dur : la réponse doit commencer par une lettre imposée.</div></div>
+      <button class="switch" role="switch" aria-label="Avec une lettre" aria-checked="${bcfg.letter}" data-act="b-letter"></button></div>
+    <div class="toggle"><div class="t-text"><div class="label">Gages de soirée</div><div class="t-sub">Ajoute des gages avec des gorgées. À laisser éteint avec des enfants.</div></div>
+      <button class="switch" role="switch" aria-label="Gages de soirée" aria-checked="${!!bcfg.drinks}" data-act="b-drinks"></button></div>
+    <p class="msg">${esc(BM.msg)}</p>
+    <button class="btn" data-act="b-start">Lancer la partie</button>
+    ${Object.keys(BM.losses).length ? `<section class="section"><span class="label">Bombes reçues</span><div class="scores">${bLossRows()}</div></section>` : ""}`;
+  }
+  if (BM.screen === "ready") {
+    return `${backHome}<header class="section"><span class="eyebrow">Manche ${BM.round}</span><h2 class="bomb-theme">${bThemeText()}</h2></header>
+    <div class="bomb-stage"><div class="bomb-art" data-speed="0">${BOMB_ART}</div></div>
+    <p class="lead">C'est <b>${esc(bName(BM.holder))}</b> qui commence. Une réponse chacun, pas de répétition.</p>
+    <button class="btn" data-act="b-light">Allumer la mèche</button>
+    <button class="btn-ghost" data-act="b-reroll">Autre thème</button>
+    <button class="btn-ghost" data-act="b-setup">Réglages</button>`;
+  }
+  if (BM.screen === "play") {
+    return `<div class="bomb-play">
+      <p class="bomb-theme small">${bThemeText()}</p>
+      <div class="bomb-stage"><div class="bomb-art lit" id="bomb-art" data-speed="1">${BOMB_ART}</div></div>
+      <p class="eyebrow">La bombe est chez</p>
+      <p class="bomb-holder">${esc(bName(BM.holder))}</p>
+      <button class="btn bomb-pass" data-act="b-pass">Réponse donnée · Passe !</button>
+      <p class="hint">Pas de réponse, ou une réponse déjà dite ? Tu gardes la bombe.</p>
+      ${BM.confirmStop ? `<div class="row"><button class="btn-ghost" data-act="b-stop">Arrêter la manche</button><button class="btn-ghost" data-act="b-nostop">Continuer</button></div>` : `<button class="btn-ghost" data-act="b-askstop">Pause</button>`}
+    </div>`;
+  }
+  return `${backHome}<div class="bomb-boom">
+    <p class="boom-word">BOUM !</p>
+    <h1 class="bomb-loser">${esc(bName(BM.holder))}</h1>
+    <p class="lead">avait la bombe.</p>
+    <div class="gage"><span class="label">Gage</span><p>${esc(BM.gage || "")}</p><button class="btn-small" data-act="b-gage">Autre gage</button></div>
+    <p class="hint">${BM.passes} passe${BM.passes > 1 ? "s" : ""} · thème : ${esc(BM.theme)}${BM.letter ? " (" + BM.letter + ")" : ""}</p>
+    <section class="section"><span class="label">Bombes reçues</span><div class="scores">${bLossRows()}</div></section>
+    <button class="btn" data-act="b-next">Manche suivante</button>
+    <button class="btn-ghost" data-act="b-setup">Réglages</button>
+  </div>`;
+}
+
+/* =========================================================
+   TU PRÉFÈRES (local et en ligne)
+   ========================================================= */
+const TP_PACKS = [
+  { id: "classique", name: "Classiques", q: [
+    ["Pouvoir voler", "Pouvoir devenir invisible"], ["Ne plus jamais avoir froid", "Ne plus jamais avoir chaud"], ["Vivre sans musique", "Vivre sans films ni séries"],
+    ["Parler toutes les langues", "Parler aux animaux"], ["Être super riche mais seul", "Être pauvre avec plein d'amis"], ["Voyager dans le passé", "Voyager dans le futur"],
+    ["Vivre à la mer", "Vivre à la montagne"], ["Ne manger que salé", "Ne manger que sucré"], ["Ne plus jamais dormir", "Ne plus jamais manger"],
+    ["Avoir 10 ans pour toujours", "Avoir 40 ans pour toujours"], ["Lire dans les pensées", "Voir l'avenir"], ["Être très grand", "Être très petit"],
+    ["Ne plus jamais utiliser de téléphone", "Ne plus jamais regarder la télé"], ["Avoir un dragon", "Être un dragon"], ["Vivre dans un château hanté", "Vivre dans une cabane dans les arbres"],
+    ["Être célèbre", "Être le meilleur dans ton métier mais inconnu"], ["Avoir des vacances toute l'année sans argent", "Travailler tout le temps et être riche"], ["Pouvoir te téléporter", "Pouvoir arrêter le temps"],
+    ["Ne plus jamais manger de pizza", "Ne plus jamais manger de frites"], ["Avoir un frère jumeau", "Être enfant unique"], ["Vivre sans internet", "Vivre sans eau chaude"],
+    ["Toujours dire ce que tu penses", "Ne jamais pouvoir parler"], ["Habiter sur la Lune", "Habiter au fond de l'océan"], ["Avoir un super-pouvoir nul", "N'avoir aucun pouvoir"],
+    ["Revivre ta meilleure journée en boucle", "Découvrir une nouvelle journée chaque jour"]
+  ] },
+  { id: "gaming", name: "Gaming", q: [
+    ["Jouer qu'à un seul jeu toute ta vie", "Changer de jeu chaque semaine sans finir aucun jeu"], ["Être le meilleur joueur du monde mais que personne ne le sache", "Être nul mais célèbre en streaming"],
+    ["Vivre dans Minecraft", "Vivre dans GTA"], ["Ne plus avoir de manette", "Ne plus avoir de clavier et souris"], ["Perdre ta sauvegarde de 100 heures", "Ne plus jamais pouvoir jouer à ton jeu préféré"],
+    ["Avoir 200 de ping toute ta vie", "Jouer en 15 images par seconde toute ta vie"], ["Être coéquipier d'un joueur qui rage", "Être coéquipier d'un joueur qui ne parle jamais"],
+    ["Jouer qu'en solo", "Jouer qu'en équipe avec des inconnus"], ["Gagner une Coupe du monde de Fortnite", "Gagner les Worlds de League of Legends"],
+    ["Devenir un perso de Mario", "Devenir un Pokémon"], ["Avoir toutes les consoles mais aucun jeu", "Avoir un seul jeu mais le meilleur"], ["Ne jouer qu'à des jeux d'horreur", "Ne jouer qu'à des jeux pour enfants"],
+    ["Que tes parents voient tout ton historique de jeux", "Que tes potes voient tous tes rage quit"], ["Être PNJ dans un jeu génial", "Être le héros d'un jeu nul"],
+    ["Ne plus jamais avoir de mises à jour", "Avoir une mise à jour de 3 heures à chaque lancement"], ["Être bloqué au premier boss pour toujours", "Recommencer le jeu à chaque mort"],
+    ["Avoir le skin le plus rare du jeu", "Avoir le meilleur niveau du serveur"], ["Que les jeux soient gratuits mais plein de pubs", "Payer 100 € chaque jeu sans pub"]
+  ] },
+  { id: "anime", name: "Anime & ciné", q: [
+    ["Avoir le Sharingan", "Avoir le Haki des rois"], ["Être dans l'équipage de Luffy", "Être dans l'équipe 7 de Naruto"], ["Vivre à Poudlard", "Vivre à Konoha"],
+    ["Être un Jedi", "Être un sorcier"], ["Avoir un Pokémon de départ pour toujours", "Avoir un Pokémon légendaire qui ne t'obéit pas"], ["Avoir le pouvoir de Goku", "Avoir l'intelligence de Light Yagami"],
+    ["Vivre dans un film Disney", "Vivre dans un film de super-héros"], ["Rencontrer ton perso préféré mais il te déteste", "Ne jamais le rencontrer"],
+    ["Connaître la fin de toutes les séries à l'avance", "Ne jamais voir la fin d'une série"], ["Être Batman", "Être Spider-Man"], ["Combattre un titan", "Combattre un démon de Demon Slayer"],
+    ["Avoir un fruit du démon et ne plus savoir nager", "Ne pas avoir de pouvoir et savoir nager"], ["Vivre dans le monde de Shrek", "Vivre dans le monde de Toy Story"],
+    ["Revoir le même film toute ta vie", "Ne plus jamais revoir un film deux fois"], ["Être le méchant d'un anime", "Être le personnage secondaire qui meurt au 3ᵉ épisode"]
+  ] },
+  { id: "degueu", name: "Dégueu", q: [
+    ["Manger une araignée vivante", "Lécher une poubelle"], ["Ne plus jamais te brosser les dents", "Ne plus jamais prendre de douche"], ["Boire un verre de jus de cornichon", "Manger une cuillère de moutarde"],
+    ["Avoir des pieds qui puent", "Avoir une haleine qui pue"], ["Marcher pieds nus dans des toilettes publiques", "Mettre les chaussettes de quelqu'un d'autre"], ["Manger un insecte grillé", "Manger un plat tombé par terre"],
+    ["Éternuer à chaque fois que tu parles", "Avoir le hoquet toute la journée"], ["Porter les mêmes habits une semaine", "Porter les habits de ton pire ennemi"], ["Partager ta brosse à dents", "Partager tes chaussons"],
+    ["Avoir du chewing-gum dans les cheveux", "Marcher sur un chewing-gum à chaque pas"], ["Sentir le poisson pour toujours", "Sentir l'oignon pour toujours"], ["Manger des céréales à l'eau", "Manger des pâtes au ketchup et au chocolat"],
+    ["Dormir dans un lit plein de miettes", "Dormir dans un lit mouillé"], ["Trouver un cheveu dans chaque plat", "Trouver un os dans chaque plat"], ["Roter à chaque phrase", "Avoir les mains toujours collantes"]
+  ] },
+  { id: "potes", name: "Entre potes", q: [
+    ["Que tes potes lisent tous tes messages", "Que ta famille voie toutes tes recherches internet"], ["Perdre tous tes potes", "Perdre tous tes souvenirs avec eux"],
+    ["Avoir un pote qui dit toujours la vérité", "Avoir un pote qui te soutient même quand tu as tort"], ["Être toujours en retard", "Être toujours trois heures en avance"],
+    ["Chanter devant toute ton école", "Danser seul devant tous tes potes"], ["Que ta pire photo soit en fond d'écran de tout le monde", "Que ta voix enregistrée passe à la radio"],
+    ["Raconter ton pire souvenir gênant", "Montrer ta galerie photo pendant 10 secondes"], ["Partir en vacances avec tes potes sans téléphone", "Rester chez toi avec ton téléphone"],
+    ["Avoir un groupe de potes de 20 personnes", "Avoir 2 meilleurs potes"], ["Que tout le monde se souvienne de ta gaffe", "Être le seul à t'en souvenir pour toujours"],
+    ["Perdre à chaque jeu de société", "Gagner mais que tout le monde pense que tu triches"], ["Choisir le resto à chaque fois", "Ne jamais payer l'addition"],
+    ["Que ton crush voie ta pire photo", "Que ton crush entende ta pire blague"], ["Être le pote drôle", "Être le pote intelligent"], ["Partager ta chambre avec ton pote le plus bordélique", "Avec ton pote qui ronfle"]
+  ] },
+  { id: "dur", name: "Impossibles", q: [
+    ["Savoir quand tu vas mourir", "Savoir comment tu vas mourir"], ["Effacer ton pire souvenir", "Revivre ton meilleur souvenir une fois"], ["Être aimé de tous mais ne rien ressentir", "Ressentir tout mais être détesté"],
+    ["Ne plus jamais voir ta famille", "Ne plus jamais voir tes potes"], ["Vivre 1000 ans seul", "Vivre 50 ans avec ceux que tu aimes"], ["Que personne ne se souvienne de toi", "Que tout le monde se souvienne de ta pire erreur"],
+    ["Recommencer ta vie à zéro", "Connaître la fin de ta vie à l'avance"], ["Avoir toujours raison mais personne ne te croit", "Avoir toujours tort mais tout le monde te croit"],
+    ["Perdre la vue", "Perdre l'ouïe"], ["Être le plus intelligent du monde", "Être le plus heureux du monde"], ["Pouvoir changer une chose du passé", "Pouvoir voir une chose du futur"],
+    ["Avoir 1 million d'euros maintenant", "Avoir 10 000 € par mois toute ta vie"], ["Ne jamais pouvoir mentir", "Ne jamais savoir quand on te ment"],
+    ["Partir vivre à l'étranger sans jamais revenir", "Ne jamais quitter ta ville"], ["Sauver ton meilleur pote", "Sauver 10 inconnus"]
+  ] }
+];
+const tpAll = ids => TP_PACKS.filter(p => ids.includes(p.id)).flatMap(p => p.q);
+let tpcfg = Object.assign({ packs: TP_PACKS.map(p => p.id) }, store.get("tpcfg", {}));
+tpcfg.packs = (tpcfg.packs || []).filter(id => TP_PACKS.some(p => p.id === id)); if (!tpcfg.packs.length) tpcfg.packs = TP_PACKS.map(p => p.id);
+let TPL = { screen: "setup", deck: [], i: 0, cd: null };
+function tplStart() { TPL.deck = shuffle(tpAll(tpcfg.packs)); TPL.i = 0; TPL.cd = null; TPL.screen = "play"; }
+function tplCountdown() {
+  initAudio(); TPL.cd = 3; beep(660, .1, "triangle", .15); render();
+  const step = () => { if (S.view !== "tp" || TPL.cd === null) return; TPL.cd--; if (TPL.cd > 0) { beep(660, .1, "triangle", .15); render(); setTimeout(step, 750); } else { beep(1046, .3, "triangle", .2); try { if (navigator.vibrate) navigator.vibrate(60); } catch (e) {} render(); } };
+  setTimeout(step, 750);
+}
+function tplNext() { TPL.cd = null; prefs.tpSeen++; prefsSave(); if (prefs.tpSeen % 10 === 0) achCheck(); TPL.i++; if (TPL.i >= TPL.deck.length) { TPL.deck = shuffle(TPL.deck); TPL.i = 0; } }
+const TP_ART = `<svg viewBox="0 0 120 120" aria-hidden="true"><rect x="56" y="20" width="8" height="82" rx="3" fill="#f3b54a"/><rect x="34" y="98" width="52" height="10" rx="4" fill="#f3b54a"/><path d="M14 34 H106" stroke="#f3b54a" stroke-width="6" stroke-linecap="round"/><circle cx="60" cy="22" r="8" fill="#f3b54a"/><path d="M22 34 L8 66 H36 Z" fill="none" stroke="#e3807a" stroke-width="4" stroke-linejoin="round"/><path d="M6 66 A16 9 0 0 0 38 66 Z" fill="#e3807a"/><path d="M98 34 L84 66 H112 Z" fill="none" stroke="#7eb3dd" stroke-width="4" stroke-linejoin="round"/><path d="M82 66 A16 9 0 0 0 114 66 Z" fill="#7eb3dd"/></svg>`;
+function tpChoices(q, attrs) {
+  const opt = (k, t) => attrs ? `<button class="tp-opt ${k}" ${attrs(k)}><span class="tp-tag">${k.toUpperCase()}</span>${esc(t)}</button>` : `<div class="tp-opt ${k}"><span class="tp-tag">${k.toUpperCase()}</span>${esc(t)}</div>`;
+  return `<div class="tp-choices">${opt("a", q[0])}<span class="tp-or">ou</span>${opt("b", q[1])}</div>`;
+}
+function vTp() {
+  if (TPL.screen === "setup") {
+    return `${backHome}
+    <header class="section"><span class="eyebrow">Un seul écran pour tous</span><h1>Tu préfères</h1>
+      <p class="lead">Deux choix impossibles. Tout le monde réfléchit, puis à trois, chacun montre A ou B avec ses doigts. Ceux qui sont seuls dans leur camp doivent se justifier.</p></header>
+    <section class="section"><span class="label">Thèmes</span><div class="chips">${TP_PACKS.map(p => `<button class="chip" data-act="tp-pack" data-id="${p.id}" aria-pressed="${tpcfg.packs.includes(p.id)}">${esc(p.name)}<small>${p.q.length}</small></button>`).join("")}</div></section>
+    <button class="btn" data-act="tp-start">Commencer</button>
+    <p class="hint">Pour voter chacun sur son téléphone et voir qui a choisi quoi, joue en ligne.</p>`;
+  }
+  const q = TPL.deck[TPL.i];
+  return `${backHome}<header class="section"><span class="eyebrow">Tu préfères… · ${TPL.i + 1}/${TPL.deck.length}</span></header>
+    ${tpChoices(q, null)}
+    ${TPL.cd !== null && TPL.cd !== undefined ? `<p class="tp-cd" aria-live="assertive">${TPL.cd > 0 ? TPL.cd : "Montrez !"}</p>` : `<button class="btn" data-act="tp-cd">3, 2, 1… montrez !</button>`}
+    <p class="hint">Chacun montre A ou B avec ses doigts en même temps. Ceux qui sont seuls dans leur camp se justifient.</p>
+    <button class="${TPL.cd === 0 ? "btn" : "btn-ghost"}" data-act="tp-next">Question suivante</button>
+    <button class="btn-ghost" data-act="tp-setup">Thèmes</button>`;
+}
+
+/* ---------- Tu préfères en ligne (hôte) ---------- */
+function tpStart() {
+  const ps = L.players.filter(p => p.online);
+  if (ps.length < 2) { L.note = "Il faut au moins 2 joueurs connectés pour Tu préfères."; return; }
+  const st = L.settings.tp;
+  const all = tpAll(st.packs);
+  if (!all.length) { L.note = "Choisis au moins un thème."; return; }
+  let pool = all.filter(q => !L.tpUsed.has(q.join("|")));
+  if (pool.length < st.rounds) { L.tpUsed.clear(); pool = all; }
+  const deck = shuffle(pool).slice(0, st.rounds);
+  deck.forEach(q => L.tpUsed.add(q.join("|")));
+  L.game = { kind: "tp", phase: "vote", round: 1, rounds: deck.length, deck, players: ps.map(p => p.pid), votes: {}, minority: {}, hist: [] };
+}
+function tpVote(pid, x) {
+  const g = L.game;
+  if (!g || g.kind !== "tp" || g.phase !== "vote" || !g.players.includes(pid) || !["a", "b"].includes(x)) return;
+  g.votes[pid] = x;
+  if (g.players.every(p => g.votes[p] || !(L.players.find(q => q.pid === p) || {}).online)) tpReveal();
+}
+function tpReveal() {
+  const g = L.game;
+  const a = g.players.filter(p => g.votes[p] === "a"), b = g.players.filter(p => g.votes[p] === "b");
+  if (a.length !== b.length && a.length && b.length) (a.length < b.length ? a : b).forEach(p => g.minority[p] = (g.minority[p] || 0) + 1);
+  g.hist.push({ q: g.deck[g.round - 1], a: a.length, b: b.length });
+  g.phase = "reveal";
+}
+function tpNext() {
+  const g = L.game;
+  if (g.round >= g.rounds) { g.phase = "end"; return; }
+  g.round++; g.votes = {}; g.phase = "vote";
+}
+function tpView(g, pid) {
+  const v = { kind: "tp", phase: g.phase, round: g.round, rounds: g.rounds, q: g.deck[g.round - 1], inGame: g.players.includes(pid), myVote: g.votes[pid] || null };
+  v.count = Object.keys(g.votes).length; v.total = g.players.length;
+  v.waiting = g.players.filter(p => !g.votes[p]).map(pname);
+  if (g.phase !== "vote") {
+    v.a = g.players.filter(p => g.votes[p] === "a").map(pname);
+    v.b = g.players.filter(p => g.votes[p] === "b").map(pname);
+  }
+  if (g.phase === "end") {
+    v.orig = g.players.map(p => [pname(p), g.minority[p] || 0]).sort((x, y) => y[1] - x[1]);
+    v.hist = g.hist;
+  }
+  return v;
+}
+function tpSet(x) {
+  const st = L.settings.tp, [k, val] = String(x || "").split(":");
+  if (k === "pack" && TP_PACKS.some(p => p.id === val)) { st.packs = st.packs.includes(val) ? st.packs.filter(p => p !== val) : st.packs.concat(val); if (!st.packs.length) st.packs = [val]; }
+  if (k === "rounds") st.rounds = [10, 15, 20].includes(+val) ? +val : 10;
+}
+function tpLobbySettings(v) {
+  const st = v.settings.tp;
+  return `<section class="section"><span class="label">Thèmes</span><div class="chips">${TP_PACKS.map(p => `<button class="chip" data-act="o-send" data-a="tp-set" data-x="pack:${p.id}" aria-pressed="${st.packs.includes(p.id)}">${esc(p.name)}<small>${p.q.length}</small></button>`).join("")}</div></section>
+    <section class="section"><span class="label">Nombre de questions</span><div class="chips">${[10, 15, 20].map(n => `<button class="chip" data-act="o-send" data-a="tp-set" data-x="rounds:${n}" aria-pressed="${st.rounds === n}">${n}</button>`).join("")}</div></section>
+    <p class="hint">Minimum 2 joueurs. Chacun vote en secret, puis on voit qui a choisi quoi.</p>`;
+}
+function vOTp(v) {
+  const g = v.game;
+  const head = `<header class="section"><span class="eyebrow">Tu préfères… · ${g.round}/${g.rounds}</span></header>`;
+  const force = v.isHost && g.count ? `<button class="btn-ghost lg-force" data-act="o-send" data-a="tp-force">Révéler sans attendre</button>` : "";
+  if (g.phase === "vote") {
+    if (!g.inGame) return head + tpChoices(g.q, null) + `<p class="hint">Tu joueras à la prochaine partie.</p>`;
+    return head + tpChoices(g.q, k => `data-act="o-send" data-a="tp-vote" data-x="${k}" aria-pressed="${g.myVote === k}"`)
+      + `<p class="hint">${g.myVote ? "Vote enregistré, tu peux encore changer. " : ""}${g.count}/${g.total} ont voté${g.waiting.length && g.myVote ? " · on attend " + esc(listNames(g.waiting)) : ""}.</p>${force}`;
+  }
+  const tot = g.a.length + g.b.length || 1;
+  const side = (k, names) => `<div class="tp-res ${k}"><div class="tp-res-head"><b>${Math.round(names.length / tot * 100)} %</b><span>${esc(g.q[k === "a" ? 0 : 1])}</span></div>
+    <div class="bar"><i style="width:${names.length / tot * 100}%"></i></div>
+    <p class="tp-names">${names.length ? names.map(esc).join(", ") : "Personne"}</p></div>`;
+  const res = `<div class="tp-results">${side("a", g.a)}${side("b", g.b)}</div>`;
+  const alone = [g.a, g.b].find(x => x.length === 1 && g.a.length + g.b.length > 2);
+  if (g.phase === "reveal") {
+    return head + res + (alone ? `<div class="banner">${esc(alone[0])} est seul dans son camp : justifie-toi !</div>` : "")
+      + (v.isHost ? `<button class="btn" data-act="o-send" data-a="tp-next">${g.round >= g.rounds ? "Voir le bilan" : "Question suivante"}</button>` : `<p class="hint">En attente de l'hôte.</p>`);
+  }
+  const top = g.orig[0];
+  return `<header class="section"><span class="eyebrow">Tu préfères · bilan</span><h1 style="font-size:2.6rem">${top && top[1] > 0 ? esc(top[0]) + ", le plus original" : "Tout le monde d'accord"}</h1>
+    <p class="lead">Nombre de fois où chacun était dans le camp le moins choisi.</p></header>
+    <div class="scores">${g.orig.map(([n, s]) => `<div class="score-row"><span>${esc(n)}</span><b>${s}</b></div>`).join("")}</div>
+    <details class="box"><summary>Toutes les questions</summary><div class="scores">${g.hist.map(h => `<div class="score-row"><span>${esc(h.q[0])} <i>ou</i> ${esc(h.q[1])}</span><b>${h.a} / ${h.b}</b></div>`).join("")}</div></details>
+    ${v.isHost ? `<button class="btn" data-act="o-send" data-a="again">Rejouer</button><button class="btn-ghost" data-act="o-send" data-a="lobby">Retour au lobby</button>` : `<p class="hint">En attente de l'hôte.</p>`}`;
+}
+
+/* =========================================================
+   SEPT TÊTES (un seul téléphone)
+   7 persos cachés, un budget de mots d'indices, un chercheur qui doit tous les trouver.
+   Les catégories regroupent les persos de Devine Tête et d'Undercover.
+   ========================================================= */
+const SEPT_POP_OUT = ["Roblox", "Minecraft", "Fortnite", "Brawl Stars", "Clash Royale", "Among Us", "Subway Surfers", "Geometry Dash", "TikTok", "YouTube", "Instagram", "PlayStation", "Nintendo Switch", "McDonald's", "Nutella", "KPop Demon Hunters", "Mario", "Sonic", "Ladybug"];
+const SEPT_CATS = [
+  { id: "anime", name: "Anime", dt: ["anime"], extra: [["anime", "Bulma", "Chichi", "Gaï=Might Guy", "Shisui=Shisui Uchiha", "Robin=Nico Robin", "Kid=Eustass Kid", "Leorio=Leorio Paradinight", "Illumi=Illumi Zoldyck", "Yuji Itadori", "Lelouch=Lelouch Lamperouge", "Kaneki=Ken Kaneki"]] },
+  { id: "jv", name: "Jeux vidéo", dt: ["jv"], extra: [] },
+  { id: "disney", name: "Disney & Pixar", dt: ["disney"], extra: [["wiki", "Rémy=Remy (Ratatouille)", "Linguini=Alfredo Linguini"]] },
+  { id: "cine", name: "Séries & films", dt: ["cine"], extra: [] },
+  { id: "createurs", name: "Créateurs & streamers", dt: ["createurs"], extra: [] },
+  { id: "stars", name: "Célébrités", dt: ["stars"], extra: [] },
+  { id: "pop", name: "Culture pop", dt: ["kids"], out: SEPT_POP_OUT, extra: [] }
+];
+const sAllIds = () => SEPT_CATS.map(c => c.id);
+let scfg = Object.assign({ count: 4, names: dcfg.names.slice(), src: null, words: 15 }, store.get("scfg", {}));
+scfg.src = (scfg.src || sAllIds()).filter(id => sAllIds().includes(id)); if (!scfg.src.length) scfg.src = sAllIds();
+if (![10, 15, 20].includes(scfg.words)) scfg.words = 15;
+while (scfg.names.length < scfg.count) scfg.names.push("");
+const sSave = () => store.set("scfg", scfg);
+const sName = i => (scfg.names[i] || "").trim() || "Joueur " + (i + 1);
+let SM = { screen: "setup", cards: [], found: [], used: 0, round: 0, results: [], msg: "", seen: new Set() };
+function septCat(c) {
+  const out = [], seen = new Set();
+  const add = it => { const k = norm(it.w); if (seen.has(k) || (c.out || []).includes(it.w)) return; seen.add(k); out.push(Object.assign({}, it, { c: it.c })); };
+  c.dt.forEach(id => { const dc = DT_CATS.find(x => x.id === id); if (dc) dtItems(dc).forEach(it => add(Object.assign({}, it, { c: dc.name }))); });
+  c.extra.forEach(g => g.slice(1).forEach(raw => { const [w, alias] = raw.split("="); add({ w, s: g[0], q: alias || w, lang: ["en", "fr"], hint: g[0] === "anime" ? "character" : "", c: c.name }); }));
+  return out;
+}
+function septPool() {
+  const seen = new Set(), out = [];
+  SEPT_CATS.filter(c => scfg.src.includes(c.id)).forEach(c => septCat(c).forEach(it => { const k = norm(it.w); if (!seen.has(k)) { seen.add(k); out.push(it); } }));
+  return out;
+}
+function sDraw() {
+  const pool = septPool();
+  let fresh = pool.filter(it => !SM.seen.has(norm(it.w)));
+  if (fresh.length < 7) { SM.seen.clear(); fresh = pool; }
+  SM.cards = shuffle(fresh).slice(0, 7);
+  SM.cards.forEach(c => SM.seen.add(norm(c.w)));
+  SM.found = []; SM.used = 0;
+}
+function sStart() {
+  if (septPool().length < 7) { SM.msg = "Il faut au moins 7 persos : ajoute des catégories."; return; }
+  SM.msg = ""; SM.round = 1; SM.results = []; SM.screen = "pass"; sDraw();
+}
+const sSeeker = () => (SM.round - 1) % scfg.count;
+function sFinish() {
+  SM.results.push({ seeker: sName(sSeeker()), found: SM.found.length, used: SM.used, names: SM.cards.map(c => c.w), got: SM.cards.map((_, k) => SM.found.includes(k)) });
+  SM.screen = "result";
+}
+function sNext() {
+  if (SM.round >= scfg.count) {
+    const sc = SM.results.map(r => r.found * 100 - r.used), best = Math.max(...sc);
+    histAdd({ g: "sept", m: "local", p: [...Array(scfg.count).keys()].map(sName), w: SM.results.filter((r, k) => sc[k] === best).map(r => r.seeker), x: { rounds: scfg.count, found: SM.results.map(r => r.found) } });
+    SM.screen = "end"; return;
+  }
+  SM.round++; sDraw(); SM.screen = "pass";
+}
+const SEPT_ART = `<svg viewBox="0 0 120 120" aria-hidden="true"><g transform="rotate(-17 60 108)"><rect x="20" y="16" width="54" height="76" rx="8" fill="#8fae45"/></g><g transform="rotate(17 60 108)"><rect x="46" y="16" width="54" height="76" rx="8" fill="#a3c255"/></g><rect x="33" y="12" width="54" height="80" rx="8" fill="#f5eee3"/><circle cx="60" cy="42" r="12" fill="#b9d56b"/><path d="M38 84 C38 62 82 62 82 84 Z" fill="#b9d56b"/><circle cx="40" cy="20" r="2.4" fill="#2d2040"/><circle cx="80" cy="84" r="2.4" fill="#2d2040"/></svg>`;
+function sCard(c, k, play) {
+  const f = SM.found.includes(k), inner = `${charImg(c, "sept-img")}<span class="sept-name">${esc(c.w)}</span>`;
+  if (play) return `<button class="sept-card ${f ? "found" : ""}" data-act="s-found" data-i="${k}" aria-pressed="${f}" aria-label="${esc(c.w)}${f ? ", trouvé" : ""}">${inner}${f ? `<b class="sept-n" aria-hidden="true">✓</b>` : ""}</button>`;
+  return `<div class="sept-card ${f ? "found" : ""}">${inner}${f ? `<b class="sept-n" aria-hidden="true">✓</b>` : ""}</div>`;
+}
+const sGrid = play => `<div class="sept-grid">${SM.cards.map((c, k) => sCard(c, k, play)).join("")}</div>`;
+const sRank = () => SM.results.map(r => ({ n: r.seeker, f: r.found, u: r.used })).sort((a, b) => b.f - a.f || a.u - b.u);
+function vSept() {
+  if (SM.screen === "setup") {
+    const names = [...Array(scfg.count).keys()].map(i => `<div class="name-row"><span class="agent">${agent(i)}</span><input type="text" id="sname-${i}" data-sname="${i}" placeholder="Joueur ${i + 1}" maxlength="20" value="${esc(scfg.names[i] || "")}" autocomplete="off"></div>`).join("");
+    return `${backHome}
+    <header class="section">
+      <span class="eyebrow">Un seul téléphone qu'on se passe</span>
+      <h1>Sept Têtes</h1>
+      <p class="lead">Sept persos sont cachés à celui qui cherche. Les autres ont ${scfg.words} mots en tout pour les lui faire trouver. Chacun cherche à son tour.</p>
+    </header>
+    ${rulesBlock("sept")}
+    <section class="section"><span class="label">Joueurs, dans l'ordre où vous êtes assis</span>
+      <div class="stepper"><button data-act="s-count" data-d="-1" aria-label="Retirer un joueur">−</button><output>${scfg.count}</output><button data-act="s-count" data-d="1" aria-label="Ajouter un joueur">+</button></div>
+      <div class="names">${names}</div>
+      <p class="hint">${scfg.count} manches : chaque joueur est le chercheur une fois.</p></section>
+    <section class="section"><span class="label">Catégories</span><div class="chips">${SEPT_CATS.map(c => `<button class="chip" data-act="s-src" data-id="${c.id}" aria-pressed="${scfg.src.includes(c.id)}">${esc(c.name)}<small>${septCat(c).length}</small></button>`).join("")}</div>
+      <p class="hint">Seulement des personnages et des personnalités, tirés de Devine Tête et d'Undercover. Les images viennent d'internet.</p></section>
+    <section class="section"><span class="label">Mots pour tout faire trouver</span><div class="chips">${[10, 15, 20].map(n => `<button class="chip" data-act="s-words" data-x="${n}" aria-pressed="${scfg.words === n}">${n}${n === 15 ? "<small>conseillé</small>" : ""}</button>`).join("")}</div></section>
+    <p class="msg">${esc(SM.msg)}</p>
+    <button class="btn" data-act="s-start">Lancer la partie</button>`;
+  }
+  const head = `<header class="section"><span class="eyebrow">Manche ${SM.round} sur ${scfg.count}</span></header>`;
+  if (SM.screen === "pass") {
+    return `${backHome}${head}<div class="sept-pass"><p class="eyebrow">Celui qui cherche</p><p class="sept-who">${esc(sName(sSeeker()))}</p>
+      <p class="lead">Tu fermes les yeux ou tu te retournes. Les autres regardent les sept têtes et ont ${scfg.words} mots en tout pour te les faire trouver.</p>
+      <button class="btn bomb-pass" data-act="s-ready">Les autres voient les têtes</button>
+      <button class="btn-ghost" data-act="s-redraw">Autres têtes</button>
+      <button class="btn-ghost" data-act="s-setup">Réglages</button></div>`;
+  }
+  if (SM.screen === "play") {
+    const left = scfg.words - SM.used, over = left <= 0;
+    return `${backHome}<header class="section"><span class="eyebrow">${esc(sName(sSeeker()))} cherche · ${SM.found.length}/7 trouvés</span></header>
+    ${sGrid(true)}
+    <div class="sept-count ${over ? "over" : left <= 3 ? "low" : ""}" role="group" aria-label="Mots utilisés">
+      <button class="btn-small" data-act="s-minus" aria-label="Un mot de moins" ${SM.used ? "" : "disabled"}>−</button>
+      <p aria-live="polite"><b>${left > 0 ? left : 0}</b> mot${left > 1 ? "s" : ""} restant${left > 1 ? "s" : ""} <small>sur ${scfg.words}</small></p>
+      <button class="btn-small" data-act="s-plus" aria-label="Un mot de plus" ${over ? "disabled" : ""}>+1 mot</button>
+    </div>
+    <p class="hint">Chaque mot dit à voix haute compte : appuie sur +1 mot. Quand le chercheur trouve une tête, touche-la. Interdit de dire le nom ou une partie du nom.</p>
+    <button class="btn-ghost" data-act="s-end">${SM.found.length === 7 ? "Voir le résultat" : "Arrêter la manche"}</button>`;
+  }
+  if (SM.screen === "result") {
+    const r = SM.results[SM.results.length - 1];
+    return `${head}<div class="bomb-boom"><h1 class="bomb-loser">${r.found} sur 7</h1>
+      <p class="lead">${esc(r.seeker)} a trouvé ${r.found} tête${r.found > 1 ? "s" : ""} avec ${r.used} mot${r.used > 1 ? "s" : ""}.</p></div>
+    <div class="sept-grid">${SM.cards.map((c, k) => `<div class="sept-card ${r.got[k] ? "found" : "miss"}">${charImg(c, "sept-img")}<span class="sept-name">${esc(c.w)}</span>${r.got[k] ? `<b class="sept-n" aria-hidden="true">✓</b>` : ""}</div>`).join("")}</div>
+    <p class="hint">Les têtes en gris n'ont pas été trouvées. Images : Wikipédia, MyAnimeList ou Pokémon.</p>
+    <button class="btn" data-act="s-next">${SM.round >= scfg.count ? "Voir le classement" : "Manche suivante"}</button>`;
+  }
+  const rk = sRank(), top = rk[0];
+  const rows = rk.map((r, k) => `<div class="score-row ${r.f === top.f && r.u === top.u ? "lead-row" : ""}"><span>${esc(r.n)}</span><b>${r.f}/7 · ${r.u} mot${r.u > 1 ? "s" : ""}</b></div>`).join("");
+  return `${backHome}<div class="bomb-boom">
+    <p class="eyebrow">Fin de la partie</p>
+    <h1 class="bomb-loser">${esc(top.n)}</h1>
+    <p class="lead">est le meilleur chercheur : ${top.f} têtes sur 7 en ${top.u} mots.</p>
+    <section class="section"><span class="label">Classement des chercheurs</span><div class="scores">${rows}</div></section>
+    <button class="btn" data-act="s-again">Rejouer</button>
+    <button class="btn-ghost" data-act="s-setup">Réglages</button>
+  </div>`;
+}
+
 const HOME_ART = {
-  qd: `<svg viewBox="0 0 120 120" aria-hidden="true"><path d="M16 20 H104 A10 10 0 0 1 114 30 V74 A10 10 0 0 1 104 84 H62 L40 104 V84 H16 A10 10 0 0 1 6 74 V30 A10 10 0 0 1 16 20 Z" fill="#b06cff"/><path d="M60 20 H104 A10 10 0 0 1 114 30 V74 A10 10 0 0 1 104 84 H60 Z" fill="#9550ea"/><path d="M34 42 h14 v14 c0 8 -4 12 -10 14 l-2 -5 c4 -2 5 -4 5 -7 h-7 Z M66 42 h14 v14 c0 8 -4 12 -10 14 l-2 -5 c4 -2 5 -4 5 -7 h-7 Z" fill="#fff"/></svg>`,
-  dr: `<svg viewBox="0 0 120 120" aria-hidden="true"><rect x="10" y="14" width="84" height="84" rx="10" fill="#fbfaf4"/><path d="M22 74 C34 40 52 84 64 52 S84 46 84 70" stroke="#e8434a" stroke-width="6" fill="none" stroke-linecap="round"/><path d="M26 36 C40 30 50 44 60 34" stroke="#2f7fd0" stroke-width="6" fill="none" stroke-linecap="round"/><g transform="rotate(40 88 72)"><rect x="80" y="30" width="16" height="66" rx="3" fill="#ffd23f"/><rect x="80" y="30" width="16" height="10" fill="#ff8a9a"/><path d="M80 96 L88 112 L96 96 Z" fill="#e9c49a"/><path d="M86 108 L88 112 L90 108 Z" fill="#141a4d"/></g></svg>`,
-  uc: `<svg viewBox="0 0 120 120" aria-hidden="true"><path d="M14 50 C14 36 34 32 60 40 C86 32 106 36 106 50 C106 70 92 82 78 78 C70 76 66 66 60 66 C54 66 50 76 42 78 C28 82 14 70 14 50 Z" fill="#e8434a"/><path d="M60 40 C86 32 106 36 106 50 C106 70 92 82 78 78 C70 76 66 66 60 66 Z" fill="#c8323a"/><ellipse cx="40" cy="56" rx="11" ry="8" fill="#141a4d"/><ellipse cx="80" cy="56" rx="11" ry="8" fill="#141a4d"/><circle cx="36" cy="53" r="2.5" fill="#fff"/><circle cx="76" cy="53" r="2.5" fill="#fff"/><path d="M14 50 C6 46 2 54 6 60 M106 50 C114 46 118 54 114 60" stroke="#e8434a" stroke-width="4" fill="none" stroke-linecap="round"/></svg>`,
-  dt: `<svg viewBox="0 0 120 120" aria-hidden="true"><path d="M20 22 H100 A10 10 0 0 1 110 32 V76 A10 10 0 0 1 100 86 H58 L34 106 V86 H20 A10 10 0 0 1 10 76 V32 A10 10 0 0 1 20 22 Z" fill="#3fd48c"/><path d="M60 22 H100 A10 10 0 0 1 110 32 V76 A10 10 0 0 1 100 86 H60 Z" fill="#2fbf79"/><path d="M48 44 C48 34 72 32 72 46 C72 56 60 56 60 64" stroke="#141a4d" stroke-width="9" stroke-linecap="round" fill="none"/><circle cx="60" cy="76" r="5.5" fill="#141a4d"/></svg>`
+  qd: `<svg viewBox="0 0 120 120" aria-hidden="true"><path d="M16 20 H104 A10 10 0 0 1 114 30 V74 A10 10 0 0 1 104 84 H62 L40 104 V84 H16 A10 10 0 0 1 6 74 V30 A10 10 0 0 1 16 20 Z" fill="#a79ae3"/><path d="M60 20 H104 A10 10 0 0 1 114 30 V74 A10 10 0 0 1 104 84 H60 Z" fill="#8b7dcf"/><path d="M34 42 h14 v14 c0 8 -4 12 -10 14 l-2 -5 c4 -2 5 -4 5 -7 h-7 Z M66 42 h14 v14 c0 8 -4 12 -10 14 l-2 -5 c4 -2 5 -4 5 -7 h-7 Z" fill="#fff"/></svg>`,
+  dr: `<svg viewBox="0 0 120 120" aria-hidden="true"><rect x="10" y="14" width="84" height="84" rx="10" fill="#f5eee3"/><path d="M22 74 C34 40 52 84 64 52 S84 46 84 70" stroke="#e3807a" stroke-width="6" fill="none" stroke-linecap="round"/><path d="M26 36 C40 30 50 44 60 34" stroke="#7eb3dd" stroke-width="6" fill="none" stroke-linecap="round"/><g transform="rotate(40 88 72)"><rect x="80" y="30" width="16" height="66" rx="3" fill="#f3b54a"/><rect x="80" y="30" width="16" height="10" fill="#d98fb1"/><path d="M80 96 L88 112 L96 96 Z" fill="#e9c49a"/><path d="M86 108 L88 112 L90 108 Z" fill="#1d1328"/></g></svg>`,
+  uc: `<svg viewBox="0 0 120 120" aria-hidden="true"><path d="M14 50 C14 36 34 32 60 40 C86 32 106 36 106 50 C106 70 92 82 78 78 C70 76 66 66 60 66 C54 66 50 76 42 78 C28 82 14 70 14 50 Z" fill="#e3807a"/><path d="M60 40 C86 32 106 36 106 50 C106 70 92 82 78 78 C70 76 66 66 60 66 Z" fill="#c4625d"/><ellipse cx="40" cy="56" rx="11" ry="8" fill="#1d1328"/><ellipse cx="80" cy="56" rx="11" ry="8" fill="#1d1328"/><circle cx="36" cy="53" r="2.5" fill="#fff"/><circle cx="76" cy="53" r="2.5" fill="#fff"/><path d="M14 50 C6 46 2 54 6 60 M106 50 C114 46 118 54 114 60" stroke="#e3807a" stroke-width="4" fill="none" stroke-linecap="round"/></svg>`,
+  dt: `<svg viewBox="0 0 120 120" aria-hidden="true"><path d="M20 22 H100 A10 10 0 0 1 110 32 V76 A10 10 0 0 1 100 86 H58 L34 106 V86 H20 A10 10 0 0 1 10 76 V32 A10 10 0 0 1 20 22 Z" fill="#7ec79c"/><path d="M60 22 H100 A10 10 0 0 1 110 32 V76 A10 10 0 0 1 100 86 H60 Z" fill="#66b085"/><path d="M48 44 C48 34 72 32 72 46 C72 56 60 56 60 64" stroke="#1d1328" stroke-width="9" stroke-linecap="round" fill="none"/><circle cx="60" cy="76" r="5.5" fill="#1d1328"/></svg>`
 };
 const ICON_LOCAL = `<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="2.5" width="12" height="19" rx="2.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M10.5 18.5h3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>`;
 const ICON_ONLINE = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 9a14 14 0 0 1 19 0M5.5 12.5a9.5 9.5 0 0 1 13 0M8.5 16a5 5 0 0 1 7 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="19.5" r="1.6" fill="currentColor"/></svg>`;
-function vHome() {
-  const local = act => `<button class="mode-btn" data-act="${act}">${ICON_LOCAL}Local</button>`;
-  const online = g => `<button class="mode-btn on" data-act="go-online" data-g="${g}">${ICON_ONLINE}En ligne</button>`;
-  const card = (cls, art, players, name, desc, modes) => `<article class="game-card">
-      <div class="gart">${art}</div>
-      <span class="gmeta ${cls}">${players}</span>
-      <span class="gname">${name}</span>
-      <span class="gdesc">${desc}</span>
-      <div class="modes ${modes.length === 1 ? "single" : ""}">${modes.join("")}</div>
-    </article>`;
-  return `<header class="home-head">
-    <h1>Simwar</h1>
-    <p class="lead">Undercover · Devine Tête · Loup-Garou · Qui a dit ça ? · Imposteur dessin</p>
+/* =========================================================
+   PLATEFORME : préférences, historique, stats, succès,
+   notifications, confettis, roue des jeux
+   ========================================================= */
+const GAMES = [
+  { id: "uc", name: "Undercover", min: 3, max: 10, color: "#e3807a", local: "go-uc", online: "uc", desc: "Tout le monde a le même mot, sauf l'intrus. Indices, vote, démasquez-le." },
+  { id: "dt", name: "Devine Tête", min: 2, max: 10, color: "#7ec79c", local: "go-dt", online: "qs", desc: "Trouve ton perso en posant des questions oui ou non." },
+  { id: "lg", name: "Loup-Garou", min: 4, max: 12, color: "#d98fb1", online: "lg", desc: "12 rôles, l'appli fait le narrateur. Idéal à partir de 6." },
+  { id: "qd", name: "Qui a dit ça ?", min: 3, max: 12, color: "#a79ae3", online: "qd", desc: "Une question, des réponses secrètes : devine qui a écrit quoi." },
+  { id: "dr", name: "Imposteur dessin", min: 3, max: 10, color: "#7eb3dd", online: "dr", desc: "Un dessin à plusieurs, un trait chacun. L'imposteur ne connaît pas le mot." },
+  { id: "bomb", name: "La Bombe", min: 2, max: 12, color: "#e9a15c", local: "go-bomb", desc: "Un thème, un tic-tac, une réponse chacun. Celui qui tient la bombe quand elle explose prend un gage." },
+  { id: "tp", name: "Tu préfères", min: 2, max: 12, color: "#6dc5bb", local: "go-tp", online: "tp", desc: "Deux choix impossibles. Chacun choisit, puis on voit qui est seul dans son camp." },
+  { id: "sept", name: "Sept Têtes", min: 2, max: 10, color: "#b9d56b", local: "go-sept", desc: "Sept persos cachés, 15 mots d'indices pour les faire trouver à celui qui cherche." }
+];
+const gameById = id => GAMES.find(g => g.id === id);
+const ONLINE_TO_GAME = { uc: "uc", qs: "dt", lg: "lg", qd: "qd", dr: "dr", tp: "tp" };
+const gameArt = id => ({ uc: HOME_ART.uc, dt: HOME_ART.dt, lg: LG_ART.wolf, qd: HOME_ART.qd, dr: HOME_ART.dr, bomb: BOMB_ART, tp: TP_ART, sept: SEPT_ART })[id] || "";
+
+let prefs = Object.assign({ sound: dcfg.sound !== false, count: Math.max(2, Math.min(12, dcfg.count || 4)), mode: "all", fav: [], last: null, tpSeen: 0 }, store.get("prefs", {}));
+const prefsSave = () => store.set("prefs", prefs);
+function setLast(g, mode) { prefs.last = { g, mode, t: Date.now() }; prefsSave(); }
+
+/* ---------- Historique ---------- */
+let HIST = store.get("hist", []);
+if (!Array.isArray(HIST)) HIST = [];
+const histSave = () => store.set("hist", HIST.slice(-400));
+const recorded = new Set(HIST.map(h => h.id).filter(Boolean));
+function histAdd(e) {
+  if (e.id && recorded.has(e.id)) return;
+  if (e.id) recorded.add(e.id);
+  HIST.push(Object.assign({ t: Date.now() }, e));
+  if (HIST.length > 400) HIST = HIST.slice(-400);
+  histSave();
+  achCheck();
+}
+function histOnline(v) {
+  const g = v && v.game;
+  if (!g || g.phase !== "end" || !g.gid) return;
+  const id = "on-" + v.code + "-" + g.gid;
+  if (recorded.has(id)) return;
+  const names = (v.players || []).map(p => p.name);
+  let w = [], x = {};
+  if (g.kind === "uc" && g.end) {
+    const e = g.end;
+    w = e.roles.filter(r => (e.winner === "civils" && r.role === "civil") || (e.winner === "impostors" && r.alive && r.role !== "civil") || (e.winner === "white" && r.role === "white")).map(r => r.name);
+    x = { win: e.winner };
+  } else if (g.kind === "qs" && g.list) {
+    w = g.list.filter(r => r.rank === 1).map(r => r.name);
+    const best = g.list.filter(r => r.found).map(r => r.q); if (best.length) x = { bestQ: Math.min(...best), bestBy: (g.list.find(r => r.rank === 1) || {}).name };
+  } else if (g.kind === "lg" && g.players) {
+    w = g.players.filter(p => (g.winners || []).includes(p.pid)).map(p => p.name); x = { win: g.winner };
+  } else if (g.kind === "qd" && g.scores) {
+    const best = Math.max(0, ...g.scores.map(s => s[1])); w = best > 0 ? g.scores.filter(s => s[1] === best).map(s => s[0]) : [];
+  } else if (g.kind === "dr") {
+    w = g.winner === "imp" ? [g.imp] : (g.order || []).map(o => o.name).filter(n => n !== g.imp); x = { win: g.winner === "imp" ? "imp" : "team" };
+  } else if (g.kind === "tp") {
+    x = { rounds: g.rounds };
+  }
+  histAdd({ id, g: ONLINE_TO_GAME[g.kind] || g.kind, m: "online", p: names, w, x, me: ostore.name || "" });
+}
+
+/* ---------- Succès ---------- */
+const sameDay = (a, b) => new Date(a).toDateString() === new Date(b).toDateString();
+const ACH = [
+  { id: "first", name: "Première partie", desc: "Terminer une partie, n'importe laquelle.", test: () => HIST.length >= 1 },
+  { id: "regular", name: "Habitué", desc: "25 parties ou manches jouées.", test: () => HIST.length >= 25 },
+  { id: "pillar", name: "Pilier de soirée", desc: "100 parties ou manches jouées.", test: () => HIST.length >= 100 },
+  { id: "all", name: "Touche-à-tout", desc: "Jouer à chaque jeu au moins une fois.", test: () => GAMES.every(g => HIST.some(h => h.g === g.id) || (g.id === "tp" && prefs.tpSeen > 0)) },
+  { id: "crowd", name: "Grande tablée", desc: "Une partie à 8 joueurs ou plus.", test: () => HIST.some(h => (h.p || []).length >= 8) },
+  { id: "marathon", name: "Marathon", desc: "10 parties le même jour.", test: () => HIST.some(h => HIST.filter(k => sameDay(k.t, h.t)).length >= 10) },
+  { id: "night", name: "Nuit blanche", desc: "Finir une partie entre 2 h et 5 h du matin.", test: () => HIST.some(h => { const x = new Date(h.t).getHours(); return x >= 2 && x < 5; }) },
+  { id: "unmask", name: "Intrus démasqué", desc: "Les civils gagnent une partie d'Undercover.", test: () => HIST.some(h => h.g === "uc" && h.x && h.x.win === "civils") },
+  { id: "shadow", name: "Maître de l'ombre", desc: "L'Undercover ou Mr. White gagne une partie.", test: () => HIST.some(h => h.g === "uc" && h.x && (h.x.win === "impostors" || h.x.win === "white")) },
+  { id: "flair", name: "Le flair", desc: "Trouver son perso de Devine Tête en 5 questions ou moins.", test: () => HIST.some(h => h.g === "dt" && h.x && h.x.bestQ > 0 && h.x.bestQ <= 5) },
+  { id: "pack", name: "La meute", desc: "Les loups gagnent une partie de Loup-Garou.", test: () => HIST.some(h => h.g === "lg" && h.x && h.x.win === "wolves") },
+  { id: "village", name: "Village sauvé", desc: "Le village gagne une partie de Loup-Garou.", test: () => HIST.some(h => h.g === "lg" && h.x && h.x.win === "village") },
+  { id: "artist", name: "Faussaire", desc: "L'imposteur gagne une partie d'Imposteur dessin.", test: () => HIST.some(h => h.g === "dr" && h.x && h.x.win === "imp") },
+  { id: "deminer", name: "Démineur", desc: "20 manches de La Bombe.", test: () => HIST.filter(h => h.g === "bomb").length >= 20 },
+  { id: "flash", name: "Mèche courte", desc: "La bombe explose avant le deuxième passage.", test: () => HIST.some(h => h.g === "bomb" && h.x && h.x.passes <= 1) },
+  { id: "casting", name: "Sept sur sept", desc: "Un chercheur trouve les 7 têtes de Sept Têtes.", test: () => HIST.some(h => h.g === "sept" && h.x && (h.x.found || []).includes(7)) },
+  { id: "philo", name: "Philosophe", desc: "Répondre à 50 dilemmes de Tu préfères.", test: () => prefs.tpSeen + HIST.filter(h => h.g === "tp").reduce((a, h) => a + ((h.x && h.x.rounds) || 0), 0) >= 50 }
+];
+let ACHS = store.get("ach", {});
+function achCheck() {
+  const fresh = ACH.filter(a => !ACHS[a.id] && a.test());
+  if (!fresh.length) return;
+  fresh.forEach(a => ACHS[a.id] = Date.now());
+  store.set("ach", ACHS);
+  fresh.forEach((a, i) => setTimeout(() => toast(`<b>Succès débloqué</b><span>${esc(a.name)}</span>`, "ach"), 600 + i * 900));
+}
+
+/* ---------- Notifications et confettis ---------- */
+function toast(html, kind) {
+  let box = document.getElementById("toasts");
+  if (!box) { box = document.createElement("div"); box.id = "toasts"; box.setAttribute("role", "status"); box.setAttribute("aria-live", "polite"); document.body.appendChild(box); }
+  const el = document.createElement("div");
+  el.className = "toast " + (kind || "");
+  el.innerHTML = html;
+  box.appendChild(el);
+  if (kind === "ach") { sfxChime(); confetti("small"); }
+  setTimeout(() => el.classList.add("out"), 3200);
+  setTimeout(() => el.remove(), 3700);
+}
+function sfxChime() { if (!prefs.sound) return; initAudio(); [784, 988, 1318].forEach((f, i) => setTimeout(() => beep(f, .18, "triangle", .14), i * 90)); }
+const reduceMotion = () => { try { return matchMedia("(prefers-reduced-motion: reduce)").matches; } catch (e) { return false; } };
+function confetti(kind) {
+  if (reduceMotion()) return;
+  const cv = document.createElement("canvas");
+  cv.className = "confetti";
+  const dpr = Math.min(2, window.devicePixelRatio || 1);
+  cv.width = innerWidth * dpr; cv.height = innerHeight * dpr;
+  document.body.appendChild(cv);
+  const ctx = cv.getContext("2d"); ctx.scale(dpr, dpr);
+  const boom = kind === "boom", small = kind === "small";
+  const cols = boom ? ["#e9a15c", "#f3b54a", "#d14f55", "#f5eee3"] : ["#f3b54a", "#f5eee3", "#e3807a", "#7ec79c", "#a79ae3", "#7eb3dd", "#d98fb1"];
+  if (!small) { document.body.classList.add("celebrate"); clearTimeout(confetti.t); confetti.t = setTimeout(() => document.body.classList.remove("celebrate"), 1800); }
+  const n = small ? 60 : boom ? 140 : 170;
+  const ox = innerWidth / 2, oy = boom ? innerHeight * .32 : small ? 60 : innerHeight * .25;
+  const P = Array.from({ length: n }, () => {
+    const a = boom ? Math.random() * Math.PI * 2 : -Math.PI / 2 + (Math.random() - .5) * 2.2, sp = (boom ? 6 : 7) + Math.random() * (boom ? 9 : 8);
+    return { x: ox + (small ? (Math.random() - .5) * 200 : 0), y: oy, vx: Math.cos(a) * sp, vy: Math.sin(a) * sp * (small ? .5 : 1), r: Math.random() * Math.PI, vr: (Math.random() - .5) * .4, w: 6 + Math.random() * 6, h: boom ? 6 + Math.random() * 6 : 3 + Math.random() * 4, c: cols[Math.floor(Math.random() * cols.length)] };
+  });
+  const t0 = performance.now(), life = small ? 1400 : 2600;
+  (function frame(t) {
+    const k = (t - t0) / life;
+    ctx.clearRect(0, 0, innerWidth, innerHeight);
+    P.forEach(p => { p.vy += .32; p.vx *= .985; p.vy *= .985; p.x += p.vx; p.y += p.vy; p.r += p.vr;
+      ctx.save(); ctx.globalAlpha = Math.max(0, 1 - k * k); ctx.translate(p.x, p.y); ctx.rotate(p.r); ctx.fillStyle = p.c;
+      if (boom) { ctx.beginPath(); ctx.arc(0, 0, p.w / 2, 0, 7); ctx.fill(); } else ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+      ctx.restore(); });
+    if (k < 1) requestAnimationFrame(frame); else cv.remove();
+  })(t0);
+}
+
+/* ---------- Joueurs partagés entre les jeux locaux ---------- */
+function rosterSet(i, v) {
+  [cfg.names, dcfg.names, bcfg.names, scfg.names].forEach(a => { while (a.length <= i) a.push(""); a[i] = v; });
+  saveCfg(); dSave(); bSave(); sSave();
+}
+function rosterFill(arr) { const src = [cfg.names, dcfg.names, bcfg.names, scfg.names]; for (let i = 0; i < arr.length; i++) if (!(arr[i] || "").trim()) { const f = src.map(a => a[i]).find(x => (x || "").trim()); if (f) arr[i] = f; } }
+
+/* ---------- Accueil ---------- */
+let HM = { wheel: false, rot: 0, spinning: false, result: null };
+const fitCount = (g, n) => n >= g.min && n <= g.max;
+function homeList() {
+  const n = prefs.count;
+  let list = GAMES.filter(g => prefs.mode === "all" || (prefs.mode === "local" ? g.local : g.online));
+  const rank = g => (fitCount(g, n) ? 0 : 2) + (prefs.fav.includes(g.id) ? 0 : 1);
+  return list.map((g, i) => ({ g, i })).sort((a, b) => rank(a.g) - rank(b.g) || a.i - b.i).map(x => x.g);
+}
+const ICON_STAR = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z" fill="currentColor"/></svg>`;
+const ICON_SOUND = on => on ? `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9z" fill="currentColor"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>`
+  : `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9z" fill="currentColor"/><path d="M16.5 9.5l5 5M21.5 9.5l-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>`;
+const ICON_TROPHY = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h10v5a5 5 0 0 1-10 0z" fill="currentColor"/><path d="M7 5H3.5a3.5 3.5 0 0 0 4 4.5M17 5h3.5a3.5 3.5 0 0 1-4 4.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M10.5 13h3v4h-3z M7.5 18h9v3h-9z" fill="currentColor"/></svg>`;
+const ICON_DICE = `<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="8" cy="8" r="1.6" fill="currentColor"/><circle cx="16" cy="16" r="1.6" fill="currentColor"/><circle cx="12" cy="12" r="1.6" fill="currentColor"/><circle cx="16" cy="8" r="1.6" fill="currentColor"/><circle cx="8" cy="16" r="1.6" fill="currentColor"/></svg>`;
+const LOGO = (cls, tag) => `<${tag || "span"} class="logo ${cls || ""}" aria-label="Simwar">S<span class="ii" aria-hidden="true">ı<i></i></span>mwar</${tag || "span"}>`;
+function viewGame() {
+  if (S.view === "online") { const k = O.view ? (O.view.game ? O.view.game.kind : O.view.settings && O.view.settings.game) : O.pendingGame; return gameById(ONLINE_TO_GAME[k] || "") || null; }
+  return gameById(S.view) || null;
+}
+function topBar() {
+  const home = S.view !== "home";
+  const g = viewGame();
+  const crumb = g ? `<span class="crumb" style="--gc:${g.color}">${esc(g.name)}</span>` : S.view === "stats" ? `<span class="crumb">Stats</span>` : S.view === "catalog" ? `<span class="crumb">Catalogue</span>` : "";
+  return `<nav class="topbar" aria-label="Navigation">
+    ${home ? `<button class="tb-home" data-act="home" aria-label="Retour à l'accueil">${LOGO()}${crumb}</button>` : `<span></span>`}
+    <div class="tb-right">
+      <button class="tb-btn" data-act="sound" aria-pressed="${prefs.sound}" aria-label="${prefs.sound ? "Couper le son" : "Activer le son"}" title="${prefs.sound ? "Son activé" : "Son coupé"}">${ICON_SOUND(prefs.sound)}</button>
+      <button class="tb-btn" data-act="go-stats" aria-label="Stats et succès" title="Stats et succès" ${S.view === "stats" ? 'aria-current="page"' : ""}>${ICON_TROPHY}</button>
+    </div>
+  </nav>`;
+}
+function gameBox(g) {
+  const n = prefs.count, ok = fitCount(g, n), fav = prefs.fav.includes(g.id);
+  const played = HIST.filter(h => h.g === g.id).length;
+  const why = ok ? "" : n < g.min ? `Il faut au moins ${g.min} joueurs` : `${g.max} joueurs maximum`;
+  const local = g.local ? `<button class="mode-btn" data-act="${g.local}">${ICON_LOCAL}Local</button>` : "";
+  const online = g.online ? `<button class="mode-btn on" data-act="go-online" data-g="${g.online}">${ICON_ONLINE}En ligne</button>` : "";
+  return `<article class="gbox ${ok ? "" : "off"}" id="g-${g.id}" style="--gc:${g.color}">
+    <button class="fav" data-act="fav" data-g="${g.id}" aria-pressed="${fav}" aria-label="${fav ? "Retirer " + esc(g.name) + " des favoris" : "Mettre " + esc(g.name) + " en favori"}">${ICON_STAR}</button>
+    <div class="gbox-plate"><div class="gbox-art">${gameArt(g.id)}</div></div>
+    <h2 class="gbox-name">${esc(g.name)}</h2>
+    <p class="gbox-desc">${esc(g.desc)}</p>
+    <p class="gbox-meta"><span>${g.min} à ${g.max} joueurs</span>${why ? `<span class="why">${why}</span>` : played ? `<span>${played} ${g.id === "bomb" ? "manche" : "partie"}${played > 1 ? "s" : ""}</span>` : ""}</p>
+    <div class="modes ${local && online ? "" : "single"}">${local}${online}</div>
+  </article>`;
+}
+function vHomeNew() {
+  const n = prefs.count;
+  const fits = GAMES.filter(g => fitCount(g, n));
+  const room = S.view === "home" && O.screen === "room" && O.view;
+  const last = prefs.last && gameById(prefs.last.g);
+  const lastBtn = last && !room ? (prefs.last.mode === "online" && last.online
+    ? `<button class="replay" data-act="go-online" data-g="${last.online}" style="--gc:${last.color}"><span class="replay-art">${gameArt(last.id)}</span><span><b>Rejouer à ${esc(last.name)}</b><small>en ligne</small></span></button>`
+    : last.local ? `<button class="replay" data-act="${last.local}" style="--gc:${last.color}"><span class="replay-art">${gameArt(last.id)}</span><span><b>Rejouer à ${esc(last.name)}</b><small>mêmes joueurs, sur ce téléphone</small></span></button>` : "") : "";
+  const intro = HM.introDone ? "" : "intro";
+  const R = [-28, -20, -12, -4, 4, 12, 20, 28];
+  return `<div class="home-top"><header class="hero">
+    ${LOGO(intro, "h1")}
+    <p class="hero-list">Undercover, Devine Tête, Loup-Garou, Qui a dit ça ?, Imposteur dessin, La Bombe, Tu préfères et Sept Têtes. Sur un seul téléphone ou chacun le sien.</p>
   </header>
-  ${O.resumeCode && ONLINE_OK && !(O.isHost && L) ? `<button class="btn" data-act="o-resume-home">Reprendre mon lobby ${esc(O.resumeCode)}</button>` : ""}
-  <section class="quickjoin">
-    <label class="label" for="home-code">Rejoindre une partie avec un code</label>
-    <div class="qj-row">
-      <input type="text" id="home-code" class="code-input" data-o="code" maxlength="4" value="${esc(O.code)}" placeholder="KXPM" autocomplete="off" autocapitalize="characters">
-      <button class="btn" data-act="o-quickjoin">Rejoindre</button>
+  <div class="hand ${intro}" role="group" aria-label="Aller directement à un jeu">${GAMES.map((g, k) => `<button class="hand-card" data-act="h-jump" data-g="${g.id}" style="--gc:${g.color};--r:${R[k]}deg;--k:${k}" aria-label="${esc(g.name)}">${gameArt(g.id)}</button>`).join("")}</div>
+  ${room ? `<button class="btn" data-act="go-online" style="grid-column:1/-1">Retourner au lobby ${esc(O.view.code)}</button>` : ""}
+  ${O.resumeCode && ONLINE_OK && !(O.isHost && L) ? `<button class="btn" data-act="o-resume-home" style="grid-column:1/-1">Reprendre mon lobby ${esc(O.resumeCode)}</button>` : ""}
+  <section class="crew" aria-label="Filtrer les jeux">
+    <div class="crew-count">
+      <span class="label" id="crew-l">On est combien ?</span>
+      <div class="stepper" role="group" aria-labelledby="crew-l">
+        <button data-act="h-count" data-d="-1" aria-label="Un joueur de moins">−</button><output aria-live="polite">${n}</output><button data-act="h-count" data-d="1" aria-label="Un joueur de plus">+</button>
+      </div>
+      <span class="crew-fit">${fits.length} jeu${fits.length > 1 ? "x" : ""} possible${fits.length > 1 ? "s" : ""}</span>
+    </div>
+    <div class="seg" role="group" aria-label="Façon de jouer">
+      ${[["all", "Tous"], ["local", "Un seul téléphone"], ["online", "Chacun le sien"]].map(([k, l]) => `<button data-act="h-mode" data-x="${k}" aria-pressed="${prefs.mode === k}">${l}</button>`).join("")}
+    </div>
+  </section></div>
+  ${lastBtn}
+  <div class="games">${homeList().map(gameBox).join("")}</div>
+  <section class="home-tools">
+    <button class="tool" data-act="wheel-open"><span class="tool-ico">${ICON_DICE}</span><span><b>À quoi on joue ?</b><small>La roue choisit parmi les jeux possibles à ${n}</small></span></button>
+    <div class="quickjoin">
+      <label class="label" for="home-code">Rejoindre une partie avec un code</label>
+      <div class="qj-row">
+        <input type="text" id="home-code" class="code-input" data-o="code" maxlength="4" value="${esc(O.code)}" placeholder="KXPM" autocomplete="off" autocapitalize="characters">
+        <button class="btn" data-act="o-quickjoin">Rejoindre</button>
+      </div>
+    </div>
+    <div class="tool-row">
+      <button class="btn-ghost" data-act="go-stats">Stats et succès</button>
+      <button class="btn-ghost" data-act="go-catalog">Catalogue des mots</button>
     </div>
   </section>
-  <div class="games">
-    ${card("gm-uc", HOME_ART.uc, "3 à 10 joueurs", "Undercover", "Tout le monde a le même mot, sauf l'intrus. Indices, vote, démasquez-le.", [local("go-uc"), online("uc")])}
-    ${card("gm-dt", HOME_ART.dt, "2 à 10 joueurs", "Devine Tête", "Trouve ton perso en posant des questions oui ou non.", [local("go-dt"), online("qs")])}
-    ${card("gm-lg", LG_ART.wolf, "4 à 12 joueurs", "Loup-Garou", "12 rôles, l'appli fait le narrateur.", [online("lg")])}
-    ${card("gm-qd", HOME_ART.qd, "3 à 12 joueurs", "Qui a dit ça ?", "Une question, des réponses secrètes : devine qui a écrit quoi.", [online("qd")])}
-    ${card("gm-dr", HOME_ART.dr, "3 à 10 joueurs", "Imposteur dessin", "Un dessin à plusieurs, un trait chacun. L'imposteur ne connaît pas le mot.", [online("dr")])}
-  </div>
-  <button class="btn-ghost" data-act="go-catalog">Catalogue des mots</button>`;
+  ${HM.wheel ? vWheel() : ""}`;
+}
+
+/* ---------- Roue des jeux ---------- */
+function wheelGames() { const n = prefs.count; return GAMES.filter(g => fitCount(g, n) && (prefs.mode === "all" || (prefs.mode === "local" ? g.local : g.online))); }
+const WHEEL_LAB = { dr: "Dessin", qd: "Qui a dit ça", bomb: "La Bombe" };
+function vWheel() {
+  const list = wheelGames();
+  const seg = 360 / Math.max(1, list.length);
+  const grad = list.map((g, i) => `${g.color} ${i * seg}deg ${(i + 1) * seg}deg`).join(", ");
+  const res = HM.result && gameById(HM.result);
+  return `<div class="sheet-back" data-act="wheel-close"></div>
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="wheel-t">
+    <h2 id="wheel-t">À quoi on joue ?</h2>
+    <p class="lead">${list.length ? `Parmi les ${list.length} jeux possibles à ${prefs.count}.` : `Aucun jeu ne marche à ${prefs.count} avec ce filtre.`}</p>
+    ${list.length ? `<div class="wheel-wrap"><span class="wheel-pin" aria-hidden="true"></span>
+      <div class="wheel" id="wheel" style="background:conic-gradient(${grad});transform:rotate(${HM.rot}deg)">
+        ${list.map((g, i) => `<span class="wheel-lab" style="transform:rotate(${(i + .5) * seg}deg)"><b>${esc(WHEEL_LAB[g.id] || g.name)}</b></span>`).join("")}
+      </div></div>` : ""}
+    <div aria-live="polite">${res ? `<p class="wheel-res" style="--gc:${res.color}">${esc(res.name)}</p>
+      <div class="modes ${res.local && res.online ? "" : "single"}">${res.local ? `<button class="mode-btn" data-act="${res.local}">${ICON_LOCAL}Local</button>` : ""}${res.online ? `<button class="mode-btn on" data-act="go-online" data-g="${res.online}">${ICON_ONLINE}En ligne</button>` : ""}</div>` : ""}</div>
+    ${list.length > 1 ? `<button class="btn" data-act="wheel-spin" id="wheel-spin">${res ? "Relancer la roue" : "Lancer la roue"}</button>` : ""}
+    <button class="btn-ghost" data-act="wheel-close">Fermer</button>
+  </div>`;
+}
+function wheelSpin() {
+  const list = wheelGames();
+  if (list.length < 2 || HM.spinning) return;
+  initAudio();
+  const i = Math.floor(Math.random() * list.length), seg = 360 / list.length;
+  const target = ((360 - (i + .5) * seg + (Math.random() - .5) * seg * .6) % 360 + 360) % 360;
+  const cur = ((HM.rot % 360) + 360) % 360;
+  HM.rot += 360 * 5 + ((target - cur + 360) % 360);
+  HM.spinning = true; HM.result = null;
+  const el = document.getElementById("wheel"), btn = document.getElementById("wheel-spin");
+  if (btn) btn.disabled = true;
+  const res = document.querySelector(".sheet [aria-live]"); if (res) res.innerHTML = "";
+  const dur = reduceMotion() ? 0 : 3600;
+  if (el) { el.style.transition = `transform ${dur}ms cubic-bezier(.12,.75,.15,1)`; el.style.transform = `rotate(${HM.rot}deg)`; }
+  if (dur) { let k = 0; const tick = () => { if (!HM.spinning) return; beep(1500, .025, "square", .08); k++; setTimeout(tick, 40 + k * k * 1.6); }; tick(); }
+  setTimeout(() => { HM.spinning = false; HM.result = list[i].id; beep(988, .15, "triangle", .15); setTimeout(() => beep(1318, .25, "triangle", .15), 110); render(); }, dur + 50);
+}
+
+/* ---------- Stats ---------- */
+let ST = { range: "all", confirmReset: false };
+function vStats() {
+  const inRange = h => ST.range === "all" || sameDay(h.t, Date.now());
+  const H = HIST.filter(inRange);
+  const wins = {}, played = {}, bombs = {};
+  H.forEach(h => {
+    (h.p || []).forEach(n => { if (h.g !== "bomb") played[n] = (played[n] || 0) + 1; });
+    (h.w || []).forEach(n => wins[n] = (wins[n] || 0) + 1);
+    if (h.g === "bomb" && h.x && h.x.loser) bombs[h.x.loser] = (bombs[h.x.loser] || 0) + 1;
+  });
+  const rows = Object.keys(Object.assign({}, played, wins)).map(n => ({ n, w: wins[n] || 0, p: played[n] || 0 })).sort((a, b) => b.w - a.w || a.p - b.p).slice(0, 12);
+  const maxW = Math.max(1, ...rows.map(r => r.w));
+  const byGame = GAMES.map(g => ({ g, k: H.filter(h => h.g === g.id).length })).sort((a, b) => b.k - a.k);
+  const maxG = Math.max(1, ...byGame.map(x => x.k));
+  const dtBest = H.filter(h => h.g === "dt" && h.x && h.x.bestQ).sort((a, b) => a.x.bestQ - b.x.bestQ)[0];
+  const bombTop = Object.entries(bombs).sort((a, b) => b[1] - a[1])[0];
+  const busiest = (() => { const d = {}; HIST.forEach(h => { const k = new Date(h.t).toDateString(); d[k] = (d[k] || 0) + 1; }); const e = Object.entries(d).sort((a, b) => b[1] - a[1])[0]; return e; })();
+  const unlocked = ACH.filter(a => ACHS[a.id]).length;
+  const fmt = t => new Date(t).toLocaleDateString("fr-FR", { day: "numeric", month: "short" }) + " " + new Date(t).toLocaleTimeString("fr-FR", { hour: "2-digit", minute: "2-digit" });
+  const last = H.slice(-25).reverse();
+  return `<header class="section"><h1>Stats</h1>
+    <p class="lead">${HIST.length ? `Tout est enregistré sur cet appareil : les parties locales, et les parties en ligne auxquelles il a participé.` : `Rien pour l'instant. Termine une partie et elle apparaîtra ici.`}</p></header>
+    <div class="seg" role="group" aria-label="Période"><button data-act="st-range" data-x="all" aria-pressed="${ST.range === "all"}">Depuis le début</button><button data-act="st-range" data-x="today" aria-pressed="${ST.range === "today"}">Ce soir</button></div>
+    <section class="section"><h2 class="h3">Classement des joueurs</h2>
+      ${rows.length ? `<ol class="rank">${rows.map((r, i) => `<li class="${i === 0 && r.w ? "top" : ""}"><span class="rk">${i + 1}</span><span class="rn">${esc(r.n)}</span><span class="rbar"><i style="width:${r.w / maxW * 100}%"></i></span><b>${r.w} victoire${r.w > 1 ? "s" : ""}</b></li>`).join("")}</ol>
+      <p class="hint">Victoires sur toutes les parties. Les joueurs sont reconnus à leur prénom.</p>` : `<p class="hint">${ST.range === "today" ? "Personne n'a encore gagné ce soir." : "Personne n'a encore gagné."}</p>`}
+    </section>
+    ${H.length ? `<section class="section"><h2 class="h3">Jeux les plus joués</h2>
+      <div class="gstats">${byGame.map(({ g, k }) => `<div class="gstat" style="--gc:${g.color}"><span>${esc(g.name)}</span><span class="rbar"><i style="width:${k / maxG * 100}%"></i></span><b>${k}</b></div>`).join("")}</div>
+      <p class="hint">Pour La Bombe, chaque explosion compte comme une manche.</p>
+    </section>` : ""}
+    ${HIST.length ? `<section class="section"><h2 class="h3">Records</h2>
+      <div class="records">
+        <div class="rec"><span>Devine Tête le plus rapide</span><b>${dtBest ? `${esc(dtBest.x.bestBy || "?")} · ${dtBest.x.bestQ} question${dtBest.x.bestQ > 1 ? "s" : ""}` : "—"}</b></div>
+        <div class="rec"><span>Le plus explosé à La Bombe</span><b>${bombTop ? `${esc(bombTop[0])} · ${bombTop[1]} 💣` : "—"}</b></div>
+        <div class="rec"><span>Plus grosse soirée</span><b>${busiest ? `${busiest[1]} parties le ${new Date(busiest[0]).toLocaleDateString("fr-FR", { day: "numeric", month: "long" })}` : "—"}</b></div>
+      </div>
+    </section>` : ""}
+    <section class="section"><h2 class="h3">Succès · ${unlocked}/${ACH.length}</h2>
+      <div class="achs">${ACH.map(a => `<div class="ach ${ACHS[a.id] ? "on" : ""}"><span class="ach-ico" aria-hidden="true">${ACHS[a.id] ? ICON_STAR : "?"}</span><span><b>${esc(a.name)}</b><small>${esc(a.desc)}</small></span></div>`).join("")}</div>
+    </section>
+    ${last.length ? `<details class="box"><summary>Historique (${H.length})</summary><div class="hist">${last.map(h => { const g = gameById(h.g); return `<div class="hrow" style="--gc:${g ? g.color : "#fff"}"><span class="hdot"></span><span><b>${esc(g ? g.name : h.g)}</b>${h.m === "online" ? " · en ligne" : ""}<small>${fmt(h.t)} · ${h.g === "bomb" ? `boum chez ${esc((h.x && h.x.loser) || "?")}` : (h.w && h.w.length ? `${esc(listNames(h.w))} gagne${h.w.length > 1 ? "nt" : ""}` : "pas de gagnant")}</small></span></div>`; }).join("")}</div></details>` : ""}
+    ${HIST.length ? (ST.confirmReset ? `<div class="confirm"><p>Effacer tout l'historique, les stats et les succès de cet appareil ?</p><div class="row"><button class="btn btn-danger" data-act="st-reset">Tout effacer</button><button class="btn-ghost" data-act="st-noreset">Annuler</button></div></div>` : `<button class="btn-ghost" data-act="st-askreset">Effacer les stats</button>`) : ""}`;
+}
+
+/* ---------- Gages pour La Bombe ---------- */
+const GAGES = ["Imite un animal choisi par ton voisin pendant 10 secondes.", "Parle avec un accent jusqu'à la fin de la prochaine manche.", "Fais 10 squats.", "Chante le refrain d'une chanson choisie par le groupe.",
+  "Raconte une blague. Si personne ne rit, tu en racontes une autre.", "Fais un compliment sincère à chaque joueur.", "Garde les bras en l'air pendant toute la prochaine manche.", "Récite l'alphabet à l'envers de Z jusqu'à M.",
+  "Fais ta meilleure imitation d'un perso de jeu vidéo.", "Parle comme un robot pendant la prochaine manche.", "Danse 15 secondes sans musique.", "Mime un film, les autres devinent lequel.",
+  "Fais une déclaration d'amour à un objet de la pièce.", "Tiens sur un pied pendant la prochaine manche.", "Fais ta pire grimace pendant 5 secondes.", "Parle de toi à la troisième personne jusqu'à la prochaine manche.",
+  "Fais 5 pompes.", "Invente un surnom pour chaque joueur.", "Raconte ton rêve le plus bizarre.", "Fais 10 secondes de beatbox.", "Termine toutes tes phrases par « mon capitaine » jusqu'à la prochaine manche.",
+  "Imite quelqu'un du groupe, les autres devinent qui.", "Fais le tour de la pièce en marchant comme un pingouin.", "Présente la météo de demain comme à la télé.", "Dis trois choses que tu n'aimes pas manger, avec conviction."];
+const GAGES_SOIREE = ["Bois une gorgée.", "Bois deux gorgées.", "Distribue trois gorgées.", "Bois une gorgée avec le joueur à ta droite.", "Tout le monde boit une gorgée, sauf toi.", "Bois une gorgée et choisis le prochain thème."];
+function bGage() { const pool = bcfg.drinks ? GAGES.concat(GAGES_SOIREE, GAGES_SOIREE) : GAGES; let g; do { g = pool[Math.floor(Math.random() * pool.length)]; } while (g === BM.gage && pool.length > 1); BM.gage = g; }
+
+function vHome() { return vHomeNew(); }
+function viewColor() {
+  const v = S.view;
+  if (v === "online") { const k = O.view ? (O.view.game ? O.view.game.kind : O.view.settings && O.view.settings.game) : O.pendingGame; const g = gameById(ONLINE_TO_GAME[k] || ""); return g ? g.color : "#5b6cff"; }
+  const g = gameById(v); return g ? g.color : v === "stats" ? "#f3b54a" : "#5b6cff";
 }
 
 let lastKey = "";
@@ -3446,12 +4499,17 @@ function render() {
   if (!userAction && (typingEl() || O.drawing)) { renderPending = true; return; }
   renderPending = false;
   const app = document.getElementById("app");
+  if (S.view !== "home") HM.wheel = false;
   let html, key;
   if (S.view === "home") { html = vHome(); key = "home"; }
   else if (S.view === "catalog") { html = vCatalog(); key = "catalog"; }
+  else if (S.view === "stats") { html = vStats(); key = "stats"; }
   else if (S.view === "uc") {
     const views = { setup: vSetup, reveal: vReveal, talk: vTalk, vote: vVote, outcome: vOutcome, whiteGuess: vWhiteGuess, end: vEnd };
     html = views[ui.screen](); key = "uc-" + ui.screen + (G ? "-" + G.revealIdx + "-" + G.round : "");
+  } else if (S.view === "bomb") { html = vBomb(); key = "bomb-" + BM.screen + "-" + BM.round;
+  } else if (S.view === "tp") { html = vTp(); key = "tp-" + TPL.screen + "-" + TPL.i;
+  } else if (S.view === "sept") { html = vSept(); key = "sept-" + SM.screen + "-" + SM.round;
   } else if (S.view === "online") {
     html = vOnline();
     const gv = O.view && O.view.game;
@@ -3467,7 +4525,11 @@ function render() {
   let ss = null; try { ss = fid ? ae.selectionStart : null; } catch (e) {}
   const sameScreen = key === lastKey;
   const openDetails = sameScreen ? [...app.querySelectorAll("details[open] > summary")].map(x => x.textContent) : [];
-  app.innerHTML = html;
+  try { if (S.view === "online" && O.screen === "room" && O.view) { histOnline(O.view); const gk = O.view.game && ONLINE_TO_GAME[O.view.game.kind]; if (gk && !(prefs.last && prefs.last.g === gk && prefs.last.mode === "online")) setLast(gk, "online"); } } catch (e) {}
+  app.dataset.view = S.view;
+  document.body.style.removeProperty("--gc");
+  app.innerHTML = topBar() + html;
+  if (S.view === "home") HM.introDone = true;
   if (openDetails.length) app.querySelectorAll("details > summary").forEach(x => { if (openDetails.includes(x.textContent)) x.parentNode.open = true; });
   if (fid) { const el = document.getElementById(fid); if (el) { el.focus(); try { if (ss !== null) el.setSelectionRange(ss, ss); } catch (e) {} } }
   if (lgv) lgSpeak(lgv.say);
@@ -3476,8 +4538,12 @@ function render() {
     if (S.view === "online") { O.revealMine = false; O.sel = null; O.confirmStop = false; O.sel2 = []; O.wSave = false; O.wKill = null; O.lgFlip = false; O.lgPeek = false; O.drPending = null; O.qdMap = {}; }
     window.scrollTo(0, 0); lastKey = key;
     app.classList.remove("enter"); void app.offsetWidth; app.classList.add("enter");
+    if (/^bomb-boom/.test(key)) confetti("boom");
+    else if (/^(uc-end|dt-end)|^on-room-.*-end-/.test(key)) confetti();
+    else if (/^dt-found/.test(key)) confetti("small");
+    else if (/^sept-end/.test(key)) confetti();
     const gv = S.view === "online" && O.view && O.view.game;
-    if (gv && ((gv.kind === "dr" && gv.myTurn) || (gv.kind === "qs" && gv.meCur) || (gv.kind === "lg" && gv.phase === "night" && gv.task && gv.task.type !== "dummy" && !gv.done) || gv.phase === "vote")) {
+    if (gv && ((gv.kind === "dr" && gv.myTurn) || (gv.kind === "qs" && gv.meCur) || (gv.kind === "lg" && gv.phase === "night" && gv.task && gv.task.type !== "dummy" && !gv.done) || (gv.phase === "vote" && gv.kind !== "tp"))) {
       try { if (navigator.vibrate) navigator.vibrate(90); } catch (e) {}
     }
   }
@@ -3488,8 +4554,10 @@ function render() {
    ========================================================= */
 document.addEventListener("input", e => {
   const i = e.target.dataset.name, j = e.target.dataset.dname;
-  if (i !== undefined) { cfg.names[+i] = e.target.value; saveCfg(); }
-  if (j !== undefined) { dcfg.names[+j] = e.target.value; dSave(); }
+  if (i !== undefined) rosterSet(+i, e.target.value);
+  if (j !== undefined) rosterSet(+j, e.target.value);
+  if (e.target.dataset.bname !== undefined) rosterSet(+e.target.dataset.bname, e.target.value);
+  if (e.target.dataset.sname !== undefined) rosterSet(+e.target.dataset.sname, e.target.value);
   if (e.target.dataset.ddraft) D.draft = e.target.value;
   const o = e.target.dataset.o;
   if (o === "name") ostore.name = e.target.value;
@@ -3517,6 +4585,7 @@ document.addEventListener("toggle", e => {
   if (c && !!CAT.open[c] !== e.target.open) { CAT.open[c] = e.target.open; render(); }
 }, true);
 document.addEventListener("keydown", e => {
+  if (e.key === "Escape" && HM.wheel && !HM.spinning) { HM.wheel = false; render(); return; }
   if (e.key === "Enter" && e.target.id === "guess") { const b = document.querySelector('[data-act="guess"]'); if (b) b.click(); return; }
   if (e.key === "Enter" && e.target.id === "home-code") { const b = document.querySelector('[data-act="o-quickjoin"]'); if (b) b.click(); return; }
   if (e.key === "Enter" && e.target.id === "o-code") { const b = document.querySelector('[data-act="o-join"]'); if (b) b.click(); return; }
@@ -3537,10 +4606,58 @@ function onAct(e, b) {
   ui.msg = ""; D.msg = "";
   switch (a) {
     /* navigation */
-    case "home": stopTimers(); releaseAwake(); exitFullscreen(); S.view = "home"; break;
+    case "home": bStop(); if (BM.screen === "play") BM.screen = "ready"; HM.wheel = false; S.view = "home"; break;
     case "go-uc": S.view = "uc"; if (!G) ui.screen = "setup"; break;
     case "go-dt": S.view = "dt"; D.reveal = false; break;
     case "go-catalog": S.view = "catalog"; CAT.text = ""; break;
+    case "go-stats": bStop(); if (BM.screen === "play") BM.screen = "ready"; S.view = "stats"; HM.wheel = false; ST.confirmReset = false; break;
+    case "fav": { const id = b.dataset.g; prefs.fav = prefs.fav.includes(id) ? prefs.fav.filter(x => x !== id) : prefs.fav.concat(id); prefsSave(); break; }
+    case "h-count": prefs.count = Math.min(12, Math.max(2, prefs.count + +b.dataset.d)); prefsSave(); break;
+    case "h-mode": prefs.mode = ["local", "online"].includes(b.dataset.x) ? b.dataset.x : "all"; prefsSave(); break;
+    case "wheel-open": HM.wheel = true; HM.result = null; break;
+    case "h-jump": { const el = document.getElementById("g-" + b.dataset.g); if (el) { el.scrollIntoView({ behavior: reduceMotion() ? "auto" : "smooth", block: "center" }); el.classList.remove("ping"); void el.offsetWidth; el.classList.add("ping"); } return; }
+    case "wheel-close": if (HM.spinning) return; HM.wheel = false; break;
+    case "wheel-spin": return wheelSpin();
+    case "st-range": ST.range = b.dataset.x === "today" ? "today" : "all"; break;
+    case "st-askreset": ST.confirmReset = true; break;
+    case "st-noreset": ST.confirmReset = false; break;
+    case "st-reset": HIST = []; histSave(); recorded.clear(); ACHS = {}; store.set("ach", ACHS); prefs.tpSeen = 0; prefsSave(); ST.confirmReset = false; break;
+    case "b-gage": bGage(); break;
+    case "b-drinks": bcfg.drinks = !bcfg.drinks; bSave(); break;
+    case "go-bomb": S.view = "bomb"; if (BM.screen !== "boom" && BM.screen !== "ready") BM.screen = "setup"; break;
+    case "go-tp": S.view = "tp"; break;
+    case "go-sept": S.view = "sept"; if (SM.screen === "end") SM.screen = "setup"; break;
+    case "s-count": scfg.count = Math.min(10, Math.max(2, scfg.count + +b.dataset.d)); while (scfg.names.length < scfg.count) scfg.names.push(""); sSave(); break;
+    case "s-src": { const id = b.dataset.id; scfg.src = scfg.src.includes(id) ? scfg.src.filter(x => x !== id) : scfg.src.concat(id); if (!scfg.src.length) scfg.src = [id]; sSave(); break; }
+    case "s-words": scfg.words = [10, 15, 20].includes(+b.dataset.x) ? +b.dataset.x : 15; sSave(); break;
+    case "s-start": initAudio(); setLast("sept", "local"); sStart(); break;
+    case "s-redraw": sDraw(); break;
+    case "s-ready": SM.screen = "play"; break;
+    case "s-found": { const k = +b.dataset.i; SM.found = SM.found.includes(k) ? SM.found.filter(x => x !== k) : SM.found.concat(k); if (SM.found.includes(k)) beep(880, .08, "triangle", .14); break; }
+    case "s-plus": if (SM.used < scfg.words) SM.used++; if (SM.used >= scfg.words) beep(220, .25, "sawtooth", .12); break;
+    case "s-minus": if (SM.used > 0) SM.used--; break;
+    case "s-end": sFinish(); break;
+    case "s-next": sNext(); break;
+    case "s-again": initAudio(); sStart(); break;
+    case "s-setup": SM.screen = "setup"; SM.msg = ""; break;
+    case "b-count": bcfg.count = Math.min(12, Math.max(2, bcfg.count + +b.dataset.d)); while (bcfg.names.length < bcfg.count) bcfg.names.push(""); bSave(); break;
+    case "b-pack": { const id = b.dataset.id; bcfg.packs = bcfg.packs.includes(id) ? bcfg.packs.filter(x => x !== id) : bcfg.packs.concat(id); if (!bcfg.packs.length) bcfg.packs = [id]; bSave(); break; }
+    case "b-len": bcfg.len = BOMB_LEN[b.dataset.x] ? b.dataset.x : "normal"; bSave(); break;
+    case "b-letter": bcfg.letter = !bcfg.letter; bSave(); break;
+    case "b-start": initAudio(); setLast("bomb", "local"); BM.losses = BM.losses || {}; BM.round = 0; BM.screen = "setup"; bSetupNext(); break;
+    case "b-reroll": bDraw(); break;
+    case "b-light": bLight(); break;
+    case "b-pass": bPass(); break;
+    case "b-askstop": BM.confirmStop = true; break;
+    case "b-nostop": BM.confirmStop = false; break;
+    case "b-stop": bStop(); BM.screen = "ready"; BM.confirmStop = false; break;
+    case "b-next": bSetupNext(); break;
+    case "b-setup": bStop(); BM.screen = "setup"; break;
+    case "tp-pack": { const id = b.dataset.id; tpcfg.packs = tpcfg.packs.includes(id) ? tpcfg.packs.filter(x => x !== id) : tpcfg.packs.concat(id); if (!tpcfg.packs.length) tpcfg.packs = [id]; store.set("tpcfg", tpcfg); break; }
+    case "tp-start": tplStart(); setLast("tp", "local"); break;
+    case "tp-next": tplNext(); break;
+    case "tp-cd": tplCountdown(); return;
+    case "tp-setup": TPL.screen = "setup"; break;
     case "cat-rm": catToggle(b.dataset.l, b.dataset.k); CAT.text = ""; break;
     case "cat-copy": return catCopy();
     case "cat-askreset": CAT.confirmReset = true; break;
@@ -3640,7 +4757,7 @@ function onAct(e, b) {
     case "askReset": ui.confirmReset = true; break;
     case "cancelReset": ui.confirmReset = false; break;
     case "resetScores": scores = {}; store.set("scores", scores); ui.confirmReset = false; break;
-    case "start": return startGame();
+    case "start": setLast("uc", "local"); return startGame();
     case "open": G.revealOpen = true; break;
     case "next":
       G.revealOpen = false;
@@ -3681,8 +4798,8 @@ function onAct(e, b) {
       }
       dSave(); break;
     }
-    case "d-sound": dcfg.sound = !dcfg.sound; dSave(); break;
-    case "d-new": initAudio(); dNewGame(); break;
+    case "d-sound": case "sound": prefs.sound = !prefs.sound; prefsSave(); if (prefs.sound) { initAudio(); beep(880, .08, "triangle", .12); } break;
+    case "d-new": initAudio(); dNewGame(); setLast("dt", "local"); break;
     case "d-setup": D.screen = "setup"; break;
     case "d-assign": dStartAssign(); break;
     case "d-reroll": dReroll(); break;
