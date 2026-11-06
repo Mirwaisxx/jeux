@@ -705,6 +705,9 @@ img.sept-img { background: #ebe1d3; }
 .sept-card.none { opacity: .55; }
 .sept-n { position: absolute; top: -6px; right: -6px; min-width: 26px; height: 26px; padding: 0 6px; border-radius: 13px; background: var(--ink); color: var(--paper); border: 2px solid var(--paper); font-family: var(--f-mono); font-size: .8rem; display: grid; place-items: center; }
 .sept-card.top .sept-n { background: var(--signal); color: var(--ink); }
+.sept-card.swap { box-shadow: 0 0 0 2px var(--signal); }
+.sept-n.sw { background: var(--signal); color: var(--ink); }
+.resume { padding: 14px; border-radius: 16px; background: var(--panel); border: 1px solid var(--signal); }
 .sept-card.found { opacity: .6; }
 .sept-card.found .sept-n { background: var(--good); color: var(--ink); }
 .sept-card.miss { opacity: .4; filter: grayscale(1); }
@@ -791,13 +794,39 @@ const dtItems = c => c.items.filter(it => !CUR.dt.includes(dtKey(c.id, it.w)));
 
 let imgQueue = [], imgActive = 0, renderTimer = null;
 function scheduleRender() { clearTimeout(renderTimer); renderTimer = setTimeout(render, 250); }
-function imgSchedule(fn) { imgQueue.push(fn); imgPump(); }
+function imgSchedule(fn, front) { if (front) imgQueue.unshift(fn); else imgQueue.push(fn); imgPump(); }
 function imgPump() {
-  while (imgActive < 3 && imgQueue.length) {
+  while (imgActive < 5 && imgQueue.length) {
     const fn = imgQueue.shift();
     imgActive++;
     fn().catch(() => {}).finally(() => { imgActive--; imgPump(); });
   }
+}
+/* Reprise de partie : on quitte une partie sans la perdre, mais on repart toujours de l'écran de réglages */
+const PZ = {};
+const SCR = { uc: [() => ui.screen, v => { ui.screen = v; }], dt: [() => D.screen, v => { D.screen = v; }], bomb: [() => BM.screen, v => { BM.screen = v; }], tp: [() => TPL.screen, v => { TPL.screen = v; }], sept: [() => SM.screen, v => { SM.screen = v; }] };
+const GAME_LIVE = {
+  uc: () => !!G && !["setup", "end"].includes(ui.screen),
+  dt: () => !!D.game && !["setup", "end"].includes(D.screen),
+  bomb: () => ["play", "ready"].includes(BM.screen),
+  tp: () => TPL.screen === "play",
+  sept: () => ["pass", "play", "result"].includes(SM.screen)
+};
+function gamePause(v) {
+  const cur = SCR[v][0]();
+  PZ[v] = GAME_LIVE[v]() ? (v === "bomb" && cur === "play" ? "ready" : cur) : null;
+  SCR[v][1]("setup");
+}
+const resumeBlock = v => PZ[v] && SCR[v][0]() === "setup" ? `<section class="section resume"><span class="label">Partie en cours</span><button class="btn" data-act="resume" data-g="${v}">Reprendre la partie</button><p class="hint">Si tu lances une nouvelle partie, celle-ci est abandonnée.</p></section>` : "";
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+async function tfetch(url, ms) {
+  const ac = new AbortController(), t = setTimeout(() => ac.abort(), ms || 8000);
+  try { return await fetch(url, { signal: ac.signal }); } finally { clearTimeout(t); }
+}
+const WARM = [];
+function warmImg(url) {
+  if (!url || WARM.length > 400) return;
+  const im = new Image(); im.referrerPolicy = "no-referrer"; im.decoding = "sync"; im.src = url; WARM.push(im);
 }
 let jikanNext = 0;
 async function jikanFind(q) {
@@ -805,18 +834,19 @@ async function jikanFind(q) {
     const wait = Math.max(0, jikanNext - Date.now());
     jikanNext = Math.max(Date.now(), jikanNext) + 500;
     if (wait) await new Promise(r => setTimeout(r, wait));
-    const r = await fetch(`https://api.jikan.moe/v4/characters?q=${encodeURIComponent(q)}&order_by=favorites&sort=desc&limit=1`);
+    const r = await tfetch(`https://api.jikan.moe/v4/characters?q=${encodeURIComponent(q)}&order_by=favorites&sort=desc&limit=1`);
     if (r.status === 429) { jikanNext = Date.now() + 1500; continue; }
+    if (r.status >= 500) throw new Error("jikan " + r.status);
     if (!r.ok) return null;
     const d = ((await r.json()).data || [])[0];
     const url = d && d.images && ((d.images.jpg && d.images.jpg.image_url) || (d.images.webp && d.images.webp.image_url));
     return url && !/questionmark/i.test(url) ? { url, page: d.url, credit: "MyAnimeList" } : null;
   }
-  return null;
+  throw new Error("jikan limite");
 }
 async function wikiApi(lang, params) {
-  const r = await fetch(`https://${lang}.wikipedia.org/w/api.php?action=query&format=json&origin=*&prop=pageimages&piprop=thumbnail&pithumbsize=360&pilicense=any&redirects=1&${params}`);
-  if (!r.ok) return [];
+  const r = await tfetch(`https://${lang}.wikipedia.org/w/api.php?action=query&format=json&origin=*&prop=pageimages&piprop=thumbnail&pithumbsize=360&pilicense=any&redirects=1&${params}`);
+  if (!r.ok) throw new Error("wiki " + r.status);
   const j = await r.json();
   return Object.values((j.query && j.query.pages) || {}).sort((a, b) => (a.index || 0) - (b.index || 0));
 }
@@ -843,20 +873,33 @@ function imgFor(it) {
   if (it.s === "poke") return { url: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${it.q}.png`, credit: "Pokémon" };
   return null;
 }
-function loadImg(key, it) {
+function loadImg(key, it, front) {
   const direct = imgFor(it);
-  if (direct) { IMG[key] = direct; return; }
-  const cached = store.get("img2_" + key, undefined);
-  if (cached !== undefined) { IMG[key] = cached; return; }
+  if (direct) { IMG[key] = direct; warmImg(direct.url); return; }
+  const c = store.get("img3_" + key, undefined);
+  if (c && (c.u || Date.now() - c.t < 3 * 864e5)) { IMG[key] = c.u; if (c.u) warmImg(c.u.url); return; }
+  const old = store.get("img2_" + key, undefined);
+  if (old && old.url) { IMG[key] = old; warmImg(old.url); return; }
   IMG[key] = "pending";
   imgSchedule(async () => {
-    let res = null;
-    try { res = it.s === "anime" ? await jikanFind(it.q) : await wikiFind(it); } catch (e) { res = null; }
-    if (!res && it.s === "anime") { try { res = await wikiFind({ q: it.q, lang: ["en", "fr"], hint: "character" }); } catch (e) {} }
+    let res = null, failed = true;
+    for (let a = 0; a < 3 && failed; a++) {
+      try {
+        res = it.s === "anime" ? await jikanFind(it.q) : await wikiFind(it);
+        if (!res && it.s === "anime") res = await wikiFind({ q: it.q, lang: ["en", "fr"], hint: "character" });
+        failed = false;
+      } catch (e) { res = null; await sleep(500 * (a + 1)); }
+    }
     IMG[key] = res;
-    store.set("img2_" + key, res);
+    if (res) warmImg(res.url);
+    if (!failed) store.set("img3_" + key, { u: res, t: Date.now() });
     scheduleRender();
-  });
+  }, front);
+}
+function prefetchPick(pick, front) {
+  const it = itemFor(pick); if (!it) return;
+  const key = (pick.c || "") + "|" + pick.w;
+  if (IMG[key] === undefined && !CUR.bad.includes(dtKey(catIdByName(pick.c), pick.w))) loadImg(key, it, front);
 }
 function avatar(name, cls) {
   const n = String(name || "?");
@@ -876,7 +919,7 @@ function charImg(pick, cls) {
   const r = IMG[key];
   if (r === "pending") return `<div class="${c} char-loading" aria-hidden="true"></div>`;
   if (!r) return avatar(pick.w, c);
-  const img = `<img class="${c}" src="${esc(r.url)}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.outerHTML=this.dataset.fb" data-fb="${esc(avatar(pick.w, c))}">`;
+  const img = `<img class="${c}" src="${esc(r.url)}" alt="" decoding="sync" referrerpolicy="no-referrer" onerror="this.outerHTML=this.dataset.fb" data-fb="${esc(avatar(pick.w, c))}">`;
   if (c !== "char-img") return img;
   return `<figure class="char-fig">${img}<figcaption>${r.page ? `<a href="${esc(r.page)}" target="_blank" rel="noopener">Image : ${esc(r.credit)}</a>` : `Image : ${esc(r.credit)}`}</figcaption></figure>`;
 }
@@ -1026,6 +1069,7 @@ function vSetup() {
     <h1>Undercover</h1>
     <p class="lead">Tout le monde reçoit le même mot, sauf l'Undercover qui a un mot proche. Décrivez votre mot sans le dire, puis votez pour éliminer l'intrus.</p>
   </header>
+  ${resumeBlock("uc")}
   ${rulesBlock("uc")}
 
   <section class="section">
@@ -1206,7 +1250,8 @@ function dDraw1() {
   if (!fresh.length) fresh = pool;
   const p = fresh[Math.floor(Math.random() * fresh.length)];
   dUsed.add(p.w);
-  return Object.assign({}, p);
+  const r = Object.assign({}, p); prefetchPick(r, true);
+  return r;
 }
 function initAudio() { try { actx = actx || new (window.AudioContext || window.webkitAudioContext)(); if (actx.resume) actx.resume(); } catch (e) { actx = null; } }
 function beep(f, d = .12, type = "sine", vol = .2) {
@@ -1303,6 +1348,7 @@ function vDSetup() {
     <h1>Devine Tête</h1>
     <p class="lead">Chacun reçoit un perso choisi par les autres, sans le voir. À ton tour, tu poses une seule question, les autres répondent par oui ou non, puis on passe au suivant. Le premier qui trouve son perso gagne.</p>
   </header>
+  ${resumeBlock("dt")}
   ${rulesBlock("qs")}
 
   <section class="section">
@@ -3679,7 +3725,7 @@ const GAME_RULES = {
   qs: ["Chaque joueur reçoit un perso choisi par les autres, sans le voir.", "À ton tour, tu poses une seule question fermée. Les autres répondent par oui ou non.", "Le premier qui trouve son perso gagne."],
   qd: ["Une question s'affiche et chacun répond en secret.", "Les réponses s'affichent sans les noms : devine qui a écrit chacune.", "+1 par bonne devinette, +1 à l'auteur pour chaque joueur qui s'est trompé sur sa réponse."],
   bomb: ["Le téléphone affiche un thème. Celui qui a la bombe dit une réponse à voix haute, appuie sur Passe et donne le téléphone à son voisin.", "Une réponse déjà dite, une hésitation trop longue ou une réponse refusée par le groupe : tu gardes la bombe et tu en redis une.", "La mèche est cachée et accélère vers la fin. Celui qui tient la bombe quand elle explose prend un gage et commence la manche suivante."],
-  sept: ["Sept persos sont tirés au hasard dans les catégories choisies (Devine Tête et Undercover réunis). Celui qui cherche ne les voit pas.", "Les autres les voient et ont un nombre de mots limité (15 par défaut) pour les lui faire trouver. Chaque mot dit à voix haute compte, et il est interdit de dire le nom ou une partie du nom.", "Quand le chercheur trouve une tête, on la touche. La manche s'arrête quand les 7 sont trouvées, quand il n'y a plus de mots, ou quand vous arrêtez.", "Chacun est chercheur une fois. Le meilleur chercheur est celui qui trouve le plus de têtes, puis qui en a eu besoin de moins de mots."],
+  sept: ["Sept persos sont tirés au hasard dans les catégories choisies (Devine Tête et Undercover réunis). Celui qui cherche ne les voit pas.", "Les autres les voient et ont un nombre de mots limité (15 par défaut) pour les lui faire trouver. Chaque mot dit à voix haute compte, et il est interdit de dire le nom ou une partie du nom.", "Si une tête est inconnue de tout le monde, on peut la changer. Quand le chercheur trouve une tête, on la touche. La manche s'arrête quand les 7 sont trouvées, quand il n'y a plus de mots, ou quand vous arrêtez.", "Chacun est chercheur une fois. Le meilleur chercheur est celui qui trouve le plus de têtes, puis qui en a eu besoin de moins de mots."],
   tp: ["Deux choix s'affichent. Chacun choisit en secret.", "On révèle qui a choisi quoi. Celui qui est seul dans son camp doit se justifier.", "À la fin, le plus original est celui qui s'est retrouvé le plus souvent dans le camp le moins choisi."],
   dr: ["Tout le monde voit la catégorie. Tous connaissent le mot, sauf l'imposteur.", "À tour de rôle, chacun ajoute un seul trait au dessin commun.", "Puis on vote pour désigner l'imposteur. S'il est démasqué, il peut encore gagner en devinant le mot."]
 };
@@ -3793,6 +3839,7 @@ function vBomb() {
       <h1>La Bombe</h1>
       <p class="lead">Un thème s'affiche et la mèche s'allume. Tu dis une réponse, tu appuies sur Passe et tu donnes le téléphone à ton voisin. Celui qui tient la bombe quand elle explose prend un gage.</p>
     </header>
+    ${resumeBlock("bomb")}
     ${rulesBlock("bomb")}
     <section class="section"><span class="label">Joueurs, dans l'ordre où vous êtes assis</span>
       <div class="stepper"><button data-act="b-count" data-d="-1" aria-label="Retirer un joueur">−</button><output>${bcfg.count}</output><button data-act="b-count" data-d="1" aria-label="Ajouter un joueur">+</button></div>
@@ -3918,6 +3965,7 @@ function vTp() {
     return `${backHome}
     <header class="section"><span class="eyebrow">Un seul écran pour tous</span><h1>Tu préfères</h1>
       <p class="lead">Deux choix impossibles. Tout le monde réfléchit, puis à trois, chacun montre A ou B avec ses doigts. Ceux qui sont seuls dans leur camp doivent se justifier.</p></header>
+    ${resumeBlock("tp")}
     <section class="section"><span class="label">Thèmes</span><div class="chips">${TP_PACKS.map(p => `<button class="chip" data-act="tp-pack" data-id="${p.id}" aria-pressed="${tpcfg.packs.includes(p.id)}">${esc(p.name)}<small>${p.q.length}</small></button>`).join("")}</div></section>
     <button class="btn" data-act="tp-start">Commencer</button>
     <p class="hint">Pour voter chacun sur son téléphone et voir qui a choisi quoi, joue en ligne.</p>`;
@@ -4029,6 +4077,18 @@ const SEPT_CATS = [
   { id: "stars", name: "Célébrités", dt: ["stars"], extra: [] },
   { id: "pop", name: "Culture pop", dt: ["kids"], out: SEPT_POP_OUT, extra: [] }
 ];
+
+/* Persos en plus, choisis pour les 17-23 ans (images : Wikipédia, MyAnimeList ou Pokémon) */
+const SEPT_MORE = {
+  anime: [["anime", "Zero Two", "Rem", "Asuka=Asuka Langley Soryu", "Rei Ayanami", "Shinji Ikari", "Anya Forger", "Loid Forger", "Yor Forger", "Todoroki=Shoto Todoroki", "Bakugo=Katsuki Bakugo", "Uraraka=Ochaco Uraraka", "Asta", "Yuno", "Natsu=Natsu Dragneel", "Lucy=Lucy Heartfilia", "Erza=Erza Scarlet", "Edward Elric", "Alphonse Elric", "Roy Mustang", "Spike Spiegel", "Rimuru=Rimuru Tempest", "Mob=Shigeo Kageyama", "Tatsumaki", "Genos", "Armin=Armin Arlert", "Reiner=Reiner Braun", "Erwin=Erwin Smith", "Rengoku=Kyojuro Rengoku", "Giyu=Giyu Tomioka", "Shinobu=Shinobu Kocho", "Muzan=Muzan Kibutsuji", "Akaza", "Nobara=Nobara Kugisaki", "Toji=Toji Fushiguro", "Yuta=Yuta Okkotsu", "Nanami=Kento Nanami", "Aizen=Sosuke Aizen", "Rukia=Rukia Kuchiki", "Aki=Aki Hayakawa", "Minato=Minato Namikaze", "Neji=Neji Hyuga", "Rock Lee", "Tsunade", "Deidara", "Kisame=Kisame Hoshigaki", "Boruto=Boruto Uzumaki", "Mikey=Manjiro Sano", "Krilin=Krillin", "C-18=Android 18", "Yamcha", "Chopper=Tony Tony Chopper", "Usopp", "Brook", "Franky", "Boa Hancock", "Mihawk=Dracule Mihawk", "Sabo", "Gol D. Roger", "Frieren", "Senku=Senku Ishigami", "Inuyasha", "Sesshomaru", "Kagome=Kagome Higurashi", "Yusuke=Yusuke Urameshi", "Hiei", "Sasha=Sasha Blouse", "Hange=Hange Zoe", "Hinata Shoyo", "Kageyama=Tobio Kageyama", "Aqua=Aqua Hoshino", "Ai Hoshino", "Violet Evergarden", "Kenshin=Kenshin Himura", "Saiki=Kusuo Saiki", "Maki=Maki Zenin"]],
+  jv: [["wiki", "Fox McCloud", "Samus Aran", "Captain Falcon", "Gordon Freeman", "GLaDOS", "Chell=Chell (Portal)", "Sans=Sans (Undertale)", "Papyrus=Papyrus (Undertale)", "Tom Nook", "Waluigi", "Toad=Toad (Nintendo)", "Daisy=Princess Daisy", "Bowser Jr.", "Shadow=Shadow the Hedgehog", "Knuckles=Knuckles the Echidna", "Eggman=Doctor Eggman", "Bayonetta", "Cuphead", "Dante=Dante (Devil May Cry)", "Cortana=Cortana (Halo)", "Johnny Silverhand", "Jinx=Jinx (League of Legends)", "Michael De Santa", "Tommy Vercetti", "Altaïr=Altaïr Ibn-La'Ahad", "Eivor", "Pyramid Head", "Alan Wake", "Ness=Ness (EarthBound)", "Pit=Pit (Kid Icarus)", "Olimar=Captain Olimar", "Isabelle=Isabelle (Animal Crossing)", "Kazuya=Kazuya Mishima", "Heihachi=Heihachi Mishima", "Tracer=Tracer (Overwatch)", "Mercy=Mercy (Overwatch)", "Reaper=Reaper (Overwatch)", "D.Va"],
+        ["poke", "Bulbizarre=1", "Salamèche=4", "Carapuce=7", "Tortank=9", "Rondoudou=39", "Miaouss=52", "Psykokwak=54", "Arcanin=59", "Ectoplasma=94", "Magicarpe=129", "Léviator=130", "Ronflex=143", "Mew=151", "Gardevoir=282", "Rayquaza=384", "Lucario=448", "Amphinobi=658", "Mimiqui=778"]],
+  disney: [["wiki", "Mulan", "Pocahontas", "Belle=Belle (Disney)", "La Bête=Beast (Disney)", "Jasmine=Jasmine (Disney)", "Jafar", "Scar=Scar (The Lion King)", "Mufasa", "Nala=Nala (The Lion King)", "Hercule=Hercules (Disney)", "Winnie l'ourson=Winnie-the-Pooh", "Bambi=Bambi (character)", "Dumbo", "Pinocchio=Pinocchio (Disney)", "Cruella=Cruella de Vil", "Maléfique=Maleficent (character)", "Ursula=Ursula (The Little Mermaid)", "Gaston=Gaston (Disney)", "Mowgli", "Baloo", "Merida=Merida (Brave)", "Tiana=Tiana (The Princess and the Frog)", "WALL-E=WALL-E (character)", "Eve=EVE (WALL-E)", "Carl Fredricksen", "Mike Wazowski", "Jessie=Jessie (Toy Story)", "Rex=Rex (Toy Story)", "Mr. Patate=Mr. Potato Head", "Lotso=Lots-O'-Huggin' Bear", "Bing Bong=Bing Bong (Inside Out)", "Miguel=Miguel Rivera", "Baymax", "Hiro Hamada", "Bruno=Bruno Madrigal", "Judy Hopps", "Nick Wilde", "Kristoff=Kristoff (Frozen)", "Hans=Prince Hans"]],
+  cine: [["wiki", "Black Widow=Black Widow (Natasha Romanoff)", "Loki=Loki (Marvel Cinematic Universe)", "Doctor Strange", "Black Panther=Black Panther (Marvel Comics)", "Star-Lord", "Groot", "Rocket=Rocket Raccoon", "Gamora", "Wanda Maximoff", "Vision=Vision (Marvel Comics)", "Hawkeye=Hawkeye (Clint Barton)", "Ant-Man", "Captain Marvel=Carol Danvers", "Harley Quinn", "Catwoman", "Aquaman", "Flash=Barry Allen", "Darth Maul", "Obi-Wan Kenobi", "Luke Skywalker", "Leia=Princess Leia", "Han Solo", "Chewbacca", "Mandalorian=Din Djarin", "Grogu", "Rey=Rey (Star Wars)", "Kylo Ren", "Anakin Skywalker", "Ron Weasley", "Drago Malefoy=Draco Malfoy", "Dumbledore=Albus Dumbledore", "Severus Rogue=Severus Snape", "Voldemort", "Hagrid=Rubeus Hagrid", "Luna Lovegood", "Sirius Black", "Legolas", "Aragorn", "Sauron", "Dustin=Dustin Henderson", "Steve Harrington", "Max Mayfield", "Mike Wheeler", "Vecna=Vecna (Stranger Things)", "Jesse Pinkman", "Saul Goodman", "Gustavo Fring", "Tyrion Lannister", "Cersei Lannister", "Arya Stark", "Dwight Schrute", "Ross Geller", "Rachel Green", "Chandler Bing", "Monica Geller", "Phoebe Buffay", "Barney Stinson", "Dexter Morgan", "Ghostface", "Chucky=Chucky (Child's Play)", "Freddy Krueger", "Michael Myers", "Pennywise", "Jason Voorhees", "Dominic Toretto", "John Wick=John Wick (character)", "Ethan Hunt", "Arthur Shelby", "Arsène Lupin", "Astérix", "Obélix", "Tintin"]],
+  createurs: [["wiki", "Kameto", "McFly et Carlito", "Norman=Norman Thavaud", "Seb la Frite", "Doigby", "Locklear", "xQc", "Kai Cenat", "Ninja=Ninja (streamer)", "PewDiePie", "Markiplier", "Jacksepticeye", "Technoblade", "Pokimane", "Bigflo et Oli", "Nabilla=Nabilla Benattia", "Emma CakeCup", "Juju Fitcats", "Ultia"]],
+  stars: [["wiki", "PNL=PNL (groupe)", "SCH=SCH (rappeur)", "Damso", "Gazo=Gazo (rappeur)", "Tiakola", "Josman", "Lomepal", "Vald", "Kaaris", "Soprano=Soprano (rappeur)", "Dadju", "The Weeknd", "Travis Scott", "Post Malone", "Dua Lipa", "Olivia Rodrigo", "Sabrina Carpenter", "Doja Cat", "Bad Bunny", "Justin Bieber", "Ed Sheeran", "Harry Styles", "Zendaya", "Timothée Chalamet", "Tom Holland", "Margot Robbie", "Ryan Gosling", "Robert Pattinson", "Jenna Ortega", "Millie Bobby Brown", "Kim Kardashian", "Cardi B", "Nicki Minaj", "Kendrick Lamar", "Tyler, the Creator", "Erling Haaland", "Vinícius Júnior", "Jude Bellingham", "Antoine Griezmann", "Kevin De Bruyne", "Léon Marchand", "Rafael Nadal", "Roger Federer", "Novak Djokovic", "Carlos Alcaraz", "Max Verstappen", "Lewis Hamilton", "Conor McGregor", "Victor Wembanyama", "Stephen Curry", "Kobe Bryant", "Paul Pogba", "N'Golo Kanté", "Cillian Murphy", "Pedro Pascal", "Keanu Reeves", "Scarlett Johansson", "Jason Statham", "Will Smith", "Gad Elmaleh", "Jean Dujardin", "Pierre Niney"]],
+  pop: [["wiki", "Patrick Étoile de mer=Patrick Star", "Monsieur Krabs=Mr. Krabs", "Rick Sanchez", "Morty Smith", "Stewie Griffin", "Peter Griffin", "Eric Cartman", "Garfield", "Scooby-Doo", "Bugs Bunny", "Titi=Tweety", "Daffy Duck", "Hello Kitty", "Pepe la grenouille=Pepe the Frog", "Doge", "Nyan Cat", "Barbie", "Ken=Ken (doll)", "Peppa Pig", "Totoro", "Tom=Tom (Tom and Jerry)", "Jerry=Jerry Mouse", "Titeuf", "Kirikou"]]
+};
 const sAllIds = () => SEPT_CATS.map(c => c.id);
 let scfg = Object.assign({ count: 4, names: dcfg.names.slice(), src: null, words: 15 }, store.get("scfg", {}));
 scfg.src = (scfg.src || sAllIds()).filter(id => sAllIds().includes(id)); if (!scfg.src.length) scfg.src = sAllIds();
@@ -4036,12 +4096,12 @@ if (![10, 15, 20].includes(scfg.words)) scfg.words = 15;
 while (scfg.names.length < scfg.count) scfg.names.push("");
 const sSave = () => store.set("scfg", scfg);
 const sName = i => (scfg.names[i] || "").trim() || "Joueur " + (i + 1);
-let SM = { screen: "setup", cards: [], found: [], used: 0, round: 0, results: [], msg: "", seen: new Set() };
+let SM = { screen: "setup", cards: [], found: [], used: 0, round: 0, results: [], msg: "", seen: new Set(), swap: false, swaps: 0 };
 function septCat(c) {
   const out = [], seen = new Set();
   const add = it => { const k = norm(it.w); if (seen.has(k) || (c.out || []).includes(it.w)) return; seen.add(k); out.push(Object.assign({}, it, { c: it.c })); };
   c.dt.forEach(id => { const dc = DT_CATS.find(x => x.id === id); if (dc) dtItems(dc).forEach(it => add(Object.assign({}, it, { c: dc.name }))); });
-  c.extra.forEach(g => g.slice(1).forEach(raw => { const [w, alias] = raw.split("="); add({ w, s: g[0], q: alias || w, lang: ["en", "fr"], hint: g[0] === "anime" ? "character" : "", c: c.name }); }));
+  c.extra.concat(SEPT_MORE[c.id] || []).forEach(g => g.slice(1).forEach(raw => { const [w, alias] = raw.split("="); add({ w, s: g[0], q: alias || w, lang: ["en", "fr"], hint: g[0] === "anime" ? "character" : "", c: c.name }); }));
   return out;
 }
 function septPool() {
@@ -4054,16 +4114,24 @@ function sDraw() {
   let fresh = pool.filter(it => !SM.seen.has(norm(it.w)));
   if (fresh.length < 7) { SM.seen.clear(); fresh = pool; }
   SM.cards = shuffle(fresh).slice(0, 7);
-  SM.cards.forEach(c => SM.seen.add(norm(c.w)));
-  SM.found = []; SM.used = 0;
+  SM.cards.forEach(c => { SM.seen.add(norm(c.w)); prefetchPick(c, true); });
+  SM.found = []; SM.used = 0; SM.swap = false; SM.swaps = 0;
 }
 function sStart() {
   if (septPool().length < 7) { SM.msg = "Il faut au moins 7 persos : ajoute des catégories."; return; }
   SM.msg = ""; SM.round = 1; SM.results = []; SM.screen = "pass"; sDraw();
 }
 const sSeeker = () => (SM.round - 1) % scfg.count;
+function sSwap(k) {
+  if (SM.found.includes(k)) return;
+  const inUse = new Set(SM.cards.map(c => norm(c.w))), pool = septPool().filter(it => !inUse.has(norm(it.w)));
+  let fresh = pool.filter(it => !SM.seen.has(norm(it.w))); if (!fresh.length) fresh = pool;
+  if (!fresh.length) { SM.swap = false; return; }
+  const n = fresh[Math.floor(Math.random() * fresh.length)];
+  SM.cards[k] = n; SM.seen.add(norm(n.w)); prefetchPick(n, true); SM.swap = false; SM.swaps++;
+}
 function sFinish() {
-  SM.results.push({ seeker: sName(sSeeker()), found: SM.found.length, used: SM.used, names: SM.cards.map(c => c.w), got: SM.cards.map((_, k) => SM.found.includes(k)) });
+  SM.results.push({ seeker: sName(sSeeker()), found: SM.found.length, used: SM.used, swaps: SM.swaps, names: SM.cards.map(c => c.w), got: SM.cards.map((_, k) => SM.found.includes(k)) });
   SM.screen = "result";
 }
 function sNext() {
@@ -4077,6 +4145,7 @@ function sNext() {
 const SEPT_ART = `<svg viewBox="0 0 120 120" aria-hidden="true"><g transform="rotate(-17 60 108)"><rect x="20" y="16" width="54" height="76" rx="8" fill="#8fae45"/></g><g transform="rotate(17 60 108)"><rect x="46" y="16" width="54" height="76" rx="8" fill="#a3c255"/></g><rect x="33" y="12" width="54" height="80" rx="8" fill="#f5eee3"/><circle cx="60" cy="42" r="12" fill="#b9d56b"/><path d="M38 84 C38 62 82 62 82 84 Z" fill="#b9d56b"/><circle cx="40" cy="20" r="2.4" fill="#2d2040"/><circle cx="80" cy="84" r="2.4" fill="#2d2040"/></svg>`;
 function sCard(c, k, play) {
   const f = SM.found.includes(k), inner = `${charImg(c, "sept-img")}<span class="sept-name">${esc(c.w)}</span>`;
+  if (play && SM.swap) return f ? `<div class="sept-card found">${inner}<b class="sept-n" aria-hidden="true">✓</b></div>` : `<button class="sept-card swap" data-act="s-swap" data-i="${k}" aria-label="Changer ${esc(c.w)}">${inner}<b class="sept-n sw" aria-hidden="true">↻</b></button>`;
   if (play) return `<button class="sept-card ${f ? "found" : ""}" data-act="s-found" data-i="${k}" aria-pressed="${f}" aria-label="${esc(c.w)}${f ? ", trouvé" : ""}">${inner}${f ? `<b class="sept-n" aria-hidden="true">✓</b>` : ""}</button>`;
   return `<div class="sept-card ${f ? "found" : ""}">${inner}${f ? `<b class="sept-n" aria-hidden="true">✓</b>` : ""}</div>`;
 }
@@ -4091,6 +4160,7 @@ function vSept() {
       <h1>Sept Têtes</h1>
       <p class="lead">Sept persos sont cachés à celui qui cherche. Les autres ont ${scfg.words} mots en tout pour les lui faire trouver. Chacun cherche à son tour.</p>
     </header>
+    ${resumeBlock("sept")}
     ${rulesBlock("sept")}
     <section class="section"><span class="label">Joueurs, dans l'ordre où vous êtes assis</span>
       <div class="stepper"><button data-act="s-count" data-d="-1" aria-label="Retirer un joueur">−</button><output>${scfg.count}</output><button data-act="s-count" data-d="1" aria-label="Ajouter un joueur">+</button></div>
@@ -4100,7 +4170,7 @@ function vSept() {
       <p class="hint">Seulement des personnages et des personnalités, tirés de Devine Tête et d'Undercover. Les images viennent d'internet.</p></section>
     <section class="section"><span class="label">Mots pour tout faire trouver</span><div class="chips">${[10, 15, 20].map(n => `<button class="chip" data-act="s-words" data-x="${n}" aria-pressed="${scfg.words === n}">${n}${n === 15 ? "<small>conseillé</small>" : ""}</button>`).join("")}</div></section>
     <p class="msg">${esc(SM.msg)}</p>
-    <button class="btn" data-act="s-start">Lancer la partie</button>`;
+    <button class="btn${PZ.sept && SM.screen === "setup" ? "-ghost" : ""}" data-act="s-start">${PZ.sept ? "Nouvelle partie" : "Lancer la partie"}</button>`;
   }
   const head = `<header class="section"><span class="eyebrow">Manche ${SM.round} sur ${scfg.count}</span></header>`;
   if (SM.screen === "pass") {
@@ -4119,7 +4189,8 @@ function vSept() {
       <p aria-live="polite"><b>${left > 0 ? left : 0}</b> mot${left > 1 ? "s" : ""} restant${left > 1 ? "s" : ""} <small>sur ${scfg.words}</small></p>
       <button class="btn-small" data-act="s-plus" aria-label="Un mot de plus" ${over ? "disabled" : ""}>+1 mot</button>
     </div>
-    <p class="hint">Chaque mot dit à voix haute compte : appuie sur +1 mot. Quand le chercheur trouve une tête, touche-la. Interdit de dire le nom ou une partie du nom.</p>
+    ${SM.swap ? `<p class="hint"><b>Touche la tête à remplacer.</b> Les têtes déjà trouvées ne changent pas.</p>` : `<p class="hint">Chaque mot dit à voix haute compte : appuie sur +1 mot. Quand le chercheur trouve une tête, touche-la. Interdit de dire le nom ou une partie du nom.</p>`}
+    <button class="btn-ghost" data-act="s-swapmode">${SM.swap ? "Annuler" : "Une tête est inconnue : la changer"}</button>
     <button class="btn-ghost" data-act="s-end">${SM.found.length === 7 ? "Voir le résultat" : "Arrêter la manche"}</button>`;
   }
   if (SM.screen === "result") {
@@ -4607,8 +4678,8 @@ function onAct(e, b) {
   switch (a) {
     /* navigation */
     case "home": bStop(); if (BM.screen === "play") BM.screen = "ready"; HM.wheel = false; S.view = "home"; break;
-    case "go-uc": S.view = "uc"; if (!G) ui.screen = "setup"; break;
-    case "go-dt": S.view = "dt"; D.reveal = false; break;
+    case "go-uc": S.view = "uc"; gamePause("uc"); break;
+    case "go-dt": S.view = "dt"; D.reveal = false; gamePause("dt"); break;
     case "go-catalog": S.view = "catalog"; CAT.text = ""; break;
     case "go-stats": bStop(); if (BM.screen === "play") BM.screen = "ready"; S.view = "stats"; HM.wheel = false; ST.confirmReset = false; break;
     case "fav": { const id = b.dataset.g; prefs.fav = prefs.fav.includes(id) ? prefs.fav.filter(x => x !== id) : prefs.fav.concat(id); prefsSave(); break; }
@@ -4624,27 +4695,30 @@ function onAct(e, b) {
     case "st-reset": HIST = []; histSave(); recorded.clear(); ACHS = {}; store.set("ach", ACHS); prefs.tpSeen = 0; prefsSave(); ST.confirmReset = false; break;
     case "b-gage": bGage(); break;
     case "b-drinks": bcfg.drinks = !bcfg.drinks; bSave(); break;
-    case "go-bomb": S.view = "bomb"; if (BM.screen !== "boom" && BM.screen !== "ready") BM.screen = "setup"; break;
-    case "go-tp": S.view = "tp"; break;
-    case "go-sept": S.view = "sept"; if (SM.screen === "end") SM.screen = "setup"; break;
+    case "go-bomb": S.view = "bomb"; bStop(); gamePause("bomb"); break;
+    case "go-tp": S.view = "tp"; gamePause("tp"); break;
+    case "go-sept": S.view = "sept"; gamePause("sept"); break;
+    case "resume": { const v = b.dataset.g; if (PZ[v] && SCR[v]) { SCR[v][1](PZ[v]); PZ[v] = null; } break; }
     case "s-count": scfg.count = Math.min(10, Math.max(2, scfg.count + +b.dataset.d)); while (scfg.names.length < scfg.count) scfg.names.push(""); sSave(); break;
     case "s-src": { const id = b.dataset.id; scfg.src = scfg.src.includes(id) ? scfg.src.filter(x => x !== id) : scfg.src.concat(id); if (!scfg.src.length) scfg.src = [id]; sSave(); break; }
     case "s-words": scfg.words = [10, 15, 20].includes(+b.dataset.x) ? +b.dataset.x : 15; sSave(); break;
-    case "s-start": initAudio(); setLast("sept", "local"); sStart(); break;
+    case "s-start": PZ.sept = null; initAudio(); setLast("sept", "local"); sStart(); break;
     case "s-redraw": sDraw(); break;
     case "s-ready": SM.screen = "play"; break;
+    case "s-swapmode": SM.swap = !SM.swap; break;
+    case "s-swap": sSwap(+b.dataset.i); break;
     case "s-found": { const k = +b.dataset.i; SM.found = SM.found.includes(k) ? SM.found.filter(x => x !== k) : SM.found.concat(k); if (SM.found.includes(k)) beep(880, .08, "triangle", .14); break; }
     case "s-plus": if (SM.used < scfg.words) SM.used++; if (SM.used >= scfg.words) beep(220, .25, "sawtooth", .12); break;
     case "s-minus": if (SM.used > 0) SM.used--; break;
     case "s-end": sFinish(); break;
     case "s-next": sNext(); break;
-    case "s-again": initAudio(); sStart(); break;
-    case "s-setup": SM.screen = "setup"; SM.msg = ""; break;
+    case "s-again": PZ.sept = null; initAudio(); sStart(); break;
+    case "s-setup": SM.msg = ""; gamePause("sept"); break;
     case "b-count": bcfg.count = Math.min(12, Math.max(2, bcfg.count + +b.dataset.d)); while (bcfg.names.length < bcfg.count) bcfg.names.push(""); bSave(); break;
     case "b-pack": { const id = b.dataset.id; bcfg.packs = bcfg.packs.includes(id) ? bcfg.packs.filter(x => x !== id) : bcfg.packs.concat(id); if (!bcfg.packs.length) bcfg.packs = [id]; bSave(); break; }
     case "b-len": bcfg.len = BOMB_LEN[b.dataset.x] ? b.dataset.x : "normal"; bSave(); break;
     case "b-letter": bcfg.letter = !bcfg.letter; bSave(); break;
-    case "b-start": initAudio(); setLast("bomb", "local"); BM.losses = BM.losses || {}; BM.round = 0; BM.screen = "setup"; bSetupNext(); break;
+    case "b-start": PZ.bomb = null; initAudio(); setLast("bomb", "local"); BM.losses = BM.losses || {}; BM.round = 0; BM.screen = "setup"; bSetupNext(); break;
     case "b-reroll": bDraw(); break;
     case "b-light": bLight(); break;
     case "b-pass": bPass(); break;
@@ -4652,12 +4726,12 @@ function onAct(e, b) {
     case "b-nostop": BM.confirmStop = false; break;
     case "b-stop": bStop(); BM.screen = "ready"; BM.confirmStop = false; break;
     case "b-next": bSetupNext(); break;
-    case "b-setup": bStop(); BM.screen = "setup"; break;
+    case "b-setup": bStop(); gamePause("bomb"); break;
     case "tp-pack": { const id = b.dataset.id; tpcfg.packs = tpcfg.packs.includes(id) ? tpcfg.packs.filter(x => x !== id) : tpcfg.packs.concat(id); if (!tpcfg.packs.length) tpcfg.packs = [id]; store.set("tpcfg", tpcfg); break; }
-    case "tp-start": tplStart(); setLast("tp", "local"); break;
+    case "tp-start": PZ.tp = null; tplStart(); setLast("tp", "local"); break;
     case "tp-next": tplNext(); break;
     case "tp-cd": tplCountdown(); return;
-    case "tp-setup": TPL.screen = "setup"; break;
+    case "tp-setup": gamePause("tp"); break;
     case "cat-rm": catToggle(b.dataset.l, b.dataset.k); CAT.text = ""; break;
     case "cat-copy": return catCopy();
     case "cat-askreset": CAT.confirmReset = true; break;
@@ -4757,7 +4831,7 @@ function onAct(e, b) {
     case "askReset": ui.confirmReset = true; break;
     case "cancelReset": ui.confirmReset = false; break;
     case "resetScores": scores = {}; store.set("scores", scores); ui.confirmReset = false; break;
-    case "start": setLast("uc", "local"); return startGame();
+    case "start": PZ.uc = null; setLast("uc", "local"); return startGame();
     case "open": G.revealOpen = true; break;
     case "next":
       G.revealOpen = false;
@@ -4780,7 +4854,7 @@ function onAct(e, b) {
     }
     case "whiteWin": return endGame("white");
     case "again": return startGame();
-    case "menu": case "quit": G = null; ui.screen = "setup"; break;
+    case "menu": case "quit": G = null; PZ.uc = null; ui.screen = "setup"; break;
 
     /* devine tête */
     case "d-count": {
@@ -4799,8 +4873,8 @@ function onAct(e, b) {
       dSave(); break;
     }
     case "d-sound": case "sound": prefs.sound = !prefs.sound; prefsSave(); if (prefs.sound) { initAudio(); beep(880, .08, "triangle", .12); } break;
-    case "d-new": initAudio(); dNewGame(); setLast("dt", "local"); break;
-    case "d-setup": D.screen = "setup"; break;
+    case "d-new": PZ.dt = null; initAudio(); dNewGame(); setLast("dt", "local"); break;
+    case "d-setup": gamePause("dt"); break;
     case "d-assign": dStartAssign(); break;
     case "d-reroll": dReroll(); break;
     case "d-custom": dCustom(); break;
