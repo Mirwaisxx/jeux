@@ -293,6 +293,18 @@ details.box[open] summary { margin-bottom: 12px; }
 .cat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 10px; }
 .cat-tile { background: var(--bg); border-radius: 12px; padding: 10px; display: flex; flex-direction: column; align-items: center; gap: 6px; text-align: center; }
 .cat-tile.off { opacity: .45; }
+.v-bar { height: 8px; border-radius: 8px; background: var(--bg); overflow: hidden; margin: 8px 0; }
+.v-bar i { display: block; height: 100%; background: var(--signal); border-radius: 8px; transition: width .3s var(--ease, ease); }
+.v-sum { margin: 10px 0; line-height: 1.7; }
+.v-list { display: grid; gap: 12px; margin-top: 12px; }
+.v-card { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 12px; display: grid; gap: 8px; }
+.v-head { display: flex; justify-content: space-between; gap: 8px; align-items: baseline; }
+.v-head span { color: var(--muted, #b7a9c4); font-size: .85rem; text-align: right; }
+.v-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.v-pair figure { margin: 0; text-align: center; }
+.v-pair figcaption { font-size: .78rem; margin-top: 4px; color: var(--muted, #b7a9c4); }
+.v-pair .cat-img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 10px; }
+.cat-tile.ok { box-shadow: inset 0 0 0 1.5px rgba(126, 199, 156, .6); }
 .cat-img { width: 100%; aspect-ratio: 1; max-width: 100%; object-fit: cover; object-position: top; border-radius: 10px; background: var(--line); }
 .cat-name { font-weight: 700; font-size: .9rem; overflow-wrap: anywhere; }
 .cat-acts { display: flex; flex-direction: column; gap: 4px; width: 100%; }
@@ -484,7 +496,12 @@ body.celebrate:not([data-scene])::after { opacity: 1; transition-duration: .3s; 
 @keyframes dot-drop { 0% { transform: translate(-50%, -1.4em) rotate(-120deg); opacity: 0; } 60% { opacity: 1; } }
 
 /* Barre du haut */
-.topbar { display: flex; justify-content: space-between; align-items: center; gap: 10px; min-height: 44px; margin-bottom: -4px; }
+.topbar { position: relative; z-index: 40; display: flex; justify-content: space-between; align-items: center; gap: 10px; min-height: 56px; margin: -8px -16px -8px; padding: 6px 16px; transition: background .3s, box-shadow .3s; }
+#app[data-view="home"] .topbar, #app[data-view="stats"] .topbar, #app[data-view="catalog"] .topbar { position: sticky; top: 0; }
+body.scrolled #app[data-view="home"] .topbar, body.scrolled #app[data-view="stats"] .topbar, body.scrolled #app[data-view="catalog"] .topbar { background: color-mix(in srgb, var(--bg) 82%, transparent); -webkit-backdrop-filter: blur(16px) saturate(1.3); backdrop-filter: blur(16px) saturate(1.3); box-shadow: 0 1px 0 var(--edge), 0 16px 24px -20px rgba(0, 0, 0, .8); }
+.tb-brand { background: none; color: var(--text); padding: 6px 4px; min-height: 44px; display: flex; align-items: center; opacity: 0; visibility: hidden; transform: translateY(5px); transition: opacity .3s, transform .3s var(--ease), visibility .3s; }
+.tb-brand .logo { font-size: 1.75rem; }
+body.past-hero .tb-brand { opacity: 1; visibility: visible; transform: none; }
 .tb-home { background: none; color: var(--text); display: flex; align-items: center; gap: 10px; padding: 6px 8px 6px 0; min-height: 44px; min-width: 0; }
 .tb-home::before { content: ""; width: 9px; height: 9px; border-left: 2.5px solid currentColor; border-bottom: 2.5px solid currentColor; transform: rotate(45deg); margin: 0 2px 0 4px; opacity: .6; flex: none; }
 .tb-home .logo { font-size: 1.75rem; white-space: nowrap; flex: none; }
@@ -496,47 +513,102 @@ body.celebrate:not([data-scene])::after { opacity: 1; transition-duration: .3s; 
 .tb-btn[aria-pressed="false"] { color: var(--muted); }
 .tb-btn[aria-current="page"] { background: var(--signal); color: var(--ink); border-color: var(--signal); }
 .tb-btn:active { transform: scale(.9); }
+.tb-btn { -webkit-tap-highlight-color: transparent; }
 body[data-scene="day"] .tb-btn { background: rgba(43, 33, 22, .07); border-color: rgba(43, 33, 22, .15); }
 
-/* Accueil : le jeu de cartes */
-.home-top { display: grid; gap: 22px; }
-.hero { display: grid; gap: 14px; min-width: 0; }
-.hero .logo { font-size: clamp(5rem, 27vw, 9.5rem); }
-.hero-list { color: var(--muted); font-size: 1rem; line-height: 1.5; max-width: 34ch; }
-.hand { position: relative; height: 128px; margin: -8px auto 0; width: min(100%, 360px); }
-.hand-card { position: absolute; left: 50%; bottom: 0; width: 74px; height: 104px; margin-left: -37px; border-radius: 12px; background: var(--paper); padding: 0;
-  transform-origin: 50% 240%; transform: rotate(var(--r)) translateY(var(--y, 0));
-  box-shadow: 0 10px 22px -8px rgba(0, 0, 0, .6), inset 0 0 0 1px rgba(29, 19, 40, .08);
-  display: grid; place-items: start; padding: 9px 0 0 7px; transition: transform .35s cubic-bezier(.2, 1.4, .4, 1); }
-.hand-card::before { content: ""; position: absolute; inset: 5px; border-radius: 8px; background: linear-gradient(160deg, color-mix(in srgb, var(--gc) 45%, var(--paper)), color-mix(in srgb, var(--gc) 18%, var(--paper))); }
-.hand-card svg { position: relative; width: 34px; height: 34px; filter: drop-shadow(0 2px 2px rgba(29, 19, 40, .25)); }
-.hand.intro .hand-card { animation: deal .8s cubic-bezier(.2, 1.1, .3, 1) both; animation-delay: calc(var(--k) * 55ms + .15s); }
-@keyframes deal { from { transform: rotate(0deg) translateY(30px); opacity: 0; } }
-@media (hover: hover) { .hand-card:hover { --y: -14px; } }
-.hand-card:focus-visible { --y: -14px; }
+/* ===== Accueil v32 : hero, main de cartes, cartes de jeux ===== */
+:root { --edge: rgba(245, 238, 227, .11); --glass: rgba(245, 238, 227, .045); --ease: cubic-bezier(.2, .8, .3, 1); }
+.home-top { position: relative; overflow-x: clip; display: grid; gap: 16px; grid-template-columns: minmax(0, 1fr); grid-template-areas: "hero" "stage" "cta" "facts"; }
+.home-top > * { min-width: 0; }
+.home-top > .hero { grid-area: hero; }
+.home-top > .hand-stage { grid-area: stage; }
+.home-top > .hero-cta { grid-area: cta; }
+.home-top > .hero-facts { grid-area: facts; }
+.home-top > :not(.hero):not(.hand-stage):not(.hero-cta):not(.hero-facts) { grid-column: 1 / -1; }
+.hero { display: grid; gap: 10px; min-width: 0; padding-top: 4px; }
+.hero .logo { font-size: clamp(4.6rem, 25vw, 8.8rem); }
+.hero-title { font-family: var(--f-display); font-weight: 800; font-stretch: 84%; font-size: clamp(1.75rem, 7.8vw, 2.6rem); line-height: 1.02; letter-spacing: -.015em; text-wrap: balance; margin-top: 8px; }
+.hero-sub { color: var(--muted); font-size: 1.02rem; line-height: 1.5; max-width: 38ch; }
 
-.crew { display: grid; gap: 12px; background: var(--panel); border: 1px solid var(--line); border-radius: 22px; padding: 14px; box-shadow: inset 0 1px 0 rgba(255, 255, 255, .04); }
+.hand-stage { position: relative; display: grid; place-items: center; isolation: isolate; padding-top: 10px; }
+.hand-stage::before { content: ""; position: absolute; inset: -24% 0 -6%; z-index: -1; pointer-events: none;
+  background: radial-gradient(closest-side at 50% 60%, rgba(243, 181, 74, .26), rgba(243, 181, 74, 0) 72%), radial-gradient(closest-side at 18% 72%, rgba(167, 154, 227, .15), transparent 72%), radial-gradient(closest-side at 84% 70%, rgba(227, 128, 122, .12), transparent 72%); }
+.hand-stage::after { content: ""; position: absolute; left: 50%; bottom: 0; width: 72%; height: 20px; transform: translateX(-50%); z-index: -1; pointer-events: none; background: radial-gradient(closest-side, rgba(0, 0, 0, .55), transparent); }
+.hand { position: relative; height: 150px; width: min(100%, 380px); margin: 0 auto; animation: hand-float 7s ease-in-out infinite; }
+@keyframes hand-float { 50% { transform: translateY(-5px); } }
+.hand-card { position: absolute; left: 50%; bottom: 0; width: 78px; height: 112px; margin-left: -39px; border-radius: 13px; padding: 0; display: grid; place-items: center; overflow: hidden;
+  background: linear-gradient(165deg, #fdf8ee, var(--paper) 55%, #e8dece);
+  transform-origin: 50% 250%; transform: rotate(var(--r)) translateY(var(--y, 0));
+  box-shadow: 0 14px 26px -10px rgba(0, 0, 0, .68), 0 0 0 1px rgba(29, 19, 40, .1), inset 0 1px 0 rgba(255, 255, 255, .7);
+  transition: transform .4s cubic-bezier(.2, 1.4, .4, 1), box-shadow .3s; -webkit-tap-highlight-color: transparent; }
+.hand-card::before { content: ""; position: absolute; inset: 5px; border-radius: 9px; background: radial-gradient(120% 90% at 25% 12%, color-mix(in srgb, var(--gc) 36%, var(--paper)), color-mix(in srgb, var(--gc) 12%, var(--paper))); }
+.hand-card::after { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; background: linear-gradient(115deg, rgba(255, 255, 255, .5), rgba(255, 255, 255, 0) 38%); }
+.hand-card svg { position: relative; z-index: 1; width: 46px; height: 46px; filter: drop-shadow(0 3px 3px rgba(29, 19, 40, .28)); }
+.hand.intro .hand-card { animation: deal .85s cubic-bezier(.2, 1.1, .3, 1) both; animation-delay: calc(var(--k) * 60ms + .25s); }
+@keyframes deal { from { transform: rotate(0deg) translateY(40px); opacity: 0; } }
+@media (hover: hover) { .hand-card:hover { --y: -18px; box-shadow: 0 22px 32px -10px rgba(0, 0, 0, .75), 0 0 0 1px rgba(29, 19, 40, .1), inset 0 1px 0 rgba(255, 255, 255, .7); } }
+.hand-card:focus-visible { --y: -18px; }
+.hand-card:active { --y: -8px; }
+
+.hero-cta { display: grid; gap: 10px; }
+.hero-cta > .btn, .hero-cta > .btn-ghost { width: 100%; }
+.hero-play { position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; gap: 10px; min-height: 58px; font-size: 1.12rem; -webkit-tap-highlight-color: transparent; }
+.hero-play::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(105deg, transparent 38%, rgba(255, 255, 255, .5) 50%, transparent 62%); transform: translateX(-130%); animation: shine 5s ease-in-out var(--sd, 0s) infinite; }
+@keyframes shine { 0%, 62% { transform: translateX(-130%); } 100% { transform: translateX(130%); } }
+.hero-play svg { width: 20px; height: 20px; transition: transform .25s var(--ease); }
+.hero-alt { display: flex; align-items: center; justify-content: center; gap: 9px; min-height: 50px; background: var(--glass); border: 1px solid var(--edge); border-radius: 14px; font-weight: 700; transition: transform .1s, border-color .2s, background .2s; }
+.hero-alt svg { width: 20px; height: 20px; color: var(--signal); }
+.hero-alt:active { transform: scale(.98); }
+.hero-facts { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; margin: 0; padding: 0; }
+.hero-facts li { display: flex; align-items: center; gap: 7px; padding: 6px 12px; border-radius: 999px; background: var(--glass); border: 1px solid var(--edge); font-size: .85rem; font-weight: 700; color: var(--muted); }
+.hero-facts svg { width: 15px; height: 15px; color: var(--signal); flex: none; }
+.hero.intro .hero-title, .hero.intro .hero-sub, .hero-cta.intro, .hero-facts.intro { animation: rise .7s var(--ease) both; }
+.hero.intro .hero-title { animation-delay: .5s; }
+.hero.intro .hero-sub { animation-delay: .62s; }
+.hero-cta.intro { animation-delay: .78s; }
+.hero-facts.intro { animation-delay: .9s; }
+@keyframes rise { from { opacity: 0; transform: translateY(18px) scale(.985); } }
+
+.crew { display: grid; gap: 12px; background: linear-gradient(180deg, rgba(245, 238, 227, .055), rgba(245, 238, 227, .02)), var(--panel); border: 1px solid var(--edge); border-radius: 22px; padding: 14px; box-shadow: inset 0 1px 0 rgba(255, 255, 255, .06), 0 30px 40px -34px rgba(0, 0, 0, .9); }
 .crew-count { display: flex; align-items: center; gap: 8px 14px; flex-wrap: wrap; }
 .crew-count .label { font-family: var(--f-display); font-stretch: 80%; font-weight: 800; font-size: 1.55rem; line-height: 1; letter-spacing: -.01em; flex: 1 1 auto; }
 .crew-count .stepper button { background: rgba(245, 238, 227, .07); border: 1px solid var(--line); }
 .crew-fit { color: var(--muted); font-size: .88rem; flex-basis: 100%; }
-.seg { display: flex; gap: 4px; padding: 4px; border-radius: 14px; background: rgba(8, 4, 12, .35); }
-.seg button { flex: 1 1 0; min-width: 0; background: none; color: var(--muted); border-radius: 10px; padding: 8px 6px; min-height: 44px; font-weight: 700; font-size: .88rem; line-height: 1.15; transition: background .2s, color .2s; }
-.seg button[aria-pressed="true"] { background: var(--paper); color: var(--ink); box-shadow: 0 2px 6px rgba(0, 0, 0, .3); }
+.seg { display: flex; gap: 4px; padding: 4px; border-radius: 14px; background: rgba(8, 4, 12, .4); box-shadow: inset 0 1px 3px rgba(0, 0, 0, .35); }
+.seg button { flex: 1 1 0; min-width: 0; background: none; color: var(--muted); border-radius: 10px; padding: 8px 6px; min-height: 46px; font-weight: 700; font-size: .88rem; line-height: 1.15; transition: background .25s var(--ease), color .2s, transform .1s; }
+.seg button:active { transform: scale(.97); }
+.seg button[aria-pressed="true"] { background: var(--paper); color: var(--ink); box-shadow: 0 2px 8px rgba(0, 0, 0, .35); }
+
+.sec-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin: 6px 2px -4px; scroll-margin-top: 70px; }
+.sec-head h2 { font-size: clamp(1.7rem, 7vw, 2.2rem); }
+.sec-head span { color: var(--muted); font-size: .9rem; font-weight: 600; }
+
+@media (max-width: 359px) {
+  .hand { height: 128px; }
+  .hand-card { width: 64px; height: 94px; margin-left: -32px; }
+  .hand-card svg { width: 36px; height: 36px; }
+}
 @media (min-width: 700px) {
-  .hand { height: 170px; width: 440px; margin-top: 0; }
-  .hand-card { width: 92px; height: 128px; margin-left: -46px; padding: 11px 0 0 9px; }
-  .hand-card svg { width: 42px; height: 42px; }
+  .hand { height: 190px; width: 470px; }
+  .hand-card { width: 98px; height: 140px; margin-left: -49px; border-radius: 15px; }
+  .hand-card::before { inset: 6px; border-radius: 11px; }
+  .hand-card svg { width: 58px; height: 58px; }
+  .hero-cta { grid-template-columns: 1.3fr 1fr; }
 }
 @media (min-width: 1040px) {
-  .home-top { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: center; column-gap: 32px; }
-  .home-top .crew { grid-column: 1 / -1; grid-template-columns: auto 1fr; align-items: center; column-gap: 28px; }
+  .home-top { grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); grid-template-areas: "hero stage" "cta stage" "facts stage"; align-items: center; column-gap: 40px; row-gap: 18px; padding-top: 18px; }
+  .hero-cta { grid-template-columns: auto auto; justify-content: start; }
+  .hero-cta > .btn, .hero-cta > .btn-ghost, .hero-cta > .hero-alt { width: auto; padding-inline: 30px; }
+  .hand { width: 540px; height: 240px; }
+  .hand-card { width: 116px; height: 166px; margin-left: -58px; }
+  .hand-card svg { width: 68px; height: 68px; }
+  .hand-stage { justify-self: end; width: 100%; }
+  .home-top .crew { grid-template-columns: auto 1fr; align-items: center; column-gap: 28px; }
   .crew-count { flex-wrap: nowrap; }
   .crew-fit { flex-basis: auto; white-space: nowrap; }
-  .hand { margin: 0 0 0 auto; }
 }
 
-.replay { display: flex; align-items: center; gap: 14px; text-align: left; width: 100%; background: var(--panel); border: 1px solid var(--line); color: var(--text); border-radius: 18px; padding: 10px 16px 10px 10px; transition: transform .12s, border-color .2s; }
+.replay { display: flex; align-items: center; gap: 14px; text-align: left; width: 100%; background: var(--panel); border: 1px solid var(--edge); color: var(--text); border-radius: 18px; padding: 10px 16px 10px 10px; transition: transform .12s, border-color .2s; }
 .replay:active { transform: scale(.98); }
 .replay-art { width: 52px; height: 52px; flex: none; border-radius: 14px; display: grid; place-items: center; background: color-mix(in srgb, var(--gc) 26%, var(--panel)); }
 .replay-art svg { width: 40px; height: 40px; display: block; }
@@ -547,51 +619,69 @@ body[data-scene="day"] .tb-btn { background: rgba(43, 33, 22, .07); border-color
 @media (min-width: 700px) { .games { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (min-width: 1040px) { .games { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; } }
 .gbox {
-  position: relative; min-width: 0;
-  background: linear-gradient(180deg, rgba(245, 238, 227, .035), transparent 40%), var(--panel);
-  border: 1px solid var(--line); border-radius: 24px; padding: 14px;
-  display: grid; grid-template-columns: 96px minmax(0, 1fr); grid-template-areas: "plate name" "plate desc" "meta meta" "modes modes"; column-gap: 14px; row-gap: 6px; align-content: start;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .05), 0 24px 40px -30px rgba(0, 0, 0, .9);
-  transition: transform .25s cubic-bezier(.2, 1.2, .4, 1), border-color .25s, opacity .2s;
+  --rx: 0deg; --ry: 0deg; --ty: 0px;
+  position: relative; min-width: 0; overflow: hidden; isolation: isolate;
+  background: linear-gradient(180deg, rgba(245, 238, 227, .05), rgba(245, 238, 227, .012) 45%), var(--panel);
+  border: 1px solid var(--edge); border-radius: 24px; padding: 14px;
+  display: grid; grid-template-columns: 104px minmax(0, 1fr); grid-template-areas: "plate tag" "plate name" "plate desc" "meta meta" "modes modes"; column-gap: 14px; row-gap: 4px; align-content: start;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .06), 0 26px 40px -30px rgba(0, 0, 0, .95);
+  transform: perspective(900px) translateY(var(--ty)) rotateX(var(--rx)) rotateY(var(--ry));
+  transition: transform .3s var(--ease), border-color .3s, opacity .2s, box-shadow .3s;
 }
-.gbox-plate { grid-area: plate; align-self: start; height: 96px; border-radius: 16px; display: grid; place-items: center; overflow: hidden; position: relative;
-  background: radial-gradient(90% 90% at 30% 20%, color-mix(in srgb, var(--gc) 55%, var(--panel)), color-mix(in srgb, var(--gc) 22%, var(--panel))); }
-.gbox-plate::after { content: ""; position: absolute; inset: 0; border-radius: inherit; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .08), inset 0 -18px 30px -18px rgba(0, 0, 0, .4); }
-.gbox-art { width: 72px; height: 72px; transition: transform .35s cubic-bezier(.2, 1.5, .4, 1); filter: drop-shadow(0 6px 8px rgba(0, 0, 0, .3)); }
-.gbox-art svg { width: 100%; height: 100%; display: block; }
+.gbox::before { content: ""; position: absolute; inset: 0; z-index: -1; border-radius: inherit; pointer-events: none; opacity: 0; transition: opacity .35s;
+  background: radial-gradient(280px circle at var(--mx, 50%) var(--my, 0%), color-mix(in srgb, var(--gc) 24%, transparent), transparent 70%); }
+.gbox-plate { grid-area: plate; align-self: start; height: 104px; border-radius: 17px; display: grid; place-items: center; overflow: hidden; position: relative;
+  background: radial-gradient(95% 100% at 22% 8%, color-mix(in srgb, var(--gc) 66%, var(--panel)), color-mix(in srgb, var(--gc) 24%, var(--bg))); }
+.gbox-plate::after { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
+  background: linear-gradient(180deg, rgba(255, 255, 255, .16), transparent 42%); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .1), inset 0 -22px 34px -20px rgba(0, 0, 0, .45); }
+.gbox-ghost { position: absolute; right: -22%; bottom: -26%; width: 105%; height: 105%; opacity: .15; transform: rotate(-14deg); pointer-events: none; filter: saturate(.6); }
+.gbox-ghost svg, .gbox-art svg { width: 100%; height: 100%; display: block; }
+.gbox-art { position: relative; z-index: 1; width: 74px; height: 74px; transition: transform .45s cubic-bezier(.2, 1.5, .4, 1); filter: drop-shadow(0 7px 8px rgba(0, 0, 0, .32)); }
+.gbox-tag { grid-area: tag; align-self: end; display: inline-flex; align-items: center; gap: 7px; font-size: .8rem; font-weight: 700; color: var(--muted); padding-right: 44px; }
+.gbox-tag::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--gc); flex: none; box-shadow: 0 0 0 3px color-mix(in srgb, var(--gc) 22%, transparent); }
 .gbox-name { grid-area: name; font-size: clamp(1.7rem, 7.4vw, 2.2rem); line-height: .95; padding-right: 40px; align-self: end; overflow-wrap: normal; word-break: normal; }
+@media (max-width: 359px) { .gbox-name { font-size: 1.4rem; padding-right: 28px; } }
 .gbox-desc { grid-area: desc; color: var(--muted); font-size: .92rem; line-height: 1.4; }
-.gbox-meta { grid-area: meta; display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
-.gbox-meta span { border: 1px solid var(--line); border-radius: 999px; padding: 3px 10px; font-size: .78rem; font-weight: 700; color: var(--muted); }
-.gbox-meta .why { background: rgba(245, 238, 227, .08); color: var(--text); border-color: transparent; }
-.gbox .modes { grid-area: modes; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 6px; }
+.gbox-meta { grid-area: meta; display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.gbox-meta span { display: inline-flex; align-items: center; gap: 6px; border: 1px solid var(--edge); background: var(--glass); border-radius: 999px; padding: 4px 11px; font-size: .78rem; font-weight: 700; color: var(--muted); }
+.gbox-meta svg { width: 14px; height: 14px; flex: none; color: color-mix(in srgb, var(--gc) 80%, var(--text)); }
+.gbox-meta .why { background: rgba(245, 238, 227, .1); color: var(--text); border-color: transparent; }
+.gbox .modes { grid-area: modes; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 8px; }
 .gbox .modes.single { grid-template-columns: 1fr; }
-.mode-btn { display: flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; border-radius: 14px; padding: 10px 14px; font-weight: 700; font-size: .98rem;
-  background: var(--paper); color: var(--ink); box-shadow: inset 0 -3px 0 rgba(29, 19, 40, .14); transition: transform .1s, filter .15s; }
-.mode-btn.on { background: var(--signal); box-shadow: inset 0 -3px 0 rgba(120, 72, 8, .35); }
+.mode-btn { position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; gap: 8px; min-height: 50px; border-radius: 14px; padding: 10px 14px; font-weight: 800; font-size: .98rem;
+  background: linear-gradient(180deg, #fffaf0, var(--paper)); color: var(--ink); box-shadow: inset 0 -3px 0 rgba(29, 19, 40, .15), 0 6px 12px -8px rgba(0, 0, 0, .6); transition: transform .1s, filter .15s, box-shadow .15s; -webkit-tap-highlight-color: transparent; }
+.mode-btn.on { background: linear-gradient(180deg, #f9c96f, var(--signal)); box-shadow: inset 0 -3px 0 rgba(120, 72, 8, .35), 0 6px 14px -8px rgba(243, 181, 74, .6); }
 .mode-btn svg { width: 19px; height: 19px; flex: none; }
-.mode-btn:active { transform: translateY(1px) scale(.98); }
-.fav { position: absolute; top: 12px; right: 12px; z-index: 2; width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; background: transparent; color: rgba(245, 238, 227, .3); transition: transform .25s cubic-bezier(.2, 1.6, .4, 1), color .15s; }
+.mode-btn::after, .hero-alt::after { content: ""; position: absolute; inset: 0; background: rgba(255, 255, 255, .4); opacity: 0; transition: opacity .45s; pointer-events: none; }
+.mode-btn:active { transform: translateY(2px) scale(.98); }
+.mode-btn:active::after, .hero-alt:active::after { opacity: 1; transition: none; }
+.hero-alt { position: relative; overflow: hidden; }
+.fav { position: absolute; top: 12px; right: 12px; z-index: 2; width: 42px; height: 42px; border-radius: 50%; display: grid; place-items: center; background: transparent; color: rgba(245, 238, 227, .32); transition: transform .3s cubic-bezier(.2, 1.6, .4, 1), color .15s, background .15s; -webkit-tap-highlight-color: transparent; }
 .fav svg { width: 22px; height: 22px; }
 .fav[aria-pressed="true"] { color: var(--signal); transform: rotate(-14deg) scale(1.08); }
+.fav:active { transform: scale(.88); }
 .gbox.off { opacity: .45; }
 .gbox.off .gbox-plate { filter: grayscale(.8); }
+#app.enter .gbox { animation: rise .6s var(--ease) both; animation-delay: calc(min(var(--i, 0), 5) * 70ms + 120ms); }
 @media (min-width: 700px) {
   .gbox { grid-template-columns: minmax(0, 1fr); grid-template-areas: "plate" "name" "desc" "meta" "modes"; padding: 12px 12px 14px; row-gap: 8px; }
-  .gbox-plate { height: 150px; margin-bottom: 6px; }
-  .gbox-art { width: 108px; height: 108px; }
+  .gbox-plate { height: 170px; margin-bottom: 4px; }
+  .gbox-art { width: 118px; height: 118px; }
+  .gbox-tag { position: absolute; top: 24px; left: 24px; z-index: 2; padding: 4px 11px 4px 9px; border-radius: 999px; background: rgba(12, 6, 18, .5); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); color: var(--text); }
   .gbox-name, .gbox-desc, .gbox-meta { padding-left: 6px; padding-right: 6px; }
-  .gbox-name { font-size: 2.1rem; }
+  .gbox-name { font-size: 2.1rem; padding-right: 6px; margin-top: 4px; }
   .gbox .modes { margin-top: auto; padding-top: 6px; }
   .gbox { grid-template-rows: auto auto 1fr auto auto; }
-  .fav { top: 18px; right: 18px; background: rgba(8, 4, 12, .35); color: rgba(245, 238, 227, .55); }
+  .fav { top: 20px; right: 20px; background: rgba(12, 6, 18, .5); color: rgba(245, 238, 227, .6); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
 }
 @media (hover: hover) {
-  .gbox:hover { transform: translateY(-4px); border-color: color-mix(in srgb, var(--gc) 45%, var(--line)); }
-  .gbox:hover .gbox-art { transform: rotate(-6deg) scale(1.1); }
+  .gbox:hover { --ty: -5px; border-color: color-mix(in srgb, var(--gc) 50%, var(--edge)); box-shadow: inset 0 1px 0 rgba(255, 255, 255, .08), 0 34px 44px -30px rgba(0, 0, 0, .95); }
+  .gbox:hover::before { opacity: 1; }
+  .gbox:hover .gbox-art { transform: rotate(-7deg) scale(1.1); }
   .btn:hover:not(:disabled) { filter: brightness(1.05); }
+  .hero-play:hover svg { transform: translateX(4px); }
   .mode-btn:hover { filter: brightness(1.05); }
-  .btn-ghost:hover, .chip:hover, .tool:hover, .replay:hover { border-color: rgba(245, 238, 227, .4); }
+  .btn-ghost:hover, .chip:hover, .tool:hover, .replay:hover, .hero-alt:hover { border-color: rgba(245, 238, 227, .4); }
   .tb-btn:not([aria-current]):hover { background: rgba(245, 238, 227, .12); }
   .fav:hover { color: var(--signal); }
 }
@@ -681,8 +771,9 @@ body[data-scene="day"] .tb-btn { background: rgba(43, 33, 22, .07); border-color
 .gage .btn-small { background: var(--ink); color: var(--paper); justify-self: center; }
 
 @media (prefers-reduced-motion: reduce) {
-  .logo.intro .ii i, .hand.intro .hand-card, .toast, .sheet, .sheet-back, .wheel-res, .gage, #app.enter > * { animation: none; }
-  .gbox, .gbox-art, .fav, .hand-card { transition: none; }
+  .logo.intro .ii i, .hand.intro .hand-card, .hand, .hero-play::after, .hero.intro .hero-title, .hero.intro .hero-sub, .hero-cta.intro, .hero-facts.intro, #app.enter .gbox, .toast, .sheet, .sheet-back, .wheel-res, .gage, #app.enter > * { animation: none; }
+  .gbox, .gbox-art, .fav, .hand-card, .tb-brand, .topbar, .mode-btn, .hero-play svg { transition: none; }
+  .gbox { transform: none; }
 }
 
 .tp-cd { font-family: var(--f-display); font-weight: 900; text-transform: none; text-align: center; font-size: clamp(3.4rem, 18vw, 5rem); line-height: 1; color: var(--signal); animation: pop-in .35s cubic-bezier(.2, 1.6, .4, 1); min-height: 56px; font-stretch: 80%; }
@@ -711,6 +802,10 @@ img.sept-img { background: #ebe1d3; }
 .sept-card.found { opacity: .6; }
 .sept-card.found .sept-n { background: var(--good); color: var(--ink); }
 .sept-card.miss { opacity: .4; filter: grayscale(1); }
+.sept-ban { display: block; font-size: .6rem; line-height: 1.25; color: var(--stamp); font-weight: 600; border-top: 1px dashed var(--line); padding-top: 4px; overflow-wrap: anywhere; }
+.sept-sub { margin: -4px 0 4px; }
+.sept-time { margin: 0; text-align: center; font-family: var(--f-display); font-stretch: 80%; font-weight: 800; font-size: 2rem; line-height: 1; }
+.sept-time.low { color: var(--stamp); }
 .sept-count { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 10px; padding: 12px; border-radius: 16px; background: var(--panel); border: 1px solid var(--line); }
 .sept-count p { margin: 0; text-align: center; font-weight: 600; }
 .sept-count p b { font-family: var(--f-display); font-stretch: 80%; font-size: 2.4rem; line-height: 1; color: var(--signal); margin-right: 4px; }
@@ -784,7 +879,286 @@ const backHome = ""; // la barre du haut porte le retour à l'accueil
 const IMG = {};
 const imgWords = t => " " + String(t).normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, " ").trim() + " ";
 const PHOTO_RE = /^data:image\/(jpeg|png|webp);base64,[A-Za-z0-9+/=]+$/;
-const CUR = Object.assign({ uc: [], dt: [], bad: [] }, store.get("curation", {}));
+/* =========================================================
+   Vérification automatique des images (v34)
+   Pour chaque perso : identité (nom + œuvre) -> candidats venant de sources structurées
+   (AniList pour les anime, Wikipédia pour le reste, PokéAPI pour les Pokémon) -> recoupement
+   du nom, de l'œuvre et du type de page -> statut :
+   ok = image actuelle confirmée · auto = remplacée automatiquement · rev = à vérifier · none = rien de fiable.
+   Rien ne tourne tout seul : le lancement est manuel, le travail est sauvegardé et repris là où il s'est arrêté.
+   ========================================================= */
+const ANIME_WORKS = {
+  "One Piece": "Ace, Barbe Blanche, Barbe Noire, Boa Hancock, Brook, Chopper, Doflamingo, Franky, Gol D. Roger, Kaido, Kid, Luffy, Mihawk, Nami, Robin, Sabo, Sanji, Shanks, Trafalgar Law, Usopp, Zoro",
+  "Naruto|Boruto": "Boruto, Deidara, Gaara, Gaï, Hinata, Itachi, Jiraiya, Kakashi, Kisame, Madara, Minato, Naruto, Neji, Obito, Orochimaru, Pain, Rock Lee, Sakura, Sasuke, Shisui, Tsunade",
+  "Dragon Ball": "Beerus, Broly, Bulma, C-18, Cell, Chichi, Freezer, Gohan, Goku, Krilin, Majin Boo, Piccolo, Trunks, Vegeta, Yamcha",
+  "Bleach": "Aizen, Ichigo, Rukia",
+  "Death Note": "L, Light Yagami, Ryuk",
+  "Attack on Titan|Shingeki no Kyojin": "Armin, Eren, Erwin, Hange, Livaï, Mikasa, Reiner, Sasha",
+  "My Hero Academia|Boku no Hero": "All Might, Bakugo, Deku, Todoroki, Uraraka",
+  "Jujutsu Kaisen": "Gojo, Maki, Megumi, Nanami, Nobara, Sukuna, Toji, Yuji Itadori, Yuta",
+  "Demon Slayer|Kimetsu no Yaiba": "Akaza, Giyu, Inosuke, Muzan, Nezuko, Rengoku, Shinobu, Tanjiro, Zenitsu",
+  "Fullmetal Alchemist": "Alphonse Elric, Edward Elric, Roy Mustang",
+  "Hunter x Hunter|Hunter Hunter": "Gon, Hisoka, Illumi, Killua, Kurapika, Leorio, Meruem",
+  "Chainsaw Man": "Aki, Denji, Makima, Power",
+  "Fairy Tail": "Erza, Lucy, Natsu",
+  "Re:Zero|Re Zero": "Rem",
+  "Oshi no Ko": "Ai Hoshino, Aqua",
+  "Spy x Family|Spy Family": "Anya Forger, Loid Forger, Yor Forger",
+  "Black Clover": "Asta, Yuno",
+  "Frieren": "Frieren",
+  "Haikyuu": "Hinata Shoyo, Kageyama",
+  "Tokyo Revengers": "Mikey",
+  "One Punch Man|One-Punch Man": "Genos, Saitama, Tatsumaki",
+  "Mob Psycho": "Mob",
+  "Tokyo Ghoul": "Kaneki",
+  "Code Geass": "Lelouch",
+  "Dr. Stone|Dr Stone": "Senku",
+  "Slime|Tensei shitara": "Rimuru",
+  "Solo Leveling|Ore dake Level Up": "Sung Jinwoo",
+  "Evangelion": "Rei Ayanami, Shinji Ikari, Asuka",
+  "FranXX": "Zero Two",
+  "Cowboy Bebop": "Spike Spiegel",
+  "Inuyasha|InuYasha": "Inuyasha, Kagome, Sesshomaru",
+  "Rurouni Kenshin": "Kenshin",
+  "Yu Yu Hakusho": "Hiei, Yusuke",
+  "Saiki": "Saiki",
+  "Violet Evergarden": "Violet Evergarden"
+};
+const WORK_OF = {};
+Object.keys(ANIME_WORKS).forEach(series => ANIME_WORKS[series].split(",").forEach(n => { WORK_OF[norm(n)] = series.split("|"); }));
+const V_PERSON = ["Célébrités", "Créateurs & streamers"], V_FICTION = ["Disney & Pixar", "Séries & films", "Culture pop", "Jeux vidéo", "Anime"], V_CONCEPT = ["Animaux", "Métiers", "Objets"];
+const V_FICTION_RE = /fictional|fictive|fictif|character|personnage|protagonist|protagoniste|mascot|mascotte|video game|jeu vidéo|franchise|animated|animé|cartoon|dessin animé|comic|bande dessinée|superhero|super-héros|film|série|series|novel|roman|doll|poupée|meme|mème|villain|antagoniste|cinematic|toy/i;
+const V_DISAMB_RE = /peut désigner|may refer to|may also refer|can refer to|peut faire référence|homonymie/i;
+const VRES = store.get("vres2", {});
+const VS = { running: false, stop: false, done: 0, total: 0, err: 0, msg: "", open: false };
+let vSaveT = 0;
+const vSave = () => { clearTimeout(vSaveT); vSaveT = 0; store.set("vres2", VRES); };
+const vSaveSoon = () => { if (!vSaveT) vSaveT = setTimeout(vSave, 1500); };
+const vr = t => String(t || "").normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().replace(/ou/g, "o").replace(/uu/g, "u").replace(/oo/g, "o").replace(/[^a-z0-9]+/g, " ").trim();
+const vn = t => String(t || "").normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
+function vLev1(a, b) {
+  if (a === b) return true;
+  if (a.length < 5 || b.length < 5 || Math.abs(a.length - b.length) > 1) return false;
+  let i = 0; while (i < a.length && a[i] === b[i]) i++;
+  const x = a.slice(i + 1), y = b.slice(i + 1);
+  return x === y || a.slice(i) === y || x === b.slice(i);
+}
+function vNameMatch(q, variants) {
+  const qt = vr(q).split(" ").filter(Boolean);
+  if (!qt.length) return false;
+  return variants.some(v => {
+    const vt = vr(v).split(" ").filter(Boolean);
+    if (!vt.length) return false;
+    if (qt.length === 1) return vt.includes(qt[0]);
+    if (vt.length === 1) return qt.includes(vt[0]);
+    return qt.every(t => vt.some(u => vLev1(t, u))) && vt.every(u => qt.some(t => vLev1(t, u)));
+  });
+}
+/* niveau de risque d'homonymie (même règle que banque_persos_v33.csv) */
+function vRisk(it) {
+  if (it.s === "poke" || it.s === "lol") return "faible";
+  const noAlias = it.q === it.w, one = !/\s/.test(it.w);
+  if (noAlias && one && it.w.length <= 6) return "élevé";
+  if (noAlias && one) return "moyen";
+  if (noAlias) return "faible-moyen";
+  return "faible";
+}
+function vItems() {
+  const m = new Map();
+  DT_CATS.forEach(c => c.items.forEach(it => { const key = c.name + "|" + it.w; if (!m.has(key)) m.set(key, Object.assign({}, it, { c: c.name, key })); }));
+  SEPT_CATS.forEach(c => septExtraItems(c).forEach(it => { const key = it.c + "|" + it.w; if (!m.has(key)) m.set(key, Object.assign({}, it, { key })); }));
+  return [...m.values()];
+}
+/* un même perso présent dans plusieurs catégories (ou dans les deux jeux) n'est vérifié qu'une fois */
+const vGroupId = it => it.s + "|" + vn(it.q);
+function vGroups() {
+  const g = new Map();
+  vItems().forEach(it => { const id = vGroupId(it); if (!g.has(id)) g.set(id, { id, item: it, keys: [] }); g.get(id).keys.push(it.key); });
+  return [...g.values()];
+}
+const vWork = it => it.s === "anime" ? (WORK_OF[norm(it.w)] || null) : null;
+/* ---- sources ---- */
+let aniNext = 0, V_ANI_GAP = 900; /* AniList : 90 requêtes par minute au maximum */
+async function anilistFind(q) {
+  const query = "query($s:String){Page(perPage:8){characters(search:$s){id name{full userPreferred alternative alternativeSpoiler} image{large} favourites siteUrl media(perPage:8){nodes{title{romaji english native} synonyms}}}}}";
+  for (let a = 0; a < 3; a++) {
+    const wait = Math.max(0, aniNext - Date.now());
+    aniNext = Math.max(Date.now(), aniNext) + V_ANI_GAP;
+    if (wait) await sleep(wait);
+    const r = await tfetch("https://graphql.anilist.co", 10000, { method: "POST", headers: { "Content-Type": "application/json", Accept: "application/json" }, body: JSON.stringify({ query, variables: { s: q } }) });
+    if (r.status === 429) { aniNext = Date.now() + (Number(r.headers.get("retry-after")) || 30) * 1000; continue; }
+    if (r.status >= 500) throw new Error("anilist " + r.status);
+    if (!r.ok) throw new Error("anilist " + r.status);
+    return (((await r.json()).data || {}).Page || {}).characters || [];
+  }
+  throw new Error("anilist limite");
+}
+function vJudgeAnime(it, chars) {
+  const works = vWork(it);
+  const named = chars.map(c => ({
+    c, favs: c.favourites || 0,
+    titles: ((c.media && c.media.nodes) || []).flatMap(n => [n.title && n.title.romaji, n.title && n.title.english, n.title && n.title.native].concat(n.synonyms || [])).filter(Boolean).map(vn),
+    ok: vNameMatch(it.q, [c.name.full, c.name.userPreferred].concat(c.name.alternative || []))
+  })).filter(x => x.ok && x.c.image && x.c.image.large && !/default/.test(x.c.image.large));
+  if (!named.length) return { conf: "none", why: "aucun personnage de ce nom sur AniList" };
+  const mk = x => ({ url: x.c.image.large, page: x.c.siteUrl, credit: "AniList", title: x.c.name.full });
+  if (!works) { const top = named.sort((a, b) => b.favs - a.favs)[0]; return { conf: "med", cand: mk(top), why: "œuvre non renseignée : impossible de départager les homonymes" }; }
+  const kws = works.map(vn);
+  const hit = named.filter(x => x.titles.some(t => kws.some(k => t.includes(k)))).sort((a, b) => b.favs - a.favs);
+  if (!hit.length) return { conf: "med", cand: mk(named.sort((a, b) => b.favs - a.favs)[0]), why: `aucune apparition dans « ${works[0]} » parmi les résultats` };
+  if (hit.length === 1 || hit[0].favs >= 2 * hit[1].favs) return { conf: "high", cand: mk(hit[0]), why: `nom et œuvre « ${works[0]} » concordent` };
+  return { conf: "med", cand: mk(hit[0]), why: `${hit.length} personnages de « ${works[0]} » portent ce nom` };
+}
+async function wikiVerifyApi(lang, params) {
+  const r = await tfetch(`https://${lang}.wikipedia.org/w/api.php?action=query&format=json&origin=*&redirects=1&prop=pageimages|extracts|pageprops&piprop=thumbnail&pithumbsize=360&pilicense=any&exintro=1&explaintext=1&exchars=420&exlimit=max&ppprop=disambiguation&${params}`);
+  if (!r.ok) throw new Error("wiki " + r.status);
+  const j = await r.json();
+  return Object.values((j.query && j.query.pages) || {}).filter(p => !p.missing).sort((a, b) => (a.index || 0) - (b.index || 0));
+}
+const vTitleCore = t => vn(String(t).replace(/\s*\(.*\)\s*/g, " "));
+function vWikiPage(it, kind, p, lang) {
+  const text = (p.extract || ""), disamb = !!(p.pageprops && "disambiguation" in p.pageprops) || V_DISAMB_RE.test(text.slice(0, 160));
+  const qc = vTitleCore(it.q), tc = vTitleCore(p.title);
+  const qHasPar = /\(.*\)/.test(it.q), titleOK = tc === qc && (!qHasPar || vn(p.title) === vn(it.q)) || (qc.split(" ").length >= 2 && (tc.includes(qc) || qc.includes(tc)) && tc.split(" ").length >= 2);
+  const intro = text.slice(0, 220);
+  let ctx;
+  if (kind === "person") ctx = /\b(1[89]\d\d|20[0-2]\d)\b/.test(intro) && !V_FICTION_RE.test(intro.slice(0, 90));
+  else if (kind === "fiction") ctx = V_FICTION_RE.test(text.slice(0, 260));
+  else ctx = true;
+  const cand = p.thumbnail ? { url: p.thumbnail.source, page: `https://${lang}.wikipedia.org/wiki/${encodeURIComponent(p.title.replace(/ /g, "_"))}`, credit: "Wikipédia", title: p.title } : null;
+  return { titleOK, ctx, disamb, cand };
+}
+async function wikiVerify(it) {
+  const kind = V_PERSON.includes(it.c) ? "person" : V_FICTION.includes(it.c) ? "fiction" : "other";
+  let med = null, sawDisamb = false;
+  for (const lang of it.lang || ["fr", "en"]) {
+    /* la page au titre exact d'abord ; la recherche seulement si elle ne suffit pas (moins de requêtes) */
+    for (const step of ["direct", "search"]) {
+      const pages = step === "direct" ? await wikiVerifyApi(lang, "titles=" + encodeURIComponent(it.q))
+        : await wikiVerifyApi(lang, `generator=search&gsrnamespace=0&gsrlimit=5&gsrsearch=${encodeURIComponent((it.q + " " + (it.hint || "")).trim())}`);
+      for (const p of pages) {
+        const j = vWikiPage(it, kind, p, lang);
+        if (j.disamb) { sawDisamb = true; continue; }
+        if (!j.cand || !j.titleOK) continue;
+        if (j.ctx) return { conf: "high", cand: j.cand, why: kind === "person" ? "titre exact, personne vivante ou historique" : kind === "fiction" ? "titre exact, page de fiction" : "titre exact, page non ambiguë" };
+        if (!med) med = { conf: "med", cand: j.cand, why: "titre exact mais le résumé de la page ne confirme pas le type de personnage" };
+      }
+    }
+  }
+  if (med) return med;
+  return { conf: "none", why: sawDisamb ? "la recherche mène à une page d'homonymie" : "aucune page Wikipédia au nom exact avec image" };
+}
+async function pokeVerify(it) {
+  const r = await tfetch(`https://pokeapi.co/api/v2/pokemon-species/${encodeURIComponent(it.q)}`);
+  if (!r.ok) throw new Error("pokeapi " + r.status);
+  const names = (await r.json()).names || [], fr = (names.find(n => n.language.name === "fr") || {}).name;
+  if (fr && vn(fr) === vn(it.w)) return { conf: "high", cand: imgFor(it), why: `l'identifiant #${it.q} est bien « ${fr} » en français` };
+  return { conf: "med", cand: imgFor(it), why: `l'identifiant #${it.q} est « ${fr || "?"} » et pas « ${it.w} »` };
+}
+async function vCurrent(it, key) {
+  const c = store.get("img3_" + key, undefined);
+  if (c && c.u) return c.u;
+  try { return it.s === "anime" ? await jikanFind(it.q) : await wikiFind(it); } catch (e) { return null; }
+}
+/* même perso que l'image actuelle (Jikan) ? on compare le nom dans l'adresse de la fiche MyAnimeList ; seulement fiable si le nom n'a pas d'homonyme probable */
+const vSlug = u => { try { return decodeURIComponent(((u && u.page || "").split("/character/")[1] || "").split("/")[1] || "").replace(/_/g, " "); } catch (e) { return ""; } };
+async function vVerify(g) {
+  const it = g.item;
+  let J;
+  if (it.s === "poke") J = await pokeVerify(it);
+  else if (it.s === "lol") J = { conf: "high", cand: imgFor(it), why: "Data Dragon officiel" };
+  else if (it.s === "anime") J = vJudgeAnime(it, await anilistFind(it.q));
+  else J = await wikiVerify(it);
+  const cur = it.s === "poke" || it.s === "lol" ? imgFor(it) : await vCurrent(it, g.keys[0]);
+  const risk = vRisk(it), w = vWork(it);
+  const same = !!(cur && J.cand && (cur.url === J.cand.url || (it.s === "anime" && (risk === "faible" || risk === "faible-moyen") && vSlug(cur) && vNameMatch(vSlug(cur), [J.cand.title])) || (cur.page && cur.page === J.cand.page)));
+  const base = { w: w ? w[0] : "", src: J.cand ? J.cand.credit : "", why: J.why, cu: cur ? cur.url : "", t: Date.now(), risk };
+  if (J.conf === "high") return Object.assign(base, J.cand && same ? { st: "ok", u: cur.url, p: cur.page || "", cr: cur.credit || J.cand.credit } : { st: "auto", u: J.cand.url, p: J.cand.page, cr: J.cand.credit, nm: J.cand.title });
+  if (J.conf === "med") {
+    if (same && it.s !== "poke" && (risk === "faible" || risk === "faible-moyen")) return Object.assign(base, { st: "ok", u: cur.url, p: cur.page || "", cr: cur.credit || J.cand.credit, why: "concordant avec l'image actuelle (" + J.why + ")" });
+    return Object.assign(base, { st: "rev", u: J.cand.url, p: J.cand.page, cr: J.cand.credit, nm: J.cand.title, hide: !same || it.s === "poke" });
+  }
+  return Object.assign(base, { st: "none", hide: !cur || risk === "élevé" || risk === "moyen" });
+}
+async function vRun(force) {
+  if (VS.running) return;
+  VS.running = true; VS.stop = false; VS.err = 0; VS.msg = "";
+  const groups = vGroups(), fresh = g => { const r = VRES[g.keys[0]]; return r && r.t && Date.now() - r.t < 30 * 864e5; };
+  const todo = groups.filter(g => force || !fresh(g));
+  VS.total = groups.length; VS.done = groups.length - todo.length; scheduleRender();
+  let consecutive = 0;
+  const worker = async () => {
+    while (!VS.stop && todo.length) {
+      const g = todo.shift();
+      try {
+        const res = await vVerify(g);
+        g.keys.forEach(k => { const old = VRES[k]; VRES[k] = (old && (old.st === "acc" || old.st === "rej") && !force) ? old : Object.assign({}, res); });
+        VS.done++; consecutive = 0; vSaveSoon();
+      } catch (e) {
+        VS.err++; consecutive++;
+        if (consecutive >= 8) { VS.stop = true; VS.msg = "Pas de connexion. Ce qui est fait est gardé, relance plus tard."; }
+        else await sleep(600 * consecutive);
+      }
+      scheduleRender();
+    }
+  };
+  await Promise.all([worker(), worker(), worker()]);
+  VS.running = false; vSave();
+  if (!VS.msg) VS.msg = VS.stop ? "Arrêté. Reprends quand tu veux." : VS.err ? `Terminé, ${VS.err} requête${VS.err > 1 ? "s" : ""} en échec : relance pour les refaire.` : "Terminé.";
+  scheduleRender();
+}
+/* application dans les jeux */
+const vHide = key => { const r = VRES[key]; return !!(r && (r.st === "rej" || ((r.st === "rev" || r.st === "none") && r.hide))); };
+const vOver = key => { const r = VRES[key]; return r && (r.st === "auto" || r.st === "acc") && r.u ? { url: r.u, page: r.p, credit: r.cr } : null; };
+function vDecide(key, ok) {
+  const it = vItems().find(x => x.key === key); if (!it) return;
+  vGroups().filter(g => g.keys.includes(key)).forEach(g => g.keys.forEach(k => {
+    const r = VRES[k]; if (!r) return;
+    if (ok) { r.st = "acc"; r.hide = false; delete IMG[k]; } else { r.st = "rej"; r.hide = true; }
+  }));
+  vSave();
+}
+/* rapports */
+function vCsv(kind) {
+  const names = { auto: "corrigées automatiquement", rev: "à vérifier", none: "sans image fiable" };
+  const rows = vItems().map(it => ({ it, r: VRES[it.key] })).filter(x => x.r && (kind === "auto" ? x.r.st === "auto" || x.r.st === "acc" : x.r.st === kind));
+  const q = v => '"' + String(v == null ? "" : v).replace(/"/g, '""') + '"';
+  const head = ["Catégorie", "Nom", "Requête", "Œuvre", "Statut", "Image actuelle", "Nouvelle image", "Source", "Page source", "Raison"];
+  const lab = { auto: "CORRIGÉ AUTOMATIQUEMENT", acc: "CORRIGÉ (validé par toi)", rev: "À VÉRIFIER", none: "NON TROUVÉ" };
+  return { name: "simwar_images_" + (kind === "auto" ? "corrigees" : kind === "rev" ? "a_verifier" : "sans_image") + ".csv", title: names[kind], n: rows.length, text: "﻿" + [head.map(q).join(";")].concat(rows.map(({ it, r }) => [it.c, it.w, it.q, r.w, lab[r.st], r.cu, r.u && r.u !== r.cu ? r.u : "", r.cr || r.src, r.p, r.why].map(q).join(";"))).join("\n") };
+}
+function vDownload(kind) {
+  const f = vCsv(kind);
+  try { const a = document.createElement("a"); a.href = URL.createObjectURL(new Blob([f.text], { type: "text/csv;charset=utf-8" })); a.download = f.name; document.body.appendChild(a); a.click(); a.remove(); } catch (e) {}
+}
+function vimgStats() {
+  const s = { ok: 0, auto: 0, acc: 0, rev: 0, none: 0, rej: 0, todo: 0 }, all = vItems();
+  all.forEach(it => { const r = VRES[it.key]; if (r) s[r.st] = (s[r.st] || 0) + 1; else s.todo++; });
+  s.total = all.length; return s;
+}
+function vCard(it, r) {
+  const cur = r.cu ? `<img class="cat-img" src="${esc(r.cu)}" alt="" decoding="async" referrerpolicy="no-referrer" loading="lazy">` : avatar(it.w, "cat-img");
+  return `<div class="v-card"><div class="v-head"><b>${esc(it.w)}</b><span>${esc(r.w || it.c)}</span></div>
+    <div class="v-pair"><figure>${cur}<figcaption>Actuelle</figcaption></figure><figure><img class="cat-img" src="${esc(r.u)}" alt="" decoding="async" referrerpolicy="no-referrer" loading="lazy"><figcaption>Proposée${r.nm ? " : " + esc(r.nm) : ""}</figcaption></figure></div>
+    <p class="hint">${esc(r.src || "")} · ${esc(r.why)}${r.hide ? "" : ""}</p>
+    <div class="row"><button class="btn" data-act="v-ok" data-k="${esc(it.key)}">Valider la proposée</button><button class="btn-ghost" data-act="v-no" data-k="${esc(it.key)}">Refuser</button></div></div>`;
+}
+function vPanel() {
+  const s = vimgStats(), pct = VS.total ? Math.round(VS.done / VS.total * 100) : 0;
+  const revs = vItems().filter(it => VRES[it.key] && VRES[it.key].st === "rev");
+  const seen = new Set(), list = revs.filter(it => { const id = vGroupId(it); if (seen.has(id)) return false; seen.add(id); return true; });
+  const fixed = s.auto + s.acc;
+  return `<section class="section v-panel"><span class="label">Vérification automatique des images</span>
+    <div class="row">${VS.running ? `<button class="btn" data-act="v-stop">Arrêter</button>` : `<button class="btn" data-act="v-run">${s.todo === s.total ? "Lancer la vérification" : s.todo ? "Reprendre" : "Relancer"}</button>`}${VS.running ? "" : `<button class="btn-ghost" data-act="v-force">Tout revérifier</button>`}</div>
+    ${VS.running || VS.done ? `<div class="v-bar" role="progressbar" aria-valuenow="${pct}" aria-valuemin="0" aria-valuemax="100"><i style="width:${pct}%"></i></div><p class="hint">${VS.done} / ${VS.total} persos traités${VS.running ? "…" : ""}${VS.err ? ` · ${VS.err} échec${VS.err > 1 ? "s" : ""} réseau` : ""}</p>` : ""}
+    ${VS.msg ? `<p class="hint"><b>${esc(VS.msg)}</b></p>` : ""}
+    <p class="v-sum"><b>${s.ok}</b> confirmées · <b>${fixed}</b> corrigées · <b>${s.rev}</b> à vérifier · <b>${s.none}</b> sans source fiable · <b>${s.todo}</b> pas encore traitées <small>(sur ${s.total})</small></p>
+    <div class="row"><button class="btn-small" data-act="v-csv" data-t="auto">CSV corrigées (${fixed})</button><button class="btn-small" data-act="v-csv" data-t="rev">CSV à vérifier (${s.rev})</button><button class="btn-small" data-act="v-csv" data-t="none">CSV sans image (${s.none})</button></div>
+    ${list.length ? `<div class="v-list">${list.map(it => vCard(it, VRES[it.key])).join("")}</div>` : ""}
+  </section>`;
+}
+
+const CUR = Object.assign({ uc: [], dt: [], bad: [], ok: [] }, store.get("curation", {}));
 const saveCur = () => store.set("curation", CUR);
 const catIdByName = name => (DT_CATS.find(c => c.name === name) || {}).id || "";
 const dtKey = (catId, w) => catId + "|" + w;
@@ -819,20 +1193,20 @@ function gamePause(v) {
 }
 const resumeBlock = v => PZ[v] && SCR[v][0]() === "setup" ? `<section class="section resume"><span class="label">Partie en cours</span><button class="btn" data-act="resume" data-g="${v}">Reprendre la partie</button><p class="hint">Si tu lances une nouvelle partie, celle-ci est abandonnée.</p></section>` : "";
 const sleep = ms => new Promise(r => setTimeout(r, ms));
-async function tfetch(url, ms) {
+async function tfetch(url, ms, init) {
   const ac = new AbortController(), t = setTimeout(() => ac.abort(), ms || 8000);
-  try { return await fetch(url, { signal: ac.signal }); } finally { clearTimeout(t); }
+  try { return await fetch(url, Object.assign({}, init, { signal: ac.signal })); } finally { clearTimeout(t); }
 }
 const WARM = [];
 function warmImg(url) {
   if (!url || WARM.length > 400) return;
   const im = new Image(); im.referrerPolicy = "no-referrer"; im.decoding = "sync"; im.src = url; WARM.push(im);
 }
-let jikanNext = 0;
+let jikanNext = 0, JIKAN_GAP = 500;
 async function jikanFind(q) {
   for (let attempt = 0; attempt < 2; attempt++) {
     const wait = Math.max(0, jikanNext - Date.now());
-    jikanNext = Math.max(Date.now(), jikanNext) + 500;
+    jikanNext = Math.max(Date.now(), jikanNext) + JIKAN_GAP;
     if (wait) await new Promise(r => setTimeout(r, wait));
     const r = await tfetch(`https://api.jikan.moe/v4/characters?q=${encodeURIComponent(q)}&order_by=favorites&sort=desc&limit=1`);
     if (r.status === 429) { jikanNext = Date.now() + 1500; continue; }
@@ -876,6 +1250,8 @@ function imgFor(it) {
 function loadImg(key, it, front) {
   const direct = imgFor(it);
   if (direct) { IMG[key] = direct; warmImg(direct.url); return; }
+  const vo = vOver(key);
+  if (vo) { IMG[key] = vo; warmImg(vo.url); return; }
   const c = store.get("img3_" + key, undefined);
   if (c && (c.u || Date.now() - c.t < 3 * 864e5)) { IMG[key] = c.u; if (c.u) warmImg(c.u.url); return; }
   const old = store.get("img2_" + key, undefined);
@@ -899,7 +1275,7 @@ function loadImg(key, it, front) {
 function prefetchPick(pick, front) {
   const it = itemFor(pick); if (!it) return;
   const key = (pick.c || "") + "|" + pick.w;
-  if (IMG[key] === undefined && !CUR.bad.includes(dtKey(catIdByName(pick.c), pick.w))) loadImg(key, it, front);
+  if (IMG[key] === undefined && !vHide(key) && !CUR.bad.includes(dtKey(catIdByName(pick.c), pick.w))) loadImg(key, it, front);
 }
 function avatar(name, cls) {
   const n = String(name || "?");
@@ -915,6 +1291,7 @@ function charImg(pick, cls) {
   if (!it) return avatar(pick.w, c);
   if (CUR.bad.includes(dtKey(catIdByName(pick.c), pick.w))) return avatar(pick.w, c);
   const key = (pick.c || "") + "|" + pick.w;
+  if (vHide(key)) return avatar(pick.w, c);
   if (IMG[key] === undefined) loadImg(key, it);
   const r = IMG[key];
   if (r === "pending") return `<div class="${c} char-loading" aria-hidden="true"></div>`;
@@ -963,7 +1340,7 @@ let ui = { screen: "setup", msg: "", voteSel: null, confirmReset: false, peek: n
 
 const allThemes = () => BASE_THEMES.concat(customThemes);
 { const ids = new Set(allThemes().map(t => t.id)); cfg.themes = (cfg.themes || []).filter(x => x === "all" || ids.has(x)); if (!cfg.themes.length) cfg.themes = ["all"]; }
-const nameOf = i => (cfg.names[i] || "").trim() || "Joueur " + (i + 1);
+const nameOf = i => (cfg.names[i] || "").trim() || "Agent " + String(i + 1).padStart(2, "0");
 const ROLE_LABEL = { civil: "Civil", uc: "Undercover", white: "Mr. White" };
 const POINTS = { civil: 2, uc: 10, white: 6 };
 function saveCfg() { store.set("cfg", cfg); }
@@ -1055,7 +1432,7 @@ function vSetup() {
   const sel = id => cfg.themes.includes(id);
   const whiteOk = cfg.count >= 4;
   const names = [...Array(cfg.count).keys()].map(i =>
-    `<div class="name-row"><span class="agent">${agent(i)}</span><input type="text" id="name-${i}" data-name="${i}" placeholder="Joueur ${i + 1}" maxlength="20" value="${esc(cfg.names[i] || "")}" autocomplete="off"></div>`).join("");
+    `<div class="name-row"><span class="agent">${agent(i)}</span><input type="text" id="name-${i}" data-name="${i}" placeholder="Agent ${String(i + 1).padStart(2, '0')}" maxlength="20" value="${esc(cfg.names[i] || "")}" autocomplete="off"></div>`).join("");
   const chips = `<button class="chip" data-act="theme" data-id="all" aria-pressed="${sel("all")}">Tous les thèmes</button>` +
     themes.map(t => `<button class="chip" data-act="theme" data-id="${esc(t.id)}" aria-pressed="${sel(t.id)}">${esc(t.name)}<small>${ucPairs(t).length}</small></button>`).join("");
   const mine = customThemes.length ? customThemes.map(t =>
@@ -1067,7 +1444,7 @@ function vSetup() {
   <header class="section">
     <span class="eyebrow">Dossier confidentiel · jeu de bluff</span>
     <h1>Undercover</h1>
-    <p class="lead">Tout le monde reçoit le même mot, sauf l'Undercover qui a un mot proche. Décrivez votre mot sans le dire, puis votez pour éliminer l'intrus.</p>
+    <p class="lead">Même mot pour tous, sauf l'Undercover qui en a un proche. Donnez des indices, puis votez pour l'éliminer.</p>
   </header>
   ${resumeBlock("uc")}
   ${rulesBlock("uc")}
@@ -1104,7 +1481,7 @@ function vSetup() {
     <div class="section">
       <input type="text" id="th-name" placeholder="Nom du thème (ex. Rap FR)" maxlength="30">
       <textarea id="th-pairs" placeholder="Une paire par ligne :&#10;Booba / Kaaris&#10;PNL / Jul"></textarea>
-      <p class="hint">Format : mot civil / mot proche. Chaque ligne = une manche possible.</p>
+      <p class="hint">Une ligne par manche : mot civil / mot proche.</p>
       <button class="btn-small" data-act="addTheme">Enregistrer le thème</button>
       ${mine}
     </div>
@@ -1151,7 +1528,7 @@ function vTalk() {
   return `<header class="section">
     <span class="eyebrow">Tour ${G.round} · thème ${esc(G.theme)}</span>
     <h2>Chacun donne un indice</h2>
-    <p class="lead">Un mot ou une phrase courte pour décrire ton mot, sans le dire. Dans cet ordre :</p>
+    <p class="lead">Un indice chacun, sans dire le mot. Dans cet ordre :</p>
   </header>
   <ol class="order">${G.order.map(i => `<li><span>${esc(G.players[i].name)}</span></li>`).join("")}</ol>
   <button class="btn" data-act="toVote">Passer au vote</button>
@@ -1169,7 +1546,7 @@ function vVote() {
   return `<header class="section">
     <span class="eyebrow">Tour ${G.round} · vote</span>
     <h2>Qui est l'intrus ?</h2>
-    <p class="lead">Votez à voix haute ou à main levée, puis sélectionnez le joueur éliminé.</p>
+    <p class="lead">Votez ensemble, puis touchez le joueur éliminé.</p>
   </header>
   <div class="vote">${alive.map(i => `<button data-act="sel" data-i="${i}" aria-pressed="${ui.voteSel === i}"><span>${esc(G.players[i].name)}</span><span class="agent" style="color:inherit">${agent(i)}</span></button>`).join("")}</div>
   ${ui.voteSel !== null
@@ -1194,7 +1571,7 @@ function vWhiteGuess() {
     const ok = G.whiteGuess.ok;
     return `<header class="section"><span class="eyebrow">Dernière chance</span><h2>${ok ? "Mr. White a trouvé !" : "Mauvaise réponse"}</h2></header>
     <div class="card"><div class="stamp ${ok ? "" : "civil"}">${ok ? "Gagné" : "Raté"}</div><p>Réponse : <b>${esc(G.whiteGuess.text)}</b>${ok ? ` · mot des civils : <b>${esc(G.civilWord)}</b>` : ""}</p></div>
-    ${ok ? "" : `<p class="hint">Faute de frappe ou réponse presque juste ? Le groupe peut l'accepter.</p><button class="btn-ghost" data-act="whiteWin">Le groupe accepte sa réponse</button>`}
+    ${ok ? "" : `<button class="btn-ghost" data-act="whiteWin">Le groupe accepte sa réponse</button>`}
     <button class="btn" data-act="${ok ? "whiteWin" : "continue"}">${ok || checkWin() ? "Voir la fin de partie" : "Tour suivant"}</button>`;
   }
   return `<header class="section"><span class="eyebrow">Tour ${G.round} · résultat du vote</span><h2>${esc(p.name)} était Mr. White</h2>
@@ -1231,7 +1608,7 @@ let D = { screen: "setup", wins: {}, game: null, msg: "", draft: "", reveal: fal
 let dUsed = new Set();
 let actx = null;
 
-const dName = i => (dcfg.names[i] || "").trim() || "Joueur " + (i + 1);
+const dName = i => (dcfg.names[i] || "").trim() || "Agent " + String(i + 1).padStart(2, "0");
 const dSave = () => store.set("dcfg", dcfg);
 const listNames = a => a.length <= 1 ? a.join("") : a.slice(0, -1).join(", ") + " et " + a[a.length - 1];
 const othersOf = i => D.game.players.filter((p, j) => j !== i).map(p => p.name);
@@ -1339,14 +1716,14 @@ function vDSetup() {
   const sel = id => dcfg.cats.includes(id);
   const total = DT_CATS.reduce((a, c) => a + dtItems(c).length, 0);
   const names = [...Array(dcfg.count).keys()].map(i =>
-    `<div class="name-row"><span class="agent">${agent(i)}</span><input type="text" id="dname-${i}" data-dname="${i}" placeholder="Joueur ${i + 1}" maxlength="20" value="${esc(dcfg.names[i] || "")}" autocomplete="off"></div>`).join("");
+    `<div class="name-row"><span class="agent">${agent(i)}</span><input type="text" id="dname-${i}" data-dname="${i}" placeholder="Agent ${String(i + 1).padStart(2, '0')}" maxlength="20" value="${esc(dcfg.names[i] || "")}" autocomplete="off"></div>`).join("");
   const chips = `<button class="chip" data-act="d-cat" data-id="all" aria-pressed="${sel("all")}">Tout<small>${total}</small></button>` +
     DT_CATS.map(c => `<button class="chip" data-act="d-cat" data-id="${c.id}" aria-pressed="${sel(c.id)}">${esc(c.name)}<small>${dtItems(c).length}</small></button>`).join("");
   return `${backHome}
   <header class="section">
     <span class="eyebrow">Qui suis-je · un seul écran pour tous</span>
     <h1>Devine Tête</h1>
-    <p class="lead">Chacun reçoit un perso choisi par les autres, sans le voir. À ton tour, tu poses une seule question, les autres répondent par oui ou non, puis on passe au suivant. Le premier qui trouve son perso gagne.</p>
+    <p class="lead">Devine ton perso : une question chacun, les autres répondent par oui ou non. Le premier qui trouve gagne.</p>
   </header>
   ${resumeBlock("dt")}
   ${rulesBlock("qs")}
@@ -1392,7 +1769,7 @@ function vDAssignReady() {
   <header class="section">
     <span class="eyebrow">Distribution des persos · ${g.assign + 1}/${g.players.length}</span>
     <h2>${esc(p.name)}, tourne-toi</h2>
-    <p class="lead">${esc(listNames(othersOf(g.assign)))} vont choisir ton perso. Ne regarde pas l'écran jusqu'à ce qu'ils te le disent.</p>
+    <p class="lead">${esc(listNames(othersOf(g.assign)))} choisissent ton perso. Ne regarde pas l'écran.</p>
   </header>
   ${progressBar()}
   <button class="btn" data-act="d-assign">${esc(p.name)} ne regarde plus</button>`;
@@ -1404,17 +1781,17 @@ function vDAssignPick() {
   return `<header class="section">
     <span class="eyebrow">Perso de ${esc(p.name)} · ${g.assign + 1}/${g.players.length}</span>
     <h2>${esc(listNames(othersOf(g.assign)))}, choisissez</h2>
-    <p class="lead">Gardez ce perso, rerollez-le ou écrivez le vôtre.</p>
+    <p class="lead">Gardez ce perso, changez-le ou écrivez le vôtre.</p>
   </header>
   ${progressBar()}
   <div class="card">
     ${charImg(p.pick)}
     <span class="eyebrow">${esc(p.pick.c)}</span>
     <div class="word">${esc(p.pick.w)}</div>
-    ${p.rerolls ? `<span class="eyebrow">${p.rerolls} reroll${p.rerolls > 1 ? "s" : ""}</span>` : ""}
+    ${p.rerolls ? `<span class="eyebrow">${p.rerolls} changement${p.rerolls > 1 ? "s" : ""}</span>` : ""}
   </div>
   <div class="row">
-    <button class="btn-ghost" data-act="d-reroll">Reroll</button>
+    <button class="btn-ghost" data-act="d-reroll">Changer de perso</button>
     <button class="btn" data-act="d-validate">Valider et cacher</button>
   </div>
   <section class="confirm">
@@ -1423,8 +1800,7 @@ function vDAssignPick() {
     ${photoRow("dt-photo", D.draftImg)}
     <button class="btn-ghost" data-act="d-custom">Utiliser ce nom</button>
     <p class="msg">${esc(D.msg)}</p>
-  </section>
-  <p class="hint">${last ? "Après validation, la partie commence." : "Après validation, l'écran se cache pour le joueur suivant."}</p>`;
+  </section>`;
 }
 
 function statusRows() {
@@ -1439,7 +1815,7 @@ function vDTurn() {
   return `<header class="section">
     <span class="eyebrow">Tour ${g.turn} · question n°${p.q + 1}</span>
     <h2>À ${esc(p.name)} de poser sa question</h2>
-    <p class="lead">${esc(p.name)} pose une seule question fermée. ${esc(others)} répondent par oui ou non.</p>
+    <p class="lead">${esc(p.name)} pose une question. ${esc(others)} répondent par oui ou non.</p>
   </header>
   <div class="card">
     <span class="eyebrow">Perso de ${esc(p.name)}</span>
@@ -1485,7 +1861,7 @@ function vDEnd() {
   <div class="card">
     <div class="recap">${sorted.map(p => `<div class="recap-row"><span class="with-thumb">${charImg(p.pick, "char-thumb")}${p.rank ? p.rank + ". " : ""}${esc(p.name)} · ${esc(p.pick.w)}</span><span class="role-tag ${p.found ? "" : "uc"}">${p.found ? p.q + " q." : "pas trouvé"}</span></div>`).join("")}</div>
   </div>
-  <section class="section"><span class="label">Victoires</span><div class="scores">${winRows() || `<p class="hint">Aucune victoire pour l'instant.</p>`}</div></section>
+  <section class="section"><span class="label">Victoires</span><div class="scores">${winRows() || `<p class="hint">Aucune victoire.</p>`}</div></section>
   <button class="btn" data-act="d-new">Rejouer avec les mêmes joueurs</button>
   <button class="btn-ghost" data-act="d-setup">Réglages</button>`;
 }
@@ -2209,14 +2585,14 @@ function oCopy() {
    LOUP-GAROU en ligne : moteur (côté hôte)
    ========================================================= */
 const LG_ROLES = {
-  wolf:     { name: "Loup-Garou",       team: "wolves",  bg: "#5a1c27", desc: "Chaque nuit, avec ta meute, tu dévores un villageois. Le jour, fais-toi passer pour un innocent." },
+  wolf:     { name: "Loup-Garou",       team: "wolves",  bg: "#5a1c27", desc: "Chaque nuit, la meute dévore un villageois. Le jour, fais l'innocent." },
   white:    { name: "Loup Blanc",       team: "solo",    bg: "#2b3550", desc: "Tu chasses avec les loups, mais une nuit sur deux tu peux dévorer l'un d'eux. Tu gagnes si tu es le dernier survivant." },
-  villager: { name: "Villageois",       team: "village", bg: "#2e5236", desc: "Pas de pouvoir, juste ton flair. Démasque les loups pendant les votes." },
+  villager: { name: "Villageois",       team: "village", bg: "#2e5236", desc: "Pas de pouvoir. Démasque les loups au vote." },
   seer:     { name: "Voyante",          team: "village", bg: "#3a2766", desc: "Chaque nuit, tu découvres le rôle d'un joueur de ton choix." },
   witch:    { name: "Sorcière",         team: "village", bg: "#1f4a3e", desc: "Une potion de vie pour sauver la victime des loups, une potion de mort pour éliminer quelqu'un. Une seule fois chacune." },
   hunter:   { name: "Chasseur",         team: "village", bg: "#5a3a1c", desc: "Quand tu meurs, tu emportes immédiatement un joueur de ton choix avec toi." },
   cupid:    { name: "Cupidon",          team: "village", bg: "#6a2244", desc: "La première nuit, tu désignes deux amoureux. Si l'un meurt, l'autre meurt de chagrin." },
-  girl:     { name: "Petite Fille",     team: "village", bg: "#5a4422", desc: "La nuit, tu peux espionner les loups pour découvrir l'un d'eux. Attention, ils peuvent te surprendre." },
+  girl:     { name: "Petite Fille",     team: "village", bg: "#5a4422", desc: "La nuit, tu espionnes les loups. Attention, ils peuvent te repérer." },
   guard:    { name: "Salvateur",        team: "village", bg: "#1d3c66", desc: "Chaque nuit, tu protèges un joueur des loups. Jamais le même deux nuits de suite." },
   idiot:    { name: "Idiot du village", team: "village", bg: "#4a2668", desc: "Si le village vote contre toi, tu es épargné, mais tu perds ton droit de vote." },
   elder:    { name: "Ancien",           team: "village", bg: "#44465a", desc: "Tu survis à la première attaque des loups. Si le village te tue, tous les villageois perdent leurs pouvoirs." },
@@ -2890,7 +3266,7 @@ function lgPickList(g, opts) {
 }
 const lgWait = (g, txt) => `<p class="hint">${txt || "En attente des autres joueurs"}${g.waiting ? ` · encore ${g.waiting}` : ""}…</p>`;
 const lgForceBtn = (v, label) => v.isHost ? `<button class="btn-ghost lg-force" data-act="o-send" data-a="lg-force">${label || "Passer les joueurs absents"}</button>` : "";
-const lgDeadNote = `<div class="banner warn">Tu es mort. Tu vois tous les rôles, mais chut : ne révèle rien aux vivants !</div>`;
+const lgDeadNote = `<div class="banner warn">Tu es mort. Ne révèle rien aux vivants.</div>`;
 
 function vOLg(v) {
   const g = v.game;
@@ -2900,7 +3276,7 @@ function vOLg(v) {
 
 function lgVReveal(v, g) {
   return `<header class="section"><span class="eyebrow">${LG_VILLAGE} · distribution des rôles</span><h2>Ton rôle</h2>
-    <p class="lead">Regarde ton rôle en cachant ton écran. Ne le montre à personne.</p></header>
+    <p class="lead">Regarde ton rôle sans le montrer à personne.</p></header>
     <div class="flip ${O.lgFlip ? "on" : ""}" data-act="o-lgflip" role="button" tabindex="0" aria-label="Retourner la carte">
       <div class="flip-in">
         <div class="flip-front">${LG_CARDBACK}<b>Touche pour découvrir ton rôle</b></div>
@@ -2920,18 +3296,18 @@ function lgVNight(v, g) {
   if (!g.me || !g.me.alive) return `${head}<h2>La nuit est tombée</h2></header>${lgDeadNote}${lgPlayersBlock(g)}${lgForceBtn(v)}`;
   if (g.stage === "B") {
     if (g.task && g.task.type === "witch") return head + lgVWitch(v, g);
-    return `${head}<h2>La sorcière se réveille…</h2><p class="lead">Elle découvre la victime des loups et choisit d'utiliser ou non ses potions.</p></header>
+    return `${head}<h2>La sorcière se réveille…</h2></header>
       <div class="lg-sleep">${LG_ART.witch}</div>${lgForceBtn(v, "Passer (sorcière absente)")}`;
   }
   const t = g.task;
   if (t && t.type === "dummy") {
-    return `${head}<h2>Le village dort</h2><p class="lead">Tu n'as rien à faire cette nuit. Garde ton téléphone devant toi comme les autres, pour ne rien laisser deviner.</p></header>
+    return `${head}<h2>Le village dort</h2><p class="lead">Rien à faire. Garde ton téléphone devant toi.</p></header>
       <div class="lg-sleep">${LG_ART.villager}</div>${lgWait(g, "Les rôles de la nuit agissent")}${lgForceBtn(v)}`;
   }
   if (g.done) {
     let res = "";
     if (t.type === "seer" && g.seerRes) res = `<p class="lead">Ta vision révèle le rôle de <b>${esc(g.seerRes.name)}</b> :</p>${lgCard(g.seerRes.role, { desc: false, small: true })}`;
-    if (t.type === "girl" && g.spyRes) res = g.spyRes.none ? `<p class="lead">Tu as dormi sagement.</p>`
+    if (t.type === "girl" && g.spyRes) res = g.spyRes.none ? `<p class="lead">Rien à signaler.</p>`
       : `<p class="lead">Tu as aperçu un loup : <b>${esc(g.spyRes.name || "personne")}</b>.</p>${g.spyRes.caught ? `<div class="banner warn">Les loups t'ont vue ! Ils savent que tu es la Petite Fille.</div>` : ""}`;
     if (t.type === "cupid" && g.cupidDone) res = `<p class="lead">${esc(g.cupidDone[0])} et ${esc(g.cupidDone[1])} sont désormais amoureux.</p>`;
     if (t.type === "wolf") res = `<p class="lead">La meute a fait son choix.</p>`;
@@ -2950,9 +3326,9 @@ function lgVNight(v, g) {
     }
     ui += `<button class="btn btn-danger" data-act="o-send" data-a="lg-wolfok" ${g.myWolfPick && (!t.white || g.whiteDone) ? "" : "disabled"}>Confirmer la victime</button>`;
   } else if (t.type === "seer") {
-    ui = `<h2>Voyante, ouvre les yeux</h2><p class="lead">Choisis le joueur dont tu veux connaître le rôle.</p></header>${lgPickList(g)}${lgConfirm("lg-seer", "Sonder ce joueur")}`;
+    ui = `<h2>Voyante, ouvre les yeux</h2></header>${lgPickList(g)}${lgConfirm("lg-seer", "Sonder ce joueur")}`;
   } else if (t.type === "guard") {
-    ui = `<h2>Salvateur, qui protèges-tu ?</h2><p class="lead">Ce joueur sera à l'abri des loups cette nuit. Tu peux te protéger toi-même.</p></header>
+    ui = `<h2>Salvateur, qui protèges-tu ?</h2><p class="lead">Tu peux te choisir.</p></header>
       ${lgPickList(g, { self: true, disabled: p => p.pid === g.lastGuard, extra: p => p.pid === g.lastGuard ? "protégé hier" : "" })}${lgConfirm("lg-guard", "Protéger ce joueur")}`;
   } else if (t.type === "cupid") {
     ui = `<h2>Cupidon, tire tes flèches</h2><p class="lead">Choisis deux joueurs qui tomberont amoureux. Tu peux te choisir.</p></header>
@@ -2990,9 +3366,9 @@ function lgVDay(v, g) {
   return `<header class="section"><span class="eyebrow">Jour ${g.dayNo}</span><h2>Le jour se lève</h2></header>
     ${lgDeathsBlock(g.dawn && g.dawn.deaths, "Miracle : personne n'est mort cette nuit.")}
     ${g.raven ? `<div class="banner warn">Le corbeau a désigné ${esc(g.raven)} : 2 voix de plus contre lui au vote.</div>` : ""}
-    ${!g.me || !g.me.alive ? lgDeadNote : `<p class="lead">Débattez à voix haute : qui est le loup ?</p>`}
+    ${!g.me || !g.me.alive ? lgDeadNote : `<p class="lead">Débattez : qui est le loup ?</p>`}
     ${timer}
-    ${v.isHost ? `<button class="btn" data-act="o-send" data-a="lg-tovote">Passer au vote</button>` : `<p class="hint">L'hôte lance le vote quand le débat est fini.</p>`}
+    ${v.isHost ? `<button class="btn" data-act="o-send" data-a="lg-tovote">Passer au vote</button>` : `<p class="hint">En attente de l'hôte.</p>`}
     ${lgPlayersBlock(g)}${lgCompBlock(g)}`;
 }
 function lgVVote(v, g) {
@@ -3005,13 +3381,13 @@ function lgVVote(v, g) {
     ${mine}
     ${g.tally.length ? `<section class="section"><span class="label">Décompte en direct</span><div class="lg-tally">${g.tally.map(([n, c]) => `<div class="lg-trow"><span>${esc(n)}</span><i style="--w:${Math.min(100, c * 20)}%"></i><b>${c}</b></div>`).join("")}</div></section>` : ""}
     ${g.votes.length ? `<details class="box"><summary>Qui a voté pour qui</summary><div class="scores">${g.votes.map(([a, b]) => `<div class="score-row"><span>${esc(a)}</span><b>→ ${esc(b)}</b></div>`).join("")}</div></details>` : ""}
-    ${v.isHost && g.voted < g.eligible ? `<button class="btn-ghost" data-act="o-send" data-a="lg-force">Dépouiller sans attendre</button>` : ""}`;
+    ${v.isHost && g.voted < g.eligible ? `<button class="btn-ghost" data-act="o-send" data-a="lg-force">Compter les votes maintenant</button>` : ""}`;
 }
 function lgVVerdict(v, g) {
   const vd = g.verdict;
   let main;
-  if (vd.tie) main = `<h2>Égalité</h2><p class="lead">Le village n'arrive pas à se décider. Personne n'est éliminé.</p></header>`;
-  else if (vd.idiot) main = `<h2>${esc(vd.name)} est l'Idiot du village !</h2><p class="lead">Le village l'épargne en riant, mais il ne votera plus.</p></header>${lgCard("idiot", { desc: false, small: true })}`;
+  if (vd.tie) main = `<h2>Égalité</h2><p class="lead">Personne n'est éliminé.</p></header>`;
+  else if (vd.idiot) main = `<h2>${esc(vd.name)} est l'Idiot du village !</h2><p class="lead">Il est épargné, mais ne vote plus.</p></header>${lgCard("idiot", { desc: false, small: true })}`;
   else main = `<h2>${esc(vd.name)} est éliminé</h2></header>${lgDeathsBlock(vd.deaths)}`;
   return `<header class="section"><span class="eyebrow">Jour ${g.dayNo} · verdict</span>${main}
     ${vd.votes.length ? `<details class="box"><summary>Les votes</summary><div class="scores">${vd.votes.map(([a, b]) => `<div class="score-row"><span>${esc(a)}</span><b>→ ${esc(b)}</b></div>`).join("")}${vd.raven ? `<div class="score-row"><span>Corbeau</span><b>+2 → ${esc(vd.raven)}</b></div>` : ""}</div></details>` : ""}
@@ -3021,7 +3397,7 @@ function lgVHunter(v, g) {
   return `<header class="section"><span class="eyebrow">Dernier souffle</span><h2>${esc(g.hunter)} était chasseur</h2></header>
     ${lgCard("hunter", { desc: false, small: true })}
     ${g.amHunter ? `<p class="lead">Choisis qui tu emportes avec toi.</p>${lgPickList(g)}<button class="btn btn-danger" data-act="o-lgsend" data-a="lg-shoot" data-k="sel" ${O.sel ? "" : "disabled"}>Tirer</button>`
-      : `<p class="lead">Il épaule son fusil et vise…</p>`}
+      : `<p class="lead">Le chasseur choisit sa cible…</p>`}
     ${lgForceBtn(v, "Passer (chasseur absent)")}`;
 }
 function lgVEnd(v, g) {
@@ -3057,7 +3433,7 @@ function lgLobbySettings(v) {
   const base = ["wolf", "villager"].map(r => `<div class="lg-roleopt base" style="--rc:${LG_ROLES[r].bg}"><span class="lg-ro-art">${LG_ART[r]}</span><span class="lg-ro-txt"><b>${LG_ROLES[r].name}</b><small>${LG_ROLES[r].desc}</small></span></div>`).join("");
   const debates = [[0, "Sans chrono"], [120, "2 min"], [180, "3 min"], [300, "5 min"]];
   return `<details class="box"><summary>Rôles de base : Loup-Garou et Villageois</summary><div class="lg-roles">${base}</div></details>
-    <section class="section"><span class="label">Rôles spéciaux · touche pour activer</span><div class="lg-roles">${chips}</div></section>
+    <section class="section"><span class="label">Rôles spéciaux</span><div class="lg-roles">${chips}</div></section>
     <section class="section"><span class="label">Loups-Garous</span>
       <div class="stepper"><button data-act="o-send" data-a="lg-set" data-x="wolves:-" aria-label="Un loup de moins">−</button><output>${c.wolves}</output><button data-act="o-send" data-a="lg-set" data-x="wolves:+" aria-label="Un loup de plus">+</button>
       <button class="btn-small" data-act="o-send" data-a="lg-set" data-x="wolves:auto" aria-pressed="${!st.wolves}">Auto</button></div></section>
@@ -3332,20 +3708,20 @@ function vOQd(v) {
   if (g.phase === "answer") {
     if (!g.inGame) return head + `<p class="hint">Tu joueras à la prochaine partie.</p>`;
     if (g.done) return head + `<div class="banner">Ta réponse : « ${esc(g.myAnswer)} »</div><p class="hint">En attente des autres : ${g.count}/${g.total}.</p>${force}${scores}`;
-    return head + `<p class="lead">Réponds en secret. Les autres devront deviner que c'est toi… ou pas.</p>
+    return head + `<p class="lead">Réponds en secret.</p>
       <textarea id="o-qd" data-o="qdText" maxlength="100" placeholder="Ta réponse…">${esc(O.qdText || "")}</textarea>
       <button class="btn" data-act="o-qdsend">Envoyer ma réponse</button>
       <p class="hint">${g.count}/${g.total} ont répondu.</p>${force}${scores}`;
   }
   if (g.phase === "guess") {
     if (!g.inGame) return head + `<p class="hint">Les joueurs devinent qui a écrit quoi…</p>`;
-    if (g.done) return head + `<p class="lead">Réponses envoyées. En attente des autres : ${g.count}/${g.total}.</p>${force}`;
+    if (g.done) return head + `<p class="lead">En attente des autres : ${g.count}/${g.total}.</p>${force}`;
     const map = O.qdMap || {};
     const cards = g.answers.map(a => a.mine
       ? `<div class="qd-card mine"><p>« ${esc(a.text)} »</p><span class="hint">Ta réponse</span></div>`
       : `<div class="qd-card"><p>« ${esc(a.text)} »</p><div class="chips">${g.names.map(n => `<button class="chip" data-act="o-qdpick" data-i="${a.i}" data-x="${n.pid}" aria-pressed="${map[a.i] === n.pid}">${esc(n.name)}</button>`).join("")}</div></div>`).join("");
     const complete = g.answers.filter(a => !a.mine).every(a => map[a.i]);
-    return head + `<p class="lead">Qui a écrit chaque réponse ? Chaque joueur a écrit une seule réponse.</p>
+    return head + `<p class="lead">Qui a écrit quoi ? Une réponse par joueur.</p>
       <div class="qd-cards">${cards}</div>
       <button class="btn" data-act="o-qdguess" ${complete ? "" : "disabled"}>Valider mes choix</button>${force}`;
   }
@@ -3354,8 +3730,7 @@ function vOQd(v) {
       <div class="qd-guesses">${r.guesses.map(x => `<span class="${x.ok ? "ok" : "ko"}">${esc(x.name)} : ${esc(x.guess)} ${x.ok ? "✓" : "✗"}</span>`).join("")}</div>
     </div>`).join("")}</div>`;
   if (g.phase === "reveal") {
-    return head + reveal + `<section class="section"><span class="label">Points de la manche</span><div class="scores">${g.lastPts.map(([n, s]) => `<div class="score-row"><span>${esc(n)}</span><b>+${s}</b></div>`).join("")}</div>
-      <p class="hint">+1 par bonne devinette, +1 à l'auteur pour chaque joueur qui s'est trompé sur sa réponse.</p></section>
+    return head + reveal + `<section class="section"><span class="label">Points de la manche</span><div class="scores">${g.lastPts.map(([n, s]) => `<div class="score-row"><span>${esc(n)}</span><b>+${s}</b></div>`).join("")}</div></section>
       ${v.isHost ? `<button class="btn" data-act="o-send" data-a="qd-next">${g.round >= g.rounds ? "Voir le classement" : "Question suivante"}</button>` : `<p class="hint">En attente de l'hôte.</p>`}${scores}`;
   }
   const top = g.scores[0];
@@ -3377,7 +3752,7 @@ function vODr(v) {
     const pending = !!O.drPending;
     return `<header class="section"><span class="eyebrow">Imposteur dessin · tour ${g.lap}/${g.laps}</span>
         <h2>${g.myTurn ? (pending ? "Ton trait est prêt" : "À toi : un seul trait") : `${esc(g.current)} dessine…`}</h2>
-        <p class="lead">${g.myTurn ? "Dessine un trait sans lever le doigt. Pas trop précis si tu connais le mot, sinon l'imposteur le trouve !" : "Chacun ajoute un trait au dessin, à tour de rôle."}</p></header>
+        <p class="lead">${g.myTurn ? "Un seul trait, sans lever le doigt. Pas trop précis si tu connais le mot." : "Chacun ajoute un trait, à son tour."}</p></header>
       ${wordBox}
       <div class="dr-wrap ${g.myTurn && !pending ? "active" : ""}" style="--pc:${g.myColor}"><canvas id="dr-canvas" class="dr-canvas" aria-label="Dessin commun"></canvas></div>
       ${g.myTurn && pending ? `<div class="row"><button class="btn-ghost" data-act="o-drundo">Recommencer mon trait</button><button class="btn" data-act="o-drsend">Valider mon trait</button></div>` : ""}
@@ -3390,9 +3765,9 @@ function vODr(v) {
     else mine = `<div class="vote">${g.order.filter(p => !p.me).map(p => `<button data-act="o-sel" data-x="${p.pid}" aria-pressed="${O.sel === p.pid}"><span>${esc(p.name)}</span><i class="dr-dot" style="--pc:${p.color}"></i></button>`).join("")}</div>
       ${O.sel ? `<button class="btn btn-danger" data-act="o-send" data-a="dr-vote" data-x="${O.sel}">Voter contre ${esc(g.order.find(p => p.pid === O.sel).name)}</button>` : ""}`;
     return `<header class="section"><span class="eyebrow">Imposteur dessin · vote</span><h2>Qui est l'imposteur ?</h2>
-      <p class="lead">Regardez qui a fait des traits bizarres. Votes : ${g.count}/${g.total}.</p></header>
+      <p class="lead">Qui est l'imposteur ? Votes : ${g.count}/${g.total}.</p></header>
       <div class="dr-wrap"><canvas id="dr-canvas" class="dr-canvas" aria-label="Dessin commun"></canvas></div>${players}${wordBox}${mine}
-      ${v.isHost && g.count < g.total ? `<button class="btn-ghost" data-act="o-send" data-a="dr-force">Dépouiller sans attendre</button>` : ""}`;
+      ${v.isHost && g.count < g.total ? `<button class="btn-ghost" data-act="o-send" data-a="dr-force">Compter les votes maintenant</button>` : ""}`;
   }
   if (g.phase === "guess") {
     return `<header class="section"><span class="eyebrow">Imposteur dessin · dernière chance</span><h2>${esc(g.accused)} est démasqué !</h2>
@@ -3415,13 +3790,13 @@ function qdLobbySettings(v) {
   const st = v.settings.qd;
   return `<section class="section"><span class="label">Questions</span><div class="chips">${QD_PACKS.map(p => `<button class="chip" data-act="o-send" data-a="qd-set" data-x="pack:${p.id}" aria-pressed="${st.packs.includes(p.id)}">${esc(p.name)}<small>${p.q.length}</small></button>`).join("")}</div></section>
     <section class="section"><span class="label">Nombre de questions</span><div class="chips">${[5, 8, 10].map(n => `<button class="chip" data-act="o-send" data-a="qd-set" data-x="rounds:${n}" aria-pressed="${st.rounds === n}">${n}</button>`).join("")}</div></section>
-    <p class="hint">Minimum 3 joueurs. Chacun répond en secret, puis devine qui a écrit quoi.</p>`;
+    <p class="hint">Minimum 3 joueurs.</p>`;
 }
 function drLobbySettings(v) {
   const st = v.settings.dr;
   return `<section class="section"><span class="label">Mots à dessiner</span><div class="chips">${DR_CATS().map(c => `<button class="chip" data-act="o-send" data-a="dr-set" data-x="cat:${c.id}" aria-pressed="${st.cats.includes(c.id)}">${esc(c.name)}<small>${c.words.length}</small></button>`).join("")}</div></section>
     <section class="section"><span class="label">Traits par joueur</span><div class="chips">${[2, 3].map(n => `<button class="chip" data-act="o-send" data-a="dr-set" data-x="laps:${n}" aria-pressed="${st.laps === n}">${n}</button>`).join("")}</div></section>
-    <p class="hint">Minimum 3 joueurs. Un imposteur ne connaît pas le mot et doit dessiner sans se faire repérer.</p>`;
+    <p class="hint">Minimum 3 joueurs.</p>`;
 }
 function qdSet(x) {
   const st = L.settings.qd, [k, val] = String(x || "").split(":");
@@ -3449,9 +3824,8 @@ function vOEntry() {
   <header class="section">
     <span class="eyebrow">En ligne · un téléphone par joueur</span>
     <h1>${O.pendingGame ? esc(GAME_NAMES[O.pendingGame]) : "Lobby"}</h1>
-    <p class="lead">Crée le lobby et partage le code à tes potes, ou rejoins celui d'un pote. Tu pourras changer de jeu dans le lobby.</p>
   </header>
-  ${ONLINE_OK ? "" : `<div class="banner warn">Le mode en ligne ne marche pas dans cet aperçu. Pour jouer en ligne, ouvre le site : <a href="https://mirwaisxx.github.io/jeux/" target="_blank" rel="noopener" style="color:inherit">mirwaisxx.github.io/jeux</a></div>`}
+  ${ONLINE_OK ? "" : `<div class="banner warn">Le mode en ligne ne marche pas ici. Ouvre le site : <a href="https://mirwaisxx.github.io/jeux/" target="_blank" rel="noopener" style="color:inherit">mirwaisxx.github.io/jeux</a></div>`}
   <section class="section">
     <label class="label" for="o-name">Ton pseudo</label>
     <input type="text" id="o-name" data-o="name" maxlength="16" value="${esc(ostore.name)}" placeholder="Ex. Mirwais" autocomplete="off">
@@ -3463,8 +3837,7 @@ function vOEntry() {
     <input type="text" id="o-code" class="code-input" data-o="code" maxlength="4" value="${esc(O.code)}" placeholder="KXPM" autocomplete="off" autocapitalize="characters">
     <button class="btn-ghost" data-act="o-join" ${O.busy ? "disabled" : ""}>Rejoindre</button>
   </section>
-  <p class="msg">${esc(O.msg)}</p>
-  <p class="hint">Marche en wifi comme en 4G. Le téléphone qui crée le lobby mène la partie : s'il recharge la page, il peut reprendre son lobby.</p>`;
+  <p class="msg">${esc(O.msg)}</p>`;
 }
 function scoreBlock(v) {
   const sc = Object.entries(v.scores || {}).sort((a, b) => b[1] - a[1]);
@@ -3491,7 +3864,7 @@ function vOLobby(v) {
       <p class="msg">${esc(v.note)}</p>
       <button class="btn" data-act="o-send" data-a="start">Lancer ${gameName}</button>`;
   } else {
-    settings = `<section class="confirm"><span class="label">${gameName}</span><p class="hint">${esc(s.summary)}</p><p>En attente que l'hôte lance la partie.</p></section>`;
+    settings = `<section class="confirm"><span class="label">${gameName}</span><p class="hint">${esc(s.summary)}</p><p>En attente de l'hôte.</p></section>`;
   }
   return `<header class="section">
     <span class="eyebrow">Lobby · ${v.players.length} joueur${v.players.length > 1 ? "s" : ""}</span>
@@ -3516,10 +3889,10 @@ function vOUc(v) {
   const note = g.note ? `<div class="banner warn">${esc(g.note)}</div>` : "";
   if (g.phase === "talk") {
     return `<header class="section"><span class="eyebrow">Tour ${g.round} · thème ${esc(g.theme)}</span><h2>Chacun donne un indice</h2>
-      <p class="lead">Un mot ou une phrase courte pour décrire ton mot sans le dire. Dans cet ordre :</p></header>
+      <p class="lead">Un indice chacun, sans dire le mot. Dans cet ordre :</p></header>
       ${note}${myCard}
       <ol class="order">${g.order.map(n => `<li><span>${esc(n)}</span></li>`).join("")}</ol>
-      ${v.isHost ? `<button class="btn" data-act="o-send" data-a="uc-tovote">Passer au vote</button>` : `<p class="hint">L'hôte lance le vote quand tout le monde a parlé.</p>`}
+      ${v.isHost ? `<button class="btn" data-act="o-send" data-a="uc-tovote">Passer au vote</button>` : `<p class="hint">En attente de l'hôte.</p>`}
       ${leaveBlock(v)}`;
   }
   if (g.phase === "vote") {
@@ -3534,10 +3907,10 @@ function vOUc(v) {
         ${sel ? `<button class="btn btn-danger" data-act="o-send" data-a="uc-vote" data-x="${sel.pid}">Voter contre ${esc(sel.name)}</button>` : ""}`;
     }
     return `<header class="section"><span class="eyebrow">Tour ${g.round} · vote</span><h2>Qui est l'intrus ?</h2>
-      <p class="lead">Chacun vote sur son téléphone. Votes reçus : ${done}/${total}.</p></header>
+      <p class="lead">Votes : ${done}/${total}.</p></header>
       ${mine}
       <section class="section"><span class="label">Ont voté</span><div class="scores">${g.list.filter(p => p.alive).map(p => `<div class="score-row"><span>${esc(p.name)}</span><b class="${p.voted ? "voted" : ""}">${p.voted ? "a voté" : "…"}</b></div>`).join("")}</div></section>
-      ${v.isHost && done < total ? `<button class="btn-ghost" data-act="o-send" data-a="uc-force">Dépouiller sans attendre</button>` : ""}
+      ${v.isHost && done < total ? `<button class="btn-ghost" data-act="o-send" data-a="uc-force">Compter les votes maintenant</button>` : ""}
       ${myCard}`;
   }
   const votes = g.lastVotes && g.lastVotes.length ? `<section class="section"><span class="label">Les votes</span><div class="scores">${g.lastVotes.map(([a, b]) => `<div class="score-row"><span>${esc(a)}</span><b>→ ${esc(b)}</b></div>`).join("")}</div></section>` : "";
@@ -3558,7 +3931,7 @@ function vOUc(v) {
         ? `<p class="lead">Dernière chance : devine le mot des civils pour gagner seul.</p>
            <input type="text" id="o-guess" data-o="guess" value="${esc(O.guess)}" placeholder="Le mot des civils…" autocomplete="off">
            <button class="btn" data-act="o-send" data-a="uc-guess" data-from="guess">Valider ma réponse</button>`
-        : `<p class="lead">${esc(g.out.name)} tente de deviner le mot des civils sur son téléphone…</p>`;
+        : `<p class="lead">${esc(g.out.name)} tente de deviner le mot des civils …</p>`;
     } else {
       body = `<div class="card"><div class="stamp civil">Raté</div><p>${esc(g.out.name)} a proposé « ${esc(g.whiteGuess.text)} ».</p></div>
         ${v.isHost ? `<button class="btn" data-act="o-send" data-a="uc-continue">Continuer</button>` : waitHost}`;
@@ -3589,11 +3962,11 @@ function vOQs(v) {
       const t = g.target;
       body = `<header class="section"><span class="eyebrow">Choix des persos · ${g.done}/${g.total} validés</span>
           <h2>Tu choisis le perso de ${esc(t.name)}</h2>
-          <p class="lead">Garde-le, reroll-le ou écris le tien. ${esc(t.name)} ne le verra pas.</p></header>
+          <p class="lead">Garde-le, change-le ou écris le tien. ${esc(t.name)} ne le verra pas.</p></header>
         <div class="card">${charImg(t.pick)}<span class="eyebrow">${esc(t.pick.c)}</span><div class="word">${esc(t.pick.w)}</div>
-          ${t.rerolls ? `<span class="eyebrow">${t.rerolls} reroll${t.rerolls > 1 ? "s" : ""}</span>` : ""}</div>
+          ${t.rerolls ? `<span class="eyebrow">${t.rerolls} changement${t.rerolls > 1 ? "s" : ""}</span>` : ""}</div>
         <div class="row">
-          <button class="btn-ghost" data-act="o-send" data-a="qs-reroll">Reroll</button>
+          <button class="btn-ghost" data-act="o-send" data-a="qs-reroll">Changer de perso</button>
           <button class="btn" data-act="o-send" data-a="qs-validate">Valider</button>
         </div>
         <section class="confirm">
@@ -3624,8 +3997,8 @@ function vOQs(v) {
   }
   const ev = !g.event ? "" : g.event.refused ? `<div class="banner warn">Le groupe a refusé la réponse de ${esc(g.event.name)} : on passe au joueur suivant.</div>` : `<div class="banner">${esc(g.event.name)} a trouvé : ${esc(g.event.w)} (${g.event.q} question${g.event.q > 1 ? "s" : ""})</div>`;
   const head = g.meCur
-    ? `<h2>À toi de poser ta question</h2><p class="lead">Pose une seule question fermée à voix haute. Les autres répondent par oui ou non.</p>`
-    : `<h2>À ${esc(g.curName)} de poser sa question</h2><p class="lead">Réponds par oui ou non, puis appuyez sur un des deux boutons.</p>`;
+    ? `<h2>À toi de poser ta question</h2><p class="lead">Pose une question. Les autres répondent par oui ou non.</p>`
+    : `<h2>À ${esc(g.curName)} de poser sa question</h2>`;
   const actions = g.val ? valBlock(g.val, `${esc(g.curName)} a trouvé ?`, g.val.data && g.val.data.w ? `Son perso : <b>${esc(g.val.data.w)}</b>. Sa réponse était-elle bonne ?` : "") : g.meCur || !g.inGame ? "" : `<div class="row">
       <button class="btn-ghost" data-act="o-send" data-a="qs-next" data-x="${g.step}">Question posée, joueur suivant</button>
       <button class="btn" data-act="o-send" data-a="qs-found" data-x="${g.step}">${esc(g.curName)} a trouvé</button>
@@ -3646,7 +4019,32 @@ let CAT = { open: {}, copied: false, confirmReset: false, text: "" };
 function catToggle(list, key) {
   const i = CUR[list].indexOf(key);
   if (i >= 0) CUR[list].splice(i, 1); else CUR[list].push(key);
+  /* une image ne peut pas être à la fois « correcte » et « fausse » */
+  if (i < 0 && (list === "bad" || list === "ok")) { const o = list === "bad" ? "ok" : "bad", j = CUR[o].indexOf(key); if (j >= 0) CUR[o].splice(j, 1); }
   saveCur();
+}
+/* Persos ajoutés pour Sept Têtes (hors Devine Tête) : ils peuvent aussi être validés ou signalés dans le catalogue */
+function septExtraItems(c) {
+  const out = [], seen = new Set();
+  c.extra.concat(SEPT_MORE[c.id] || []).forEach(g => g.slice(1).forEach(raw => {
+    const [w, alias] = raw.split("="), k = norm(w);
+    if (seen.has(k)) return; seen.add(k);
+    out.push({ w, s: g[0], q: alias || w, lang: ["en", "fr"], hint: g[0] === "anime" ? "character" : "", c: c.name });
+  }));
+  return out;
+}
+const imgKey = it => dtKey(catIdByName(it.c), it.w);
+function catTile(it, cname, rmList) {
+  const k = imgKey({ c: cname, w: it.w }), off = rmList && CUR.dt.includes(k), bad = CUR.bad.includes(k), ok = CUR.ok.includes(k);
+  return `<div class="cat-tile ${off ? "off" : ""} ${ok ? "ok" : ""}">
+    ${charImg({ w: it.w, c: cname, s: it.s, q: it.q, lang: it.lang, hint: it.hint }, "cat-img")}
+    <span class="cat-name">${esc(it.w)}</span>
+    <div class="cat-acts">
+      ${rmList ? `<button class="btn-small" data-act="cat-rm" data-l="dt" data-k="${esc(k)}" aria-pressed="${off}">${off ? "Retiré" : "Retirer"}</button>` : ""}
+      <button class="btn-small" data-act="cat-rm" data-l="ok" data-k="${esc(k)}" aria-pressed="${ok}">${ok ? "✓ Correcte" : "Image correcte"}</button>
+      <button class="btn-small" data-act="cat-rm" data-l="bad" data-k="${esc(k)}" aria-pressed="${bad}">${bad ? "Image signalée" : "Image fausse"}</button>
+    </div>
+  </div>`;
 }
 function catExport() {
   const lines = ["Retraits Simwar"];
@@ -3656,6 +4054,9 @@ function catExport() {
   if (uc.length) { lines.push("", "Undercover, à retirer :"); uc.forEach(([n, l]) => lines.push(`- ${n} : ${l.join(", ")}`)); }
   if (dt.length) { lines.push("", "Devine Tête, à retirer :"); dt.forEach(([n, l]) => lines.push(`- ${n} : ${l.join(", ")}`)); }
   if (bad.length) { lines.push("", "Devine Tête, image fausse ou manquante :"); bad.forEach(([n, l]) => lines.push(`- ${n} : ${l.join(", ")}`)); }
+  const sbad = SEPT_CATS.map(c => [c.name, septExtraItems(c).filter(it => CUR.bad.includes(imgKey(it))).map(it => it.w)]).filter(x => x[1].length);
+  if (sbad.length) { lines.push("", "Sept Têtes (persos en plus), image fausse ou manquante :"); sbad.forEach(([n, l]) => lines.push(`- ${n} : ${l.join(", ")}`)); }
+  if (CUR.ok.length) lines.push("", `Images validées à l'œil : ${CUR.ok.length}`);
   if (lines.length === 1) lines.push("", "Rien à retirer.");
   return lines.join("\n");
 }
@@ -3684,36 +4085,36 @@ function vCatalog() {
     const removed = c.items.filter(it => CUR.dt.includes(dtKey(c.id, it.w))).length;
     return `<details class="box cat-box" data-cat="${id}" ${open ? "open" : ""}>
       <summary>${esc(c.name)} <small>${c.items.length - removed}/${c.items.length} persos</small></summary>
-      ${open ? `<div class="cat-grid">${c.items.map(it => {
-        const k = dtKey(c.id, it.w), off = CUR.dt.includes(k), bad = CUR.bad.includes(k);
-        return `<div class="cat-tile ${off ? "off" : ""}">
-          ${charImg({ w: it.w, c: c.name, s: it.s, q: it.q, lang: it.lang, hint: it.hint }, "cat-img")}
-          <span class="cat-name">${esc(it.w)}</span>
-          <div class="cat-acts">
-            <button class="btn-small" data-act="cat-rm" data-l="dt" data-k="${esc(k)}" aria-pressed="${off}">${off ? "Retiré" : "Retirer"}</button>
-            <button class="btn-small" data-act="cat-rm" data-l="bad" data-k="${esc(k)}" aria-pressed="${bad}">${bad ? "Image signalée" : "Image fausse"}</button>
-          </div>
-        </div>`;
-      }).join("")}</div>` : ""}
+      ${open ? `<div class="cat-grid">${c.items.map(it => catTile(it, c.name, true)).join("")}</div>` : ""}
+    </details>`;
+  }).join("");
+  const septBlocks = SEPT_CATS.map(c => {
+    const id = "sp-" + c.id, open = !!CAT.open[id], items = septExtraItems(c);
+    if (!items.length) return "";
+    return `<details class="box cat-box" data-cat="${id}" ${open ? "open" : ""}>
+      <summary>${esc(c.name)} <small>${items.length} persos en plus</small></summary>
+      ${open ? `<div class="cat-grid">${items.map(it => catTile(it, c.name, false)).join("")}</div>` : ""}
     </details>`;
   }).join("");
   return `${backHome}
   <header class="section">
-    <h1>Catalogue</h1>
-    <p class="lead">Ouvre un thème pour tout voir. Ce que tu retires disparaît tout de suite des parties lancées depuis cet appareil.</p>
+    <h1>Catalogue des mots</h1>
+    <p class="lead">Les mots retirés n'apparaissent plus dans tes parties.</p>
   </header>
   <div class="confirm">
-    <p><b>${nUc + nDt}</b> retrait${nUc + nDt > 1 ? "s" : ""} · <b>${nBad}</b> image${nBad > 1 ? "s" : ""} signalée${nBad > 1 ? "s" : ""}</p>
+    <p><b>${nUc + nDt}</b> retrait${nUc + nDt > 1 ? "s" : ""} · <b>${nBad}</b> image${nBad > 1 ? "s" : ""} signalée${nBad > 1 ? "s" : ""} · <b>${CUR.ok.length}</b> validée${CUR.ok.length > 1 ? "s" : ""}</p>
     <div class="row">
       <button class="btn" data-act="cat-copy">${CAT.copied ? "Liste copiée" : "Copier ma liste"}</button>
       ${CAT.confirmReset
         ? `<button class="btn btn-danger" data-act="cat-reset">Oui, tout remettre</button>`
         : `<button class="btn-ghost" data-act="cat-askreset">Tout remettre</button>`}
     </div>
-    ${CAT.text && !CAT.copied ? `<textarea readonly id="cat-text" aria-label="Ma liste">${esc(CAT.text)}</textarea><p class="hint">La copie automatique n'a pas marché : sélectionne ce texte et copie-le.</p>` : ""}
+    ${CAT.text && !CAT.copied ? `<textarea readonly id="cat-text" aria-label="Ma liste">${esc(CAT.text)}</textarea><p class="hint">Copie impossible : sélectionne le texte et copie-le.</p>` : ""}
   </div>
+  ${vPanel()}
   <section class="section"><span class="label">Undercover</span>${ucBlocks}</section>
-  <section class="section"><span class="label">Devine Tête</span>${dtBlocks}</section>`;
+  <section class="section"><span class="label">Devine Tête</span>${dtBlocks}</section>
+  <section class="section"><span class="label">Persos en plus pour Sept Têtes</span>${septBlocks}</section>`;
 }
 
 /* =========================================================
@@ -3721,13 +4122,13 @@ function vCatalog() {
    ========================================================= */
 
 const GAME_RULES = {
-  uc: ["Tout le monde reçoit le même mot, sauf l'Undercover qui reçoit un mot proche. Mr. White, s'il est activé, n'a aucun mot.", "Chacun à son tour donne un indice sur son mot, sans le dire.", "Puis on vote pour éliminer quelqu'un. Les civils gagnent s'ils éliminent tous les intrus. L'Undercover gagne s'il tient jusqu'à ce qu'il ne reste qu'un civil.", "Mr. White éliminé peut encore gagner seul en devinant le mot des civils."],
-  qs: ["Chaque joueur reçoit un perso choisi par les autres, sans le voir.", "À ton tour, tu poses une seule question fermée. Les autres répondent par oui ou non.", "Le premier qui trouve son perso gagne."],
-  qd: ["Une question s'affiche et chacun répond en secret.", "Les réponses s'affichent sans les noms : devine qui a écrit chacune.", "+1 par bonne devinette, +1 à l'auteur pour chaque joueur qui s'est trompé sur sa réponse."],
-  bomb: ["Le téléphone affiche un thème. Celui qui a la bombe dit une réponse à voix haute, appuie sur Passe et donne le téléphone à son voisin.", "Une réponse déjà dite, une hésitation trop longue ou une réponse refusée par le groupe : tu gardes la bombe et tu en redis une.", "La mèche est cachée et accélère vers la fin. Celui qui tient la bombe quand elle explose prend un gage et commence la manche suivante."],
-  sept: ["Sept persos sont tirés au hasard dans les catégories choisies (Devine Tête et Undercover réunis). Celui qui cherche ne les voit pas.", "Les autres les voient et ont un nombre de mots limité (15 par défaut) pour les lui faire trouver. Chaque mot dit à voix haute compte, et il est interdit de dire le nom ou une partie du nom.", "Si une tête est inconnue de tout le monde, on peut la changer. Quand le chercheur trouve une tête, on la touche. La manche s'arrête quand les 7 sont trouvées, quand il n'y a plus de mots, ou quand vous arrêtez.", "Chacun est chercheur une fois. Le meilleur chercheur est celui qui trouve le plus de têtes, puis qui en a eu besoin de moins de mots."],
-  tp: ["Deux choix s'affichent. Chacun choisit en secret.", "On révèle qui a choisi quoi. Celui qui est seul dans son camp doit se justifier.", "À la fin, le plus original est celui qui s'est retrouvé le plus souvent dans le camp le moins choisi."],
-  dr: ["Tout le monde voit la catégorie. Tous connaissent le mot, sauf l'imposteur.", "À tour de rôle, chacun ajoute un seul trait au dessin commun.", "Puis on vote pour désigner l'imposteur. S'il est démasqué, il peut encore gagner en devinant le mot."]
+  uc: ["Tout le monde a le même mot, sauf l'Undercover qui en a un proche. Mr. White, s'il est là, n'en a pas.", "Chacun donne un indice sur son mot, sans le dire.", "Puis on vote pour éliminer quelqu'un. Les civils gagnent s'ils virent tous les intrus. L'Undercover gagne s'il reste face à un seul civil.", "Mr. White éliminé peut encore gagner en devinant le mot des civils."],
+  qs: ["Chacun a un perso choisi par les autres, qu'il ne voit pas.", "À ton tour, une seule question. Les autres répondent par oui ou non.", "Le premier qui trouve son perso gagne."],
+  qd: ["Une question s'affiche, chacun répond en secret.", "Les réponses s'affichent sans nom : devine qui a écrit quoi.", "+1 par bonne devinette, +1 à l'auteur pour chaque joueur qui s'est trompé sur sa réponse."],
+  bomb: ["Un thème s'affiche. Celui qui a la bombe dit une réponse, appuie sur Passe et passe le téléphone.", "Réponse déjà dite, trop longue à venir ou refusée par le groupe : tu gardes la bombe.", "Personne ne sait quand elle explose. Celui qui la tient prend un gage et relance la manche."],
+  sept: ["Sept persos sont tirés au hasard. Celui qui cherche ne les voit pas.", "Les autres les voient et ont un nombre de mots limité (15 par défaut) pour les lui faire trouver. Chaque mot dit compte. Interdit de dire le nom, même en partie.", "Une tête que personne ne connaît ? On la change. Quand le chercheur en trouve une, on la touche. La manche s'arrête quand les 7 sont trouvées, qu'il n'y a plus de mots, ou quand vous voulez.", "Modes en option : mots bannis, équipes, chrono, mimes. Chacun est chercheur une fois. Le meilleur chercheur est celui qui trouve le plus de têtes, puis qui en a eu besoin de moins de mots."],
+  tp: ["Deux choix, chacun répond en secret.", "On voit qui a choisi quoi. Celui qui est seul dans son camp se justifie.", "Le plus original est celui qui s'est le plus souvent retrouvé dans le camp le moins choisi."],
+  dr: ["Tout le monde voit la catégorie et connaît le mot, sauf l'imposteur.", "Chacun ajoute un seul trait au dessin, à son tour.", "Puis on vote pour trouver l'imposteur. S'il est démasqué, il peut encore gagner en devinant le mot."]
 };
 const rulesBlock = game => game === "lg" ? LG_RULES : GAME_RULES[game] ? `<details class="box"><summary>Comment jouer</summary><ul class="lg-rules">${GAME_RULES[game].map(r => `<li>${r}</li>`).join("")}</ul></details>` : "";
 const GAME_NAMES = { uc: "Undercover", qs: "Devine Tête", lg: "Loup-Garou", qd: "Qui a dit ça ?", dr: "Imposteur dessin", tp: "Tu préfères" };
@@ -3746,7 +4147,7 @@ let bcfg = Object.assign({ count: 4, names: dcfg.names.slice(), packs: BOMB_PACK
 bcfg.packs = (bcfg.packs || []).filter(id => BOMB_PACKS.some(p => p.id === id)); if (!bcfg.packs.length) bcfg.packs = BOMB_PACKS.map(p => p.id);
 while (bcfg.names.length < bcfg.count) bcfg.names.push("");
 const bSave = () => store.set("bcfg", bcfg);
-const bName = i => (bcfg.names[i] || "").trim() || "Joueur " + (i + 1);
+const bName = i => (bcfg.names[i] || "").trim() || "Agent " + String(i + 1).padStart(2, "0");
 let BM = { screen: "setup", theme: "", letter: "", holder: 0, losses: {}, startAt: 0, endAt: 0, timer: null, passes: 0, round: 0, msg: "", confirmStop: false };
 let bUsed = new Set();
 function bTone(f, d, type = "square", vol = .12) {
@@ -3832,16 +4233,16 @@ const bLossRows = () => Object.entries(BM.losses).sort((a, b) => b[1] - a[1]).ma
 const bThemeText = () => esc(BM.theme) + (BM.letter ? ` <span class="bomb-letter">qui commence par ${BM.letter}</span>` : "");
 function vBomb() {
   if (BM.screen === "setup") {
-    const names = [...Array(bcfg.count).keys()].map(i => `<div class="name-row"><span class="agent">${agent(i)}</span><input type="text" id="bname-${i}" data-bname="${i}" placeholder="Joueur ${i + 1}" maxlength="20" value="${esc(bcfg.names[i] || "")}" autocomplete="off"></div>`).join("");
+    const names = [...Array(bcfg.count).keys()].map(i => `<div class="name-row"><span class="agent">${agent(i)}</span><input type="text" id="bname-${i}" data-bname="${i}" placeholder="Agent ${String(i + 1).padStart(2, '0')}" maxlength="20" value="${esc(bcfg.names[i] || "")}" autocomplete="off"></div>`).join("");
     return `${backHome}
     <header class="section">
       <span class="eyebrow">Un seul téléphone qu'on se passe</span>
       <h1>La Bombe</h1>
-      <p class="lead">Un thème s'affiche et la mèche s'allume. Tu dis une réponse, tu appuies sur Passe et tu donnes le téléphone à ton voisin. Celui qui tient la bombe quand elle explose prend un gage.</p>
+      <p class="lead">Dis une réponse, appuie sur Passe, passe le téléphone. Celui qui l'a quand elle explose prend un gage.</p>
     </header>
     ${resumeBlock("bomb")}
     ${rulesBlock("bomb")}
-    <section class="section"><span class="label">Joueurs, dans l'ordre où vous êtes assis</span>
+    <section class="section"><span class="label">Joueurs</span>
       <div class="stepper"><button data-act="b-count" data-d="-1" aria-label="Retirer un joueur">−</button><output>${bcfg.count}</output><button data-act="b-count" data-d="1" aria-label="Ajouter un joueur">+</button></div>
       <div class="names">${names}</div></section>
     <section class="section"><span class="label">Thèmes</span><div class="chips">${BOMB_PACKS.map(p => `<button class="chip" data-act="b-pack" data-id="${p.id}" aria-pressed="${bcfg.packs.includes(p.id)}">${esc(p.name)}<small>${p.t.length}</small></button>`).join("")}</div></section>
@@ -3858,7 +4259,7 @@ function vBomb() {
   if (BM.screen === "ready") {
     return `${backHome}<header class="section"><span class="eyebrow">Manche ${BM.round}</span><h2 class="bomb-theme">${bThemeText()}</h2></header>
     <div class="bomb-stage"><div class="bomb-art" data-speed="0">${BOMB_ART}</div></div>
-    <p class="lead">C'est <b>${esc(bName(BM.holder))}</b> qui commence. Une réponse chacun, pas de répétition.</p>
+    <p class="lead"><b>${esc(bName(BM.holder))}</b> commence. Pas de répétition.</p>
     <button class="btn" data-act="b-light">Allumer la mèche</button>
     <button class="btn-ghost" data-act="b-reroll">Autre thème</button>
     <button class="btn-ghost" data-act="b-setup">Réglages</button>`;
@@ -3964,17 +4365,15 @@ function vTp() {
   if (TPL.screen === "setup") {
     return `${backHome}
     <header class="section"><span class="eyebrow">Un seul écran pour tous</span><h1>Tu préfères</h1>
-      <p class="lead">Deux choix impossibles. Tout le monde réfléchit, puis à trois, chacun montre A ou B avec ses doigts. Ceux qui sont seuls dans leur camp doivent se justifier.</p></header>
+      <p class="lead">Deux choix impossibles. À trois, tout le monde montre A ou B avec ses doigts. Les seuls dans leur camp se justifient.</p></header>
     ${resumeBlock("tp")}
     <section class="section"><span class="label">Thèmes</span><div class="chips">${TP_PACKS.map(p => `<button class="chip" data-act="tp-pack" data-id="${p.id}" aria-pressed="${tpcfg.packs.includes(p.id)}">${esc(p.name)}<small>${p.q.length}</small></button>`).join("")}</div></section>
-    <button class="btn" data-act="tp-start">Commencer</button>
-    <p class="hint">Pour voter chacun sur son téléphone et voir qui a choisi quoi, joue en ligne.</p>`;
+    <button class="btn" data-act="tp-start">Commencer</button>`;
   }
   const q = TPL.deck[TPL.i];
   return `${backHome}<header class="section"><span class="eyebrow">Tu préfères… · ${TPL.i + 1}/${TPL.deck.length}</span></header>
     ${tpChoices(q, null)}
     ${TPL.cd !== null && TPL.cd !== undefined ? `<p class="tp-cd" aria-live="assertive">${TPL.cd > 0 ? TPL.cd : "Montrez !"}</p>` : `<button class="btn" data-act="tp-cd">3, 2, 1… montrez !</button>`}
-    <p class="hint">Chacun montre A ou B avec ses doigts en même temps. Ceux qui sont seuls dans leur camp se justifient.</p>
     <button class="${TPL.cd === 0 ? "btn" : "btn-ghost"}" data-act="tp-next">Question suivante</button>
     <button class="btn-ghost" data-act="tp-setup">Thèmes</button>`;
 }
@@ -4033,7 +4432,7 @@ function tpLobbySettings(v) {
   const st = v.settings.tp;
   return `<section class="section"><span class="label">Thèmes</span><div class="chips">${TP_PACKS.map(p => `<button class="chip" data-act="o-send" data-a="tp-set" data-x="pack:${p.id}" aria-pressed="${st.packs.includes(p.id)}">${esc(p.name)}<small>${p.q.length}</small></button>`).join("")}</div></section>
     <section class="section"><span class="label">Nombre de questions</span><div class="chips">${[10, 15, 20].map(n => `<button class="chip" data-act="o-send" data-a="tp-set" data-x="rounds:${n}" aria-pressed="${st.rounds === n}">${n}</button>`).join("")}</div></section>
-    <p class="hint">Minimum 2 joueurs. Chacun vote en secret, puis on voit qui a choisi quoi.</p>`;
+    <p class="hint">Minimum 2 joueurs.</p>`;
 }
 function vOTp(v) {
   const g = v.game;
@@ -4090,13 +4489,35 @@ const SEPT_MORE = {
   pop: [["wiki", "Patrick Étoile de mer=Patrick Star", "Monsieur Krabs=Mr. Krabs", "Rick Sanchez", "Morty Smith", "Stewie Griffin", "Peter Griffin", "Eric Cartman", "Garfield", "Scooby-Doo", "Bugs Bunny", "Titi=Tweety", "Daffy Duck", "Hello Kitty", "Pepe la grenouille=Pepe the Frog", "Doge", "Nyan Cat", "Barbie", "Ken=Ken (doll)", "Peppa Pig", "Totoro", "Tom=Tom (Tom and Jerry)", "Jerry=Jerry Mouse", "Titeuf", "Kirikou"]]
 };
 const sAllIds = () => SEPT_CATS.map(c => c.id);
-let scfg = Object.assign({ count: 4, names: dcfg.names.slice(), src: null, words: 15 }, store.get("scfg", {}));
+const SEPT_BAN = (() => { const m = {}; "Goku:Saiyan,Dragon Ball,Boules de cristal,Kamehameha,Nuage\nVegeta:Prince,Saiyan,Rival,Dragon Ball,Orgueil\nGohan:Fils,Saiyan,Lunettes,Dragon Ball,Étudiant\nTrunks:Épée,Futur,Cheveux violets,Dragon Ball,Machine à voyager\nFreezer:Tyran,Espace,Planète,Dragon Ball,Transformation\nCell:Androïde,Parfait,Insecte vert,Dragon Ball,Absorbe\nMajin Boo:Rose,Gros,Bonbon,Dragon Ball,Magie\nPiccolo:Namek,Vert,Cape,Dragon Ball,Turban\nBroly:Légendaire,Saiyan,Colère,Dragon Ball,Géant\nBeerus:Destructeur,Chat,Dieu,Dragon Ball,Dormir\nNaruto:Ninja,Hokage,Renard,Konoha,Ramen\nSasuke:Vengeance,Sharingan,Uchiha,Ninja,Frère\nSakura:Rose,Médecin,Ninja,Konoha,Équipe 7\nHinata:Byakugan,Timide,Ninja,Konoha,Hyûga\nKakashi:Masque,Sharingan,Sensei,Ninja,Copieur\nItachi:Uchiha,Sharingan,Akatsuki,Clan,Frère\nMadara:Uchiha,Sharingan,Guerre,Ninja,Légendaire\nObito:Masque,Uchiha,Akatsuki,Sharingan,Ninja\nPain:Akatsuki,Yeux,Piercings,Ninja,Village\nOrochimaru:Serpent,Pâle,Langue,Ninja,Immortalité\nJiraiya:Ermite,Pervers,Cheveux blancs,Sensei,Ninja\nGaara:Sable,Rouge,Ninja,Calebasse,Kazekage\nLuffy:Pirate,Chapeau de paille,Caoutchouc,Fruit du démon,One Piece\nZoro:Épée,Sabreur,Vert,Pirate,One Piece\nSanji:Cuisinier,Blond,Jambes,Pirate,One Piece\nNami:Navigatrice,Orange,Voleuse,Pirate,One Piece\nShanks:Pirate,Bras,Cicatrice,Empereur,One Piece\nAce:Feu,Frère,Pirate,Tatouage,One Piece\nBarbe Blanche:Pirate,Moustache,Tremblement de terre,Empereur,One Piece\nBarbe Noire:Pirate,Dents,Ténèbres,Empereur,One Piece\nTrafalgar Law:Chirurgien,Épée,Chapeau,Pirate,One Piece\nKaido:Dragon,Pirate,Empereur,Boire,One Piece\nDoflamingo:Plumes,Lunettes,Fils,Pirate,One Piece\nGon:Chasseur,Canne à pêche,Vert,Ami,Hunter x Hunter\nKillua:Assassin,Électricité,Cheveux blancs,Skateboard,Hunter x Hunter\nKurapika:Chaînes,Yeux rouges,Clan,Vengeance,Hunter x Hunter\nHisoka:Clown,Cartes,Magicien,Cheveux roses,Hunter x Hunter\nMeruem:Roi,Fourmi,Chimère,Jeu,Hunter x Hunter\nGojo:Bandeau,Yeux bleus,Professeur,Infini,Jujutsu Kaisen\nSukuna:Roi des fléaux,Doigts,Démon,Malédiction,Jujutsu Kaisen\nMegumi:Ombres,Chiens,Sorcier,Lycée,Jujutsu Kaisen\nTanjiro:Chasseur de démons,Boucle d'oreille,Sœur,Respiration,Demon Slayer\nNezuko:Bambou,Démon,Sœur,Rose,Demon Slayer\nZenitsu:Jaune,Foudre,Peur,Dormir,Demon Slayer\nInosuke:Sanglier,Torse nu,Masque,Épées,Demon Slayer\nEren:Titan,Mur,Liberté,Mikasa,L'Attaque des Titans\nMikasa:Écharpe,Rouge,Soldat,Eren,L'Attaque des Titans\nLivaï:Capitaine,Petit,Propre,Soldat,L'Attaque des Titans\nLight Yagami:Cahier,Mort,Justice,Kira,Death Note\nL:Détective,Sucre,Assis,Cernes,Death Note\nRyuk:Dieu de la mort,Pomme,Noir,Cahier,Death Note\nSaitama:Chauve,Un coup,Héros,Cape,One Punch Man\nAll Might:Symbole de la paix,Muscles,Sourire,Héros,My Hero Academia\nDeku:Héros,Vert,Cicatrices,All Might,My Hero Academia\nIchigo:Shinigami,Orange,Épée,Hollow,Bleach\nDenji:Tronçonneuse,Démon,Chien,Pochita,Chainsaw Man\nMakima:Contrôle,Cheveux roux,Yeux,Chaîne,Chainsaw Man\nPower:Sang,Cornes,Démon,Chat,Chainsaw Man\nSung Jinwoo:Chasseur,Ombres,Donjon,Armée,Solo Leveling\nBulma:Inventrice,Radar,Cheveux bleus,Vegeta,Dragon Ball\nChichi:Épouse,Goku,Cuisine,Poêle,Dragon Ball\nGaï:Combinaison verte,Sourcils,Sensei,Ninja,Jeunesse\nShisui:Uchiha,Sharingan,Ninja,Téléportation,Konoha\nRobin:Archéologue,Bras,Poneglyphes,Pirate,One Piece\nKid:Pirate,Aimant,Rouge,Capitaine,One Piece\nLeorio:Médecin,Costume,Chasseur,Valise,Hunter x Hunter\nIllumi:Aiguilles,Assassin,Frère,Famille,Hunter x Hunter\nYuji Itadori:Sorcier,Sukuna,Rose,Lycée,Jujutsu Kaisen\nLelouch:Prince,Empire,Geass,Masque,Code Geass\nKaneki:Ghoul,Œil,Café,Masque,Tokyo Ghoul\nZero Two:Cornes,Roses,Rose,Robot,Darling in the Franxx\nRem:Servante,Bleue,Oni,Sœur,Re:Zero\nAsuka:Rousse,Pilote,Robot,Allemande,Evangelion\nRei Ayanami:Cheveux bleus,Pilote,Silencieuse,Robot,Evangelion\nShinji Ikari:Pilote,Père,Robot,Triste,Evangelion\nAnya Forger:Télépathe,Cacahuètes,Rose,Espion,Spy x Family\nLoid Forger:Espion,Blond,Père,Lunettes,Spy x Family\nYor Forger:Assassine,Mère,Épouse,Noire,Spy x Family\nTodoroki:Feu,Glace,Père,Cicatrice,My Hero Academia\nBakugo:Explosions,Blond,Colère,Rival,My Hero Academia\nUraraka:Gravité,Flotter,Joues,Héroïne,My Hero Academia\nAsta:Anti-magie,Grimoire,Épée,Cheveux blancs,Black Clover\nYuno:Magie,Vent,Rival,Grimoire,Black Clover\nNatsu:Dragon,Feu,Écharpe,Mage,Fairy Tail\nLucy:Mage,Clés,Esprits,Blonde,Fairy Tail\nErza:Armure,Cheveux rouges,Mage,Gâteau,Fairy Tail\nEdward Elric:Alchimiste,Bras mécanique,Petit,Frère,Fullmetal Alchemist\nAlphonse Elric:Armure,Frère,Alchimiste,Âme,Fullmetal Alchemist\nRoy Mustang:Colonel,Flammes,Alchimiste,Gants,Fullmetal Alchemist\nSpike Spiegel:Chasseur de primes,Espace,Vaisseau,Cheveux verts,Cowboy Bebop\nRimuru:Slime,Réincarné,Bleu,Monstre,Tensei Slime\nMob:Psychique,Pouvoirs,Collège,Colère,Pourcentage\nTatsumaki:Psychique,Petite,Cheveux verts,Tornade,One Punch Man\nGenos:Cyborg,Disciple,Blond,Robot,One Punch Man\nArmin:Blond,Stratège,Ami,Colossal,L'Attaque des Titans\nReiner:Cuirassé,Soldat,Blond,Titan,L'Attaque des Titans\nErwin:Commandant,Blond,Bras,Soldat,L'Attaque des Titans\nRengoku:Flamme,Pilier,Cheveux jaunes,Repas,Demon Slayer\nGiyu:Pilier,Eau,Distant,Haori,Demon Slayer\nShinobu:Papillon,Pilier,Poison,Épée,Demon Slayer\nMuzan:Roi des démons,Pâle,Costume,Sang,Demon Slayer\nAkaza:Démon,Tatouages,Rose,Combat,Demon Slayer\nNobara:Marteau,Clous,Sorcière,Poupée,Jujutsu Kaisen\nToji:Sans magie,Assassin,Cicatrice,Père,Jujutsu Kaisen\nYuta:Rika,Épée,Sorcier,Amour,Jujutsu Kaisen\nNanami:Costume,Lunettes,Salarié,Sorcier,Jujutsu Kaisen\nAizen:Traître,Lunettes,Hollow,Capitaine,Bleach\nRukia:Petite,Shinigami,Glace,Lapin,Bleach\nAki:Chainsaw Man,Épée,Diable,Renard,Brun\nMinato:Éclair jaune,Hokage,Blond,Père,Naruto\nNeji:Byakugan,Clan,Destin,Ninja,Cheveux longs\nRock Lee:Combinaison verte,Taijutsu,Sourcils,Ninja,Bol de cheveux\nTsunade:Hokage,Médecin,Force,Blonde,Ninja\nDeidara:Explosions,Argile,Art,Akatsuki,Blond\nKisame:Requin,Bleu,Épée,Akatsuki,Ninja\nBoruto:Fils,Blond,Ninja,Konoha,Hokage\nMikey:Tokyo Revengers,Gang,Moto,Blond,Chef\nKrilin:Chauve,Petit,Humain,Ami,Dragon Ball\nC-18:Androïde,Blonde,Frère,Épouse,Dragon Ball\nYamcha:Loup,Ancien,Cicatrice,Baseball,Dragon Ball\nChopper:Renne,Médecin,Chapeau,Docteur,One Piece\nUsopp:Tireur,Long nez,Menteur,Lance-pierre,One Piece\nBrook:Squelette,Musique,Afro,Violon,One Piece\nFranky:Cyborg,Bleu,Charpentier,Slip,One Piece\nBoa Hancock:Impératrice,Serpents,Beauté,Pirate,One Piece\nMihawk:Sabreur,Œil de faucon,Épée,Chapeau,One Piece\nSabo:Révolutionnaire,Frère,Chapeau,Flammes,One Piece\nGol D. Roger:Roi des pirates,Trésor,Moustache,Mort,One Piece\nFrieren:Elfe,Magicienne,Voyage,Cheveux blancs,Immortelle\nSenku:Science,Cheveux verts,Pierre,Inventeur,Dr. Stone\nInuyasha:Demi-démon,Chien,Épée,Oreilles,Cheveux blancs\nSesshomaru:Demi-frère,Démon,Épée,Fourrure,Cheveux blancs\nKagome:Lycéenne,Flèche,Puits,Voyage,Inuyasha\nYusuke:Détective,Esprit,Fantôme,Pistolet,Yu Yu Hakusho\nHiei:Troisième œil,Épée,Petit,Démon,Yu Yu Hakusho\nSasha:Patate,Archer,Soldat,Mangeuse,L'Attaque des Titans\nHange:Chercheuse,Lunettes,Titans,Commandante,L'Attaque des Titans\nHinata Shoyo:Volley,Petit,Orange,Saut,Haikyu\nKageyama:Volley,Passeur,Génie,Noir,Haikyu\nAqua:Idole,Réincarné,Frère,Étoile,Oshi no Ko\nAi Hoshino:Idole,Chanteuse,Mère,Étoiles,Oshi no Ko\nViolet Evergarden:Poupée,Lettres,Soldat,Prothèses,Blonde\nKenshin:Samouraï,Cicatrice,Épée,Rouge,Vagabond\nSaiki:Psychique,Lunettes,Rose,Pouvoirs,Gelée\nMaki:Lunettes,Sorcière,Épée,Famille,Jujutsu Kaisen\nPikachu:Pokémon,Jaune,Électricité,Souris,Sacha\nMewtwo:Pokémon,Clone,Psy,Légendaire,Génétique\nDracaufeu:Pokémon,Flamme,Dragon,Orange,Ailes\nÉvoli:Pokémon,Évolution,Marron,Renard,Eau\nMario:Plombier,Moustache,Champignon,Nintendo,Moustachu\nLuigi:Plombier,Vert,Frère,Nintendo,Peur\nPeach:Princesse,Rose,Château,Nintendo,Kidnappée\nBowser:Tortue,Roi,Koopa,Nintendo,Peach\nYoshi:Dinosaure,Œuf,Vert,Langue,Nintendo\nWario:Jaune,Méchant,Ail,Nintendo,Gros\nDonkey Kong:Singe,Banane,Cravate,Nintendo,Tonneau\nLink:Épée,Zelda,Hyrule,Vert,Elfe\nZelda:Princesse,Hyrule,Triforce,Nintendo,Link\nGanondorf:Méchant,Triforce,Zelda,Hyrule,Roi\nKirby:Rose,Rond,Aspire,Nintendo,Boule\nSonic:Hérisson,Bleu,Vitesse,Anneaux,Sega\nTails:Renard,Deux queues,Avion,Ami,Sega\nCrash Bandicoot:Marsupial,Fruits,Tourbillon,Caisses,PlayStation\nSpyro:Dragon,Violet,Flamme,Jeu,Gemmes\nRayman:Sans bras,Ubisoft,Lapins crétins,Plateforme,Mains flottantes\nLara Croft:Tombe,Aventurière,Pistolets,Tresse,Archéologue\nNathan Drake:Aventurier,Trésor,Uncharted,Voleur,Sully\nKratos:Spartiate,Dieu,Hache,Cendres,Fils\nMaster Chief:Halo,Spartan,Casque,Vert,Xbox\nDoom Slayer:Démons,Enfer,Fusil,Armure,Mars\nCaptain Price:Call of Duty,Moustache,Soldat,Capitaine,Bonnet\nGhost:Call of Duty,Masque,Crâne,Soldat,Militaire\nEzio:Assassin's Creed,Assassin,Italien,Renaissance,Capuche\nGeralt de Riv:Sorceleur,Épées,Cheveux blancs,Monstres,The Witcher\nArthur Morgan:Cowboy,Western,Rockstar,Cheval,Red Dead\nJohn Marston:Cowboy,Cicatrices,Western,Rockstar,Red Dead\nCJ:San Andreas,Grove Street,Gangster,Rockstar,GTA\nTrevor Philips:GTA,Fou,Chauve,Rockstar,Los Santos\nFranklin Clinton:GTA,Gangster,Chop,Chien,Los Santos\nNiko Bellic:GTA,Serbe,Cousin,Rockstar,Liberty City\nJoel:The Last of Us,Barbe,Zombies,Père,Guitare\nEllie:The Last of Us,Zombies,Guitare,Immune,Rousse\nLeon Kennedy:Resident Evil,Policier,Zombies,Blond,Raccoon City\nSolid Snake:Metal Gear,Bandeau,Infiltration,Soldat,Carton\nCloud Strife:Final Fantasy,Épée géante,Blond,Soldat,Mercenaire\nSephiroth:Final Fantasy,Aile,Épée,Cheveux argentés,Méchant\nPac-Man:Jaune,Fantômes,Labyrinthe,Boules,Arcade\nSteve:Minecraft,Cubes,Pioche,Bloc,Carré\nSub-Zero:Mortal Kombat,Glace,Ninja,Bleu,Combat\nScorpion:Mortal Kombat,Feu,Ninja,Jaune,Harpon\nRyu:Street Fighter,Hadoken,Combattant,Kimono,Bandeau\nChun-Li:Street Fighter,Combattante,Jambes,Chinoise,Bleu\nAgent 47:Hitman,Tueur,Chauve,Costume,Code-barres\nAloy:Horizon,Machines,Arc,Rousse,Tribu\nSackboy:LittleBigPlanet,Tissu,Marionnette,Poupée,PlayStation\nMega Man:Bleu,Robot,Canon,Casque,Capcom\nSora:Kingdom Hearts,Clé,Disney,Final Fantasy,Cheveux bruns\nFox McCloud:Star Fox,Renard,Vaisseau,Pilote,Nintendo\nSamus Aran:Metroid,Chasseuse de primes,Armure,Espace,Nintendo\nCaptain Falcon:F-Zero,Casque,Course,Faucon,Nintendo\nGordon Freeman:Half-Life,Scientifique,Pied-de-biche,Valve,Lunettes\nGLaDOS:Portal,Intelligence artificielle,Gâteau,Robot,Voix\nChell:Portal,Portails,Orange,Test,Laboratoire\nSans:Undertale,Squelette,Blagues,Bleu,Frère\nPapyrus:Undertale,Squelette,Écharpe,Spaghettis,Frère\nTom Nook:Animal Crossing,Raton laveur,Prêt,Île,Nintendo\nWaluigi:Violet,Méchant,Wario,Nintendo,Moustache\nToad:Champignon,Mario,Nintendo,Petit,Chapeau\nDaisy:Princesse,Mario,Orange,Nintendo,Peach\nBowser Jr.:Fils,Bandana,Koopa,Nintendo,Pinceau\nShadow:Sonic,Hérisson,Noir,Rival,Sega\nKnuckles:Sonic,Échidné,Rouge,Poings,Sega\nEggman:Sonic,Docteur,Moustache,Savant,Robots\nBayonetta:Sorcière,Lunettes,Pistolets,Nintendo,Cheveux\nCuphead:Tasse,Dessin animé,Années 30,Boss,Frère\nDante:Devil May Cry,Démons,Épée,Cheveux blancs,Manteau rouge\nCortana:Halo,Intelligence artificielle,Hologramme,Master Chief,Bleue\nJohnny Silverhand:Cyberpunk,Rockstar,Bras,Keanu Reeves,Samouraï\nJinx:Arcane,Tresses bleues,Roquettes,League of Legends,Folle\nMichael De Santa:GTA,Braqueur,Los Santos,Retraité,Rockstar\nTommy Vercetti:GTA,Vice City,Chemise,Gangster,Rockstar\nAltaïr:Assassin's Creed,Capuche,Assassin,Croisades,Lame\nEivor:Assassin's Creed,Viking,Corbeau,Hache,Nordique\nPyramid Head:Silent Hill,Boucher,Casque,Monstre,Couteau\nAlan Wake:Écrivain,Lumière,Obscurité,Lampe,Romancier\nNess:EarthBound,Casquette,Batte,Enfant,Nintendo\nPit:Kid Icarus,Ange,Arc,Couronne de laurier,Nintendo\nOlimar:Pikmin,Astronaute,Vaisseau,Petit,Nintendo\nIsabelle:Animal Crossing,Chienne,Secrétaire,Mairie,Nintendo\nKazuya:Tekken,Combat,Père,Fils,Cheveux\nHeihachi:Tekken,Combat,Père,Fils,Moustache\nTracer:Overwatch,Voyage dans le temps,Anglaise,Pistolets,Lunettes\nMercy:Overwatch,Soigneuse,Ailes,Ange,Docteur\nReaper:Overwatch,Fusils,Masque,Noir,Mort\nD.Va:Overwatch,Robot,Coréenne,Gameuse,Rose\nBulbizarre:Pokémon,Plante,Graine,Vert,Dos\nSalamèche:Pokémon,Feu,Queue,Orange,Lézard\nCarapuce:Pokémon,Eau,Tortue,Bleu,Carapace\nTortank:Pokémon,Eau,Canons,Tortue,Carapace\nRondoudou:Pokémon,Rose,Chant,Boule,Dormir\nMiaouss:Pokémon,Chat,Pièce,Team Rocket,Parle\nPsykokwak:Pokémon,Canard,Jaune,Mal de tête,Eau\nArcanin:Pokémon,Chien,Feu,Orange,Légendaire\nEctoplasma:Pokémon,Fantôme,Violet,Ombre,Rire\nMagicarpe:Pokémon,Poisson,Éclaboussure,Rouge,Faible\nLéviator:Pokémon,Serpent,Eau,Colère,Bleu\nRonflex:Pokémon,Gros,Dormir,Manger,Bleu\nMew:Pokémon,Rose,Chat,Légendaire,Psy\nGardevoir:Pokémon,Psy,Robe,Blanc,Fée\nRayquaza:Pokémon,Dragon,Vert,Ciel,Légendaire\nLucario:Pokémon,Aura,Chien,Combat,Bleu\nAmphinobi:Pokémon,Ninja,Grenouille,Eau,Foulard\nMimiqui:Pokémon,Déguisement,Pikachu,Fantôme,Tissu\nMickey:Souris,Oreilles,Disney,Gants,Minnie\nMinnie:Souris,Nœud,Disney,Mickey,Pois\nDonald:Canard,Colère,Disney,Marin,Neveux\nDingo:Chien,Maladroit,Disney,Chapeau,Ami\nSimba:Lion,Roi,Afrique,Père,Disney\nTimon:Suricate,Hakuna Matata,Ami,Roi Lion,Disney\nPumbaa:Phacochère,Hakuna Matata,Ami,Roi Lion,Disney\nElsa:Reine,Glace,Neige,Cheveux blonds,Sœur\nAnna:Princesse,Sœur,Rousse,Neige,Reine des neiges\nOlaf:Bonhomme de neige,Neige,Été,Carotte,Reine des neiges\nWoody:Cowboy,Jouet,Shérif,Buzz,Andy\nBuzz l'Éclair:Astronaute,Jouet,Ranger,Espace,Woody\nNemo:Poisson-clown,Nageoire,Océan,Père,Pixar\nDory:Poisson,Mémoire,Bleue,Océan,Pixar\nStitch:Alien,Bleu,Hawaï,Expérience,Lilo\nAladdin:Lampe,Voleur,Tapis,Génie,Jasmine\nGénie:Lampe,Bleu,Vœux,Aladdin,Magie\nAriel:Sirène,Rousse,Mer,Princesse,Voix\nRaiponce:Cheveux,Tour,Princesse,Poêle,Lanternes\nVaiana:Océan,Île,Princesse,Bateau,Polynésie\nMaui:Demi-dieu,Hameçon,Tatouages,Polynésie,Vaiana\nCendrillon:Pantoufle,Bal,Princesse,Carrosse,Marâtre\nBlanche-Neige:Nains,Pomme,Princesse,Forêt,Sorcière\nFlash McQueen:Voiture,Course,Rouge,Cars,Pixar\nMartin:Dépanneuse,Rouillée,Cars,Ami,Pixar\nSully:Monstre,Bleu,Poilu,Monstres et Cie,Pixar\nBob Razowski:Œil,Vert,Monstre,Monstres et Cie,Pixar\nJoie:Vice-versa,Émotion,Jaune,Bleue,Pixar\nTristesse:Vice-versa,Émotion,Bleue,Lunettes,Pixar\nColère:Vice-versa,Émotion,Rouge,Feu,Pixar\nAnxiété:Vice-versa,Émotion,Orange,Stress,Pixar\nMirabel:Encanto,Lunettes,Famille,Magie,Colombie\nPeter Pan:Garçon,Ne vieillit pas,Fée,Vole,Pays imaginaire\nCapitaine Crochet:Pirate,Main,Peter Pan,Bateau,Crocodile\nRémy:Rat,Cuisinier,Ratatouille,Paris,Pixar\nLinguini:Cuisinier,Ratatouille,Paris,Maladroit,Pixar\nMulan:Guerrière,Chine,Épée,Père,Soldat\nPocahontas:Amérindienne,Vent,Princesse,Rivière,John Smith\nBelle:Livre,Princesse,Bibliothèque,Bête,Rose\nLa Bête:Château,Rose,Belle,Monstre,Prince\nJasmine:Princesse,Tigre,Tapis,Aladdin,Palais\nJafar:Vizir,Sorcier,Serpent,Aladdin,Perroquet\nScar:Lion,Cicatrice,Oncle,Méchant,Roi Lion\nMufasa:Lion,Roi,Père,Mort,Roi Lion\nNala:Lionne,Amie,Simba,Roi Lion,Lion\nHercule:Dieu,Force,Grec,Héros,Pégase\nWinnie l'ourson:Peluche,Miel,Jaune,Porcinet,Bourriquet\nBambi:Faon,Cerf,Forêt,Mère,Panpan\nDumbo:Éléphant,Oreilles,Cirque,Voler,Plume\nPinocchio:Pantin,Nez,Menteur,Bois,Geppetto\nCruella:Dalmatiens,Fourrure,Méchante,Noir et blanc,Chiots\nMaléfique:Sorcière,Cornes,Dragon,Belle au bois dormant,Méchante\nUrsula:Pieuvre,Sorcière,Sirène,Voix,Méchante\nGaston:Chasseur,Muscles,Belle,Méchant,Taverne\nMowgli:Jungle,Enfant,Loups,Ours,Panthère\nBaloo:Ours,Jungle,Chanson,Mowgli,Banane\nMerida:Rousse,Arc,Princesse,Écosse,Ours\nTiana:Grenouille,Restaurant,Princesse,Cuisinière,Louisiane\nWALL-E:Robot,Déchets,Cafard,Amoureux,Pixar\nEve:Robot,Blanche,Plante,Wall-E,Pixar\nCarl Fredricksen:Maison,Ballons,Vieux,Là-haut,Pixar\nMike Wazowski:Œil,Vert,Monstre,Monstres et Cie,Pixar\nJessie:Cowgirl,Jouet,Rousse,Toy Story,Woody\nRex:Dinosaure,Jouet,Peureux,Toy Story,Vert\nMr. Patate:Jouet,Yeux,Moustache,Toy Story,Légume\nLotso:Ours,Rose,Fraise,Méchant,Toy Story\nBing Bong:Ami imaginaire,Rose,Éléphant,Vice-versa,Pixar\nMiguel:Coco,Guitare,Mexique,Morts,Pixar\nBaymax:Robot,Blanc,Soigne,Gonflable,Hiro\nHiro Hamada:Robot,Baymax,Génie,Garçon,San Fransokyo\nBruno:Encanto,Tabou,Visions,Famille,Rat\nJudy Hopps:Lapine,Policière,Zootopie,Carotte,Renard\nNick Wilde:Renard,Arnaqueur,Zootopie,Policier,Lapine\nKristoff:Glace,Blond,Renne,Reine des neiges,Bûcheron\nHans:Prince,Traître,Reine des neiges,Mariage,Îles du Sud\nHarry Potter:Sorcier,Poudlard,Cicatrice,Lunettes,Baguette\nHermione:Sorcière,Poudlard,Livres,Amie,Baguette\nDark Vador:Star Wars,Casque,Père,Sith,Respiration\nYoda:Star Wars,Vert,Petit,Jedi,Maître\nIron Man:Armure,Milliardaire,Avengers,Marvel,Stark\nThor:Marteau,Dieu,Foudre,Avengers,Asgard\nCaptain America:Bouclier,Super-soldat,Avengers,Marvel,Drapeau\nHulk:Vert,Colère,Avengers,Marvel,Docteur Banner\nThanos:Gant,Infini,Violet,Avengers,Méchant\nBatman:Chauve-souris,Gotham,Milliardaire,Cape,Wayne\nJoker:Clown,Gotham,Rire,Méchant,Batman\nSuperman:Krypton,Cape,Kryptonite,Journaliste,Vole\nWonder Woman:Amazone,Lasso,Princesse,DC,Bracelets\nJack Sparrow:Pirate,Capitaine,Perle noire,Rhum,Caraïbes\nIndiana Jones:Archéologue,Fouet,Chapeau,Aventurier,Harrison Ford\nJames Bond:Espion,007,Smoking,Martini,Britannique\nRocky:Boxeur,Philadelphie,Gants,Escaliers,Stallone\nForrest Gump:Course,Chocolats,Banc,Crevettes,Tom Hanks\nGollum:Anneau,Précieux,Créature,Tolkien,Seigneur des anneaux\nGandalf:Magicien,Barbe,Bâton,Gris,Seigneur des anneaux\nFrodon:Hobbit,Anneau,Comté,Sam,Seigneur des anneaux\nHomer Simpson:Jaune,Donut,Bière,Springfield,Père\nBart Simpson:Jaune,Skateboard,Fils,Springfield,Bêtises\nEleven:Stranger Things,Pouvoirs,Nez,Netflix,Gaufres\nWalter White:Breaking Bad,Professeur,Chimie,Drogue,Heisenberg\nLe Professeur:La Casa de Papel,Braquage,Lunettes,Série,Espagnol\nThomas Shelby:Peaky Blinders,Casquette,Gangster,Birmingham,Cigarette\nJon Snow:Game of Thrones,Épée,Mur,Bâtard,Loup\nDaenerys:Game of Thrones,Dragons,Reine,Cheveux blonds,Trône\nSherlock Holmes:Détective,Londres,Pipe,Watson,Enquête\nDr House:Médecin,Canne,Hôpital,Diagnostic,Série\nMr Bean:Comique,Anglais,Teddy,Muet,Voiture\nRick Grimes:The Walking Dead,Zombies,Shérif,Chapeau,Série\nSheldon Cooper:The Big Bang Theory,Scientifique,Physicien,Série,Canapé\nJoey:Friends,Acteur,Pizza,Série,Sandwich\nMichael Scott:The Office,Patron,Bureau,Série,Papier\nAssane Diop:Lupin,Voleur,Gentleman,Netflix,Paris\nNeo:Matrix,Pilule,Lunettes noires,Élu,Keanu Reeves\nTerminator:Robot,Cyborg,Schwarzenegger,Futur,Lunettes\nE.T.:Extraterrestre,Vélo,Doigt,Maison,Lune\nRambo:Soldat,Stallone,Bandeau,Vietnam,Muscles\nWolverine:Griffes,X-Men,Marvel,Mutant,Hugh Jackman\nDeadpool:Mercenaire,Rouge,Masque,Marvel,Blagues\nBlack Widow:Espionne,Avengers,Marvel,Rousse,Russe\nLoki:Dieu,Frère,Thor,Marvel,Malice\nDoctor Strange:Sorcier,Magie,Cape,Marvel,Chirurgien\nBlack Panther:Wakanda,Roi,Marvel,Noir,Vibranium\nStar-Lord:Gardiens de la Galaxie,Casque,Marvel,Musique,Walkman\nGroot:Arbre,Gardiens de la Galaxie,Marvel,Parle,Plante\nRocket:Raton laveur,Gardiens de la Galaxie,Marvel,Armes,Animal\nGamora:Gardiens de la Galaxie,Verte,Marvel,Thanos,Assassine\nWanda Maximoff:Sorcière rouge,Pouvoirs,Marvel,Jumeau,Vision\nVision:Androïde,Marvel,Gemme,Avengers,Rouge\nHawkeye:Archer,Flèches,Avengers,Marvel,Sourd\nAnt-Man:Fourmis,Rétrécit,Marvel,Avengers,Voleur\nCaptain Marvel:Pouvoirs,Carol,Avengers,Étoile,Pilote\nHarley Quinn:Joker,Folle,Batte,DC,Couettes\nCatwoman:Chat,Voleuse,Batman,DC,Fouet\nAquaman:Océan,Atlantide,Trident,DC,Roi\nFlash:Vitesse,Rouge,DC,Éclair,Courir\nDarth Maul:Star Wars,Sith,Cornes,Sabre,Rouge\nObi-Wan Kenobi:Star Wars,Jedi,Barbe,Sabre,Maître\nLuke Skywalker:Star Wars,Jedi,Sabre,Père,Tatooine\nLeia:Star Wars,Princesse,Chignons,Sœur,Rébellion\nHan Solo:Star Wars,Contrebandier,Faucon Millenium,Pilote,Blaster\nChewbacca:Star Wars,Poilu,Wookiee,Cri,Copilote\nMandalorian:Star Wars,Casque,Chasseur de primes,Bébé,Disney+\nGrogu:Star Wars,Bébé,Vert,Oreilles,Mandalorian\nRey:Star Wars,Jedi,Sabre,Désert,Bâton\nKylo Ren:Star Wars,Masque,Sith,Sabre,Fils\nAnakin Skywalker:Star Wars,Jedi,Sith,Enfant,Padmé\nRon Weasley:Poudlard,Roux,Ami,Sorcier,Harry Potter\nDrago Malefoy:Poudlard,Blond,Serpentard,Rival,Harry Potter\nDumbledore:Poudlard,Directeur,Barbe,Vieux,Harry Potter\nSeverus Rogue:Poudlard,Potions,Professeur,Noir,Harry Potter\nVoldemort:Sorcier,Sans nez,Méchant,Harry Potter,Mage noir\nHagrid:Poudlard,Géant,Garde-chasse,Barbe,Harry Potter\nLuna Lovegood:Poudlard,Blonde,Lunettes,Rêveuse,Harry Potter\nSirius Black:Poudlard,Parrain,Chien,Azkaban,Harry Potter\nLegolas:Elfe,Arc,Flèches,Blond,Seigneur des anneaux\nAragorn:Roi,Rôdeur,Épée,Gondor,Seigneur des anneaux\nSauron:Anneau,Œil,Seigneur,Méchant,Mordor\nDustin:Stranger Things,Casquette,Dents,Ami,Netflix\nSteve Harrington:Stranger Things,Cheveux,Batte,Baby-sitter,Netflix\nMax Mayfield:Stranger Things,Skateboard,Rousse,Casque,Netflix\nMike Wheeler:Stranger Things,Cave,Ami,Donjons et Dragons,Netflix\nVecna:Stranger Things,Monstre,Horloge,Méchant,Netflix\nJesse Pinkman:Breaking Bad,Associé,Drogue,Yo,Bitch\nSaul Goodman:Avocat,Breaking Bad,Costume,Better Call,Arnaque\nGustavo Fring:Breaking Bad,Poulet,Restaurant,Drogue,Chef\nTyrion Lannister:Game of Thrones,Nain,Vin,Lion,Trône\nCersei Lannister:Game of Thrones,Reine,Lion,Blonde,Trône\nArya Stark:Game of Thrones,Liste,Aiguille,Loup,Assassine\nDwight Schrute:The Office,Betteraves,Bureau,Ferme,Série\nRoss Geller:Friends,Dinosaures,Paléontologue,Série,Frère\nRachel Green:Friends,Serveuse,Mode,Série,Café\nChandler Bing:Friends,Sarcasme,Série,Blagues,Colocataire\nMonica Geller:Friends,Cuisine,Propre,Série,Chef\nPhoebe Buffay:Friends,Guitare,Chat,Série,Bizarre\nBarney Stinson:How I Met Your Mother,Costume,Légendaire,Série,Défi\nDexter Morgan:Tueur en série,Sang,Série,Police,Miami\nGhostface:Scream,Masque,Couteau,Téléphone,Slasher\nChucky:Poupée,Tueur,Rousse,Horreur,Couteau\nFreddy Krueger:Cauchemars,Griffes,Pull,Horreur,Nuit\nMichael Myers:Halloween,Masque,Couteau,Horreur,Blanc\nPennywise:Clown,Ballon,Égout,Horreur,Ça\nJason Voorhees:Vendredi 13,Masque de hockey,Machette,Horreur,Lac\nDominic Toretto:Fast and Furious,Voiture,Famille,Vin Diesel,Course\nJohn Wick:Chien,Tueur,Costume,Assassin,Keanu Reeves\nEthan Hunt:Mission Impossible,Espion,Tom Cruise,Cascades,Agent\nArthur Shelby:Peaky Blinders,Frère,Gangster,Birmingham,Chapeau\nArsène Lupin:Voleur,Gentleman,Cambrioleur,Roman,Cape\nAstérix:Gaulois,Petit,Casque,Potion magique,Romains\nObélix:Gaulois,Menhir,Gros,Sangliers,Romains\nTintin:Reporter,Houppe,Milou,Capitaine Haddock,Bande dessinée\nSqueezie:YouTube,Youtubeur,Gaming,Français,GP Explorer\nInoxtag:YouTube,Everest,Youtubeur,Kaizen,Français\nMichou:YouTube,Youtubeur,Cheveux bleus,Mini-jeux,Français\nGotaga:YouTube,Twitch,Call of Duty,Streamer,Français\nTibo InShape:YouTube,Muscu,Youtubeur,Sport,Français\nMister V:YouTube,Humoriste,Rappeur,Youtubeur,Français\nCyprien:YouTube,Humoriste,Sketchs,Youtubeur,Français\nLéna Situations:YouTube,Mode,Youtubeuse,Voyage,Française\nMastu:YouTube,Streamer,Jeux,Français,Twitch\nMrBeast:YouTube,Argent,Défis,Américain,Youtubeur\nIShowSpeed:YouTube,Cris,Football,Streamer,Américain\nFaker:League of Legends,Coréen,Joueur,E-sport,Légende\nKameto:Twitch,Streamer,Karmine Corp,League of Legends,Français\nMcFly et Carlito:YouTube,Duo,Défis,Youtubeurs,Français\nNorman:YouTube,Youtubeur,Vidéos,Humoriste,Français\nSeb la Frite:YouTube,Youtubeur,Jeux,Français,Streamer\nDoigby:Twitch,Streamer,Call of Duty,Français,Youtubeur\nLocklear:Twitch,Streamer,Jeux,Français,Youtubeur\nxQc:Twitch,Streamer,Canadien,Rapide,Jeux\nKai Cenat:Twitch,Streamer,Américain,Records,Abonnés\nNinja:Fortnite,Streamer,Cheveux bleus,Américain,Twitch\nPewDiePie:YouTube,Suédois,Youtubeur,Abonnés,Memes\nMarkiplier:YouTube,Américain,Jeux d'horreur,Youtubeur,Moustache\nJacksepticeye:YouTube,Irlandais,Cheveux verts,Jeux,Youtubeur\nTechnoblade:Minecraft,Cochon,Youtubeur,Couronne,Décédé\nPokimane:Twitch,Streamer,Canadienne,Jeux,Femme\nBigflo et Oli:Rap,Frères,Toulouse,Duo,Chanteurs\nNabilla:Téléréalité,Influenceuse,Marseille,Française,Ongles\nEmma CakeCup:YouTube,Youtubeuse,Gâteaux,Cuisine,Française\nJuju Fitcats:YouTube,Youtubeuse,Chats,Fitness,Française\nUltia:Twitch,Streamer,Jeux,Française,Femme\nBeyoncé:Chanteuse,Américaine,Jay-Z,Destiny's Child,Texas\nRihanna:Chanteuse,Barbade,Parapluie,Fenty,Maquillage\nTaylor Swift:Chanteuse,Blonde,Eras,Américaine,Country\nBillie Eilish:Chanteuse,Américaine,Cheveux verts,Frère,Bad Guy\nAriana Grande:Chanteuse,Queue de cheval,Américaine,Pop,Wicked\nDrake:Rappeur,Canadien,Toronto,Hotline Bling,Hibou\nEminem:Rappeur,Américain,Detroit,Slim Shady,Blond\nKanye West:Rappeur,Américain,Yeezy,Kardashian,Producteur\nBooba:Rappeur,Français,Duc de Boulogne,Barbe,Instagram\nNinho:Rappeur,Français,Essonne,Chaînes,Chanteur\nNekfeu:Rappeur,Français,Casquette,Rap,S-Crew\nOrelsan:Rappeur,Français,Normandie,Caen,Comédien\nStromae:Chanteur,Belge,Papaoutai,Nœud papillon,Alors on danse\nAngèle:Chanteuse,Belge,Blonde,Pop,Frérot\nOmar Sy:Acteur,Intouchables,Français,Humoriste,Lupin\nJamel Debbouze:Humoriste,Marrakech,Bras,Français,Acteur\nKev Adams:Humoriste,Français,Cheveux,Acteur,Scène\nLeonardo DiCaprio:Acteur,Titanic,Oscar,Américain,Jack\nBrad Pitt:Acteur,Blond,Américain,Hollywood,Beau gosse\nDwayne Johnson:Acteur,Catcheur,Chauve,Muscles,Rock\nTom Cruise:Acteur,Américain,Mission Impossible,Cascades,Hollywood\nZidane:Footballeur,Chauve,Coup de tête,Real Madrid,Français\nThierry Henry:Footballeur,Arsenal,Français,Attaquant,Bleus\nTeddy Riner:Judo,Géant,Champion,Français,Médailles\nTony Parker:Basket,NBA,Spurs,Français,Meneur\nLeBron James:Basket,NBA,Lakers,Américain,King\nMichael Jordan:Basket,Bulls,NBA,Chaussures,23\nUsain Bolt:Sprinteur,Jamaïque,Vitesse,Éclair,Athlète\nSerena Williams:Tennis,Américaine,Sœur,Championne,Raquette\nElon Musk:Milliardaire,Tesla,SpaceX,Twitter,Fusée\nJohnny Hallyday:Chanteur,Rock,Français,Idole,Moto\nCéline Dion:Chanteuse,Canadienne,Titanic,Las Vegas,Québécoise\nMichael Jackson:Chanteur,Moonwalk,Thriller,Roi de la pop,Gant\nAlbert Einstein:Scientifique,Relativité,Cheveux,Physicien,Langue\nNapoléon:Empereur,Français,Chapeau,Corse,Waterloo\nCléopâtre:Reine,Égypte,Pharaon,Romains,Antique\nPNL:Rap,Frères,Tarterêts,Duo,Français\nSCH:Rappeur,Français,Marseille,JVLIVIN,Chanteur\nDamso:Rappeur,Belge,Voix grave,Bruxelles,Chanteur\nGazo:Rappeur,Français,Drill,Chanteur,Chaînes\nTiakola:Rappeur,Français,Chanteur,Mélodies,Chaînes\nJosman:Rappeur,Français,Rap,Chanteur,Lunettes\nLomepal:Rappeur,Français,Tatouages,Skate,Chanteur\nVald:Rappeur,Français,Chanteur,Humour,Sérieux\nKaaris:Rappeur,Français,Sevran,Boxe,Chanteur\nSoprano:Rappeur,Marseillais,Chanteur,Français,Mon coin de paradis\nDadju:Chanteur,Français,Frère,Rap,RnB\nThe Weeknd:Chanteur,Canadien,Blinding Lights,Pop,Super Bowl\nTravis Scott:Rappeur,Américain,Houston,Astroworld,Cactus Jack\nPost Malone:Rappeur,Américain,Tatouages,Chanteur,Pop\nDua Lipa:Chanteuse,Britannique,Pop,Levitating,Brune\nOlivia Rodrigo:Chanteuse,Américaine,Drivers License,Pop,Jeune\nSabrina Carpenter:Chanteuse,Américaine,Blonde,Espresso,Pop\nDoja Cat:Chanteuse,Américaine,Rap,Chat,Pop\nBad Bunny:Chanteur,Portoricain,Reggaeton,Espagnol,Latino\nJustin Bieber:Chanteur,Canadien,Pop,Baby,Marié\nEd Sheeran:Chanteur,Britannique,Guitare,Roux,Shape of You\nHarry Styles:Chanteur,Britannique,One Direction,Acteur,Pop\nZendaya:Actrice,Américaine,Spider-Man,Euphoria,Chanteuse\nTimothée Chalamet:Acteur,Américain,Dune,Français,Cheveux\nTom Holland:Acteur,Britannique,Spider-Man,Marvel,Jeune\nMargot Robbie:Actrice,Australienne,Barbie,Blonde,Hollywood\nRyan Gosling:Acteur,Canadien,Ken,Drive,Hollywood\nRobert Pattinson:Acteur,Britannique,Twilight,Batman,Vampire\nJenna Ortega:Actrice,Américaine,Mercredi,Netflix,Brune\nMillie Bobby Brown:Actrice,Britannique,Stranger Things,Netflix,Jeune\nKim Kardashian:Téléréalité,Américaine,Kanye,Influenceuse,Famille\nCardi B:Rappeuse,Américaine,Bronx,Tatouages,Chanteuse\nNicki Minaj:Rappeuse,Trinidad,Perruque rose,Chanteuse,Barbie\nKendrick Lamar:Rappeur,Américain,Compton,Pulitzer,Chanteur\nTyler, the Creator:Rappeur,Américain,Perruque,Chanteur,Los Angeles\nErling Haaland:Footballeur,Norvégien,Manchester City,Buteur,Blond\nVinícius Júnior:Footballeur,Brésilien,Real Madrid,Ailier,Dribble\nJude Bellingham:Footballeur,Anglais,Real Madrid,Milieu,Célébration\nAntoine Griezmann:Footballeur,Français,Atlético,Bleus,Danse\nKevin De Bruyne:Footballeur,Belge,Manchester City,Passeur,Roux\nLéon Marchand:Nageur,Français,Papillon,Toulouse,Champion\nRafael Nadal:Tennis,Espagnol,Roland-Garros,Terre battue,Gaucher\nRoger Federer:Tennis,Suisse,Wimbledon,Revers,Légende\nNovak Djokovic:Tennis,Serbe,Open d'Australie,Numéro un,Champion\nCarlos Alcaraz:Tennis,Espagnol,Jeune,Champion,Raquette\nMax Verstappen:Formule 1,Néerlandais,Red Bull,Champion,Pilote\nLewis Hamilton:Formule 1,Britannique,Mercedes,Champion,Pilote\nConor McGregor:MMA,Irlandais,Combattant,Barbe,UFC\nVictor Wembanyama:Basket,Français,Géant,NBA,Spurs\nStephen Curry:Basket,NBA,Trois points,Warriors,Américain\nKobe Bryant:Basket,NBA,Lakers,Mamba,Américain\nPaul Pogba:Footballeur,Français,Juventus,Milieu,Coupe du monde\nN'Golo Kanté:Footballeur,Français,Petit,Milieu,Chelsea\nCillian Murphy:Acteur,Irlandais,Oppenheimer,Peaky Blinders,Yeux bleus\nPedro Pascal:Acteur,Chilien,Mandalorian,The Last of Us,Barbe\nKeanu Reeves:Acteur,Matrix,John Wick,Canadien,Hollywood\nScarlett Johansson:Actrice,Américaine,Black Widow,Blonde,Hollywood\nJason Statham:Acteur,Britannique,Chauve,Action,Transporteur\nWill Smith:Acteur,Américain,Prince de Bel-Air,Gifle,Hollywood\nGad Elmaleh:Humoriste,Marocain,Français,Acteur,Scène\nJean Dujardin:Acteur,Français,The Artist,OSS 117,Oscar\nPierre Niney:Acteur,Français,Comédie-Française,Cinéma,Brun\nCreeper:Minecraft,Vert,Explose,Jeu,Cubes\nHuggy Wuggy:Poppy Playtime,Bleu,Monstre,Jeu,Peluche\nSkibidi Toilet:Toilettes,Mème,Tête,YouTube,Caméras\nLabubu:Peluche,Dents,Pop Mart,Monstre,Porte-clés\nMinions:Jaune,Lunettes,Gru,Banane,Salopette\nGru:Méchant,Minions,Écharpe,Film,Lune\nSpider-Man:Araignée,Toile,Marvel,New York,Peter Parker\nVenom:Symbiote,Langue,Marvel,Noir,Spider-Man\nMercredi Addams:Tresses,Netflix,Famille,Noir,Gothique\nBob l'éponge:Jaune,Fond de l'océan,Carré,Crabe,Dessin animé\nMbappé:Footballeur,Français,Bleus,Real Madrid,Vitesse\nLamine Yamal:Footballeur,Espagnol,Barça,Jeune,Ailier\nMessi:Footballeur,Argentin,Barça,Ballon d'or,Petit\nCristiano Ronaldo:Footballeur,Portugais,Real Madrid,Siu,Ballon d'or\nOusmane Dembélé:Footballeur,Français,PSG,Ailier,Barça\nNeymar:Footballeur,Brésilien,PSG,Dribbleur,Barça\nJul:Rappeur,Marseille,Français,Albums,Chanteur\nGims:Chanteur,Rappeur,Lunettes,Français,Sexion d'Assaut\nAya Nakamura:Chanteuse,Française,Djadja,Pop,Mali\nShrek:Ogre,Vert,Marais,Âne,Fiona\nLe Chat Potté:Bottes,Épée,Félin,Orange,Shrek\nPatrick Étoile de mer:Rose,Ami,Bob l'éponge,Dessin animé,Pierre\nMonsieur Krabs:Crabe,Rouge,Argent,Restaurant,Bob l'éponge\nRick Sanchez:Scientifique,Rick et Morty,Portail,Cheveux bleus,Rot\nMorty Smith:Rick et Morty,Petit-fils,Jaune,Stress,Aventures\nStewie Griffin:Bébé,Famille,Complot,Têtu,Dessin animé\nPeter Griffin:Famille,Rire,Père,Gros,Dessin animé\nEric Cartman:South Park,Gros,Enfant,Bonnet,Dessin animé\nGarfield:Chat,Orange,Lasagnes,Lundi,Odie\nScooby-Doo:Chien,Fantômes,Mystère,Sandwich,Dessin animé\nBugs Bunny:Lapin,Carotte,Looney Tunes,Gris,Dessin animé\nTiti:Oiseau,Jaune,Grosminet,Looney Tunes,Cage\nDaffy Duck:Canard,Noir,Looney Tunes,Bec,Dessin animé\nHello Kitty:Chat,Nœud rose,Japon,Blanche,Sanrio\nPepe la grenouille:Mème,Vert,Internet,Triste,Amphibien\nDoge:Mème,Chien,Shiba,Internet,Crypto\nNyan Cat:Mème,Arc-en-ciel,Chat,Pop-tart,Internet\nBarbie:Poupée,Rose,Ken,Blonde,Mattel\nKen:Poupée,Barbie,Blond,Mattel,Plage\nPeppa Pig:Cochon,Rose,Dessin animé,Famille,Flaques\nTotoro:Ghibli,Forêt,Gros,Gris,Japonais\nTom:Chat,Souris,Poursuite,Gris,Dessin animé\nJerry:Souris,Chat,Poursuite,Fromage,Marron\nTiteuf:Mèche,Bande dessinée,Enfant,Zizi,Suisse\nKirikou:Petit,Afrique,Sorcière,Garçon,Film d'animation".split("\n").forEach(l => { const i = l.indexOf(":"); if (i > 0) m[norm(l.slice(0, i))] = l.slice(i + 1).split(","); }); return m; })();
+const sBan = c => (SEPT_BAN[norm(c.w)] || []).slice(0, scfg.ban);
+let scfg = Object.assign({ count: 4, names: dcfg.names.slice(), src: null, words: 15, ban: 3, time: 90 }, store.get("scfg", {}));
+scfg.modes = Object.assign({ ban: false, teams: false, timer: false, mime: false, turn: false }, scfg.modes || {});
+if (![1, 2, 3, 4, 5].includes(scfg.ban)) scfg.ban = 3;
+if (![60, 90, 120].includes(scfg.time)) scfg.time = 90;
+const sMode = m => m === "teams" ? !!(scfg.modes.teams && scfg.count >= 4 && scfg.count % 2 === 0) : !!scfg.modes[m];
+const sTeam = i => i % 2, sTeamName = t => t ? "Équipe B" : "Équipe A";
+const sSeekTeam = () => (SM.round - 1) % 2;
+const sWho = () => sMode("teams") ? sTeamName(sSeekTeam()) : sName(sSeeker());
+const sTeamMembers = t => [...Array(scfg.count).keys()].filter(i => sTeam(i) === t).map(sName);
 scfg.src = (scfg.src || sAllIds()).filter(id => sAllIds().includes(id)); if (!scfg.src.length) scfg.src = sAllIds();
 if (![10, 15, 20].includes(scfg.words)) scfg.words = 15;
 while (scfg.names.length < scfg.count) scfg.names.push("");
 const sSave = () => store.set("scfg", scfg);
-const sName = i => (scfg.names[i] || "").trim() || "Joueur " + (i + 1);
-let SM = { screen: "setup", cards: [], found: [], used: 0, round: 0, results: [], msg: "", seen: new Set(), swap: false, swaps: 0 };
+const sName = i => (scfg.names[i] || "").trim() || "Agent " + String(i + 1).padStart(2, "0");
+let SM = { screen: "setup", cards: [], found: [], used: 0, round: 0, results: [], msg: "", seen: new Set(), swap: false, swaps: 0, left: 0, last: 0, tm: null };
+const sTimeStop = () => { clearInterval(SM.tm); SM.tm = null; };
+const sClock = () => { const t = Math.max(0, Math.ceil(SM.left / 1000)); return Math.floor(t / 60) + ":" + String(t % 60).padStart(2, "0"); };
+function sTimeStart() {
+  sTimeStop(); if (!sMode("timer")) return;
+  SM.last = Date.now();
+  SM.tm = setInterval(() => {
+    if (SM.screen !== "play") { SM.last = Date.now(); return; }
+    const n = Date.now(); SM.left -= n - SM.last; SM.last = n;
+    const el = document.getElementById("sept-time"); if (el) { el.textContent = sClock(); el.classList.toggle("low", SM.left <= 10000); }
+    if (SM.left <= 0) { sTimeStop(); beep(220, .4, "sawtooth", .14); sFinish(); render(); }
+  }, 250);
+}
 function septCat(c) {
   const out = [], seen = new Set();
   const add = it => { const k = norm(it.w); if (seen.has(k) || (c.out || []).includes(it.w)) return; seen.add(k); out.push(Object.assign({}, it, { c: it.c })); };
@@ -4115,7 +4536,7 @@ function sDraw() {
   if (fresh.length < 7) { SM.seen.clear(); fresh = pool; }
   SM.cards = shuffle(fresh).slice(0, 7);
   SM.cards.forEach(c => { SM.seen.add(norm(c.w)); prefetchPick(c, true); });
-  SM.found = []; SM.used = 0; SM.swap = false; SM.swaps = 0;
+  SM.found = []; SM.used = 0; SM.swap = false; SM.swaps = 0; SM.left = scfg.time * 1000; sTimeStop();
 }
 function sStart() {
   if (septPool().length < 7) { SM.msg = "Il faut au moins 7 persos : ajoute des catégories."; return; }
@@ -4131,65 +4552,74 @@ function sSwap(k) {
   SM.cards[k] = n; SM.seen.add(norm(n.w)); prefetchPick(n, true); SM.swap = false; SM.swaps++;
 }
 function sFinish() {
-  SM.results.push({ seeker: sName(sSeeker()), found: SM.found.length, used: SM.used, swaps: SM.swaps, names: SM.cards.map(c => c.w), got: SM.cards.map((_, k) => SM.found.includes(k)) });
+  sTimeStop();
+  SM.results.push({ team: sSeekTeam(), seeker: sWho(), found: SM.found.length, used: SM.used, swaps: SM.swaps, names: SM.cards.map(c => c.w), got: SM.cards.map((_, k) => SM.found.includes(k)) });
   SM.screen = "result";
 }
 function sNext() {
   if (SM.round >= scfg.count) {
     const sc = SM.results.map(r => r.found * 100 - r.used), best = Math.max(...sc);
-    histAdd({ g: "sept", m: "local", p: [...Array(scfg.count).keys()].map(sName), w: SM.results.filter((r, k) => sc[k] === best).map(r => r.seeker), x: { rounds: scfg.count, found: SM.results.map(r => r.found) } });
+    let winners = SM.results.filter((r, k) => sc[k] === best).map(r => r.seeker);
+    if (sMode("teams")) { const T = sTeamScores(); if (T[0].s !== T[1].s) winners = sTeamMembers(T[0].t); }
+    histAdd({ g: "sept", m: "local", p: [...Array(scfg.count).keys()].map(sName), w: winners, x: { rounds: scfg.count, found: SM.results.map(r => r.found) } });
     SM.screen = "end"; return;
   }
   SM.round++; sDraw(); SM.screen = "pass";
 }
 const SEPT_ART = `<svg viewBox="0 0 120 120" aria-hidden="true"><g transform="rotate(-17 60 108)"><rect x="20" y="16" width="54" height="76" rx="8" fill="#8fae45"/></g><g transform="rotate(17 60 108)"><rect x="46" y="16" width="54" height="76" rx="8" fill="#a3c255"/></g><rect x="33" y="12" width="54" height="80" rx="8" fill="#f5eee3"/><circle cx="60" cy="42" r="12" fill="#b9d56b"/><path d="M38 84 C38 62 82 62 82 84 Z" fill="#b9d56b"/><circle cx="40" cy="20" r="2.4" fill="#2d2040"/><circle cx="80" cy="84" r="2.4" fill="#2d2040"/></svg>`;
 function sCard(c, k, play) {
-  const f = SM.found.includes(k), inner = `${charImg(c, "sept-img")}<span class="sept-name">${esc(c.w)}</span>`;
+  const bw = play && sMode("ban") ? sBan(c) : [];
+  const f = SM.found.includes(k), inner = `${charImg(c, "sept-img")}<span class="sept-name">${esc(c.w)}</span>${bw.length ? `<span class="sept-ban">${bw.map(esc).join("<br>")}</span>` : ""}`;
   if (play && SM.swap) return f ? `<div class="sept-card found">${inner}<b class="sept-n" aria-hidden="true">✓</b></div>` : `<button class="sept-card swap" data-act="s-swap" data-i="${k}" aria-label="Changer ${esc(c.w)}">${inner}<b class="sept-n sw" aria-hidden="true">↻</b></button>`;
   if (play) return `<button class="sept-card ${f ? "found" : ""}" data-act="s-found" data-i="${k}" aria-pressed="${f}" aria-label="${esc(c.w)}${f ? ", trouvé" : ""}">${inner}${f ? `<b class="sept-n" aria-hidden="true">✓</b>` : ""}</button>`;
   return `<div class="sept-card ${f ? "found" : ""}">${inner}${f ? `<b class="sept-n" aria-hidden="true">✓</b>` : ""}</div>`;
 }
 const sGrid = play => `<div class="sept-grid">${SM.cards.map((c, k) => sCard(c, k, play)).join("")}</div>`;
+const sTeamScores = () => [0, 1].map(t => { const rs = SM.results.filter(r => r.team === t); return { t, s: rs.reduce((a, r) => a + r.found * 100 - r.used, 0), f: rs.reduce((a, r) => a + r.found, 0), u: rs.reduce((a, r) => a + r.used, 0) }; }).sort((a, b) => b.s - a.s);
 const sRank = () => SM.results.map(r => ({ n: r.seeker, f: r.found, u: r.used })).sort((a, b) => b.f - a.f || a.u - b.u);
 function vSept() {
   if (SM.screen === "setup") {
-    const names = [...Array(scfg.count).keys()].map(i => `<div class="name-row"><span class="agent">${agent(i)}</span><input type="text" id="sname-${i}" data-sname="${i}" placeholder="Joueur ${i + 1}" maxlength="20" value="${esc(scfg.names[i] || "")}" autocomplete="off"></div>`).join("");
+    const names = [...Array(scfg.count).keys()].map(i => `<div class="name-row"><span class="agent">${agent(i)}</span><input type="text" id="sname-${i}" data-sname="${i}" placeholder="Agent ${String(i + 1).padStart(2, '0')}" maxlength="20" value="${esc(scfg.names[i] || "")}" autocomplete="off"></div>`).join("");
     return `${backHome}
     <header class="section">
       <span class="eyebrow">Un seul téléphone qu'on se passe</span>
       <h1>Sept Têtes</h1>
-      <p class="lead">Sept persos sont cachés à celui qui cherche. Les autres ont ${scfg.words} mots en tout pour les lui faire trouver. Chacun cherche à son tour.</p>
+      <p class="lead">Un cherche, les autres lui font trouver 7 persos en ${scfg.words} mots. Chacun cherche à son tour.</p>
     </header>
     ${resumeBlock("sept")}
     ${rulesBlock("sept")}
-    <section class="section"><span class="label">Joueurs, dans l'ordre où vous êtes assis</span>
+    <section class="section"><span class="label">Joueurs</span>
       <div class="stepper"><button data-act="s-count" data-d="-1" aria-label="Retirer un joueur">−</button><output>${scfg.count}</output><button data-act="s-count" data-d="1" aria-label="Ajouter un joueur">+</button></div>
       <div class="names">${names}</div>
       <p class="hint">${scfg.count} manches : chaque joueur est le chercheur une fois.</p></section>
     <section class="section"><span class="label">Catégories</span><div class="chips">${SEPT_CATS.map(c => `<button class="chip" data-act="s-src" data-id="${c.id}" aria-pressed="${scfg.src.includes(c.id)}">${esc(c.name)}<small>${septCat(c).length}</small></button>`).join("")}</div>
-      <p class="hint">Seulement des personnages et des personnalités, tirés de Devine Tête et d'Undercover. Les images viennent d'internet.</p></section>
-    <section class="section"><span class="label">Mots pour tout faire trouver</span><div class="chips">${[10, 15, 20].map(n => `<button class="chip" data-act="s-words" data-x="${n}" aria-pressed="${scfg.words === n}">${n}${n === 15 ? "<small>conseillé</small>" : ""}</button>`).join("")}</div></section>
+      </section>
+    <section class="section"><span class="label">Modes</span>
+      ${[["ban", "Mots bannis"], ["teams", "Équipes"], ["timer", "Chrono"], ["mime", "Mimes"], ["turn", "Un mot chacun"]].map(([m, t]) => `<div class="toggle"><div class="t-text"><div class="label">${t}</div>${m === "teams" && !(scfg.count >= 4 && scfg.count % 2 === 0) ? `<div class="t-sub">4 joueurs minimum, nombre pair.</div>` : ""}</div><button class="switch" role="switch" aria-label="${t}" aria-checked="${sMode(m)}" data-act="s-mode" data-m="${m}" ${m === "teams" && !(scfg.count >= 4 && scfg.count % 2 === 0) ? "disabled" : ""}></button></div>${m === "ban" && sMode("ban") ? `<div class="chips sept-sub" role="group" aria-label="Nombre de mots bannis">${[1, 2, 3, 4, 5].map(n => `<button class="chip" data-act="s-ban" data-x="${n}" aria-pressed="${scfg.ban === n}">${n}${n === 3 ? "<small>conseillé</small>" : ""}</button>`).join("")}</div>` : ""}${m === "timer" && sMode("timer") ? `<div class="chips sept-sub" role="group" aria-label="Durée">${[60, 90, 120].map(n => `<button class="chip" data-act="s-time" data-x="${n}" aria-pressed="${scfg.time === n}">${n} s</button>`).join("")}</div>` : ""}`).join("")}
+    </section>
+    <section class="section"><span class="label">Nombre de mots</span><div class="chips">${[10, 15, 20].map(n => `<button class="chip" data-act="s-words" data-x="${n}" aria-pressed="${scfg.words === n}">${n}${n === 15 ? "<small>conseillé</small>" : ""}</button>`).join("")}</div></section>
     <p class="msg">${esc(SM.msg)}</p>
     <button class="btn${PZ.sept && SM.screen === "setup" ? "-ghost" : ""}" data-act="s-start">${PZ.sept ? "Nouvelle partie" : "Lancer la partie"}</button>`;
   }
   const head = `<header class="section"><span class="eyebrow">Manche ${SM.round} sur ${scfg.count}</span></header>`;
   if (SM.screen === "pass") {
-    return `${backHome}${head}<div class="sept-pass"><p class="eyebrow">Celui qui cherche</p><p class="sept-who">${esc(sName(sSeeker()))}</p>
-      <p class="lead">Tu fermes les yeux ou tu te retournes. Les autres regardent les sept têtes et ont ${scfg.words} mots en tout pour te les faire trouver.</p>
+    return `${backHome}${head}<div class="sept-pass"><p class="eyebrow">${sMode("teams") ? "Équipe qui cherche" : "Celui qui cherche"}</p><p class="sept-who">${esc(sWho())}</p>${sMode("teams") ? `<p class="hint">${esc(sTeamMembers(sSeekTeam()).join(" et "))}</p>` : ""}
+      <p class="lead">${sMode("teams") ? `Vous fermez les yeux. ${esc(sTeamName(1 - sSeekTeam()))} (${esc(sTeamMembers(1 - sSeekTeam()).join(" et "))}) a ${scfg.words} mots pour vous faire trouver les têtes.` : `Tu fermes les yeux ou tu te retournes. Les autres regardent les sept têtes et ont ${scfg.words} mots en tout pour te les faire trouver.`}</p>
       <button class="btn bomb-pass" data-act="s-ready">Les autres voient les têtes</button>
       <button class="btn-ghost" data-act="s-redraw">Autres têtes</button>
       <button class="btn-ghost" data-act="s-setup">Réglages</button></div>`;
   }
   if (SM.screen === "play") {
     const left = scfg.words - SM.used, over = left <= 0;
-    return `${backHome}<header class="section"><span class="eyebrow">${esc(sName(sSeeker()))} cherche · ${SM.found.length}/7 trouvés</span></header>
+    return `${backHome}<header class="section"><span class="eyebrow">${esc(sWho())} cherche · ${SM.found.length}/7 trouvés</span></header>
+    ${sMode("timer") ? `<p class="sept-time ${SM.left <= 10000 ? "low" : ""}" id="sept-time" role="timer">${sClock()}</p>` : ""}
     ${sGrid(true)}
     <div class="sept-count ${over ? "over" : left <= 3 ? "low" : ""}" role="group" aria-label="Mots utilisés">
       <button class="btn-small" data-act="s-minus" aria-label="Un mot de moins" ${SM.used ? "" : "disabled"}>−</button>
       <p aria-live="polite"><b>${left > 0 ? left : 0}</b> mot${left > 1 ? "s" : ""} restant${left > 1 ? "s" : ""} <small>sur ${scfg.words}</small></p>
       <button class="btn-small" data-act="s-plus" aria-label="Un mot de plus" ${over ? "disabled" : ""}>+1 mot</button>
     </div>
-    ${SM.swap ? `<p class="hint"><b>Touche la tête à remplacer.</b> Les têtes déjà trouvées ne changent pas.</p>` : `<p class="hint">Chaque mot dit à voix haute compte : appuie sur +1 mot. Quand le chercheur trouve une tête, touche-la. Interdit de dire le nom ou une partie du nom.</p>`}
+    ${SM.swap ? `<p class="hint"><b>Touche la tête à remplacer.</b> Les têtes déjà trouvées ne changent pas.</p>` : `<p class="hint">Chaque mot dit compte : appuie sur +1 mot. Quand le chercheur trouve une tête, touche-la. Interdit de dire le nom${sMode("ban") ? " ou un mot banni (+1 mot)" : ""}.${sMode("mime") ? " Pas de parole : gestes et bruitages." : ""}${sMode("turn") ? " Un mot chacun, à tour de rôle." : ""}${sMode("teams") ? ` ${sTeamName(1 - sSeekTeam())} donne les mots, à deux.` : ""}</p>`}
     <button class="btn-ghost" data-act="s-swapmode">${SM.swap ? "Annuler" : "Une tête est inconnue : la changer"}</button>
     <button class="btn-ghost" data-act="s-end">${SM.found.length === 7 ? "Voir le résultat" : "Arrêter la manche"}</button>`;
   }
@@ -4198,16 +4628,15 @@ function vSept() {
     return `${head}<div class="bomb-boom"><h1 class="bomb-loser">${r.found} sur 7</h1>
       <p class="lead">${esc(r.seeker)} a trouvé ${r.found} tête${r.found > 1 ? "s" : ""} avec ${r.used} mot${r.used > 1 ? "s" : ""}.</p></div>
     <div class="sept-grid">${SM.cards.map((c, k) => `<div class="sept-card ${r.got[k] ? "found" : "miss"}">${charImg(c, "sept-img")}<span class="sept-name">${esc(c.w)}</span>${r.got[k] ? `<b class="sept-n" aria-hidden="true">✓</b>` : ""}</div>`).join("")}</div>
-    <p class="hint">Les têtes en gris n'ont pas été trouvées. Images : Wikipédia, MyAnimeList ou Pokémon.</p>
     <button class="btn" data-act="s-next">${SM.round >= scfg.count ? "Voir le classement" : "Manche suivante"}</button>`;
   }
-  const rk = sRank(), top = rk[0];
-  const rows = rk.map((r, k) => `<div class="score-row ${r.f === top.f && r.u === top.u ? "lead-row" : ""}"><span>${esc(r.n)}</span><b>${r.f}/7 · ${r.u} mot${r.u > 1 ? "s" : ""}</b></div>`).join("");
+  const rk = sRank(), top = rk[0], T = sMode("teams") ? sTeamScores() : null;
+  const rows = T ? T.map((x, k) => `<div class="score-row ${k === 0 && x.s !== T[1].s ? "lead-row" : ""}"><span>${sTeamName(x.t)}</span><b>${x.f} têtes · ${x.u} mot${x.u > 1 ? "s" : ""}</b></div>`).join("") : rk.map((r, k) => `<div class="score-row ${r.f === top.f && r.u === top.u ? "lead-row" : ""}"><span>${esc(r.n)}</span><b>${r.f}/7 · ${r.u} mot${r.u > 1 ? "s" : ""}</b></div>`).join("");
   return `${backHome}<div class="bomb-boom">
     <p class="eyebrow">Fin de la partie</p>
-    <h1 class="bomb-loser">${esc(top.n)}</h1>
-    <p class="lead">est le meilleur chercheur : ${top.f} têtes sur 7 en ${top.u} mots.</p>
-    <section class="section"><span class="label">Classement des chercheurs</span><div class="scores">${rows}</div></section>
+    <h1 class="bomb-loser">${T ? (T[0].s === T[1].s ? "Égalité" : sTeamName(T[0].t)) : esc(top.n)}</h1>
+    <p class="lead">${T ? (T[0].s === T[1].s ? "" : `gagne : ${T[0].f} têtes en ${T[0].u} mots.`) : `est le meilleur chercheur : ${top.f} têtes sur 7 en ${top.u} mots.`}</p>
+    <section class="section"><span class="label">${T ? "Équipes" : "Classement des chercheurs"}</span><div class="scores">${rows}</div></section>
     <button class="btn" data-act="s-again">Rejouer</button>
     <button class="btn-ghost" data-act="s-setup">Réglages</button>
   </div>`;
@@ -4226,14 +4655,14 @@ const ICON_ONLINE = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 9
    notifications, confettis, roue des jeux
    ========================================================= */
 const GAMES = [
-  { id: "uc", name: "Undercover", min: 3, max: 10, color: "#e3807a", local: "go-uc", online: "uc", desc: "Tout le monde a le même mot, sauf l'intrus. Indices, vote, démasquez-le." },
-  { id: "dt", name: "Devine Tête", min: 2, max: 10, color: "#7ec79c", local: "go-dt", online: "qs", desc: "Trouve ton perso en posant des questions oui ou non." },
-  { id: "lg", name: "Loup-Garou", min: 4, max: 12, color: "#d98fb1", online: "lg", desc: "12 rôles, l'appli fait le narrateur. Idéal à partir de 6." },
-  { id: "qd", name: "Qui a dit ça ?", min: 3, max: 12, color: "#a79ae3", online: "qd", desc: "Une question, des réponses secrètes : devine qui a écrit quoi." },
+  { id: "uc", name: "Undercover", min: 3, max: 10, color: "#e3807a", local: "go-uc", online: "uc", desc: "Un intrus a un mot proche du vôtre. Donnez des indices, démasquez-le." },
+  { id: "dt", name: "Devine Tête", min: 2, max: 10, color: "#7ec79c", local: "go-dt", online: "qs", desc: "Pose des questions pour deviner ton personnage." },
+  { id: "lg", name: "Loup-Garou", min: 4, max: 12, color: "#d98fb1", online: "lg", desc: "Villageois contre loups-garous. L'appli guide les nuits et les votes." },
+  { id: "qd", name: "Qui a dit ça ?", min: 3, max: 12, color: "#a79ae3", online: "qd", desc: "Réponses anonymes : devinez qui a écrit quoi." },
   { id: "dr", name: "Imposteur dessin", min: 3, max: 10, color: "#7eb3dd", online: "dr", desc: "Un dessin à plusieurs, un trait chacun. L'imposteur ne connaît pas le mot." },
-  { id: "bomb", name: "La Bombe", min: 2, max: 12, color: "#e9a15c", local: "go-bomb", desc: "Un thème, un tic-tac, une réponse chacun. Celui qui tient la bombe quand elle explose prend un gage." },
-  { id: "tp", name: "Tu préfères", min: 2, max: 12, color: "#6dc5bb", local: "go-tp", online: "tp", desc: "Deux choix impossibles. Chacun choisit, puis on voit qui est seul dans son camp." },
-  { id: "sept", name: "Sept Têtes", min: 2, max: 10, color: "#b9d56b", local: "go-sept", desc: "Sept persos cachés, 15 mots d'indices pour les faire trouver à celui qui cherche." }
+  { id: "bomb", name: "La Bombe", min: 2, max: 12, color: "#e9a15c", local: "go-bomb", desc: "Une réponse chacun avant de passer la bombe. Celui qui l'a quand elle explose prend un gage." },
+  { id: "tp", name: "Tu préfères", min: 2, max: 12, color: "#6dc5bb", local: "go-tp", online: "tp", desc: "Deux choix, chacun répond. Qui est seul dans son camp ?" },
+  { id: "sept", name: "Sept Têtes", min: 2, max: 10, color: "#b9d56b", local: "go-sept", desc: "Fais trouver sept persos avec un nombre de mots limité." }
 ];
 const gameById = id => GAMES.find(g => g.id === id);
 const ONLINE_TO_GAME = { uc: "uc", qs: "dt", lg: "lg", qd: "qd", dr: "dr", tp: "tp" };
@@ -4374,6 +4803,11 @@ function homeList() {
 const ICON_STAR = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z" fill="currentColor"/></svg>`;
 const ICON_SOUND = on => on ? `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9z" fill="currentColor"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>`
   : `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9z" fill="currentColor"/><path d="M16.5 9.5l5 5M21.5 9.5l-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>`;
+const ICON_PEOPLE = `<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.2" fill="currentColor"/><path d="M3 20c0-3.6 2.7-6 6-6s6 2.4 6 6z" fill="currentColor"/><circle cx="17" cy="9" r="2.5" fill="currentColor" opacity=".7"/><path d="M16.5 14.2c3 0 4.8 2 4.8 5.3h-4.2c0-2-.6-3.8-1.7-4.9z" fill="currentColor" opacity=".7"/></svg>`;
+const ICON_ARROW = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+const ICON_BOOK = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4.5A2.5 2.5 0 0 1 7.5 2H19v17H7.5A2.5 2.5 0 0 0 5 21.5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M5 21.5A2.5 2.5 0 0 1 7.5 19H19v3H7.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>`;
+const ICON_WIFI = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 9a14 14 0 0 1 19 0M5.5 12.5a9.5 9.5 0 0 1 13 0M8.6 16a5 5 0 0 1 6.8 0" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="12" cy="19.3" r="1.7" fill="currentColor"/></svg>`;
+const GAME_TAG = { uc: "Bluff et déduction", dt: "Devinettes", lg: "Rôles cachés", qd: "Ambiance et bluff", dr: "Dessin et bluff", bomb: "Rapidité et gages", tp: "Débats", sept: "Indices" };
 const ICON_TROPHY = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h10v5a5 5 0 0 1-10 0z" fill="currentColor"/><path d="M7 5H3.5a3.5 3.5 0 0 0 4 4.5M17 5h3.5a3.5 3.5 0 0 1-4 4.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M10.5 13h3v4h-3z M7.5 18h9v3h-9z" fill="currentColor"/></svg>`;
 const ICON_DICE = `<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="8" cy="8" r="1.6" fill="currentColor"/><circle cx="16" cy="16" r="1.6" fill="currentColor"/><circle cx="12" cy="12" r="1.6" fill="currentColor"/><circle cx="16" cy="8" r="1.6" fill="currentColor"/><circle cx="8" cy="16" r="1.6" fill="currentColor"/></svg>`;
 const LOGO = (cls, tag) => `<${tag || "span"} class="logo ${cls || ""}" aria-label="Simwar">S<span class="ii" aria-hidden="true">ı<i></i></span>mwar</${tag || "span"}>`;
@@ -4386,63 +4820,72 @@ function topBar() {
   const g = viewGame();
   const crumb = g ? `<span class="crumb" style="--gc:${g.color}">${esc(g.name)}</span>` : S.view === "stats" ? `<span class="crumb">Stats</span>` : S.view === "catalog" ? `<span class="crumb">Catalogue</span>` : "";
   return `<nav class="topbar" aria-label="Navigation">
-    ${home ? `<button class="tb-home" data-act="home" aria-label="Retour à l'accueil">${LOGO()}${crumb}</button>` : `<span></span>`}
+    ${home ? `<button class="tb-home" data-act="home" aria-label="Retour à l'accueil">${LOGO()}${crumb}</button>` : `<button class="tb-brand" data-act="h-top" aria-label="Remonter en haut">${LOGO()}</button>`}
     <div class="tb-right">
       <button class="tb-btn" data-act="sound" aria-pressed="${prefs.sound}" aria-label="${prefs.sound ? "Couper le son" : "Activer le son"}" title="${prefs.sound ? "Son activé" : "Son coupé"}">${ICON_SOUND(prefs.sound)}</button>
+      <button class="tb-btn" data-act="go-catalog" aria-label="Catalogue des mots" title="Catalogue des mots" ${S.view === "catalog" ? 'aria-current="page"' : ""}>${ICON_BOOK}</button>
       <button class="tb-btn" data-act="go-stats" aria-label="Stats et succès" title="Stats et succès" ${S.view === "stats" ? 'aria-current="page"' : ""}>${ICON_TROPHY}</button>
     </div>
   </nav>`;
 }
-function gameBox(g) {
+function gameBox(g, idx) {
   const n = prefs.count, ok = fitCount(g, n), fav = prefs.fav.includes(g.id);
   const played = HIST.filter(h => h.g === g.id).length;
   const why = ok ? "" : n < g.min ? `Il faut au moins ${g.min} joueurs` : `${g.max} joueurs maximum`;
   const local = g.local ? `<button class="mode-btn" data-act="${g.local}">${ICON_LOCAL}Local</button>` : "";
   const online = g.online ? `<button class="mode-btn on" data-act="go-online" data-g="${g.online}">${ICON_ONLINE}En ligne</button>` : "";
-  return `<article class="gbox ${ok ? "" : "off"}" id="g-${g.id}" style="--gc:${g.color}">
+  return `<article class="gbox ${ok ? "" : "off"}" id="g-${g.id}" style="--gc:${g.color};--i:${idx || 0}">
     <button class="fav" data-act="fav" data-g="${g.id}" aria-pressed="${fav}" aria-label="${fav ? "Retirer " + esc(g.name) + " des favoris" : "Mettre " + esc(g.name) + " en favori"}">${ICON_STAR}</button>
-    <div class="gbox-plate"><div class="gbox-art">${gameArt(g.id)}</div></div>
+    <div class="gbox-plate"><div class="gbox-ghost" aria-hidden="true">${gameArt(g.id)}</div><div class="gbox-art">${gameArt(g.id)}</div></div>
+    <span class="gbox-tag">${esc(GAME_TAG[g.id] || "")}</span>
     <h2 class="gbox-name">${esc(g.name)}</h2>
     <p class="gbox-desc">${esc(g.desc)}</p>
-    <p class="gbox-meta"><span>${g.min} à ${g.max} joueurs</span>${why ? `<span class="why">${why}</span>` : played ? `<span>${played} ${g.id === "bomb" ? "manche" : "partie"}${played > 1 ? "s" : ""}</span>` : ""}</p>
+    <p class="gbox-meta"><span>${ICON_PEOPLE}${g.min} à ${g.max} joueurs</span>${why ? `<span class="why">${why}</span>` : played ? `<span>${played} ${g.id === "bomb" ? "manche" : "partie"}${played > 1 ? "s" : ""}</span>` : ""}</p>
     <div class="modes ${local && online ? "" : "single"}">${local}${online}</div>
   </article>`;
 }
+const NUMW = ["", "Un", "Deux", "Trois", "Quatre", "Cinq", "Six", "Sept", "Huit", "Neuf", "Dix", "Onze", "Douze"];
 function vHomeNew() {
   const n = prefs.count;
   const fits = GAMES.filter(g => fitCount(g, n));
   const room = S.view === "home" && O.screen === "room" && O.view;
   const last = prefs.last && gameById(prefs.last.g);
   const lastBtn = last && !room ? (prefs.last.mode === "online" && last.online
-    ? `<button class="replay" data-act="go-online" data-g="${last.online}" style="--gc:${last.color}"><span class="replay-art">${gameArt(last.id)}</span><span><b>Rejouer à ${esc(last.name)}</b><small>en ligne</small></span></button>`
-    : last.local ? `<button class="replay" data-act="${last.local}" style="--gc:${last.color}"><span class="replay-art">${gameArt(last.id)}</span><span><b>Rejouer à ${esc(last.name)}</b><small>mêmes joueurs, sur ce téléphone</small></span></button>` : "") : "";
+    ? `<button class="replay" data-act="go-online" data-g="${last.online}" style="--gc:${last.color}"><span class="replay-art">${gameArt(last.id)}</span><span><b>Rejouer à ${esc(last.name)}</b><small>En ligne</small></span></button>`
+    : last.local ? `<button class="replay" data-act="${last.local}" style="--gc:${last.color}"><span class="replay-art">${gameArt(last.id)}</span><span><b>Rejouer à ${esc(last.name)}</b><small>Mêmes joueurs</small></span></button>` : "") : "";
   const intro = HM.introDone ? "" : "intro";
   const R = [-28, -20, -12, -4, 4, 12, 20, 28];
-  return `<div class="home-top"><header class="hero">
+  const ph = (Date.now() / 1000) % 7, shine = (Date.now() / 1000) % 5;
+  const pmin = Math.min(...GAMES.map(g => g.min)), pmax = Math.max(...GAMES.map(g => g.max));
+  return `<div class="home-top"><header class="hero ${intro}">
     ${LOGO(intro, "h1")}
-    <p class="hero-list">Undercover, Devine Tête, Loup-Garou, Qui a dit ça ?, Imposteur dessin, La Bombe, Tu préfères et Sept Têtes. Sur un seul téléphone ou chacun le sien.</p>
   </header>
-  <div class="hand ${intro}" role="group" aria-label="Aller directement à un jeu">${GAMES.map((g, k) => `<button class="hand-card" data-act="h-jump" data-g="${g.id}" style="--gc:${g.color};--r:${R[k]}deg;--k:${k}" aria-label="${esc(g.name)}">${gameArt(g.id)}</button>`).join("")}</div>
+  <div class="hand-stage"><div class="hand ${intro}" style="animation-delay:-${ph.toFixed(2)}s" role="group" aria-label="Aller directement à un jeu">${GAMES.map((g, k) => `<button class="hand-card" data-act="h-jump" data-g="${g.id}" style="--gc:${g.color};--r:${R[k]}deg;--k:${k}" aria-label="${esc(g.name)}">${gameArt(g.id)}</button>`).join("")}</div></div>
+  <div class="hero-cta ${intro}">
+    <button class="btn hero-play" data-act="h-scroll" style="--sd:-${shine.toFixed(2)}s">Choisir un jeu${ICON_ARROW}</button>
+    <button class="hero-alt" data-act="wheel-open">${ICON_DICE}Jeu au hasard</button>
+  </div>
   ${room ? `<button class="btn" data-act="go-online" style="grid-column:1/-1">Retourner au lobby ${esc(O.view.code)}</button>` : ""}
   ${O.resumeCode && ONLINE_OK && !(O.isHost && L) ? `<button class="btn" data-act="o-resume-home" style="grid-column:1/-1">Reprendre mon lobby ${esc(O.resumeCode)}</button>` : ""}
   <section class="crew" aria-label="Filtrer les jeux">
     <div class="crew-count">
-      <span class="label" id="crew-l">On est combien ?</span>
+      <span class="label" id="crew-l">Joueurs</span>
       <div class="stepper" role="group" aria-labelledby="crew-l">
         <button data-act="h-count" data-d="-1" aria-label="Un joueur de moins">−</button><output aria-live="polite">${n}</output><button data-act="h-count" data-d="1" aria-label="Un joueur de plus">+</button>
       </div>
       <span class="crew-fit">${fits.length} jeu${fits.length > 1 ? "x" : ""} possible${fits.length > 1 ? "s" : ""}</span>
     </div>
     <div class="seg" role="group" aria-label="Façon de jouer">
-      ${[["all", "Tous"], ["local", "Un seul téléphone"], ["online", "Chacun le sien"]].map(([k, l]) => `<button data-act="h-mode" data-x="${k}" aria-pressed="${prefs.mode === k}">${l}</button>`).join("")}
+      ${[["all", "Tous"], ["local", "Un téléphone"], ["online", "En ligne"]].map(([k, l]) => `<button data-act="h-mode" data-x="${k}" aria-pressed="${prefs.mode === k}">${l}</button>`).join("")}
     </div>
   </section></div>
   ${lastBtn}
+  <div class="sec-head" id="home-games"><h2>Les jeux</h2></div>
   <div class="games">${homeList().map(gameBox).join("")}</div>
   <section class="home-tools">
-    <button class="tool" data-act="wheel-open"><span class="tool-ico">${ICON_DICE}</span><span><b>À quoi on joue ?</b><small>La roue choisit parmi les jeux possibles à ${n}</small></span></button>
+    <button class="tool" data-act="wheel-open"><span class="tool-ico">${ICON_DICE}</span><span><b>Jeu au hasard</b></span></button>
     <div class="quickjoin">
-      <label class="label" for="home-code">Rejoindre une partie avec un code</label>
+      <label class="label" for="home-code">Code de la partie</label>
       <div class="qj-row">
         <input type="text" id="home-code" class="code-input" data-o="code" maxlength="4" value="${esc(O.code)}" placeholder="KXPM" autocomplete="off" autocapitalize="characters">
         <button class="btn" data-act="o-quickjoin">Rejoindre</button>
@@ -4466,8 +4909,8 @@ function vWheel() {
   const res = HM.result && gameById(HM.result);
   return `<div class="sheet-back" data-act="wheel-close"></div>
   <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="wheel-t">
-    <h2 id="wheel-t">À quoi on joue ?</h2>
-    <p class="lead">${list.length ? `Parmi les ${list.length} jeux possibles à ${prefs.count}.` : `Aucun jeu ne marche à ${prefs.count} avec ce filtre.`}</p>
+    <h2 id="wheel-t">Jeu au hasard</h2>
+    ${list.length ? "" : `<p class="lead">Aucun jeu possible.</p>`}
     ${list.length ? `<div class="wheel-wrap"><span class="wheel-pin" aria-hidden="true"></span>
       <div class="wheel" id="wheel" style="background:conic-gradient(${grad});transform:rotate(${HM.rot}deg)">
         ${list.map((g, i) => `<span class="wheel-lab" style="transform:rotate(${(i + .5) * seg}deg)"><b>${esc(WHEEL_LAB[g.id] || g.name)}</b></span>`).join("")}
@@ -4517,12 +4960,11 @@ function vStats() {
   const unlocked = ACH.filter(a => ACHS[a.id]).length;
   const fmt = t => new Date(t).toLocaleDateString("fr-FR", { day: "numeric", month: "short" }) + " " + new Date(t).toLocaleTimeString("fr-FR", { hour: "2-digit", minute: "2-digit" });
   const last = H.slice(-25).reverse();
-  return `<header class="section"><h1>Stats</h1>
-    <p class="lead">${HIST.length ? `Tout est enregistré sur cet appareil : les parties locales, et les parties en ligne auxquelles il a participé.` : `Rien pour l'instant. Termine une partie et elle apparaîtra ici.`}</p></header>
+  return `<header class="section"><h1>Stats et succès</h1>
+    <p class="lead">${HIST.length ? `` : `Aucune partie.`}</p></header>
     <div class="seg" role="group" aria-label="Période"><button data-act="st-range" data-x="all" aria-pressed="${ST.range === "all"}">Depuis le début</button><button data-act="st-range" data-x="today" aria-pressed="${ST.range === "today"}">Ce soir</button></div>
     <section class="section"><h2 class="h3">Classement des joueurs</h2>
-      ${rows.length ? `<ol class="rank">${rows.map((r, i) => `<li class="${i === 0 && r.w ? "top" : ""}"><span class="rk">${i + 1}</span><span class="rn">${esc(r.n)}</span><span class="rbar"><i style="width:${r.w / maxW * 100}%"></i></span><b>${r.w} victoire${r.w > 1 ? "s" : ""}</b></li>`).join("")}</ol>
-      <p class="hint">Victoires sur toutes les parties. Les joueurs sont reconnus à leur prénom.</p>` : `<p class="hint">${ST.range === "today" ? "Personne n'a encore gagné ce soir." : "Personne n'a encore gagné."}</p>`}
+      ${rows.length ? `<ol class="rank">${rows.map((r, i) => `<li class="${i === 0 && r.w ? "top" : ""}"><span class="rk">${i + 1}</span><span class="rn">${esc(r.n)}</span><span class="rbar"><i style="width:${r.w / maxW * 100}%"></i></span><b>${r.w} victoire${r.w > 1 ? "s" : ""}</b></li>`).join("")}</ol>` : `<p class="hint">${ST.range === "today" ? "Personne n'a encore gagné ce soir." : "Personne n'a encore gagné."}</p>`}
     </section>
     ${H.length ? `<section class="section"><h2 class="h3">Jeux les plus joués</h2>
       <div class="gstats">${byGame.map(({ g, k }) => `<div class="gstat" style="--gc:${g.color}"><span>${esc(g.name)}</span><span class="rbar"><i style="width:${k / maxG * 100}%"></i></span><b>${k}</b></div>`).join("")}</div>
@@ -4664,6 +5106,28 @@ document.addEventListener("keydown", e => {
   if (e.key === "Enter" && e.target.id === "o-draft") { const b = document.querySelector('[data-a="qs-custom"]'); if (b) b.click(); return; }
 });
 
+/* Barre du haut : verre au défilement, logo qui apparaît quand le grand logo sort de l'écran */
+(function () {
+  const upd = () => { const y = window.scrollY || 0; document.body.classList.toggle("scrolled", y > 6); document.body.classList.toggle("past-hero", y > 150); };
+  window.addEventListener("scroll", upd, { passive: true }); upd();
+})();
+/* Cartes de jeux : lueur qui suit la souris et légère inclinaison (souris seulement, jamais au toucher) */
+(function () {
+  let raf = 0;
+  document.addEventListener("pointermove", e => {
+    if (e.pointerType !== "mouse" || raf) return;
+    const c = e.target.closest && e.target.closest(".gbox"); if (!c) return;
+    raf = requestAnimationFrame(() => {
+      raf = 0; const r = c.getBoundingClientRect(), x = e.clientX - r.left, y = e.clientY - r.top;
+      c.style.setProperty("--mx", x + "px"); c.style.setProperty("--my", y + "px");
+      if (!reduceMotion()) { c.style.setProperty("--ry", ((x / r.width - .5) * 5).toFixed(2) + "deg"); c.style.setProperty("--rx", ((y / r.height - .5) * -5).toFixed(2) + "deg"); }
+    });
+  }, { passive: true });
+  document.addEventListener("pointerout", e => {
+    const c = e.target.closest && e.target.closest(".gbox"); if (!c || (e.relatedTarget && c.contains(e.relatedTarget))) return;
+    c.style.removeProperty("--rx"); c.style.removeProperty("--ry");
+  }, { passive: true });
+})();
 document.addEventListener("click", e => {
   const b = e.target.closest("[data-act]");
   if (!b) return;
@@ -4686,6 +5150,8 @@ function onAct(e, b) {
     case "h-count": prefs.count = Math.min(12, Math.max(2, prefs.count + +b.dataset.d)); prefsSave(); break;
     case "h-mode": prefs.mode = ["local", "online"].includes(b.dataset.x) ? b.dataset.x : "all"; prefsSave(); break;
     case "wheel-open": HM.wheel = true; HM.result = null; break;
+    case "h-scroll": { setTimeout(() => { const el = document.getElementById("home-games"); if (el) el.scrollIntoView({ behavior: reduceMotion() ? "auto" : "smooth", block: "start" }); }, 30); break; }
+    case "h-top": window.scrollTo({ top: 0, behavior: reduceMotion() ? "auto" : "smooth" }); return;
     case "h-jump": { const el = document.getElementById("g-" + b.dataset.g); if (el) { el.scrollIntoView({ behavior: reduceMotion() ? "auto" : "smooth", block: "center" }); el.classList.remove("ping"); void el.offsetWidth; el.classList.add("ping"); } return; }
     case "wheel-close": if (HM.spinning) return; HM.wheel = false; break;
     case "wheel-spin": return wheelSpin();
@@ -4704,7 +5170,10 @@ function onAct(e, b) {
     case "s-words": scfg.words = [10, 15, 20].includes(+b.dataset.x) ? +b.dataset.x : 15; sSave(); break;
     case "s-start": PZ.sept = null; initAudio(); setLast("sept", "local"); sStart(); break;
     case "s-redraw": sDraw(); break;
-    case "s-ready": SM.screen = "play"; break;
+    case "s-ready": SM.screen = "play"; sTimeStart(); break;
+    case "s-mode": { const m = b.dataset.m; if (m in scfg.modes) { scfg.modes[m] = !scfg.modes[m]; sSave(); } break; }
+    case "s-ban": scfg.ban = [1, 2, 3, 4, 5].includes(+b.dataset.x) ? +b.dataset.x : 3; sSave(); break;
+    case "s-time": scfg.time = [60, 90, 120].includes(+b.dataset.x) ? +b.dataset.x : 90; sSave(); break;
     case "s-swapmode": SM.swap = !SM.swap; break;
     case "s-swap": sSwap(+b.dataset.i); break;
     case "s-found": { const k = +b.dataset.i; SM.found = SM.found.includes(k) ? SM.found.filter(x => x !== k) : SM.found.concat(k); if (SM.found.includes(k)) beep(880, .08, "triangle", .14); break; }
@@ -4734,8 +5203,14 @@ function onAct(e, b) {
     case "tp-setup": gamePause("tp"); break;
     case "cat-rm": catToggle(b.dataset.l, b.dataset.k); CAT.text = ""; break;
     case "cat-copy": return catCopy();
+    case "v-run": vRun(false); return;
+    case "v-force": vRun(true); return;
+    case "v-stop": VS.stop = true; break;
+    case "v-ok": vDecide(b.dataset.k, true); break;
+    case "v-no": vDecide(b.dataset.k, false); break;
+    case "v-csv": vDownload(b.dataset.t); return;
     case "cat-askreset": CAT.confirmReset = true; break;
-    case "cat-reset": CUR.uc = []; CUR.dt = []; CUR.bad = []; saveCur(); CAT.confirmReset = false; CAT.text = ""; break;
+    case "cat-reset": CUR.uc = []; CUR.dt = []; CUR.bad = []; CUR.ok = []; saveCur(); CAT.confirmReset = false; CAT.text = ""; break;
     case "go-online": if (ONLINE_OK) ensureFb().catch(() => {}); S.view = "online"; if (O.screen !== "room") { O.pendingGame = b.dataset.g || null; O.msg = ""; } break;
     case "o-quickjoin": if (ONLINE_OK) ensureFb().catch(() => {});
       S.view = "online"; O.pendingGame = null;
