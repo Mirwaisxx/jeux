@@ -4126,7 +4126,7 @@ const GAME_RULES = {
   qs: ["Chacun a un perso choisi par les autres, qu'il ne voit pas.", "À ton tour, une seule question. Les autres répondent par oui ou non.", "Le premier qui trouve son perso gagne."],
   qd: ["Une question s'affiche, chacun répond en secret.", "Les réponses s'affichent sans nom : devine qui a écrit quoi.", "+1 par bonne devinette, +1 à l'auteur pour chaque joueur qui s'est trompé sur sa réponse."],
   bomb: ["Un thème s'affiche. Celui qui a la bombe dit une réponse, appuie sur Passe et passe le téléphone.", "Réponse déjà dite, trop longue à venir ou refusée par le groupe : tu gardes la bombe.", "Personne ne sait quand elle explose. Celui qui la tient prend un gage et relance la manche."],
-  sept: ["Sept persos sont tirés au hasard. Celui qui cherche ne les voit pas.", "Les autres les voient et ont un nombre de mots limité (15 par défaut) pour les lui faire trouver. Chaque mot dit compte. Interdit de dire le nom, même en partie.", "Une tête que personne ne connaît ? On la change. Quand le chercheur en trouve une, on la touche. La manche s'arrête quand les 7 sont trouvées, qu'il n'y a plus de mots, ou quand vous voulez.", "Modes en option : mots bannis, équipes, chrono, mimes. Chacun est chercheur une fois. Le meilleur chercheur est celui qui trouve le plus de têtes, puis qui en a eu besoin de moins de mots."],
+  sept: ["Sept persos sont tirés au hasard. Celui qui cherche ne les voit pas.", "Les autres les voient et ont un nombre de mots limité (15 par défaut) pour les lui faire trouver. Chaque mot dit compte. Interdit de dire le nom, même en partie.", "Une tête que personne ne connaît ? On la change. Quand le chercheur en trouve une, on la touche. La manche s'arrête quand les 7 sont trouvées, qu'il n'y a plus de mots, ou quand vous voulez.", "Modes en option : mots bannis, équipes (à 4, un donne les mots à son coéquipier), chrono, mimes. Chacun est chercheur une fois. Le meilleur chercheur est celui qui trouve le plus de têtes, puis qui en a eu besoin de moins de mots."],
   tp: ["Deux choix, chacun répond en secret.", "On voit qui a choisi quoi. Celui qui est seul dans son camp se justifie.", "Le plus original est celui qui s'est le plus souvent retrouvé dans le camp le moins choisi."],
   dr: ["Tout le monde voit la catégorie et connaît le mot, sauf l'imposteur.", "Chacun ajoute un seul trait au dessin, à son tour.", "Puis on vote pour trouver l'imposteur. S'il est démasqué, il peut encore gagner en devinant le mot."]
 };
@@ -4495,10 +4495,10 @@ let scfg = Object.assign({ count: 4, names: dcfg.names.slice(), src: null, words
 scfg.modes = Object.assign({ ban: false, teams: false, timer: false, mime: false, turn: false }, scfg.modes || {});
 if (![1, 2, 3, 4, 5].includes(scfg.ban)) scfg.ban = 3;
 if (![60, 90, 120].includes(scfg.time)) scfg.time = 90;
-const sMode = m => m === "teams" ? !!(scfg.modes.teams && scfg.count >= 4 && scfg.count % 2 === 0) : !!scfg.modes[m];
+const sMode = m => m === "teams" ? !!(scfg.modes.teams && scfg.count === 4) : !!scfg.modes[m];
 const sTeam = i => i % 2, sTeamName = t => t ? "Équipe B" : "Équipe A";
 const sSeekTeam = () => (SM.round - 1) % 2;
-const sWho = () => sMode("teams") ? sTeamName(sSeekTeam()) : sName(sSeeker());
+const sWho = () => sName(sSeeker());
 const sTeamMembers = t => [...Array(scfg.count).keys()].filter(i => sTeam(i) === t).map(sName);
 scfg.src = (scfg.src || sAllIds()).filter(id => sAllIds().includes(id)); if (!scfg.src.length) scfg.src = sAllIds();
 if (![10, 15, 20].includes(scfg.words)) scfg.words = 15;
@@ -4542,7 +4542,9 @@ function sStart() {
   if (septPool().length < 7) { SM.msg = "Il faut au moins 7 persos : ajoute des catégories."; return; }
   SM.msg = ""; SM.round = 1; SM.results = []; SM.screen = "pass"; sDraw();
 }
-const sSeeker = () => (SM.round - 1) % scfg.count;
+const sTeamSeats = t => [...Array(scfg.count).keys()].filter(i => sTeam(i) === t);
+const sSeeker = () => { if (!sMode("teams")) return (SM.round - 1) % scfg.count; const m = sTeamSeats(sSeekTeam()), k = Math.floor((SM.round - 1) / 2); return m[k % m.length]; };
+const sGiver = () => { const m = sTeamSeats(sSeekTeam()), k = Math.floor((SM.round - 1) / 2); return m[(k + 1) % m.length]; };
 function sSwap(k) {
   if (SM.found.includes(k)) return;
   const inUse = new Set(SM.cards.map(c => norm(c.w))), pool = septPool().filter(it => !inUse.has(norm(it.w)));
@@ -4595,7 +4597,7 @@ function vSept() {
     <section class="section"><span class="label">Catégories</span><div class="chips">${SEPT_CATS.map(c => `<button class="chip" data-act="s-src" data-id="${c.id}" aria-pressed="${scfg.src.includes(c.id)}">${esc(c.name)}<small>${septCat(c).length}</small></button>`).join("")}</div>
       </section>
     <section class="section"><span class="label">Modes</span>
-      ${[["ban", "Mots bannis"], ["teams", "Équipes"], ["timer", "Chrono"], ["mime", "Mimes"], ["turn", "Un mot chacun"]].map(([m, t]) => `<div class="toggle"><div class="t-text"><div class="label">${t}</div>${m === "teams" && !(scfg.count >= 4 && scfg.count % 2 === 0) ? `<div class="t-sub">4 joueurs minimum, nombre pair.</div>` : ""}</div><button class="switch" role="switch" aria-label="${t}" aria-checked="${sMode(m)}" data-act="s-mode" data-m="${m}" ${m === "teams" && !(scfg.count >= 4 && scfg.count % 2 === 0) ? "disabled" : ""}></button></div>${m === "ban" && sMode("ban") ? `<div class="chips sept-sub" role="group" aria-label="Nombre de mots bannis">${[1, 2, 3, 4, 5].map(n => `<button class="chip" data-act="s-ban" data-x="${n}" aria-pressed="${scfg.ban === n}">${n}${n === 3 ? "<small>conseillé</small>" : ""}</button>`).join("")}</div>` : ""}${m === "timer" && sMode("timer") ? `<div class="chips sept-sub" role="group" aria-label="Durée">${[60, 90, 120].map(n => `<button class="chip" data-act="s-time" data-x="${n}" aria-pressed="${scfg.time === n}">${n} s</button>`).join("")}</div>` : ""}`).join("")}
+      ${[["ban", "Mots bannis"], ["teams", "Équipes"], ["timer", "Chrono"], ["mime", "Mimes"], ["turn", "Un mot chacun"]].map(([m, t]) => `<div class="toggle"><div class="t-text"><div class="label">${t}</div>${m === "teams" && scfg.count !== 4 ? `<div class="t-sub">Il faut 4 joueurs.</div>` : ""}</div><button class="switch" role="switch" aria-label="${t}" aria-checked="${sMode(m)}" data-act="s-mode" data-m="${m}" ${m === "teams" && scfg.count !== 4 ? "disabled" : ""}></button></div>${m === "ban" && sMode("ban") ? `<div class="chips sept-sub" role="group" aria-label="Nombre de mots bannis">${[1, 2, 3, 4, 5].map(n => `<button class="chip" data-act="s-ban" data-x="${n}" aria-pressed="${scfg.ban === n}">${n}${n === 3 ? "<small>conseillé</small>" : ""}</button>`).join("")}</div>` : ""}${m === "timer" && sMode("timer") ? `<div class="chips sept-sub" role="group" aria-label="Durée">${[60, 90, 120].map(n => `<button class="chip" data-act="s-time" data-x="${n}" aria-pressed="${scfg.time === n}">${n} s</button>`).join("")}</div>` : ""}`).join("")}
     </section>
     <section class="section"><span class="label">Nombre de mots</span><div class="chips">${[10, 15, 20].map(n => `<button class="chip" data-act="s-words" data-x="${n}" aria-pressed="${scfg.words === n}">${n}${n === 15 ? "<small>conseillé</small>" : ""}</button>`).join("")}</div></section>
     <p class="msg">${esc(SM.msg)}</p>
@@ -4603,15 +4605,15 @@ function vSept() {
   }
   const head = `<header class="section"><span class="eyebrow">Manche ${SM.round} sur ${scfg.count}</span></header>`;
   if (SM.screen === "pass") {
-    return `${backHome}${head}<div class="sept-pass"><p class="eyebrow">${sMode("teams") ? "Équipe qui cherche" : "Celui qui cherche"}</p><p class="sept-who">${esc(sWho())}</p>${sMode("teams") ? `<p class="hint">${esc(sTeamMembers(sSeekTeam()).join(" et "))}</p>` : ""}
-      <p class="lead">${sMode("teams") ? `Vous fermez les yeux. ${esc(sTeamName(1 - sSeekTeam()))} (${esc(sTeamMembers(1 - sSeekTeam()).join(" et "))}) a ${scfg.words} mots pour vous faire trouver les têtes.` : `Tu fermes les yeux ou tu te retournes. Les autres regardent les sept têtes et ont ${scfg.words} mots en tout pour te les faire trouver.`}</p>
+    return `${backHome}${head}<div class="sept-pass"><p class="eyebrow">${sMode("teams") ? sTeamName(sSeekTeam()) + " · celui qui cherche" : "Celui qui cherche"}</p><p class="sept-who">${esc(sWho())}</p>
+      <p class="lead">${sMode("teams") ? `Tu fermes les yeux ou tu te retournes. ${esc(sName(sGiver()))} regarde les sept têtes et a ${scfg.words} mots en tout pour te les faire trouver.` : `Tu fermes les yeux ou tu te retournes. Les autres regardent les sept têtes et ont ${scfg.words} mots en tout pour te les faire trouver.`}</p>
       <button class="btn bomb-pass" data-act="s-ready">Les autres voient les têtes</button>
       <button class="btn-ghost" data-act="s-redraw">Autres têtes</button>
       <button class="btn-ghost" data-act="s-setup">Réglages</button></div>`;
   }
   if (SM.screen === "play") {
     const left = scfg.words - SM.used, over = left <= 0;
-    return `${backHome}<header class="section"><span class="eyebrow">${esc(sWho())} cherche · ${SM.found.length}/7 trouvés</span></header>
+    return `${backHome}<header class="section"><span class="eyebrow">${sMode("teams") ? sTeamName(sSeekTeam()) + " · " : ""}${esc(sWho())} cherche · ${SM.found.length}/7 trouvés</span></header>
     ${sMode("timer") ? `<p class="sept-time ${SM.left <= 10000 ? "low" : ""}" id="sept-time" role="timer">${sClock()}</p>` : ""}
     ${sGrid(true)}
     <div class="sept-count ${over ? "over" : left <= 3 ? "low" : ""}" role="group" aria-label="Mots utilisés">
@@ -4619,7 +4621,7 @@ function vSept() {
       <p aria-live="polite"><b>${left > 0 ? left : 0}</b> mot${left > 1 ? "s" : ""} restant${left > 1 ? "s" : ""} <small>sur ${scfg.words}</small></p>
       <button class="btn-small" data-act="s-plus" aria-label="Un mot de plus" ${over ? "disabled" : ""}>+1 mot</button>
     </div>
-    ${SM.swap ? `<p class="hint"><b>Touche la tête à remplacer.</b> Les têtes déjà trouvées ne changent pas.</p>` : `<p class="hint">Chaque mot dit compte : appuie sur +1 mot. Quand le chercheur trouve une tête, touche-la. Interdit de dire le nom${sMode("ban") ? " ou un mot banni (+1 mot)" : ""}.${sMode("mime") ? " Pas de parole : gestes et bruitages." : ""}${sMode("turn") ? " Un mot chacun, à tour de rôle." : ""}${sMode("teams") ? ` ${sTeamName(1 - sSeekTeam())} donne les mots, à deux.` : ""}</p>`}
+    ${SM.swap ? `<p class="hint"><b>Touche la tête à remplacer.</b> Les têtes déjà trouvées ne changent pas.</p>` : `<p class="hint">Chaque mot dit compte : appuie sur +1 mot. Quand le chercheur trouve une tête, touche-la. Interdit de dire le nom${sMode("ban") ? " ou un mot banni (+1 mot)" : ""}.${sMode("mime") ? " Pas de parole : gestes et bruitages." : ""}${sMode("turn") ? " Un mot chacun, à tour de rôle." : ""}${sMode("teams") ? ` ${esc(sName(sGiver()))} donne les mots.` : ""}</p>`}
     <button class="btn-ghost" data-act="s-swapmode">${SM.swap ? "Annuler" : "Une tête est inconnue : la changer"}</button>
     <button class="btn-ghost" data-act="s-end">${SM.found.length === 7 ? "Voir le résultat" : "Arrêter la manche"}</button>`;
   }
